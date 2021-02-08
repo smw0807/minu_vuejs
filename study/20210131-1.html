@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>2020년01월31일 1</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app1">
+       <form-com v-bind:title="titleLabel" v-bind:author="authorLabel">
+           <h1>{{header}}</h1>
+       </form-com>
+       <!-- 컴포넌트에 넘겨준다? -->
+    </div>
+    <script type="text/javascript">
+        Vue.component("form-com", {
+            template: `
+            <div>
+                <form>
+                    <slot></slot>
+                    <label for="title">{{title}}</label><input id="title" type="text"><br>
+                    <label for="author">{{author}}</label><input id="author" type="text"><br>
+                    <button>submit</button>
+                </form>
+            </div>
+            `,//넘겨준 데이터를 받는다?
+            props:['title', 'author']
+        })
+        var app = new Vue({
+            el: '#app1',
+            data: {
+               titleLabel: '제목',
+               authorLabel: '저자',
+               header: '책 저자 입력 폼'
+            }
+        })
+    </script>
+</body>

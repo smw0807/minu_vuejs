@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <com1></com1>
+        <com2></com2>
+        <com3></com3>
+        <!-- <com4></com4> -->
+        <com5></com5> <!-- new Vue 이후에 선언 된 컴포넌트는 사용 못함-->
+    </div>
+    <div>--------------</div>
+    <div id="app2">
+        <com1></com1>
+        <com2></com2>
+        <com3></com3>
+        <com4></com4>
+        <com5></com5>
+    </div>
+    
+    <script type="text/javascript">
+    // 전역 컴포넌트와 지역 컴포넌트 테스트
+        Vue.component('com1', {
+            template:'<p>전역 컴포넌트의 템플릿입니다.1</p>' 
+        })
+        Vue.component('com2', {
+            template:'<p>전역 컴포넌트의 템플릿입니다.2</p>' 
+        })
+        const test_com3 = {
+            template: '<p>지역 컴포넌트의 템플릿입니다.1</p>'
+        }
+        var app = new Vue({
+            el: '#app1',
+            components: {
+                   'com3': test_com3,
+                //    'com4': test_com4
+            }
+        })
+        Vue.component('com5', {
+            template:'<p>전역 컴포넌트의 템플릿입니다.5</p>' 
+        })
+        const test_com4 = {
+            template:'<p>지역 컴포넌트의 템플릿입니다.2</p>'
+        }
+        var app = new Vue({
+            el: '#app2',
+            components: {
+                'com3': test_com3,
+                'com4': test_com4
+            }
+        })
+    </script>
+</body>

@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p v-if="count === 10">{{ count }}번 클릭!! 버튼 비활성화!</p>
+        <p v-else-if="count >= 1">현재 클릭 횟수 : {{ count }}</p>
+        <p v-else>버튼을 클릭해보세요!</p>
+        <button v-bind:disabled="count === 10" v-on:click="add">add</button>
+    </div>
+    
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            },
+            methods: {
+                add () {
+                    this.count++;
+                }
+            }
+        })
+    </script>
+</body>

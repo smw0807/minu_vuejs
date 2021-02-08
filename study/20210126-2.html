@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <com1></com1>
+        <com2></com2>
+        <com3></com3>
+        <com5></com5>
+    </div>
+    <div>--------------</div>
+    <div id="app2">
+        <com1></com1>
+        <com2></com2>
+        <com3></com3>
+        <com4></com4>
+        <com5></com5>
+    </div>
+    <script src="./20210126-2.js"></script>
+    <script type="text/javascript">
+        // 전역 컴포넌트와 지역 컴포넌트 테스트
+        
+        const test_com3 = {
+            template: '<p>지역 컴포넌트의 템플릿입니다.1</p>'
+        }
+        var app = new Vue({
+            el: '#app1',
+            components: {
+                   'com3': test_com3,
+                   'com5': test_com5//??? 왜 되는거지?
+            }
+        })
+        const test_com4 = {
+            template:'<p>지역 컴포넌트의 템플릿입니다.2</p>'
+        }
+        var app = new Vue({
+            el: '#app2',
+            components: {
+                'com3': test_com3,
+                'com4': test_com4,
+                'com5': test_com5//??? 왜 되는거지?
+            }
+        })
+    </script>
+</body>

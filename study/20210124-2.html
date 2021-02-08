@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <table>
+            <tr is="my-component" v-for="ob in obj" title="ob.title" content="ob">{{ob.title}}</tr>
+        </table>
+    </div>
+    
+    <script type="text/javascript">
+    //v-for와 컴포넌트, props 활용해보기
+        Vue.component('my-component', {
+            props:['title', 'content'],
+            template:`
+                <tr>
+                    <td>{{title}}</td>
+                    <td>{{content}}</td>
+                </tr>
+            ` 
+        })
+        var app = new Vue({
+            el: '#app',
+            data:{
+                obj: [
+                    {
+                        "title":"aaa",
+                        "content":"aaaaaaaaaa"
+                    },
+                    {
+                        "title":"bbb",
+                        "content":"bbbbbbbbbbbbbbb"
+                    },
+                    {
+                        "title":"ccc",
+                        "content":"ccccccccccccc"
+                    },
+                    {
+                        "title":"ddd",
+                        "content":"dddddddddddd"
+                    }
+                ]
+            }
+        })
+    </script>
+</body>

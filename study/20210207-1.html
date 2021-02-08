@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <title>2020년01월31일 2</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<style>
+    .test-enter, .test-leave-to {
+        opacity: 0;
+    }
+    .test-enter-active, .test-leave-active {
+        transition: opacity 3.0s ease-out;
+    }
+    
+    .ani-enter-active {
+        animation: aniKF 1s;
+    }
+    .ani-leave-active {
+        animation: aniKF 1s reverse;
+    }
+    @keyframes aniKF {
+        0% {
+            /* transform: rotate(0.1); */
+            opacity: 0
+        }
+        50% {
+            /* transform: rotate(0.5); */
+            opacity: 0.5;
+        }
+        100% {
+            transform: rotate(360deg);
+            opacity: 1;
+        }
+    }
+
+</style>
+<body>
+    <div id="app1">
+        <div>
+            <p @click="go">{{ text }}</p>
+        </div>
+        <transition name="test">
+            <div v-if="show">
+                <p>{{ text_tr }}</p>
+            </div>
+        </transition>
+        <transition name="ani">
+            <div v-if="show">
+                <p>{{ text_tr }}</p>
+            </div>
+        </transition>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({ 
+            el: '#app1',
+            data: {
+               text: '트랜지션과 애니메이션을 사용해보자',
+               text_tr: '트랜지션/애니메이션',
+               show: false
+            },
+            methods: {
+                go() {
+                    this.show = (this.show == true ? false : true)
+                }
+            }
+        })
+    </script>
+</body>

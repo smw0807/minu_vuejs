@@ -1,0 +1,113 @@
+<html>
+<head>
+    <title>Vue.js 애완용품샵</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1 v-text="sitename"></h1> <!-- sitename 속성에 대한 바인딩 -->
+        </header>
+        <main>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                    <figure>
+                        <img v-bind:src="product.image">
+                    </figure>
+                </div>
+                <div class="col-md-6 col-md-offset-2 description">
+                    <h1 v-text="product.title"></h1>
+                    <p v-html="product.description"></p>
+                    <p class="price">{{ product.price | formatPrice }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="text/javascript">
+        let APP_LOG_LIFECYCLE_EVENTS = true;
+        var webstore = new Vue({
+            el: '#app',
+            data: {
+                sitename: 'Vue.js 애완용품샵',
+                product: {
+                    id: 1001,
+                    title: "고양이 사료, 25파운드",
+                    description: "당신의 고양이를 위한 <em>거부할 수 없는</em>, 유기농 25파운드 사료입니다.",
+                    price: 2000,
+                    image: "assets/images/product-fullsize.png"
+                }
+            },
+            filters: {
+                formatPrice: function (price) {
+                    if (!parseInt(price)) { return ""; }
+                    if (price > 99999) {
+                        var priceString = (price / 100).toFixed(2);
+                        var priceArray = priceString.split("").reverse();
+                        var index = 3;
+                        while (priceArray.length > index + 3) {
+                            priceArray.splice(index + 3, 0, ",");
+                            index += 4;
+                        }
+                        return "$" + priceArray.reverse().join("");
+                    } else {
+                        return "$" + (price / 100).toFixed(2);
+                    }
+                }
+            },
+            //생성 전 이벤트 로그
+            beforeCreate: function () {
+                if (APP_LOG_LIFECYCLE_EVENTS) {
+                    console.log("beforeCreate");
+                }
+            },
+            //생성 후 이벤트 로그
+            created: function () {
+                if (APP_LOG_LIFECYCLE_EVENTS) {
+                    console.log("created");
+                }
+            },
+            //마운트 전 이벤트 로그
+            beforeMount: function () {
+                if (APP_LOG_LIFECYCLE_EVENTS) {
+                    console.log("beforeMount");
+                }
+            },
+            //마운트 후 이벤트 로그
+            mounted: function () {
+                if (APP_LOG_LIFECYCLE_EVENTS) {
+                    console.log("mounted");
+                }
+            },
+            //업데이트 전 이벤트 로그
+            beforeUpdate: function () {
+                if (APP_LOG_LIFECYCLE_EVENTS) {
+                    console.log("beforeUpdate");
+                }
+            },
+            //업데이트 후 이벤트 로그
+            updated: function () {
+                if (APP_LOG_LIFECYCLE_EVENTS) {
+                    console.log("updated");
+                }
+            },
+            //소멸 전 이벤트 로그
+            beforeDestroy: function () {
+                if (APP_LOG_LIFECYCLE_EVENTS) {
+                    console.log("beforeDestroy ");
+                }
+            },
+            //소멸 후 이벤트 로그
+            destroyed: function () {
+                if (APP_LOG_LIFECYCLE_EVENTS) {
+                    console.log("destroyed");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

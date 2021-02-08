@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <!-- <com1 txt1="asdf" v-bind:txt2="text1"></com1> -->
+        <com1 :txt1="text2" v-bind:txt2="text1"></com1>
+        <div>------------------------------------</div>
+        <com1></com1>
+        <div>------------------------------------</div>
+        <com1 :txt1="aaa" v-bind:txt2="text1"></com1>
+    </div>
+    <script type="text/javascript">
+        Vue.component('com1', {
+            template: '<p>{{txt1}}, {{txt2}}</p>',
+            // props:['txt1', 'txt2']
+            props:{
+                txt1: {
+                    type: Number,
+                    required: true,
+                    default: 10
+                },
+                txt2: {
+                    type: String,
+                    default: 'ttt'
+                }
+            }
+        })
+        var app = new Vue({
+            el: '#app1',
+            data: {
+                text1: 'tttttttt',
+                text2: 22
+            }
+        })
+    </script>
+</body>

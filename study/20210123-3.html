@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(val, idx) in items">{{idx}} : {{val}}</li>
+        </ul>
+        <ul>
+            <li v-for="(val, name, idx) in items">[{{idx}}] {{name}} : {{val}}</li>
+        </ul>
+    </div>
+    
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: {
+                    "a": "aa",
+                    "b": "bb",
+                    "c": "cc",
+                    "d": "dd",
+                    "e": "ee",
+                    "f": "ff",
+                    "g": "gg"
+                }
+            }
+        })
+    </script>
+</body>

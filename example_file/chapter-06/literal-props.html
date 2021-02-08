@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <my-component text="World"></my-component>
+    <my-component v-bind:text="dynamic"></my-component> <!-- v-bind로 부모 데이터 dynamic을 자식 데이터 text에 바인딩-->
+  </div>
+  <script>
+  const MyComponent= {
+    template:'<div>안녕 {{text}}! </div>',
+    props:['text'] //받아야할 속성 리터럴 속성
+  }
+  new Vue({
+    el: "#app",
+    data: {
+      dynamic: 'dynamic-props'
+    },
+    components: {'my-component': MyComponent}
+
+  });
+  </script>
+</body>
+</html>

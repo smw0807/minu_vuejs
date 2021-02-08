@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>computed로 count 올리기 {{ count }}</p><button v-on:click="add">add</button>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            },
+            methods: {
+                add () {
+                    this.count++;
+                }
+            }
+        })
+    </script>
+</body>

@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    
+    <script type="text/javascript">
+        Vue.component('my-component', {
+            // template:'<p>전역 컴포넌트!!</p>' //<p>태그로 감쌈
+            template:'전역 컴포넌트!!' //<p>태그로 감쌈 태그가 없을 경우 에러 발생
+        })
+        var app = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
