@@ -2,37 +2,39 @@
   <div>
       <my-header></my-header>
       <h1>id {{$route.params.id}} 입니다.</h1>
-      <div class="row" v-if="editMode == false">
-          <div class="col-ms-5 col-md-offset-0">
-              <figure>
-                  <img class="product" v-bind:src="product.image">
-              </figure>
+      <transition name="fade" mode="out-in"> 
+        <div class="row" v-if="editMode == false" key="0">
+            <div class="col-ms-5 col-md-offset-0">
+                <figure>
+                    <img class="product" v-bind:src="product.image">
+                </figure>
+            </div>
+            <div class="col-md-12 description">
+                <h1>{{product.title}}</h1>
+                <p v-html="product.description"></p>
+                <p class="price">{{product.price}}</p>
+                <p>현재 남은 수량 : {{product.availableInventory}}</p>
+                <div>
+                    평점 : 
+                      <span v-bind:class="{'rating-active': checkRating(n, product)}"v-for="n in 5">
+                          ☆
+                      </span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-info" @click="edit">상품 수정</button>
+                <router-link tag="button" class="btn btn-primary" v-bind:to="{name: 'iMain'}">
+                  돌아가기
+                </router-link>
+            </div>
           </div>
-          <div class="col-md-12 description">
-              <h1>{{product.title}}</h1>
-              <p v-html="product.description"></p>
-              <p class="price">{{product.price}}</p>
-              <p>현재 남은 수량 : {{product.availableInventory}}</p>
-              <div>
-                  평점 : 
-                    <span v-bind:class="{'rating-active': checkRating(n, product)}"v-for="n in 5">
-                        ☆
-                    </span>
-              </div>
-          </div>
-          <div class="col-md-6">
-              <button class="btn btn-info" @click="edit">상품 수정</button>
-              <router-link tag="button" class="btn btn-primary" v-bind:to="{name: 'iMain'}">
-                돌아가기
-              </router-link>
-          </div>
-        </div>
-        <div class="col-md-12" v-else>
+          <div class="col-md-12" v-else key="">
             <router-view></router-view> <!-- router-view 컴포넌트는 경로의 시작점이다. -->
             <div class="col-md-12">
-               <button class="btn btn-danger" @click="cancel">수정 취소</button>
+              <button class="btn btn-danger" @click="cancel">수정 취소</button>
             </div>
-        </div>
+          </div>
+        </transition>
   </div>
 </template>
 
@@ -72,5 +74,11 @@ export default {
 </script>
 
 <style>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s ease-in;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
 
 </style>
