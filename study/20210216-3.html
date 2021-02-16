@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>커스텀지시자</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="app">
+    <p v-style-me>
+      {{ welcome }}
+    </p>
+  </div>
+<script>
+  new Vue({
+    el:'#app',
+    data() {
+      return {
+        welcome: '안녕하세요?'
+      }
+    },
+    directives: { //지시자가 등록되는 곳!!
+      styleMe(el, binding, vnode, oldVnode) {
+        console.log(el);
+        console.log(binding);
+        console.log(vnode);
+        console.log(oldVnode);
+        update: {
+          console.log('update');
+          el.style.padding = '10px 10px';
+        }
+        bind: { //바인드 훅
+          console.log('bind');
+          el.style.color = 'blue';
+          el.style.fontSize = '42px';
+          el.className = 'text-center';
+          el.id = "dd";
+        }
+        inserted: {
+          console.log('inserted');
+          el.style.backgroundColor = 'black';
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>
