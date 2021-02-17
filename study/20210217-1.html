@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>전역 커스텀 지시자</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="app">
+    <p v-style-me>
+      {{ welcome }}
+    </p>
+    <p v-style-me="'red'"> <!-- binding.value에 값을 바인딩함 bind 인수에 value라는 값에 들어감 -->
+      {{ welcome }}
+    </p>
+
+    <!-- 객체 리터럴을 사용해 여러 값을 보낼 수도 있다 (v-style-me="{color: 'orange', text: 'hi'")-->
+    <p v-style-me="{color: 'orange', text: 'hi!!'}">
+      s
+    </p>
+    
+    <!-- 커스텀 지시자 끝에 . 을 추가해서 binding.modifiers.samll로 접근할 수 있다. -->
+    <p v-style-me.small>
+      {{ welcome }}
+    </p>
+    <!-- 커스텀 지시자 옆에 : (콜론)과 이름을 사용하면 binding.arg로 접근할 수 있다. -->
+    <p v-style-me:text-center.large="'red'">
+      {{ welcome }}
+    </p>
+  </div>
+<script>
+  Vue.directive('style-me', { //전역 커스텀 지시자
+    bind(el, binding, vnode, oldVnode) { //바인드 훅
+      // console.log(el);
+      console.log(binding);
+      // console.log(vnode);
+      // console.log(oldVnode);
+      el.style.color = binding.value || 'blue';
+      if (typeof binding.value != 'undefined') {
+        el.style.color = binding.value.color;
+        // el.html = binding.value.text; //텍스트를 P 태그 사이에 넣고 싶은데 이건 방법을 모르겠다.
+      }
+      if (binding.modifiers.small) {
+        el.style.fontSize = "20px";
+      } else if (binding.modifiers.large) {
+        el.style.fontSize = "40px";
+      } else {
+        el.style.fontSize = '11px';
+      }
+      el.className = binding.arg;
+    }
+  });
+  new Vue({
+    el:'#app',
+    data() {
+      return {
+        welcome: '안녕하세요?'
+      }
+    }
+  })
+</script>
+</body>
+</html>
