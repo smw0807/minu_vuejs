@@ -38,7 +38,7 @@
       // console.log(oldVnode);
       el.style.color = binding.value || 'blue';
       if (typeof binding.value != 'undefined') {
-        el.style.color = binding.value.color;
+        el.style.color = binding.value.color; //객체 리터럴을 사용했을 때 접근 방법.
         // el.html = binding.value.text; //텍스트를 P 태그 사이에 넣고 싶은데 이건 방법을 모르겠다.
       }
       if (binding.modifiers.small) {
