@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>렌더함수</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <my-comp header="1">?</my-comp>
+    </header>
+  </div>
+<script>
+   Vue.component('my-comp', {
+    render(createElement) { //렌더 함수
+      /** createElement
+       * 렌더 함수에 올바른 인수와 함께 createElement를 반환해야 한다.
+       * 반환할 때 HTML에 정의하고 싶은 요소와 자식 요소를 기술해서 가상 DOM을 만든다. (VNode 라고도함)
+       * 근본적으로 가상 DOM을 대표하는 VNode 트리를 생성하는 것
+       */
+      //createElement는 세 인수를 받는다
+      return createElement('h'+this.header,  //문자열or객체or함수 (보통 div같은 DOM 요소를 추가)
+      {'class':'text-center',// 객체 (요소에 포함하고자 하는 속성)
+        on: {
+          click(e) {
+            alert('클릭됨');
+          }
+        }
+      },
+      this.welcome + this.$slots.default[0].text)// 배열혹은 문자열 (문자열이라면 태그 내에 포함도리 텍스트를 가리킴)
+                                                 // 배열이라면 자식 VNode를 가리킴
+    },
+    data() {
+      return {
+        welcome: '안녕하세요 '
+      }
+    },
+    props: ['header']
+  });
+  new Vue({
+    el:'#app'
+  })
+</script>
+</body>
+</html>
