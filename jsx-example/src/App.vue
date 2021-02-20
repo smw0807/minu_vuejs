@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <HelloWorld header="3" name="민우야"/>
   </div>
 </template>
 
