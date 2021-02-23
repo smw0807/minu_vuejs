@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex - 3</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vuex"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div id="app">
+  <!-- vue 인스턴스에 정의된 지역 변수-->
+  <h1>{{header}}</h1> 
+  <!--vuex 저장소에서 가져온 계산도니 속성-->
+  <h2>{{welcome}}</h2> 
+  <h3>{{counter}}</h3>
+  <button v-on:click="increment">up</button>
+</div>
+<script>
+  const store = new Vuex.Store({
+    state : {
+      msg: 'Hello World',
+      count: 0
+    },
+    mutations: { //상태를 증가시키는 뮤테이션
+      increment(state, payload) { //payload 인수 : 루트 Vue.js 인스턴스에서 생성한 increment 메서드에서 전달할 수 있다.
+        state.count += payload;
+      }
+    },
+    getters: {
+      msg(state) {
+        return state.msg.toUpperCase();
+      },
+      count(state) {
+        return state.count;
+      }
+    },
+    actions: {
+      increment(context, payload) {
+        //context : 변경사항을 커밋하는데 사용
+        context.commit('increment', payload); //increment 뮤테이션을 트리거해서 페이로드를 전달
+      }
+    }
+  })
+  new Vue({
+    el:'#app',
+    data() {
+      return {
+        header: 'Vuex App' //메시지를 표시하는 헤더 속성
+      }
+    },
+    computed: {
+      welcome() {
+        return store.getters.msg; // msg  반환
+      },
+      counter() {
+        return store.getters.count; // counter 반환
+      }
+    },
+    methods: {
+      increment() {
+        store.dispatch('increment', 10) 
+        //dispatch 첫 번째 인수는 actions 이름, 두 번쨰는 액션에 전달될 페이로드
+        //페이로드는 단순한 변수 혹은 객체가 될 수 있다.
+      }
+    }
+  })
+</script>
+</body>
+</html>
