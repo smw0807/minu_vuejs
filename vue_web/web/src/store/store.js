@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 // import axios from 'axios';
 import VueCookies from 'vue-cookies';
 
-import { board } from './board.module';
+import { board } from './module/board';
 
 Vue.use(Vuex)
 

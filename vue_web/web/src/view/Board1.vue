@@ -33,6 +33,7 @@ name: 'board1',
     }
   },
   created() {
+    this.$store.dispatch('board/setList'); //! 회사에서 확인해볼것
     this.$Axios.get('/v1/movies', {uid: 's', pass: 'a'}).then(res =>{
       console.log("board1");
       console.log(res);
