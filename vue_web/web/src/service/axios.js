@@ -1,7 +1,6 @@
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
-import { refreshToken } from '../service/login'
-
+import { store } from '../store/store';
 // axios.defaults.baseURL = 'http://localhost:3000';
 
 /**
@@ -12,36 +11,31 @@ Refresh Token을 이용해서 Access Token을 갱신 + 통신 요청 그대로 �
 그렇게 하기 위해서는 axios Intercept를 설정해야함
  */
 
-// Add a request interceptor
-axios.interceptors.request.use(async function (config) {
-    // Do something before request is sent
-    config.headers.accessToken = VueCookies.get('accessToken');
-    config.headers.refreshToken = VueCookies.get('refreshToken');
+//request 설정
+axios.interceptors.request.use(async function (config) { 
+  config.url = store.state.host + config.url;
+  config.headers['x-access-token'] = VueCookies.get('accessToken');
+  config.headers['x-refresh-token'] = VueCookies.get('refreshToken');
+  config.headers['Content-Type'] = 'application/json';
     console.log(config);
     return config;
   }, function (error) {
-    // Do something with request error
+    console.log('axios request error');
+    console.log(error);
     return Promise.reject(error);
-  });
-
-// Add a response interceptor
+});
+//response 설정
 axios.interceptors.response.use(function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-    return response;
-  }, async function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    console.log('에러일 경우', error.config);
-    const errorAPI = error.config;
-    if(error.response.data.status===401 && errorAPI.retry===undefined){
-      errorAPI.retry = true;
-      console.log('토큰이 이상한 오류일 경우');
-      await refreshToken();
-      return await axios(errorAPI);
-    }
-    return Promise.reject(error);
-  });
-
+  return response;
+}, async function (error) {
+  console.log('response error');
+  console.log(error);
+  // if(error.response.data.status===401 && errorAPI.retry===undefined){
+    //       errorAPI.retry = true;
+    //       console.log('토큰이 이상한 오류일 경우');
+    //       return await axios(errorAPI);
+  // }
+  return Promise.reject(error);
+});
 
 export default axios;

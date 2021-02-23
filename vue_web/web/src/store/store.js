@@ -1,41 +1,63 @@
 //상태관리 영역
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios';
+// import axios from 'axios';
+import VueCookies from 'vue-cookies';
+
+import { board } from './board.module';
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
       host: 'http://192.168.1.29:3000',
-      accessToken: '',
-      refreshToken: ''
+      isLogin: false
+      // accessToken: '',
+      // refreshToken: ''
   },
   mutations: {
       loginToken (state, payload) {
-          console.log('loginToken');
-          console.log(payload);
-          state.accessToken = payload.accessToken;
-          state.refreshToken = payload.refreshToken;
+          // state.accessToken = payload.accessToken;
+          // state.refreshToken = payload.refreshToken;
+          VueCookies.set('accessToken', payload.accessToken, '60s' );
+          VueCookies.set('refreshToken', payload.refreshToken, '1h' );
+          state.isLogin = true;
       },
-      logout (state) {
-          if (state.token) {
-              state.token = '';
-              console.log('Logout 됨');
-          }
+      refreshToken(state, payload) {
+        // accessToken 재요청
+        console.log("refreshToken");
+        // this.$Axios.post('/auth').then(res => {
+        //   console.log(state);
+        //   console.log(res);
+        // }).catch(err =>{
+        //   console.log(err);
+        // })
       },
-      checkToken (state, payload) {
-          console.log('checkToken');
-          console.log(state);
-          console.log(state.accessToken);
-          console.log(state.refreshToken);
-      }
-    //   loginCheck: function (state) {
-    //       axios.get(`${state.host}${gAction.login}`)
-    //   }
+      logout () {
+        VueCookies.remove('accessToken');
+        VueCookies.remove('refreshToken');
+        location.reload();
+      },
+  },
+  getters: {
+    //쿠키에 저장된 토큰 가져오기
+    getToken (state) {
+      // console.log('getToken');
+      let ac = VueCookies.get('accessToken');
+      let rf = VueCookies.get('refreshToken');
+      let host = state.host;
+      // console.log(ac);
+      // console.log(rf);
+      return {
+        access: ac,
+        refresh: rf,
+        host: host
+      };
+    }
   },
   actions: {
   },
   modules: {
+    board
   }
 })

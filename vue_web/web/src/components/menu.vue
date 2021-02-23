@@ -16,10 +16,11 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/board1">Baord 1</a></li>
-        <li><a href="/baord2">Board 2</a></li>
+        <li><a href="/board2">Board 2</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li v-if="is_login"><a href="/logout">Logout</a></li>
+        <li><a @click="logout">Logout</a></li>
+        <!-- <li v-if="is_login"><a @click="logout">Logout</a></li> -->
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -35,10 +36,15 @@ export default {
             msg: '',
         }
     },
-    // created() {
-    //     console.log('kkk');
-    //     console.log(this.is_login);
-    // },
+    created() {
+        console.log("menu created");
+    },
+    methods: {
+        logout() {
+            console.log('logout!');
+            this.$store.commit('logout');
+        }
+    },
     props: ["is_login"]
 }
 </script>

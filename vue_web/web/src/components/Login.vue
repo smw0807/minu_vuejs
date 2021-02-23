@@ -23,60 +23,47 @@
 
 <script>
 import axios from 'axios';
-import VueCookies from 'vue-cookies';
-export default {
-    data () {
-        return {
-            user_id: '',
-            user_pw: ''
-        }
-    },
-    methods: {
-        login () {
-            let user_id = this.user_id;
-            let user_pw = this.user_pw;
-            if (user_id == '') {
-                alert('아이디를 입력해주시기 바랍니다.');
-                $('#user_id').focus();
-                return;
-            }
-            if (user_pw == '') {
-                alert('패스워드를 입력해주시기 바랍니다.');
-                $('#user_pw').focus();
-                return;
-            }
-            let params = {
-                uid: user_id,
-                pass: user_pw
-            };
-            //a, bbbb
-            axios.post(`${this.$store.state.host}/v1/auth/login`, params).then(res => {
-              console.log(res);
-                if (res.status == 200) {
-                  console.log('로그인 성공');
-                  this.$store.commit('loginToken', res.data.auth_info);
-                  // document.cookie = `accessToken=${res.data.auth_info.accessToken}`;
-                  // document.cookie = `refreshToken=${res.data.auth_info.refreshToken}`;
-                  VueCookies.set('accessToken', res.data.auth_info.accessToken, '60s' );
-                  VueCookies.set('refreshToken', res.data.auth_info.refreshToken, '30m' );
-                  axios.defaults.headers.common['x-access-token'] = res.data.auth_info.accessToken;
-                  this.$router.push({ name: 'Main', params: {is_login: true} });
-                }
-            }).catch(err => {
-                console.log('error');
-                console.log(err);
-                alert('로그인 실패');
-            });
 
-            // this.$Axios.post(`${this.$store.state.host}/v1/auth/login`, params).then(res => {
-            //     if (res.status == 200) {
-            //         this.$store.commit('loginToken', res.data.auth_info);
-            //         this.$router.push('/');
-            //     }
-            // })
-            // this.$Axios.post()
-        }
+export default {
+  data () {
+    return {
+      user_id: '',
+      user_pw: ''
     }
+  },
+  methods: {
+    login () {
+      let user_id = this.user_id;
+      let user_pw = this.user_pw;
+      if (user_id == '') {
+          alert('아이디를 입력해주시기 바랍니다.');
+          $('#user_id').focus();
+          return;
+      }
+      if (user_pw == '') {
+          alert('패스워드를 입력해주시기 바랍니다.');
+          $('#user_pw').focus();
+          return;
+      }
+      let params = {
+          uid: user_id,
+          pass: user_pw
+      };
+      //a, bbbb
+      axios.post('/v1/auth/login', params).then(res => {
+        console.log(res);
+          if (res.status == 200) {
+            console.log('로그인 성공');
+            this.$store.commit('loginToken', res.data.auth_info);
+            this.$router.push({ name: 'Main' });
+          }
+      }).catch(err => {
+          console.log('error');
+          console.log(err);
+          alert('로그인 실패');
+      });
+    }
+  }
 }
 </script>
 
