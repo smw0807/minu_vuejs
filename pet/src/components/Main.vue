@@ -52,6 +52,8 @@
 
 <script>
 import MyHeader from './Header.vue';
+import { mapGetters } from 'vuex'; //vuex에서 mapGetters를 임포트한다.
+
 export default {
   name: 'imain',
   data() {
@@ -82,9 +84,12 @@ export default {
     }
   },
   computed: {
-    products() {
-      return this.$store.getters.products;
-    },
+    // products() {
+    //   return this.$store.getters.products;
+    // },
+    ...mapGetters([ //mapGetters 헬퍼 배열
+      'products'//게터 목록을 표시한다.
+    ]),
     cartItemCount() {
       return this.cart.length || '';
     },
