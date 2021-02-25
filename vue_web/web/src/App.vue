@@ -4,7 +4,7 @@
     <!-- <top-menu :is_login="is_login"></top-menu> -->
     <top-menu></top-menu>
     <transition name="component-fade" mode="out-in">
-      <router-view/>
+        <router-view/>
     </transition>
   </div>
 </template>
@@ -16,21 +16,20 @@ export default {
   name: 'App',
   data () {
     return {
-      is_login: false
+      // is_login: false
     }
   },
-  beforeCreate() {
-    var token = this.$store.getters.getToken;
-    if (token.access == null && token.refresh == null) {
-      this.$router.push({name: 'Login'});
-    }
-    if (token.access == null && token.refresh != null) {
-      //accessToken 재요청
-      this.$store.commit('refreshToken', token.refresh);
-    }
-    if (token.access != null && token.refresh != null) {
-    }
-  },
+  // created() {
+  //   var token = this.$store.getters.getToken;
+  //   if (token.access == null && token.refresh == null) {
+  //       this.$router.push({name: 'Login'});
+  //   }
+  //   if (token.access == null && token.refresh != null) { //accessToken 재요청
+  //       this.$store.dispatch('refreshToken');
+  //   }
+  //   if (token.access != null && token.refresh != null) {
+  //   }
+  // },
   components: {
     'topMenu': menu
   }

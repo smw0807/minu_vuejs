@@ -26,22 +26,23 @@
 
 <script>
 export default {
-name: 'board1',
+  name: 'board1',
   data () {
     return {
-      list: []
     }
   },
   created() {
-    this.$store.dispatch('board/setList'); //! 회사에서 확인해볼것
-    this.$Axios.get('/v1/movies', {uid: 's', pass: 'a'}).then(res =>{
-      console.log("board1");
-      console.log(res);
-      this.list = res.data;
-    }).catch(err => {
-      console.log('created error');
-      console.log(err);
-    });
+    this.$store.dispatch('initBoardList');
+  },
+  computed: {
+    list() {
+      return this.$store.getters.boardList;
+    }
+  },
+  methods: {
+    test() {
+      this.$store.dispatch('initBoardList');
+    }
   }
 }
 </script>

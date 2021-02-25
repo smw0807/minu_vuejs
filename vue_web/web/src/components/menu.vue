@@ -36,13 +36,18 @@ export default {
             msg: '',
         }
     },
-    created() {
-        console.log("menu created");
-    },
+    // beforeCreate() {
+    //   var token = this.$store.getters.getToken;
+    //   if (token.access == null && token.refresh == null) {
+    //       this.$router.push({name: 'Login'});
+    //   }
+    //   if (token.access == null && token.refresh != null) { //accessToken 재요청
+    //       this.$store.dispatch('refreshToken');
+    //   }
+    // },
     methods: {
         logout() {
-            console.log('logout!');
-            this.$store.commit('logout');
+            this.$store.dispatch('logout');
         }
     },
     props: ["is_login"]
