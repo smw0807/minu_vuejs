@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data () {
     return {
@@ -49,20 +47,13 @@ export default {
           uid: user_id,
           pass: user_pw
       };
-      //a, bbbb
-      axios.post('/v1/auth/login', params).then(res => {
-        console.log(res);
-          if (res.status == 200) {
-            console.log('로그인 성공');
-            this.$store.commit('loginToken', res.data.auth_info);
-            this.$router.push({ name: 'Main' });
-          }
-      }).catch(err => {
-          console.log('error');
-          console.log(err);
-          alert('로그인 실패');
-      });
-    }
+      this.$store.dispatch('login', params)
+      .then((res) => {
+        console.log("login!!", res);
+        window.history.length > 2 ? this.$router.go(-1) :  this.$router.push('/')
+      })
+      .catch(({message}) => (alert(message)));
+    },
   }
 }
 </script>

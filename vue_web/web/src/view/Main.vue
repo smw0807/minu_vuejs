@@ -11,6 +11,9 @@ export default {
       msg: 'Vue-cli + JWT',
       need: 'Need login.'
     }
+  },
+  created() {
+     this.$store.dispatch('initBoardList');
   }
 }
 </script>

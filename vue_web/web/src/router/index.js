@@ -43,24 +43,16 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach( (to, from, next) => {
-  // console.log(to);
-  //assessToken 재발급
-  // if(VueCookies.get('accessToken')===null && VueCookies.get('refreshToken') !== null){
-  //   await refreshToken();
-  //   return next();
-  // }
-  // if(VueCookies.get('accessToken') === null && VueCookies.get('refreshToken') === null){
-    // alert('로그아웃되었습니다.\n로그인해주시기 바랍니다.')
-    // return next('/login');
-  //   next('/login');
-  // } else {
-  //   next();
-  // }
-  // if (to.matched.some(record => record.meta.unauthorized) || VueCookies.get('accessToken')){
-  //   console.log("??");
-    // return next();
-  // }
-    // return next('/login');
+// router.beforeEach( async(to, from, next) => {
+//   console.log(to);
+//   if(VueCookies.get('accessToken')===null && VueCookies.get('refreshToken') !== null){
+//     await refreshToken();
+//   }
+
+//   if (to.matched.some(record => record.meta.unauthorized) || VueCookies.get('accessToken')){
+//     return next();
+//   }
+//     // return next('/login');
 // })
+
 export default router

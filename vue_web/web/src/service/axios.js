@@ -1,6 +1,8 @@
+import vue from 'vue';
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
 import { store } from '../store/store';
+import { login, refresh } from '../service/login';
 // axios.defaults.baseURL = 'http://localhost:3000';
 
 /**
@@ -17,25 +19,58 @@ axios.interceptors.request.use(async function (config) {
   config.headers['x-access-token'] = VueCookies.get('accessToken');
   config.headers['x-refresh-token'] = VueCookies.get('refreshToken');
   config.headers['Content-Type'] = 'application/json';
-    console.log(config);
-    return config;
-  }, function (error) {
-    console.log('axios request error');
-    console.log(error);
-    return Promise.reject(error);
-});
-//response 설정
-axios.interceptors.response.use(function (response) {
-  return response;
-}, async function (error) {
-  console.log('response error');
-  console.log(error);
-  // if(error.response.data.status===401 && errorAPI.retry===undefined){
-    //       errorAPI.retry = true;
-    //       console.log('토큰이 이상한 오류일 경우');
-    //       return await axios(errorAPI);
-  // }
+  console.log('request : ', config);
+  return config;
+}, function (error) {
+  console.log('axios request error');
+  console.log(error.config)
   return Promise.reject(error);
 });
+//response 설정
+// axios.interceptors.response.use(
+//   function (response) {
+//     try {
+//       console.log('response : ', response);
+//       return response;
+//     } catch (err) {
+//       console.error('[axios.interceptors.response] response : ', err.message);
+//     }
+//   },
+//   function (error) {
+//     try {
+//       console.log('response error : ' , error.config);
+//     } catch (err) {
+//       console.err('[axios.interceptors.response] error : ', err.message);
+//     }
+//     return Promise.reject(error);
+// });
+axios.interceptors.response.use(
+  function (response) {
+    try {
+      console.log('response : ', response);
+      return response;
+    } catch (err) {
+      console.error('[axios.interceptors.response] response : ', err.message);
+    }
+  },
+  function (error) {
+    try {
+      console.log('response error : ' , error);
+      console.log(error.response);
+      console.log(error.response.status);
+      if (error.response.status == 401) {
+        console.log("????");
+        // console.log(store.getters.);
+        return refresh(rt => {
+            console.log(rt);
+            error.config.header['x-access-token'] = VueCookies.get('accessToken');
+            return axios.request(error.config);
+        })
+      }
+    } catch (err) {
+      console.error('[axios.interceptors.response] error : ', err.message);
+    }
+    return Promise.reject(error);
+})
 
 export default axios;
