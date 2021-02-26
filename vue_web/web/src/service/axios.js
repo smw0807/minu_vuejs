@@ -1,71 +1,48 @@
-import vue from 'vue';
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
-import { store } from '../store/store';
-import { login, refresh } from '../service/login';
-// axios.defaults.baseURL = 'http://localhost:3000';
-
+import { store } from '../store/store'; //Vuex.store에 저장된 호스트 가져오려고 씀, 추후 변경해볼것
 /**
-사용자가 한 페이지에 그대로 가만히 있다가 토큰이 만료되었을 때,
-이 상태에서 통신 요청을 할 경우 
-Refresh Token을 이용해서 Access Token을 갱신 + 통신 요청 그대로 넣어줘야함
-그렇게 해야지 사용자는 끊김 없이 바로 원하는 결과를 볼 수 있음
-그렇게 하기 위해서는 axios Intercept를 설정해야함
+ * 토큰 재발급 후 axios 헤더 값 수정해줌 
+ * response안에서 처리하게 했을 때 무한 로딩이 자꾸 걸려서 소스를 분리해서 async/await로 처리함
  */
 
 //request 설정
 axios.interceptors.request.use(async function (config) { 
-  config.url = store.state.host + config.url;
+  if (config.retry==undefined) { //
+    /**
+     * axios 요청 중에 accessToken 만료시 재발급 후 다시 요청할 땐
+     * 기존 요청 정보에서 retry=true만 주가되고 
+     * 나머지는 그대로 다시 요청하기 때문에 url이 이상해져서 이렇게 나눔
+     */
+    config.url = store.state.login.host + config.url; //host 및 url 방식 수정필요
+  }
+  //헤더 셋팅
   config.headers['x-access-token'] = VueCookies.get('accessToken');
   config.headers['x-refresh-token'] = VueCookies.get('refreshToken');
   config.headers['Content-Type'] = 'application/json';
-  console.log('request : ', config);
+  // console.log(config);
   return config;
 }, function (error) {
-  console.log('axios request error');
-  console.log(error.config)
+  console.log('axios request error : ', error);
   return Promise.reject(error);
 });
 //response 설정
-// axios.interceptors.response.use(
-//   function (response) {
-//     try {
-//       console.log('response : ', response);
-//       return response;
-//     } catch (err) {
-//       console.error('[axios.interceptors.response] response : ', err.message);
-//     }
-//   },
-//   function (error) {
-//     try {
-//       console.log('response error : ' , error.config);
-//     } catch (err) {
-//       console.err('[axios.interceptors.response] error : ', err.message);
-//     }
-//     return Promise.reject(error);
-// });
 axios.interceptors.response.use(
   function (response) {
     try {
-      console.log('response : ', response);
       return response;
     } catch (err) {
       console.error('[axios.interceptors.response] response : ', err.message);
     }
   },
-  function (error) {
+  async function (error) {
     try {
-      console.log('response error : ' , error);
-      console.log(error.response);
-      console.log(error.response.status);
-      if (error.response.status == 401) {
-        console.log("????");
-        // console.log(store.getters.);
-        return refresh(rt => {
-            console.log(rt);
-            error.config.header['x-access-token'] = VueCookies.get('accessToken');
-            return axios.request(error.config);
-        })
+      //에러에 대한 response 정보
+      const errorAPI = error.response.config; //요청했던 request 정보가 담겨있음
+      if (error.response.status == 401 && errorAPI.retry==undefined)  { //인증에러 및 재요청이 아닐 경우
+        errorAPI.retry = true; //재요청이라고 추가 정보를 담음
+        await store.dispatch('refreshToken'); //로그인 중간 저장소에 있는 토큰 재발급 action을 실행
+        return await axios(errorAPI); //다시 axios 요청
       }
     } catch (err) {
       console.error('[axios.interceptors.response] error : ', err.message);

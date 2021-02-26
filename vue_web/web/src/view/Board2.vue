@@ -34,15 +34,12 @@ export default {
   },
   created() {
    this.$Axios.get('/v1/movies').then(res => {
-      console.log(res);
       if (res.status == 200) {
         this.list = res.data;
       }
     })
     .catch(err => {
-      console.log('board list error');
-      console.log(err);
-      console.log(err.config);
+      console.log('board list error : ', err);
     })
   }
 }
