@@ -58,7 +58,7 @@ router.beforeEach( async(to, from, next) => { //여기서 모든 라우팅이 �
     //accessToken이 있을 경우 진행
     return next();
   }
-  if(VueCookies.get('accessToken')!==null && VueCookies.get('refreshToken') !== null){
+  if(VueCookies.get('accessToken')===null && VueCookies.get('refreshToken') === null){
     //2개 토큰이 모두 없을 경우 로그인페이지로
     return next({name: 'Login'});
   }
