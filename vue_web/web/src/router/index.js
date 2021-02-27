@@ -42,7 +42,7 @@ const router = new VueRouter({
   mode: 'history',
   routes
 })
-//네비게이션 가드((뷰 라우터로 UIL 접근에 대해서 처리할 수 있음)
+//네비게이션 가드((뷰 라우터로 URL 접근에 대해서 처리할 수 있음)
 router.beforeEach( async(to, from, next) => { //여기서 모든 라우팅이 대기 상태가 됨
   /**
    * to: 이동할 url 정보가 담긴 라우터 객체
