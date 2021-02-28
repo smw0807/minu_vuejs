@@ -4,13 +4,13 @@
 <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
-  <div id="app">
-    <form-component>
-      <h1>{{header}}</h1>
-      <label for="title" slot="titleSlot">{{titleLabel}}</label>
-      <label for="author" slot="authorSlot">{{authorLabel}}</label>
-    </form-component>
-  </div>
+<div id="app">
+  <form-component>
+    <h1>{{header}}</h1>
+    <label for="title" slot="titleSlot">{{titleLabel}}</label>
+    <label for="author" slot="authorSlot">{{authorLabel}}</label>
+  </form-component>
+</div>
 <script>
 const FormComponent ={
   template: `
@@ -22,7 +22,6 @@ const FormComponent ={
       <button>제출하기</button>
     </form>
   </div>
-
   `
 }
 new Vue({
@@ -35,7 +34,6 @@ new Vue({
         header: '책 저자 폼'
     }
   }
-
 })
 </script>
 </body>

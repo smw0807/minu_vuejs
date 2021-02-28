@@ -4,17 +4,17 @@
 <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
-  <div id="app">
-    <book-component :books="books"> <!-- 부모 템플릿?? vue인스턴스의 books 값을 바딘딩 -->
-      <h1 slot="header">{{header}}</h1> <!-- 지정 슬롯을 사용해  header 표기-->
-      <template slot="book" slot-scope="props"> <!-- 자식 컴포넌트에서 넘겨받은 값을 바인딩?-->
-        <h2>
-          <i>{{props.text.title}}</i>
-          <small>by: {{props.text.author}}</small>
-        </h2>
-      </template>
-    </book-component>
-  </div>
+<div id="app">
+  <book-component :books="books"> <!-- 부모 템플릿?? vue인스턴스의 books 값을 바딘딩 -->
+    <h1 slot="header">{{header}}</h1> <!-- 지정 슬롯을 사용해  header 표기-->
+    <template slot="book" slot-scope="props"> <!-- slot-scope 요소는 자식 컴포넌트에서 넘겨받은 값을 바인딩?-->
+      <h2>
+        <i>{{props.text.title}}</i>
+        <small>by: {{props.text.author}}</small>
+      </h2>
+    </template>
+  </book-component>
+</div>
 <script>
 const BookComponent ={
   template: `
@@ -40,7 +40,6 @@ new Vue({
              ]
     }
   }
-
 })
 </script>
 </body>

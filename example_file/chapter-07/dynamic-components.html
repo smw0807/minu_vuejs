@@ -6,9 +6,9 @@
 </head>
 <body>
 <div id="app">
-  <button @click="cycle">순환하기</button>
+  <button @click="cycle">순환하기</button> <!-- 누를 때 마다 currentView가 변함-->
   <h1>
-    <component :is="currentView"/>
+    <component :is="currentView"/> <!-- currentView에 동적으로 연결된 컴포넌트 요소 -->
   </h1>
 </div>
 <script>

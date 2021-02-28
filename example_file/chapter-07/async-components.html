@@ -4,11 +4,10 @@
 <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
-  <div id="app">
-    <book-component></book-component>
-  </div>
+<div id="app">
+  <book-component></book-component>
+</div>
 <script>
-
 const BookComponent = function(resolve, reject) {
   setTimeout(function() {
     resolve({
@@ -20,9 +19,7 @@ const BookComponent = function(resolve, reject) {
       </div>
       `
     });
-
   },1000);
-
 }
 
 new Vue({
