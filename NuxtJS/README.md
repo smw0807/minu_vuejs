@@ -27,3 +27,4 @@ SSR에 필요한 요소가 이미 준비가 되어있다.
 webpack을 통한 빌드 시스템이 이미 구현되어 있어서 npm run만 해주면 된다.
 ```
 
+참고 블로그 : https://kdydesign.github.io/2019/04/10/nuxtjs-tutorial/
