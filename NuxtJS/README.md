@@ -1,5 +1,5 @@
 # NuxtJS ?
-Vue.js 응용 프로그램(이하 뷰앱)을 만들기 위한 Framework이면 뷰앱을 좀 더 손쉽게 만들 수 있고
+Vue.js 응용 프로그램을 만들기 위한 Framework이며 뷰앱을 좀 더 손쉽게 만들 수 있고
 SSR(Server-Side-Rendering)을 지원한다.
 
 ## NuxtJS 소개
