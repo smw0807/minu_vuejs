@@ -1,15 +1,22 @@
 <template>
-  <div>
-    main test
-    <button class="btn btn-primary">Bootstrap CSS 적용 확인</button>
-    <router-link tag="button" class="btn btn-info" :to="{path:'/'}">Home</router-link>
-    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Tooltip on left</button>
-  </div>
+<div>
+  <topmenu/>
+  <!-- <div class="container"> -->
+    <div class="col-sm-12">
+      main test
+      <button class="btn btn-primary">Bootstrap CSS 적용 확인</button>
+      
+    </div>
+  <!-- </div> -->
+</div>
 </template>
 
 <script>
+import topmenu from '~/components/topMenu';
 export default {
-
+  components:{
+   topmenu
+  }
 }
 </script>
 
