@@ -15,8 +15,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/board1">Baord 1</a></li>
-        <li><a href="/board2">Board 2</a></li>
+        <li :class="{'active' : 'Board1' == nowPage}">
+          <!-- 
+            <router-link> 사용시 $attrs is readonly 이런 에러가 뜨는데 정확한 원인을 모르겠음
+          --> 
+          <!-- <router-link tag="a" :to="{name:'Board1'}">Board 1</router-link> --> 
+          <a href="/board1">Baord 1</a>
+        </li>
+        <li :class="{'active' : 'Board2' == nowPage}">
+          <a href="/board2">Board 2</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a @click="logout">Logout</a></li> -->
@@ -35,14 +43,21 @@ export default {
     data () {
         return {
             is_login: false,
+            page: ''
         }
     },
     created() {
+      this.page = this.$route.name; //현재 페이지 VueRouter name 저장
       let check = this.$store.getters.getToken;
       if (check.refresh != null) { //refreshToken이 존재하는 경우 아직 로그인한 상태로 판단
         this.is_login = true;
       } else {
         this.is_login = false;
+      }
+    },
+    computed: {
+      nowPage() {
+        return this.page;
       }
     },
     methods: {
