@@ -9,7 +9,10 @@ export const getters = {
 };
 
 export const actions = {
-  // async nuxtServerInit ({commit}, params) {
-  //   ('module/login/login', params);
+  // async nuxtServerInit ({dispatch}, params) {
+  //  await dispatch('modules/login/login', params);
   // }
 };
+
+export const modules = {
+}
