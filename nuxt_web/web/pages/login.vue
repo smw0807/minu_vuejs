@@ -14,7 +14,7 @@
           <input type="password" class="form-control" placeholder="Password" ref="user_pw" v-model="user_pw">
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group"></div>
         <div class="col-sm-offset-2 col-sm-10">
           <button @click="login" class="btn btn-default">Log in</button>
         </div>
@@ -54,15 +54,14 @@
          * Vuex.Stroe 사용 (중간 저장소)
          * 중간 저장소의 login action을 트리거
          */
-        this.$store.dispatch('login', params);
-        // this.$store.dispatch('login', params)
-        //   .then((res) => {
-        //     //로그인 성공 후 이전 페이지로 갈지 메인으로 갈지.
-        //     window.history.length > 2 ? this.$router.go(-1) : this.$router.push('/')
-        //   })
-        //   .catch(({
-        //     message
-        //   }) => (alert(message)));
+        this.$store.dispatch('modules/login/login', params)
+        .then((res) => {
+          //로그인 성공 후 이전 페이지로 갈지 메인으로 갈지.
+          window.history.length > 2 ? this.$router.go(-1) : this.$router.push('/')
+        })
+        .catch(({
+          message
+        }) => (alert(message)));
       },
     }
   }
