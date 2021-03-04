@@ -14,7 +14,7 @@
           <input type="password" class="form-control" placeholder="Password" ref="user_pw" v-model="user_pw">
         </div>
       </div>
-      <div class="form-group"></div>
+      <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button @click="login" class="btn btn-default">Log in</button>
         </div>
