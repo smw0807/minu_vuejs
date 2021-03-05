@@ -1,4 +1,3 @@
-import axios from 'axios';
 import VueCookies from 'vue-cookies';
 
 export const state = () => ({
@@ -36,22 +35,23 @@ export const getters = {
 };
 
 export const actions = {
-  login: ({ commit }, params) => {
+  login: function({ commit }, params) {
     return new Promise((resove, reject) => {
-      axios.post('/v1/auth/login', params).then(res => {
+      this.$axios.post('/v1/auth/login', params).then(res => {
         commit('loginToken', res.data.auth_info);
         resove(res);
       })
-        .catch(err => {
-          console.log(err.message);
-          reject(err.message);
-        });
+      .catch(err => {
+        console.log(err.message);
+        reject(err.message);
+      });
     })
   },
-  refreshToken: ({ commit }) => { // accessToken 재요청
+  refreshToken: function ({ commit })  { // accessToken 재요청
+    console.log('refreshToken!!!');
     //accessToken 만료로 재발급 후 재요청시 비동기처리로는 제대로 처리가 안되서 promise로 처리함
     return new Promise((resolve, reject) => {
-      axios.post('/v1/auth/certify').then(res => {
+      this.$axios.post('/v1/auth/certify').then(res => {
         commit('refreshToken', res.data.auth_info);
         resolve(res.data.auth_info);
       }).catch(err => {

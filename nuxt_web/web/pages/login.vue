@@ -57,7 +57,7 @@
         this.$store.dispatch('modules/login/login', params)
         .then((res) => {
           //로그인 성공 후 이전 페이지로 갈지 메인으로 갈지.
-          window.history.length > 2 ? this.$router.go(-1) : this.$router.push('/')
+          // window.history.length > 2 ? this.$router.go(-1) : this.$router.push('/')
         })
         .catch(({
           message

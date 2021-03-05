@@ -16,6 +16,23 @@ module.exports = {
   css: [
     '~assets/bootstrap/css/bootstrap.css'
   ],
+  plugins: [
+    '~/plugins/axios.js', //인터셉터 처리를 위해 등록
+    // '~/plugins/route-guard.js', //라우터가 변경될 때마다 토큰 체크
+  ],
+  modules: [
+    '@nuxtjs/axios', //$axios를 사용할 수 있음
+    '@nuxtjs/proxy' //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
+  ],
+  axios: {
+    proxy: true, //proxy 사용
+    baseURL: 'http://192.168.1.29:3000'
+  },
+  proxy: {
+    '/v1/': { //axios 요청에 /v1/이 url을 설정
+      target: 'http://192.168.1.29:3000'
+    }
+  },
   /*
   ** Customize the progress bar color
   */
