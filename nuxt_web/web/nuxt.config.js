@@ -16,13 +16,19 @@ module.exports = {
   css: [
     '~assets/bootstrap/css/bootstrap.css'
   ],
+  // router: {
+  //   middleware: [
+  //     'route-guard', 
+  //     // 'auth'
+  //   ]
+  // },
   plugins: [
     '~/plugins/axios.js', //인터셉터 처리를 위해 등록
-    // '~/plugins/route-guard.js', //라우터가 변경될 때마다 토큰 체크
+    '~/plugins/route-guard.js', //라우터가 변경될 때마다 토큰 체크
   ],
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
-    '@nuxtjs/proxy' //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
+    '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
   ],
   axios: {
     proxy: true, //proxy 사용

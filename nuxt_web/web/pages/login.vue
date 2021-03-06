@@ -1,22 +1,21 @@
 <template>
   <div>
     <!-- <form @submit.prevent="login"> -->
-      <h1>로그인</h1>
       <div class="form-group">
         <label for="user_id" class="col-sm-2 control-label">아이디</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="ID" ref="user_id" v-model="user_id">
+          <input type="text" class="form-control" placeholder="ID" ref="user_id" @keyup.enter="login" v-model="user_id">
         </div>
       </div>
       <div class="form-group">
         <label for="user_pw" class="col-sm-2 control-label">패스워드</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" placeholder="Password" ref="user_pw" v-model="user_pw">
+          <input type="password" class="form-control" placeholder="Password" ref="user_pw" @keyup.enter="login" v-model="user_pw">
         </div>
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button @click="login" class="btn btn-default">Log in</button>
+          <button @click="login" class="btn btn-primary">Log in</button>
         </div>
       </div>
     <!-- </form> -->
@@ -25,6 +24,7 @@
 
 <script>
   export default {
+    layout: 'login',
     data() { //현재 컴포넌트에서 사용할 데이터셋
       return {
         user_id: '',
@@ -54,7 +54,8 @@
          * Vuex.Stroe 사용 (중간 저장소)
          * 중간 저장소의 login action을 트리거
          */
-        this.$store.dispatch('modules/login/login', params)
+        // this.$store.dispatch('login', params);
+        this.$store.dispatch('login', params)
         .then((res) => {
           //로그인 성공 후 이전 페이지로 갈지 메인으로 갈지.
           // window.history.length > 2 ? this.$router.go(-1) : this.$router.push('/')
