@@ -1,5 +1,5 @@
-import cookie from 'vue-cookies';
-// import cookie from 'js-cookie';
+// import cookie from 'vue-cookies';
+import cookie from 'js-cookie';
 const test = false;
 export const state = () => {
   return {
@@ -77,8 +77,8 @@ export const actions = {
           commit('refreshToken', res.data.auth_info);
           resolve(res.data.auth_info);
         }).catch(err => {
-          console.log('refreshToken error : ', err.config);
-          reject(err.config.data);
+          console.log('refreshToken error : ', err);
+          reject(err);
         })
       })
     }

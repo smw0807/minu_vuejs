@@ -24,14 +24,11 @@
           <a href="/board1">Baord 1</a>
         </li>
         <li>
-        <!-- <li :class="{'active' : 'Board2' == nowPage}"> -->
           <a href="/board2">Board 2</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <!-- <li><a @click="logout">Logout</a></li> -->
-        <!-- {{is_login}} -->
-        <!-- <li v-if="is_login"><a @click="logout">Logout</a></li> -->
+        <li><a @click="logout">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -42,30 +39,10 @@
 
 export default {
     name: 'top-menu',
-    data () {
-        return {
-            is_login: false,
-            page: ''
-        }
-    },
-    created() {
-    //   this.page = this.$route.name; //현재 페이지 VueRouter name 저장
-    //   let check = this.$store.getters.getToken;
-    //   if (check.refresh != null) { //refreshToken이 존재하는 경우 아직 로그인한 상태로 판단
-    //     this.is_login = true;
-    //   } else {
-    //     this.is_login = false;
-    //   }
-    },
-    computed: {
-    //   nowPage() {
-    //     return this.page;
-    //   }
-    },
     methods: {
-        // logout() {
-        //     this.$store.dispatch('logout');
-        // }
+        logout() {
+            this.$store.dispatch('logout');
+        }
     }
 }
 </script>

@@ -25,6 +25,7 @@ module.exports = {
   plugins: [
     '~/plugins/axios.js', //인터셉터 처리를 위해 등록
     '~/plugins/route-guard.js', //라우터가 변경될 때마다 토큰 체크
+    // '~plugins/auth.js'
   ],
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음

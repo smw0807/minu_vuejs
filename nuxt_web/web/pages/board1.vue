@@ -11,28 +11,29 @@
           <th>poster</th>
         </tr>
       </thead>
-      
+      <tbody>
+        <tr v-for="data in list" :key="data.id">
+          <td>{{data.id}}</td>
+          <td>{{data.year}}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.director}}</td>
+          <td><img :src="data.poster"></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
 
 <script>
 export default {
-//   data () {
-//   },
-//   created() {
-    // this.$store.dispatch('initBoardList');
-//   },
-//   computed: {
-    // list() {
-    //   return this.$store.getters.boardList;
-    // }
-//   },
-//   methods: {
-    // test() {
-    //   this.$store.dispatch('initBoardList');
-    // }
-//   }
+  created() {
+    this.$store.dispatch('board/board/initBoardList');
+  },
+  computed: {
+    list() {
+      return this.$store.state['board/board/boardList'];
+    }
+  }
 }
 </script>
 
