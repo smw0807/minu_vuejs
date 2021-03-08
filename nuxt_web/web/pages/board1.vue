@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     list() {
-      return this.$store.state['board/board/boardList'];
+      return this.$store.getters['board/board/boardList'];
     }
   }
 }

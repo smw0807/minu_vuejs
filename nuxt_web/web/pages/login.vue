@@ -14,8 +14,8 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button @click="login" class="btn btn-primary">Log in</button>
+        <div class="col-sm-offset-2 col-sm-10" style="margin-top:5px;">
+          <button @click="login" class="btn btn-lg btn-primary">Log in</button>
         </div>
       </div>
     <!-- </form> -->

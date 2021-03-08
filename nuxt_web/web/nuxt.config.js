@@ -16,20 +16,14 @@ module.exports = {
   css: [
     '~assets/bootstrap/css/bootstrap.css'
   ],
-  // router: {
-  //   middleware: [
-  //     'route-guard', 
-  //     // 'auth'
-  //   ]
-  // },
   plugins: [
     '~/plugins/axios.js', //인터셉터 처리를 위해 등록
-    '~/plugins/route-guard.js', //라우터가 변경될 때마다 토큰 체크
-    // '~plugins/auth.js'
+    '~plugins/auth.js' //토큰 체크
   ],
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
     '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
+    ['cookie-universal-nuxt', {alias: 'cookiz'} ]
   ],
   axios: {
     proxy: true, //proxy 사용
@@ -51,16 +45,16 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
-      if (isDev && isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
+    // extend (config, { isDev, isClient }) {
+    //   if (isDev && isClient) {
+    //     config.module.rules.push({
+    //       enforce: 'pre',
+    //       test: /\.(js|vue)$/,
+    //       loader: 'eslint-loader',
+    //       exclude: /(node_modules)/
+    //     })
+    //   }
+    // }
   }
 }
 

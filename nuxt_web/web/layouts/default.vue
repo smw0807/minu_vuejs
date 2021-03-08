@@ -5,20 +5,18 @@
   </div>
 </template>
 <script>
-  import Cookies from 'js-cookie';
   import topmenu from '~/components/menu';
   export default {
     components: {
       'topmenu': topmenu
     },
     created() {
-      const access = typeof Cookies.get('accessToken') == 'undefined' ? null : Cookies.get('accessToken');
-      const refresh = typeof Cookies.get('refreshToken') == 'undefined' ? null : Cookies.get('refreshToken');
-      if (access == null && refresh == null) {
+      const access = this.$cookiz.get('accessToken');
+      const refresh = this.$cookiz.get('refreshToken');
+      if (access == undefined && refresh == undefined) {
         this.$router.push({path: '/login'}); 
       }
     },
-    // middleware: 'route-guard'
   }
 </script>
 <style>
