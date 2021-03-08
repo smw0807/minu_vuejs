@@ -5,11 +5,10 @@ export default  function ({ $cookiz, app, store, req, isDev }) {
       accessToken: $cookiz.get('accessToken') == undefined ? null : $cookiz.get('accessToken'),
       refreshToken: $cookiz.get('refreshToken') == undefined ? null : $cookiz.get('refreshToken')
     };
-    // console.log(token);
+    //refreshToken만 있으면 재발급 요청
     if (token.accessToken==null && token.refreshToken!=null) {
-      console.log('auth.js/ refresh...');
-      let refresh = await store.dispatch('refreshToken');
+      await store.dispatch('refreshToken');
     }
-    next();
+    return next();
   });
 }

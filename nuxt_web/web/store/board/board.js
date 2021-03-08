@@ -17,12 +17,16 @@ export const getters = {
 
 export const actions = {
   initBoardList: function ({ commit }) {
-    this.$axios.get('/v1/movies').then(res => {
-      commit('SET_BOARD_LIST', res.data); //뮤테이션으로 트리거
-    })
-    .catch(err => {
-      console.log('board list error');
-      console.log(err);
+    return new Promise(async (resolve, reject) => {
+      await this.$axios.get('/v1/movies').then(res => {
+        commit('SET_BOARD_LIST', res.data); //뮤테이션으로 트리거
+        resolve(res.data);
+      })
+      .catch(err => {
+        console.log('board list error');
+        console.log(err);
+        reject(err);
+      })
     })
   }
 };

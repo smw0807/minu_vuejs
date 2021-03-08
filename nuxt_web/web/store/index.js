@@ -38,32 +38,22 @@ export const getters = {
 };
 
 export const actions = {
-  async nuxtServerInit({ commit, dispatch }, { req }) {
-    let token = {
-      accessToken: this.$cookiz.get('accessToken'),
-      refreshToken: this.$cookiz.get('refreshToken')
-    };
-    if (token.accessToken!=undefined && token.refreshToken!=undefined) {
-      commit('loginToken', token);
-    }
-  },
   login ({ commit }, params) {
     return new Promise( async (resove, reject) => {
       await this.$axios.post('/v1/auth/login', params).then(res => {
         commit('loginToken', res.data.auth_info);
         resove(res);
       })
-        .catch(err => {
-          console.log(err);
-          reject(err.message);
-        });
+      .catch(err => {
+        console.log(err);
+        reject(err.message);
+      });
     })
   },
   refreshToken ({ commit }) { // accessToken 재요청
     //accessToken 만료로 재발급 후 재요청시 비동기처리로는 제대로 처리가 안되서 promise로 처리함
     return new Promise(async (resolve, reject) => {
-      await this.$axios.post('/v1/auth/certify').then(res => {
-        // console.log('refresh!!', res.data.auth_info);
+     await this.$axios.post('/v1/auth/certify').then(res => {
         let token = res.data.auth_info;
         commit('refreshToken',token);
         resolve(token);
