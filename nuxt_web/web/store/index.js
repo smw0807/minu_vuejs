@@ -50,7 +50,7 @@ export const actions = {
       });
     })
   },
-  refreshToken ({ commit }) { // accessToken 재요청
+  refreshToken ({ commit, dispatch }) { // accessToken 재요청
     //accessToken 만료로 재발급 후 재요청시 비동기처리로는 제대로 처리가 안되서 promise로 처리함
     return new Promise(async (resolve, reject) => {
      await this.$axios.post('/v1/auth/certify').then(res => {
@@ -60,12 +60,13 @@ export const actions = {
       })
       .catch(err => {
         console.log('refreshToken error : ', err);
+        dispatch('logout');
         reject(err);
+        
       })
     })
   },
-  logout: ({ commit }) => { // 로그아웃
+  logout ({ commit, }) { // 로그아웃
     commit('removeToken');
-    location.reload();
   }
 }

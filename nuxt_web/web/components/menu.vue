@@ -1,7 +1,6 @@
 <template>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -12,26 +11,20 @@
       <a class="navbar-brand" href="/">NuxtJS Web</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>
-        <!-- <li :class="{'active' : 'Board1' == nowPage}"> -->
-          <!-- 
-            <router-link> 사용시 $attrs is readonly 이런 에러가 뜨는데 정확한 원인을 모르겠음
-          --> 
-          <!-- <router-link tag="a" :to="{name:'Board1'}">Board 1</router-link> --> 
-          <a href="/board1">Baord 1</a>
+        <li :class="{'active' : 'board1' == currentPage}">
+          <nuxt-link to="/board1">Board1</nuxt-link>
         </li>
-        <li>
-          <a href="/board2">Board 2</a>
+        <li :class="{'active' : 'board2' == currentPage}">
+            <nuxt-link to="/board2">Board2</nuxt-link>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a @click="logout">Logout</a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
 </template>
 
@@ -39,9 +32,15 @@
 
 export default {
     name: 'top-menu',
+    computed: {
+      currentPage() {
+        return this.$nuxt.$route.name;
+      }
+    },
     methods: {
         logout() {
             this.$store.dispatch('logout');
+            this.$router.push('/login');
         }
     }
 }

@@ -6,7 +6,7 @@ export default  function ({ $cookiz, app, store, req, isDev }) {
       refreshToken: $cookiz.get('refreshToken') == undefined ? null : $cookiz.get('refreshToken')
     };
     //refreshToken만 있으면 재발급 요청
-    if (token.accessToken==null && token.refreshToken!=null) {
+    if (token.accessToken===null && token.refreshToken!==null) {
       await store.dispatch('refreshToken');
     }
     return next();
