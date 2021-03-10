@@ -14,7 +14,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><nuxt-link tag="a" class="btn btn-info" :to="{path:'/'}">Home</nuxt-link></li>
+        <li class="active"><nuxt-link class="btn btn-info" :to="{path:'/'}">Home</nuxt-link></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
         <li class="dropdown">
