@@ -11,7 +11,7 @@
           <th>poster</th>
         </tr>
       </thead>
-      <!-- <tbody>
+      <tbody>
         <tr v-for="data in list" :key="data.id">
           <td>{{data.id}}</td>
           <td>{{data.year}}</td>
@@ -19,25 +19,28 @@
           <td>{{data.director}}</td>
           <td><img :src="data.poster"></td>
         </tr>
-      </tbody> -->
+      </tbody>
     </table>
   </div>
 </template>
 
 <script>
 export default {
-    // asyncData({$axios, store}) {
-    //     return $axios.get('/v1/movies').then((result) => {
-    //         if (result.status == 200) {
-    //             return { list: result.data }
-    //         } else {
-    //             return { list: [] }
-    //         }
-    //     }).catch((err) => {
-    //         console.log('list error');
-    //         console.log(err);
-    //     });
-    // },
+    data () {
+      return {
+        list: []
+      }
+    },
+    created() {
+      this.$axios.get('/v1/movies').then(res => {
+        if (res.status == 200) {
+          this.list = res.data;
+        }
+      })
+      .catch(err => {
+        console.log('board list error : ', err);
+      })
+    }
 }
 </script>
 

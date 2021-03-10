@@ -54,9 +54,17 @@ export const actions = {
     //accessToken 만료로 재발급 후 재요청시 비동기처리로는 제대로 처리가 안되서 promise로 처리함
     return new Promise(async (resolve, reject) => {
      await this.$axios.post('/v1/auth/certify').then(res => {
-        let token = res.data.auth_info;
-        commit('refreshToken',token);
-        resolve(token);
+       console.log('refresh');
+      //  console.log('refresh!!', res);
+       if (res.status !== undefined) {
+          if (res.status === 200) {
+            let token = res.data.auth_info;
+            commit('refreshToken',token);
+            resolve(token);
+          } else {
+           reject('false');
+          }
+        }
       })
       .catch(err => {
         console.log('refreshToken error : ', err);
@@ -68,5 +76,5 @@ export const actions = {
   },
   logout ({ commit, }) { // 로그아웃
     commit('removeToken');
-  }
+  },
 }

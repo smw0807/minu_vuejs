@@ -21,10 +21,16 @@
         </tr>
       </tbody>
     </table>
+    <button @click="test">test!</button>
   </div>
 </template>
 
 <script>
+  const test = [
+    {"id":1,"name":"공조111111","year":2017,"director":"김성훈","poster":"http://img.cgv.co.kr/Movie/Thumbnail/Poster/000079/79416/79416_185.jpg"},
+    {"id":2,"name":"컨택트22222","year":2017,"director":"드니 빌뇌브","poster":"http://img.cgv.co.kr/Movie/Thumbnail/Poster/000079/79437/79437_185.jpg"},
+    {"id":3,"name":"더킹33333","year":2017,"director":"한재림","poster":"http://img.cgv.co.kr/Movie/Thumbnail/Poster/000079/79423/79423_185.jpg"},
+  ]
 export default {
   created() {
     this.$store.dispatch('board/board/initBoardList');
@@ -33,7 +39,12 @@ export default {
     list() {
       return this.$store.getters['board/board/boardList'];
     }
-  }
+  },
+  methods: {
+    test() {
+      this.$store.commit('board/board/SET_BOARD_LIST', test);
+    }
+  },
 }
 </script>
 
