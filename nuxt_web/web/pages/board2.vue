@@ -1,6 +1,7 @@
 <template>
   <div>
-    <button @click="test">test!</button> 
+    <button class="btn btn-primary" @click="test">test!</button> 
+    <button class="btn btn-info" @click="api">API Text</button>
     <table-com :list="list" ></table-com> <!-- table1 컴포넌트의 list 속성에다가 list 데이터를 보냄 -->
   </div>
 </template>
@@ -32,6 +33,12 @@ export default {
     methods: {
       test() {
         this.$store.commit('board/board/SET_BOARD_LIST', test);
+      },
+      api() {
+        this.$axios.get('/api/test').then(res => {
+          console.log('api test!!!!');
+          console.log(res);
+        });
       }
     },
 }
