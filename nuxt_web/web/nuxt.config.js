@@ -14,7 +14,7 @@ module.exports = {
     ]
   },
   css: [
-    '~assets/bootstrap/css/bootstrap.css'
+    '~assets/bootstrap/css/bootstrap.css' //css 파일 추가
   ],
   plugins: [
     '~/plugins/axios.js', //인터셉터 처리를 위해 등록

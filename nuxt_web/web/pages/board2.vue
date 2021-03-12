@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button @click="test">test!</button>
-    <table-com :list="list" ></table-com>
+    <button @click="test">test!</button> 
+    <table-com :list="list" ></table-com> <!-- table1 컴포넌트의 list 속성에다가 list 데이터를 보냄 -->
   </div>
 </template>
 

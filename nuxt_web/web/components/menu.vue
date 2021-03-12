@@ -34,14 +34,14 @@
 export default {
     name: 'top-menu',
     computed: {
-      currentPage() {
-        return this.$nuxt.$route.name;
+      currentPage() { //현재 보고 있는 라우터 이름을 체크
+        return this.$nuxt.$route.name; //바뀔때마다 currentPage의 데이터가 바뀌면서 해당하는 메뉴 active 시켜줌
       }
     },
     methods: {
-        logout() {
-            this.$store.dispatch('logout');
-            this.$router.push('/login');
+        logout() { //로그아웃 버튼 클릭
+            this.$store.dispatch('logout'); //저장소에 있는 로그아웃 actions를 트리거
+            this.$router.push('/login'); //로그인 페이지로 이동
         }
     }
 }
