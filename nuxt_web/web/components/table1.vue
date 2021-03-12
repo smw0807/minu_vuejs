@@ -27,7 +27,7 @@
 <script>
 export default {
     name: 'table1',
-    props: ['list'],
+    props: ['list'], //이 컴포넌트에서 받을 수 있는 속성
     
 }
 </script>

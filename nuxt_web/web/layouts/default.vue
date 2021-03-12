@@ -10,10 +10,10 @@
     components: {
       'topmenu': topmenu
     },
-    created() {
+    created() { //렌더링 될 때 토큰을 체크함
       const access = this.$cookiz.get('accessToken');
       const refresh = this.$cookiz.get('refreshToken');
-      if (access == undefined && refresh == undefined) {
+      if (access == undefined && refresh == undefined) { //토큰이 모두 없으면 로그인 페이지로 이동
         this.$router.push({path: '/login'}); 
       }
     },

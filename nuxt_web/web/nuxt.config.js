@@ -14,11 +14,11 @@ module.exports = {
     ]
   },
   css: [
-    '~assets/bootstrap/css/bootstrap.css'
+    '~assets/bootstrap/css/bootstrap.css' //css 파일 추가
   ],
   plugins: [
     '~/plugins/axios.js', //인터셉터 처리를 위해 등록
-    '~plugins/auth.js' //토큰 체크
+    '~/plugins/auth.js' //토큰 체크
   ],
   // router: {
   //   middleware: [
@@ -39,6 +39,10 @@ module.exports = {
       target: 'http://192.168.1.29:3000'
     }
   },
+  serverMiddleware: [
+    // <project root>/api/index.js 모듈을 미들웨어로 추가
+    '~/api/index.js',
+  ],
   /*
   ** Customize the progress bar color
   */
@@ -52,12 +56,12 @@ module.exports = {
     */
     extend (config, { isDev, isClient }) {
       if (isDev && isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+      //   config.module.rules.push({
+      //     enforce: 'pre',
+      //     test: /\.(js|vue)$/,
+      //     loader: 'eslint-loader',
+      //     exclude: /(node_modules)/
+      //   })
       }
     }
   }
