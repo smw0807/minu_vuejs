@@ -18,7 +18,7 @@ export const getters = {
 export const actions = {
   initBoardList: function ({ commit }) {
     return new Promise(async (resolve, reject) => {
-      await this.$axios.get('/v1/movies').then(res => {
+      await this.$axios.get('/api/v1/movies').then(res => {
         commit('SET_BOARD_LIST', res.data); //뮤테이션으로 트리거
         resolve(res.data);
       })

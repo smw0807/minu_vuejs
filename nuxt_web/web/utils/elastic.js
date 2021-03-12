@@ -1,5 +1,5 @@
-const elastic = require('elasticsearch');
-const config = require('../sv.config');
+import elastic from 'elasticsearch';
+import config from '../api/sv.config';
 
 
 console.info("@@@@@@@@@@@@@@@@@@@init ellllllllllllll");
