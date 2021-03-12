@@ -8,7 +8,13 @@ import cors from 'cors';
 import elastic from '../utils/elastic.js'
 
 // express 인스턴스 생성
-const app = express()
+const app = express();
+
+app.use(logger('dev'));
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // 실제로는 /api 라우트를 처리하는 메소드가 된다.
 app.get('/', function(req, res) {
@@ -19,9 +25,12 @@ app.get('/test', function(req, res) {
   res.send('API test');
 })
 
-app.use('/v1/movies', require('./routes/movies'));
+// app.use('/v1/movies', require('./routes/movies')(app));
+// let auth = require('./routes/auth')(app);
+// app.use('/v1/auth', ('./routes/auth')(app));
 app.use('/v1/auth', require('./routes/auth'));
 
+// error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

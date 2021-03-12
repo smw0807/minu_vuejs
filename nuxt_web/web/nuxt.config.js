@@ -31,13 +31,13 @@ module.exports = {
     ['cookie-universal-nuxt', {alias: 'cookiz'} ]
   ],
   axios: {
-    proxy: true, //proxy 사용
-    baseURL: 'http://192.168.1.29:3000'
+    proxy: false, // true면 proxy 사용해서 해당되는 요청은 target url을 사용함
+    baseURL: 'http://localhost:3000'
   },
   proxy: {
-    '/v1/': { //axios 요청에 /v1/이 url을 설정
-      target: 'http://192.168.1.29:3000'
-    }
+    // '/v1/': { //axios 요청에 /v1/이 url을 설정
+    //   target: 'http://192.168.1.29:3000'
+    // }
   },
   serverMiddleware: [
     // <project root>/api/index.js 모듈을 미들웨어로 추가

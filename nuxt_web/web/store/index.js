@@ -40,7 +40,9 @@ export const getters = {
 export const actions = {
   login ({ commit }, params) {
     return new Promise( async (resove, reject) => {
+      console.log('login!', params);
       await this.$axios.post('/api/v1/auth/login', params).then(res => {
+        console.log('res', res);
         commit('loginToken', res.data.auth_info);
         resove(res);
       })
