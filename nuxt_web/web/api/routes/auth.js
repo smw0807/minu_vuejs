@@ -59,13 +59,13 @@ const access_time = 60;
 // }
 // module.exports = 
 
-router.use((req, res, next) => {
-  Object.setPrototypeOf(req, app.request);
-  Object.setPrototypeOf(res, app.response);
-  req.res = res;
-  res.req = req;
-  next();
-})
+// router.use((req, res, next) => {
+//   Object.setPrototypeOf(req, app.request);
+//   Object.setPrototypeOf(res, app.response);
+//   req.res = res;
+//   res.req = req;
+//   next();
+// })
 
 router.post('/login', async function (req, res) {
   console.log('routes/login');
