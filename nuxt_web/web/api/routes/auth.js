@@ -3,72 +3,10 @@ import authUtil from '../../utils/authenticate';
 import elastic from '../../utils/elastic';
 import authDb from '../../utils/redis';
 const router = express.Router();
-console.log('routes/auth');
 
 const access_time = 60;
-// export default (app) => {
-//   app.post('/login', async function (req, res) {
-//     console.log('routes/login');
-//     // console.log('test', req);
-//     const { uid, pass } = req.body;
-  
-//     console.info(uid);
-//     console.info(pass);
-  
-//     let rt = await elastic.search({
-//       index: "test_user",
-//       body: {
-//         size: 1,
-//         query: {
-//           term: {
-//             "user": uid
-//           }
-//         }
-//       }
-//     })
-  
-//     let row;
-//     if (rt.hits.hits) {
-//       row = rt.hits.hits[0]
-//     }
-//     console.info(row._source.pass);
-//     const isMatchPassword = authUtil.certifyPassword(pass, row._source.pass);
-  
-  
-//     if (isMatchPassword) {
-//       let r_time = (60 * 60); //1시간
-//       //let r_time = 5;
-//       const accessToken = authUtil.generateAccessToken({ uid }, access_time);
-//       const refreshToken = authUtil.generateRefreshToken({ uid, pass }, r_time);
-  
-//       await authDb.set(uid, refreshToken);
-//       await authDb.expire(uid, r_time );
-  
-//       let rt = {
-//         auth_info: { accessToken, refreshToken },
-//         msg: "ok"
-//       }
-//       //console.info(req.query);    
-//       res.status(200).json(rt);
-//     } else {
-//       res.status(401).json({
-//         msg: "fail"
-//       });
-//     }
-//   });
-// }
-// module.exports = 
-
-// router.use((req, res, next) => {
-//   Object.setPrototypeOf(req, app.request);
-//   Object.setPrototypeOf(res, app.response);
-//   req.res = res;
-//   res.req = req;
-//   next();
-// })
 
 router.post('/login', async function (req, res) {
-  console.log('routes/login');
   // console.log('test', req);
   const { uid, pass } = req.body;
 
@@ -142,7 +80,7 @@ router.post('/certify', async (req, res) => {
   }
 
   res.status(rt_status).json(rt_msg);
-  });
+});
 
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import createError from 'http-errors';
 import express from 'express';
+import path from 'path';
 import aPath from 'app-root-path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
@@ -9,6 +10,9 @@ import elastic from '../utils/elastic.js'
 
 // express 인스턴스 생성
 const app = express();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(cors());
@@ -25,9 +29,7 @@ app.get('/test', function(req, res) {
   res.send('API test');
 })
 
-// app.use('/v1/movies', require('./routes/movies')(app));
-// let auth = require('./routes/auth')(app);
-// app.use('/v1/auth', ('./routes/auth')(app));
+app.use('/v1/movies', require('./routes/movies'));
 app.use('/v1/auth', require('./routes/auth'));
 
 // error handler
