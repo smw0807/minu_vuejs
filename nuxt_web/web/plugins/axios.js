@@ -49,10 +49,12 @@ export default function ({$cookiz, $axios, store, redirect  }) {
       // await store.dispatch('refreshToken'); //로그인 중간 저장소에 있는 토큰 재발급 action을 실행 //auth.js랑 중첩 요청으로 에러 발생
       // }
       return await $axios(errorAPI); //다시 axios 요청
-    } else if (error.response.status === 401) {
+    } 
+    else if (error.response.status === 401) {
       await store.dispatch('logout');
       redirect('/login');
-    } else {
+    } 
+    else {
       return false;
     }
   })

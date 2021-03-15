@@ -7,15 +7,14 @@ const REFRESH_KEY = 'flvmffptnlflow_netcoretech#ghazlvk11';
 
 exports.authCheck = async (req, res, next) => {
 	const token = req.headers['x-access-token'];
-
+	console.log('authCheck : ', token);
 	try {
 		console.info("ttt : " + token);
 		let ss = await this.certifyAccessToken(token);
 		console.info(ss);
-
 		return next();
 	} catch (err) {
-		//console.info(err);
+		console.info('authCheck.err : ', err);
 		res.status(401).json({ msg: "fail" });
 	}
 };
@@ -37,6 +36,7 @@ exports.generateAccessToken = (information, time) => {
 };
 
 exports.certifyAccessToken = (token) => {
+	console.info("certifyAccessToken : " , token);
 	return new Promise((resolve, reject) => {
 		jwt.verify(token, ACCESS_KEY, (err, decoded) => {
 			if (err) {

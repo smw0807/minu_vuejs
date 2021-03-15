@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -51,6 +52,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    ssr: false, // true: Server-Side Rendering , false : Client-Side Rendering
     /*
     ** Run ESLint on save
     */
