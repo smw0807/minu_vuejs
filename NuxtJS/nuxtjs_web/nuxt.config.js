@@ -25,6 +25,10 @@ module.exports = {
     // { src: '~plugins/jquery/jquery-3.5.0.js'}
     // '~plugins/index.js',
   ],
+  modules: [
+    '@nuxtjs/axios', //$axios를 사용할 수 있음
+    // '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
+  ],
   /*
   ** Customize the progress bar color
   */
