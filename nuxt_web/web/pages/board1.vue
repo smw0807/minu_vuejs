@@ -22,6 +22,7 @@
       </tbody>
     </table>
     <button @click="test">test!</button>
+    <button @click="row('1')">test!</button>
   </div>
 </template>
 
@@ -43,6 +44,10 @@ export default {
   methods: {
     test() { //테스트 버튼 클릭 이벤트
       this.$store.commit('board/board/SET_BOARD_LIST', test); //새로운 데이터를 mutation으로 보내서 state안에 있는 list 값을 바꿈
+    },
+    row(id) {
+      console.log('row!!', id);
+      this.$router.push(`${id}`);
     }
   },
 }
