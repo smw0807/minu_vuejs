@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="row in list" :key="row.id">
+        <tr v-for="row in list" :key="row.id" @click="showDetail(row.id)">
           <td>{{row.id}}</td>
           <td>{{row.name}}</td>
           <td>{{row.year}}</td>
@@ -33,6 +33,11 @@ export default {
   computed: {
     list() {
       return this.$store.getters['board/GET_BOARD_LIST']; 
+    }
+  },
+  methods: {
+    showDetail(id) {
+      console.log('showDetail : ', id);
     }
   }
 }
