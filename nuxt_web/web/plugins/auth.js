@@ -14,6 +14,7 @@ export default  function ({ $cookiz, app, store, req, isDev }) {
     //refreshToken만 있으면 재발급 요청
     if (token.accessToken===null && token.refreshToken!==null) {
       await store.dispatch('refreshToken');
+      return next({path: to.name}); //CSR 모드일 때는 이렇게 해줘야함
     }
     //둘다 없을 경우에는 여기서 요청을 너무 때려서 주석처리하고 App.uve에다가 created 훅에다가 추가함
   // if(token.accessToken === null && token.refreshToken === null){
