@@ -10,13 +10,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Project name</a>
+      <nuxt-link class="navbar-brand" :to="{path:'/'}">NuxtJS Web</nuxt-link>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><nuxt-link class="btn btn-info" :to="{path:'/'}">Home</nuxt-link></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li :class="{'active' : '/main' == nowPage}"><nuxt-link :to="{path:'/main'}">Home</nuxt-link></li>
+        <li :class="{'active' : '/board/board' == nowPage}"><nuxt-link :to="{path:'/board/board'}">게시판1</nuxt-link> </li>
+        <!-- <li><a href="#">Contact</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -28,13 +28,13 @@
             <li><a href="#">Separated link</a></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <!-- <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
         <li><a href="../navbar-static-top/">Static top</a></li>
         <li><a href="../navbar-fixed-top/">Fixed top</a></li>
-      </ul>
+      </ul> -->
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>
@@ -43,6 +43,14 @@
 
 <script>
 export default {
+  created() {
+
+  },
+  computed: {
+    nowPage() {
+      return this.$nuxt.$route.path;
+    }
+  }
 }
 </script>
 
