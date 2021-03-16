@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="data in list" :key="data.id">
+        <tr v-for="data in list" :key="data.id" @click="row(data.id)">
           <td>{{data.id}}</td>
           <td>{{data.year}}</td>
           <td>{{data.name}}</td>
@@ -22,7 +22,6 @@
       </tbody>
     </table>
     <button @click="test">test!</button>
-    <button @click="row('1')">test!</button>
   </div>
 </template>
 
@@ -47,7 +46,6 @@ export default {
     },
     row(id) {
       console.log('row!!', id);
-      this.$router.push(`${id}`);
     }
   },
 }
