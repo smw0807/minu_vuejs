@@ -21,6 +21,7 @@
         </tr>
       </tbody>
     </table>
+    <!-- <nuxt-child /> -->
   </div>
 </template>
 
@@ -38,6 +39,7 @@ export default {
   methods: {
     showDetail(id) {
       console.log('showDetail : ', id);
+      this.$router.push({path: 'board/detail', params:{idx: id}});
     }
   }
 }
