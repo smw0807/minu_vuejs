@@ -39,7 +39,7 @@ export default {
   methods: {
     showDetail(id) {
       console.log('showDetail : ', id);
-      this.$router.push({path: 'board/detail', params:{idx: id}});
+      this.$router.push(`${id}`);
     }
   }
 }
