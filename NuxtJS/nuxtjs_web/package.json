@@ -19,6 +19,7 @@
     "vuetify": "^1.5.24"
   },
   "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.3",
     "babel-eslint": "^10.0.1",
     "eslint": "^4.19.1",
     "eslint-friendly-formatter": "^4.0.1",

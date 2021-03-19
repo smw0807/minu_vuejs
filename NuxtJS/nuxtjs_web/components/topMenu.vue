@@ -1,7 +1,21 @@
 <template>
 <!-- 메뉴 영역 -->
 <!-- Static navbar -->
-<nav class="navbar navbar-default">
+<v-navigation-drawer v-model="drawer" fixed clipped app>
+  <v-list>
+    <v-list-item v-for="menu in menus" :key="menu.name" link>
+      <!-- <v-list-item-action>
+        <v-icon>{{ menu.icon }}</v-icon>
+      </v-list-item-action> -->
+      <v-list-item-content>
+        <v-list-item-title>
+          <nuxt-link :to="{path: menu.path}">{{menu.name}}</nuxt-link>
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+  </v-list>
+</v-navigation-drawer>
+<!-- <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -15,34 +29,27 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li :class="{'active' : '/main' == nowPage}"><nuxt-link :to="{path:'/main'}">Home</nuxt-link></li>
-        <li :class="{'active' : '/board/board' == nowPage}"><nuxt-link :to="{path:'/board/board'}">게시판1</nuxt-link> </li>
-        <!-- <li><a href="#">Contact</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li> -->
+        <li :class="{'active' : '/board/board' == nowPage}"><nuxt-link :to="{path:'/board/board'}">게시판1</nuxt-link></li>
+        <li :class="{'active' : '/vuetify/test1' == nowPage}"><nuxt-link :to="{path:'/vuetify/test1'}">Vuetify</nuxt-link></li>
       </ul>
-      <!-- <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-        <li><a href="../navbar-static-top/">Static top</a></li>
-        <li><a href="../navbar-fixed-top/">Fixed top</a></li>
-      </ul> -->
-    </div><!--/.nav-collapse -->
-  </div><!--/.container-fluid -->
-</nav>
+    </div>
+  </div>
+</nav> -->
 <!-- 메뉴 영역 끝 -->  
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      drawer: true,
+      menus: [
+        {path: '/main', name: 'Home'},
+        {path: '/board/board', name: '게시판1'},
+        {path: '/vuetify/test1', name: 'Vuetify'}
+      ]
+    }
+  },
   created() {
 
   },
