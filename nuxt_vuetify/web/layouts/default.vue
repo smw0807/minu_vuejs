@@ -84,16 +84,17 @@
     data () {
       return {
         clipped: false,
-        drawer: true,
+        drawer: false,
         fixed: false,
         items: [
           { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+          { icon: '', title: 'Test1', to: '/test1' }
         ],
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'Vuetify.js'
+        title: 'Vuetify Web'
       }
     }
   }

@@ -5,13 +5,11 @@
         <img src="/v.png" alt="Vuetify.js" class="mb-5" />
       </div>
       <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
+        <v-card-title class="headline">Vuetify + Nuxt.js 템플릿에 오신 것을 환영합니다.</v-card-title>
         <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">documentation</a>.</p>
-          <p>If you have questions, please join the official <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat">discord</a>.</p>
-          <p>Find a bug? Report it on the github <a href="https://github.com/vuetifyjs/vuetify/issues" target="_blank" title="contribute">issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
+          <p>Vuetify는 Vue.js를 위한 점진적인 재료 설계 구성요소 프레임워크이다. 이 제품은 개발자들이 놀라운 애플리케이션을 만들 수 있도록 지원하기 위해 설계되었습니다.</p>
+          <p>Vuetify에 대한 자세한 내용은 <a href="https://vuetifyjs.com" target="_blank">설명서</a>를 참조하십시오.</p>
+          <p>Vuetify와 함께 개발해주셔서 감사드리며 앞으로 더욱 흥미로운 기능을 제공할 수 있기를 기대합니다.</p>
           <div class="text-xs-right">
             <em><small>&mdash; John Leider</small></em>
           </div>
@@ -19,6 +17,8 @@
           <a href="https://nuxtjs.org/" target="_blank">Nuxt Documentation</a>
           <br>
           <a href="https://github.com/nuxt/nuxt.js" target="_blank">Nuxt GitHub</a>
+          <br>
+          <a href="https://vuetifyjs.com/en/introduction/why-vuetify/#guide" target="_blank">Vuetify Documentation</a>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
