@@ -23,8 +23,6 @@ module.exports = {
   ],
   plugins: [
     '~plugins/vuetify.js'
-    // { src: '~plugins/jquery/jquery-3.5.0.js'}
-    // '~plugins/index.js',
   ],
   // vuetify: {
   // },
@@ -37,13 +35,6 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
-  // buildModules: [
-  //   '@nuxtjs/vuetify'
-  // ],
-  // vuetify: {
-  //   /* module options */
-  // },
-
   /*
   ** Build configuration
   */

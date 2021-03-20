@@ -1,12 +1,10 @@
 <template>
-<v-app dark>
+<div>
   <topmenu/>
-  <!-- <div class="col-sm-12"> -->
-  <v-content>
+  <div class="col-sm-12">
     <nuxt/>
-  </v-content>
-  <!-- </div> -->
-</v-app>
+  </div>
+</div>
 </template>
 
 <script>

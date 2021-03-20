@@ -1,40 +1,25 @@
 <template>
 <!-- 메뉴 영역 -->
-<!-- Static navbar -->
-<v-navigation-drawer v-model="drawer" fixed clipped app>
-  <v-list>
-    <v-list-item v-for="menu in menus" :key="menu.name" link>
-      <!-- <v-list-item-action>
-        <v-icon>{{ menu.icon }}</v-icon>
-      </v-list-item-action> -->
-      <v-list-item-content>
-        <v-list-item-title>
-          <nuxt-link :to="{path: menu.path}">{{menu.name}}</nuxt-link>
-        </v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
-  </v-list>
-</v-navigation-drawer>
-<!-- <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <nuxt-link class="navbar-brand" :to="{path:'/'}">NuxtJS Web</nuxt-link>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <nuxt-link class="navbar-brand" :to="{path:'/'}">NuxtJS Web</nuxt-link>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li :class="{'active' : '/main' == nowPage}"><nuxt-link :to="{path:'/main'}">Home</nuxt-link></li>
+          <li :class="{'active' : '/board/board' == nowPage}"><nuxt-link :to="{path:'/board/board'}">게시판1</nuxt-link></li>
+          <li :class="{'active' : '/vuetify/test1' == nowPage}"><nuxt-link :to="{path:'/vuetify/test1'}">Vuetify</nuxt-link></li>
+        </ul>
+      </div>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li :class="{'active' : '/main' == nowPage}"><nuxt-link :to="{path:'/main'}">Home</nuxt-link></li>
-        <li :class="{'active' : '/board/board' == nowPage}"><nuxt-link :to="{path:'/board/board'}">게시판1</nuxt-link></li>
-        <li :class="{'active' : '/vuetify/test1' == nowPage}"><nuxt-link :to="{path:'/vuetify/test1'}">Vuetify</nuxt-link></li>
-      </ul>
-    </div>
-  </div>
-</nav> -->
+  </nav>
 <!-- 메뉴 영역 끝 -->  
 </template>
 
