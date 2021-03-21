@@ -13,9 +13,9 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li :class="{'active' : '/main' == nowPage}"><nuxt-link :to="{path:'/main'}">Home</nuxt-link></li>
-          <li :class="{'active' : '/board/board' == nowPage}"><nuxt-link :to="{path:'/board/board'}">게시판1</nuxt-link></li>
-          <li :class="{'active' : '/vuetify/test1' == nowPage}"><nuxt-link :to="{path:'/vuetify/test1'}">Vuetify</nuxt-link></li>
+          <li v-for="menu in menus" :key="menu.no" :class="{'active' : menu.path == nowPage}">
+            <nuxt-link :to="{path: menu.path}">{{ menu.name }}</nuxt-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -29,9 +29,9 @@ export default {
     return {
       drawer: true,
       menus: [
-        {path: '/main', name: 'Home'},
-        {path: '/board/board', name: '게시판1'},
-        {path: '/vuetify/test1', name: 'Vuetify'}
+        {no: 0, path: '/main', name: 'Home'},
+        {no: 1, path: '/board/board', name: '게시판1'},
+        {no: 2, path: '/vuetify/vuetify1', name: 'Vuetify'}
       ]
     }
   },

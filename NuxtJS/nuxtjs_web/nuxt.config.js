@@ -21,15 +21,15 @@ module.exports = {
   script: [
     
   ],
-  plugins: [
-    '~plugins/vuetify.js'
-  ],
   // vuetify: {
   // },
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
-    // '@nuxtjs/vuetify'
     // '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
+  ],
+  buildModules: [
+    // Simple usage
+    '@nuxtjs/vuetify',
   ],
   /*
   ** Customize the progress bar color
