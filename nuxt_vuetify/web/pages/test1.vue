@@ -1,39 +1,46 @@
 <template>
-  <div class="text-center">
-    <v-menu>
-      <template v-slot:activator="{ on, attrs }">
+  <v-card>
+    <v-responsive :aspect-ratio="16/9">
+      <v-avatar
+        color="primary"
+        rounded
+        size="56"
+      >Min</v-avatar>
+
+      <v-card-text>
+        v-responsive...
+        This card will always be 16:9 (unless you put more stuff in it)
+      </v-card-text>
+
+      <v-badge
+        bordered
+        color="error"
+        icon="mdi-lock"
+        overlap
+      >
         <v-btn
-          v-bind="attrs"
-          v-on="on"
+          class="white--text"
+          color="error"
+          depressed
         >
-          Click me
+          Lock Account
         </v-btn>
-      </template>
+      </v-badge>
 
-      <v-list>
-        <v-list-item @click="onClick">
-          <v-list-item-title>Option 1</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item disabled>
-          <v-list-item-title>Option 2</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item @click="onClick">
-          <v-list-item-title>Option 3</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
-  </div>
+      <v-banner
+        single-line
+        sticky
+      ></v-banner>
+      ㄴㅇㅊㄴㅇ
+    </v-responsive>
+  </v-card>
 </template>
-
 <script>
+/**
+ * v-avatar : 프로필 사진 같은거 표시용으로 쓰는 것 같음
+ */
 export default {
-  methods: {
-    onClick () {
-      console.log('onClick!');
-    }
-  },
+
 }
 </script>
 
