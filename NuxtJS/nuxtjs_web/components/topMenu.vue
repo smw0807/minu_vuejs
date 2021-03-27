@@ -31,7 +31,8 @@ export default {
       menus: [
         {no: 0, path: '/main', name: 'Home'},
         {no: 1, path: '/board/board', name: '게시판1'},
-        {no: 2, path: '/vuetify/vuetify1', name: 'Vuetify'}
+        {no: 2, path: '/vuetify/vuetify1', name: 'Vuetify'},
+        {no: 3, path: '/api/test', name: 'API Test'}
       ]
     }
   },

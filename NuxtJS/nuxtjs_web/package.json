@@ -16,6 +16,8 @@
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/vuetify": "^1.11.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.2",
     "nuxt": "^2.15.0",
     "vuetify": "^2.4.7"
   },

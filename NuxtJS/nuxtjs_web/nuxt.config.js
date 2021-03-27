@@ -21,8 +21,9 @@ module.exports = {
   script: [
     
   ],
-  // vuetify: {
-  // },
+  serverMiddleware: [
+    '~api/index.js'
+  ],
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
     // '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
@@ -31,6 +32,9 @@ module.exports = {
     // Simple usage
     '@nuxtjs/vuetify',
   ],
+  axios: {
+    baseURL: 'http://localhost:3000'
+  },
   /*
   ** Customize the progress bar color
   */
