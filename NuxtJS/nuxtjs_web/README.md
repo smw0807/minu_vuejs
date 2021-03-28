@@ -21,3 +21,6 @@ $ npm run generate
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
 
+=====================================
+Access Key : LvxZ2z2DyQwrMWa5ZhObbvGT5YsQHmomMiUxZ77g
+Secret Key : tcYX0MV4W7m3Wu133pgGhxMxmkYUvuPtqgkNI6kM
