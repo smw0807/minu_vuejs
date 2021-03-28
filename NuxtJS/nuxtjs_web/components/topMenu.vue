@@ -1,38 +1,78 @@
 <template>
-<!-- 메뉴 영역 -->
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <nuxt-link class="navbar-brand" :to="{path:'/'}">NuxtJS Web</nuxt-link>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li v-for="menu in menus" :key="menu.no" :class="{'active' : menu.path == nowPage}">
-            <nuxt-link :to="{path: menu.path}">{{ menu.name }}</nuxt-link>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <nav>
+    <v-toolbar>
+      <v-toolbar-title class="grey--text">
+        <span class="font-weight-light">
+          <nuxt-link :to="{path: '/'}">{{web_name}}</nuxt-link>
+        </span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+
+      <v-menu offset-y open-on-hover v-for="(menu, idx) in menus" :key="idx">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text v-on="on" v-bind="attrs">
+            <span>{{ menu.name }}</span>
+          </v-btn>
+        </template>
+
+        <v-list v-if="menu.child">
+          <v-list-item v-for="(child, idx2) in menu.sub" :key="idx2">
+            <v-list-item-title>
+              <nuxt-link class="btn" :to="{path: child.path}">{{ child.name }}</nuxt-link>
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+        <v-list v-else>
+          <v-list-item>
+            <v-list-item-title>
+              <nuxt-link class="btn" :to="{path: menu.path}">{{ menu.name }}</nuxt-link>
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+
+      </v-menu>
+    </v-toolbar>
   </nav>
-<!-- 메뉴 영역 끝 -->  
+
 </template>
 
 <script>
 export default {
   data() {
     return {
+      web_name: 'Nuxt Web',
       drawer: true,
       menus: [
-        {no: 0, path: '/main', name: 'Home'},
-        {no: 1, path: '/board/board', name: '게시판1'},
-        {no: 2, path: '/vuetify/vuetify1', name: 'Vuetify'},
-        {no: 3, path: '/api/test', name: 'API Test'}
+        {
+          name: 'Home',
+          path: '/main',
+          child: false
+        },
+        {
+          name: '게시판',
+          path: '/board/',
+          child: true,
+          sub: [
+            { name: '게시판1', path: '/board/board' }
+          ]
+        },
+        {
+          name: 'Vuetify',
+          path: '/vuetify/vuetify1',
+          child: true,
+          sub: [
+            { name: 'vuetify1', path: '/vuetify/vuetify1' },
+            { name: 'vuetify2', path: '/vuetify/vuetify2' }
+          ]
+        },
+        {
+          name: 'API Test',
+          path: '/api/test',
+          child: true,
+          sub: [
+            { name: 'API 1', path: '/api/test'}
+          ]
+        }
       ]
     }
   },
