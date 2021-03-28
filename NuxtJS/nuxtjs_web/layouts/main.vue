@@ -1,12 +1,14 @@
 <template>
-<div id="app">
-  <topmenu/>
-  <div class="col-sm-12">
-    <transition name="component-fade" mode="out-in">
-      <nuxt/>
-    </transition>
-  </div>
-</div>
+  <v-app id="app">
+    <topmenu/>
+    <v-main>
+      <div class="col-sm-12">
+        <transition name="component-fade" mode="out-in">
+          <nuxt/>
+        </transition>
+      </div>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
