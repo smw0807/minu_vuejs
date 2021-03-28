@@ -1,8 +1,10 @@
 <template>
-<div>
+<div id="app">
   <topmenu/>
   <div class="col-sm-12">
-    <nuxt/>
+    <transition name="component-fade" mode="out-in">
+      <nuxt/>
+    </transition>
   </div>
 </div>
 </template>
@@ -17,5 +19,18 @@ export default {
 </script>
 
 <style>
-
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+  color: #2c3e50;
+  /* margin-top: 60px; */
+}
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .5s ease;
+}
+.component-fade-enter, .component-fade-leave-to {
+  opacity: 0;
+}
 </style>
