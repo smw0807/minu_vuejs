@@ -2,11 +2,11 @@
   <nav>
     <v-toolbar>
       <v-toolbar-title class="grey--text">
-        <span class="font-weight-light">
+        <span class="font-weight-left">
           <nuxt-link :to="{path: '/'}">{{web_name}}</nuxt-link>
         </span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
+      <!-- <v-spacer></v-spacer> -->
 
       <v-menu offset-y open-on-hover v-for="(menu, idx) in menus" :key="idx">
         <template v-slot:activator="{ on, attrs }">
@@ -70,7 +70,8 @@ export default {
           path: '/api/test',
           child: true,
           sub: [
-            { name: 'API 1', path: '/api/test'}
+            { name: 'API 1', path: '/api/test'},
+            { name: 'API 2', path: '/api/proxytest'}
           ]
         }
       ]

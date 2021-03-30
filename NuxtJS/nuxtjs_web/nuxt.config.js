@@ -18,22 +18,35 @@ module.exports = {
   css: [
     '~assets/bootstrap/css/bootstrap.css'
   ],
-  script: [
-    
+  plugins: [
+    '~/plugins/axios.js',
   ],
   serverMiddleware: [
     '~api/index.js'
   ],
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
-    // '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
+    '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
   ],
   buildModules: [
     // Simple usage
     '@nuxtjs/vuetify',
   ],
   axios: {
-    baseURL: 'http://localhost:3000'
+    proxy: true,
+    // baseURL: 'http://localhost:3000'
+  },
+  proxy: {
+    '/nct/': { //axios 요청에 /v1/이 url을 설정
+      target: 'http://192.168.1.29:3000'
+    },
+    '/smw/es/': {
+      target: 'http://localhost:9200'
+    },
+    '/smw/mg/': {
+      target: 'http://localhost:27017'
+    }
+
   },
   /*
   ** Customize the progress bar color
