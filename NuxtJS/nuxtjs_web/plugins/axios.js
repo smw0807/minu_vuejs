@@ -9,7 +9,7 @@ export default function ({$cookiz, $axios, store, redirect  }) {
 
   //에러 처리
   $axios.onError(async function (error) {
-    // console.log('onError : ', error.response);
+    console.log('onError : ', error.response);
   })
 };
 

@@ -53,7 +53,8 @@ export default {
     async test2() {
       console.log('test2');
       try {
-        await this.$axios.post('/smw/es');
+        let rs = await this.$axios.post('/api/es/test_idx', {idx: 'test_idx'});
+        console.log('response : ', rs);
       } catch (err) {
         console.log('err : ', err);
       }
@@ -61,7 +62,8 @@ export default {
     async test3() {
       console.log('test3');
       try {
-        await this.$axios.post('/smw/mg');
+        let rs = await this.$axios.post('/api/mg/');
+        console.log('response : ', rs);
       } catch (err) {
         console.log('err : ', err);
       }
