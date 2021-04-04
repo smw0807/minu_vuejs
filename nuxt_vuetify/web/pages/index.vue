@@ -1,9 +1,6 @@
 <template>
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
-        <img src="/v.png" alt="Vuetify.js" class="mb-5" />
-      </div>
       <v-card>
         <v-card-title class="headline">Vuetify + Nuxt.js 템플릿에 오신 것을 환영합니다.</v-card-title>
         <v-card-text>
