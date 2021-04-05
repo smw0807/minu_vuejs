@@ -6,6 +6,7 @@
       :clipped="clipped"
       v-model="drawer"
       app
+      :width="180"
     >
     <v-list>
       <v-list-tile
