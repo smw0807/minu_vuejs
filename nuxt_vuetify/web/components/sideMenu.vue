@@ -28,15 +28,15 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      clipped: false,
-      drawer: false,
+      clipped: true,
+      drawer: true,
       items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
-          { icon: '', title: 'Test1', to: '/test1' }
-        ],
+        { icon: 'apps', title: 'Welcome', to: '/' },
+        { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+        { icon: '', title: 'Test1', to: '/test1' }
+      ]
     }
   }
 }
