@@ -1,24 +1,30 @@
 <template>
-  <v-app id="app">
-    <topmenu/>
-    <side-menu/>
+  <v-app>
+    <main-menu/>
     <v-main>
-      <div class="col-sm-12">
+      <v-container fluid>
         <transition name="component-fade" mode="out-in">
           <nuxt/>
         </transition>
-      </div>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import topmenu from '~/components/topMenu'
-import sideMenu from '~/components/sideMenu'
+import mainMenu from '~/components/mainMenu'
 export default {
+  data () {
+    return {
+      drawer: true
+    }
+  },
   components:{
-   topmenu,
-   sideMenu
+   mainMenu
+  },
+  created() {
+    // console.log('created...', this.$vuetify);
+    this.$vuetify.theme.dark = true;
   }
 }
 </script>

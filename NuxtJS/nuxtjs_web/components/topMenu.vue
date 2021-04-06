@@ -1,14 +1,12 @@
 <template>
-  <v-app-bar>
-    <v-toolbar>
-      <v-toolbar-title class="grey--text">
-        <span class="font-weight-left">
+  <v-app-bar app clipped-left>
+    <!-- <v-toolbar fixed> -->
+      <v-toolbar-title>
           <nuxt-link :to="{path: '/'}">{{web_name}}</nuxt-link>
-        </span>
       </v-toolbar-title>
       <!-- <v-spacer></v-spacer> -->
 
-      <v-menu offset-y open-on-hover v-for="(menu, idx) in menus" :key="idx">
+      <!-- <v-menu offset-y open-on-hover v-for="(menu, idx) in menus" :key="idx">
         <template v-slot:activator="{ on, attrs }">
           <v-btn text v-on="on" v-bind="attrs">
             <span>{{ menu.name }}</span>
@@ -30,8 +28,8 @@
           </v-list-item>
         </v-list>
 
-      </v-menu>
-    </v-toolbar>
+      </v-menu> -->
+    <!-- </v-toolbar> -->
   </v-app-bar>
 
 </template>
@@ -41,6 +39,7 @@ export default {
   data() {
     return {
       web_name: 'Nuxt Web',
+      clipped: true,
       drawer: true,
       menus: [
         {
@@ -76,9 +75,6 @@ export default {
         }
       ]
     }
-  },
-  created() {
-
   },
   computed: {
     nowPage() {
