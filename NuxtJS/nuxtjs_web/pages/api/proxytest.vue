@@ -40,7 +40,6 @@
 
 <script>
 export default {
-  layout: 'main',
   methods: {
     async test1() {
       console.log('test1');

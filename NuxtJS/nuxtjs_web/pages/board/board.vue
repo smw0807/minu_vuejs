@@ -27,7 +27,6 @@
 
 <script>
 export default {
-  layout: 'main',
   created() {
     this.$store.dispatch('board/initBoardList');
   },

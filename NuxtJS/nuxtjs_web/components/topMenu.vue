@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <v-app-bar>
     <v-toolbar>
       <v-toolbar-title class="grey--text">
         <span class="font-weight-left">
@@ -32,7 +32,7 @@
 
       </v-menu>
     </v-toolbar>
-  </nav>
+  </v-app-bar>
 
 </template>
 

@@ -8,7 +8,6 @@
 
 <script>
 export default {
-  layout:'main',
   asyncData({$axios, misDev, route, store, env, params, query, req, res, redirect, error}) {
     return $axios.get('/data/movies.json').then(rs => {
       let id = params.id;

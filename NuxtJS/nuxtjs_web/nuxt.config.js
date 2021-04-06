@@ -19,7 +19,7 @@ module.exports = {
     '~assets/bootstrap/css/bootstrap.css'
   ],
   plugins: [
-    '~/plugins/axios.js',
+    '~/plugins/axios.js'
   ],
   serverMiddleware: [
     '~api/index.js'
