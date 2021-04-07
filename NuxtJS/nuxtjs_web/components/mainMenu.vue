@@ -8,17 +8,55 @@
       permanent
       >
       <v-list dense>
-        <v-list-item v-for="item in items"
-          :to="item.to"
-          :key="item.title"
-          link>
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <template v-for="menu in menus">
+          <!-- 트리 메뉴 시작 -->
+          <v-list-group
+            v-if="menu.children"
+            :key="menu.title"
+            v-model="menu.model"
+            :prepend-icon="menu.icon"
+            append-icon=""
+            >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>
+                {{ menu.title }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <v-list-item
+              v-for="(child, i) in menu.children"
+              :key="i"
+              :to="child.to"
+              link
+              >
+              <v-list-item-action v-if="child.icon">
+                <v-icon>{{ child.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ child.title }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-group>
+          <!-- 트리 메뉴 끝 -->
+          
+          <!-- 단일 메뉴 시작 -->
+          <v-list-item 
+            v-else
+            :to="menu.to"
+            :key="menu.title"
+            link>
+            <v-list-item-icon>
+              <v-icon>{{ menu.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ menu.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <!-- 단일 메뉴 끝 -->
+        </template>
       </v-list>
 
       <v-spacer></v-spacer>
@@ -51,10 +89,24 @@ export default {
     return {
       drawer: true,
       clipped: true,
-      items: [
+      menus: [
         { title: 'Dashboard', icon: 'mdi-view-dashboard', to: '/' },
-        { title: 'Photos', icon: 'mdi-image', to: '/board/board' },
-        { title: 'About', icon: 'mdi-help-box' },
+        { title: 'Board', icon: 'mdi-file-table-box', to: '/board/board' },
+        { title: 'vuetify', icon: 'mdi-vuetify',
+          model: false,
+          children: [
+            { title: 'vuetify1', to: '/vuetify/vuetify1'},
+            { title: 'vuetify2', to: '/vuetify/vuetify2'}
+          ]
+        },
+        {
+          title: 'API', 'icon': 'mdi-api',
+          model: false,
+          children: [
+            { title: 'API 1', to: '/api/test'},
+            { title: 'API 2', to: '/api/proxytest'}
+          ]
+        }
       ],
       color: 'primary',
       colors: [
@@ -63,39 +115,6 @@ export default {
         'success',
         'red',
         'teal',
-      ],
-      menus: [
-        {
-          name: 'Home',
-          path: '/main',
-          child: false
-        },
-        {
-          name: '게시판',
-          path: '/board/',
-          child: true,
-          sub: [
-            { name: '게시판1', path: '/board/board' }
-          ]
-        },
-        {
-          name: 'Vuetify',
-          path: '/vuetify/vuetify1',
-          child: true,
-          sub: [
-            { name: 'vuetify1', path: '/vuetify/vuetify1' },
-            { name: 'vuetify2', path: '/vuetify/vuetify2' }
-          ]
-        },
-        {
-          name: 'API Test',
-          path: '/api/test',
-          child: true,
-          sub: [
-            { name: 'API 1', path: '/api/test'},
-            { name: 'API 2', path: '/api/proxytest'}
-          ]
-        }
       ]
     }
   },

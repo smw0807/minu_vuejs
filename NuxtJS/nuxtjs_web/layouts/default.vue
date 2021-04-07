@@ -23,8 +23,7 @@ export default {
    mainMenu
   },
   created() {
-    // console.log('created...', this.$vuetify);
-    this.$vuetify.theme.dark = true;
+    this.$vuetify.theme.dark = false;
   }
 }
 </script>

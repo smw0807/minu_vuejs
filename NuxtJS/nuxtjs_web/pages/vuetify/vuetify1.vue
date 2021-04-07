@@ -1,13 +1,23 @@
 <template>
-  <v-card dark>
+  <v-card dark :width="card.width">
     <v-responsive :aspect-ratio="16/9">
-      <p>Vuetify</p>
+      <v-card-title>Vuetify test</v-card-title>
+      <v-card-text>
+        Vuetify Card test
+      </v-card-text>
     </v-responsive>
   </v-card>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      card:{
+        width: '100%'
+      }
+    }
+  }
 }
 </script>
 
