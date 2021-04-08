@@ -1,7 +1,10 @@
 <template>
-  <v-card dark>
-    <v-container fluid>
-      <v-row dense>
+  <v-container fluid>
+    <v-card>
+      <v-row dense
+        align="baseline"
+        justify="start"
+        >
         <v-col
           v-for="card in cards"
           :key="card.title"
@@ -35,8 +38,8 @@
           </v-card>
         </v-col>
       </v-row>
-    </v-container>
-  </v-card>
+    </v-card>
+  </v-container>
 </template>
 
 <script>

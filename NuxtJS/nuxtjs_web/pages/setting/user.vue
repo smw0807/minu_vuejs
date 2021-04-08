@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="grey lighten-5 mb-6">
+  <!-- <v-container fluid class="grey lighten-5"> -->
       <v-row 
         align="baseline"
         justify="start"
@@ -12,7 +12,7 @@
           </v-row>
         </v-col>
       </v-row>
-  </v-container>
+  <!-- </v-container> -->
 </template>
 
 <script>

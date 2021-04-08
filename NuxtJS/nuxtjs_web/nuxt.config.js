@@ -1,3 +1,7 @@
+/**
+ * 한글 어느정도 지원되는 버전 documnet사이트
+ * https://v2.vuetifyjs.com/ko/getting-started/quick-start/
+ */
 let title = "NuxtJS_Web";
 module.exports = {
   /*

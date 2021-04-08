@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <!-- <v-container> -->
+    <v-container>
 
       <v-row no-gutters>
         <v-col cols="12">
@@ -72,7 +72,7 @@
         </v-col>
       </v-row>
 
-    <!-- </v-container> -->
+    </v-container>
   </v-card>
 </template>
 

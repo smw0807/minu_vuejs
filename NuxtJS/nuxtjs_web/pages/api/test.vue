@@ -1,13 +1,16 @@
 <template>
-  <div class="row">
-    <h1>API test</h1>
-    <div class="col-sm-12">
-      <div class="col-sm-8">{{apiCheck}}</div>
-      <div class="col-sm-4">
-        <button class="btn btn-primary" @click="api">API</button>
-      </div>
-    </div>
-  </div>
+<v-container>
+  <h1>API test</h1>
+    <v-row>
+      <v-col cols="8">
+        {{apiCheck}}
+      </v-col>
+
+      <v-col cols="4">
+        <v-btn @click="api">API</v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

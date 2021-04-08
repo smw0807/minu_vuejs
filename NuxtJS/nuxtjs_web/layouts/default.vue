@@ -2,11 +2,11 @@
   <v-app>
     <main-menu/>
     <v-main>
-      <v-container fluid>
+      <!-- <v-container fluid class="grey lighten-5"> -->
         <transition name="component-fade" mode="out-in">
           <nuxt/>
         </transition>
-      </v-container>
+      <!-- </v-container> -->
     </v-main>
   </v-app>
 </template>
