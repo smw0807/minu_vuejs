@@ -5,7 +5,7 @@
         justify="start"
         >
         <v-col cols="12">
-          <v-row></v-row>
+          <v-row>
             <v-card outline>
               <list-table :list="list"></list-table>
             </v-card>
