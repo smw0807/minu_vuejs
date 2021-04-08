@@ -19,7 +19,8 @@ module.exports = {
     '~assets/bootstrap/css/bootstrap.css'
   ],
   plugins: [
-    '~/plugins/axios.js'
+    '~/plugins/axios.js',
+    '@/plugins/vuetify.js'
   ],
   serverMiddleware: [
     '~api/index.js'
@@ -57,7 +58,7 @@ module.exports = {
   */
   // mode: 'spa',
   build: {
-    // SSR: false //SSR앱을 빌드한다.
+    SSR: false, //SSR앱을 빌드한다.
     /**
     * Run ESLint on save
     * 저장할 때마다 자동으로 ESLint가 실행하려고 할 때 사용한다. 
