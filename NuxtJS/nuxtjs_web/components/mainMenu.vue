@@ -116,18 +116,16 @@
  * https://materialdesignicons.com/
  * 
  */
-import orgchart from './orgChart'
 export default {
   data () {
     return {
       title: 'Application', //상단 app-bar 이름
-      org: false,  //조직도 옵션 false: 닫혀있는 상태, true: 열림
+      org: false, 
       drawer: true,
       clipped: true,
       menus: [
         { title: 'Dashboard', icon: 'mdi-view-dashboard', to: '/' },
         { title: 'Board', icon: 'mdi-file-table-box', to: '/board/board' },
-        { title: 'Board2', icon: 'mdi-file-table-box', to: '/board/board2' },
         { title: 'vuetify', icon: 'mdi-vuetify',
           model: false,
           children: [
