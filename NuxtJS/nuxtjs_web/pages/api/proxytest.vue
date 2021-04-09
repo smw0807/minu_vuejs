@@ -1,8 +1,5 @@
 <template>
-  <v-container
-    class="grey lighten-5 mb-6"
-    align-v="left"
-  >
+  <v-card>
     <v-row
     justify="space-around"
     no-gutters
@@ -32,10 +29,8 @@
           proxy 3 test
         </v-btn>
       </v-col>
-
     </v-row>
-  </v-container>
-  
+  </v-card>
 </template>
 
 <script>

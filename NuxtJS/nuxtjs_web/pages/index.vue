@@ -1,7 +1,16 @@
 <template>
-  <section class="container">
-    <app-logo/>
-  </section>
+  <v-card min-height="768">
+    <v-card-title>
+      <h2>index</h2>
+    </v-card-title>
+    <v-card-text align="center">
+      <v-card raised>
+        <v-card-text>
+          <app-logo/>
+        </v-card-text>
+      </v-card>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>

@@ -1,24 +1,17 @@
 <template>
   <v-app>
     <main-menu/>
-    <v-main>
-      <!-- <v-container fluid class="grey lighten-5"> -->
-        <transition name="component-fade" mode="out-in">
+      <transition name="component-fade" mode="out-in">
+        <v-main>
           <nuxt/>
-        </transition>
-      <!-- </v-container> -->
-    </v-main>
+        </v-main>
+      </transition>
   </v-app>
 </template>
 
 <script>
 import mainMenu from '~/components/mainMenu'
 export default {
-  data () {
-    return {
-      drawer: true
-    }
-  },
   components:{
    mainMenu
   },

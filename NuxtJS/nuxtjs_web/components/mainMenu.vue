@@ -127,6 +127,7 @@ export default {
       menus: [
         { title: 'Dashboard', icon: 'mdi-view-dashboard', to: '/' },
         { title: 'Board', icon: 'mdi-file-table-box', to: '/board/board' },
+        { title: 'Board2', icon: 'mdi-file-table-box', to: '/board/board2' },
         { title: 'vuetify', icon: 'mdi-vuetify',
           model: false,
           children: [

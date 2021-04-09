@@ -1,6 +1,6 @@
 <template>
-<v-container>
-  <h1>API test</h1>
+  <v-card>
+    <h1>API test</h1>
     <v-row>
       <v-col cols="8">
         {{apiCheck}}
@@ -10,7 +10,7 @@
         <v-btn @click="api">API</v-btn>
       </v-col>
     </v-row>
-  </v-container>
+  </v-card>
 </template>
 
 <script>

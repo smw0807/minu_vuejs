@@ -1,18 +1,12 @@
 <template>
-  <!-- <v-container fluid class="grey lighten-5"> -->
-      <v-row 
-        align="baseline"
-        justify="start"
-        >
-        <v-col cols="12">
-          <v-row>
-            <v-card outline>
-              <list-table :list="list"></list-table>
-            </v-card>
-          </v-row>
-        </v-col>
-      </v-row>
-  <!-- </v-container> -->
+  <v-card>
+    <v-card-title>
+      <h2>사용자 관리</h2>
+    </v-card-title>
+    <v-card-text>
+      <list-table :list="list"></list-table>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>

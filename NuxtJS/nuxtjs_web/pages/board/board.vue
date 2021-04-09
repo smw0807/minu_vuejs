@@ -1,36 +1,17 @@
 <template>
   <v-card>
-    <v-responsive :aspect-ratio="16/9">
-      <v-card-title>
-        <h2>게시판1</h2>
-      </v-card-title>
-      <v-card-text>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>year</th>
-              <th>Director</th>
-              <th>poster</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="row in list" :key="row.id" @click="showDetail(row.id)">
-              <td>{{row.id}}</td>
-              <td>{{row.name}}</td>
-              <td>{{row.year}}</td>
-              <td>{{row.director}}</td>
-              <td><img :src="row.poster"></td>
-            </tr>
-          </tbody>
-        </table>
-      </v-card-text>
-    </v-responsive>
+    <v-card-title>
+      <h2>Board</h2>
+    </v-card-title>
+    <v-card-text>
+      <list-table :list="list"></list-table>
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
+import listTable from '~/components/board/listTable'
+
 export default {
   created() {
     this.$store.dispatch('board/initBoardList');
@@ -45,6 +26,9 @@ export default {
       console.log('showDetail : ', id);
       this.$router.push(`${id}`);
     }
+  },
+  components: {
+    listTable
   }
 }
 </script>
