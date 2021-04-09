@@ -1,5 +1,5 @@
 <template>
-  <v-card raised>
+  <v-card raised outlined class="pa-3">
     <v-row no-gutters>
       <v-col cols="12">
         <v-card outlined>
@@ -18,7 +18,7 @@
         <v-card shaped outlined>
           <v-card-title>title</v-card-title>
           <v-card-text>
-              111111111111111
+              shaped, outlined 
           </v-card-text>
         </v-card>
       </v-col>
@@ -27,7 +27,7 @@
         <v-card>
           <v-card-title>title</v-card-title>
           <v-card-text>
-              2222222222222222222222
+              default
           </v-card-text>
         </v-card>
       </v-col>
@@ -38,7 +38,7 @@
         <v-card outlined>
           <v-card-title>title</v-card-title>
           <v-card-text>
-              333333333333333333333
+              outline
           </v-card-text>
         </v-card>
       </v-col>
@@ -47,7 +47,7 @@
         <v-card raised>
           <v-card-title>title</v-card-title>
           <v-card-text>
-              44444444444444444444
+              raised
           </v-card-text>
         </v-card>
       </v-col>
@@ -56,7 +56,7 @@
         <v-card outlined raised>
           <v-card-title>title</v-card-title>
           <v-card-text>
-              dark 테마는 card에 outlined과 raised 옵션을 주는게 보기 좋은 것 같음
+              outlined raised
           </v-card-text>
         </v-card>
       </v-col>

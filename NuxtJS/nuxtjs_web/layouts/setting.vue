@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <main-menu/>
+    <setting-menu/>
       <transition name="component-fade" mode="out-in">
         <v-main>
           <nuxt/>
@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import mainMenu from '~/components/mainMenu'
+import settingMenu from '~/components/settingMenu'
 export default {
   components:{
-   mainMenu
+   settingMenu
   },
   created() {
     this.$vuetify.theme.dark = true;

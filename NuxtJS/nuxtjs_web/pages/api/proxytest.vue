@@ -1,35 +1,40 @@
 <template>
   <v-card>
-    <v-row
-    justify="space-around"
-    no-gutters
-    >
-      <v-col>
-        <v-btn 
-          depressed 
-          color="indigo"
-          @click="test1"
+    <v-card-title>
+      <h2>proxy text page</h2>
+    </v-card-title>
+    <v-card-text>
+      <v-row
+        justify="space-around"
+        no-gutters
         >
-          proxy 1 test
-        </v-btn>
+          <v-col>
+            <v-btn 
+              depressed 
+              color="indigo"
+              @click="test1"
+            >
+              proxy 1 test
+            </v-btn>
 
-        <v-btn
-          depressed
-          color="primary"
-          @click="test2"
-        >
-          proxy 2 test
-        </v-btn>
+            <v-btn
+              depressed
+              color="primary"
+              @click="test2"
+            >
+              proxy 2 test
+            </v-btn>
 
-        <v-btn
-          depressed
-          color="error"
-          @click="test3"
-        >
-          proxy 3 test
-        </v-btn>
-      </v-col>
-    </v-row>
+            <v-btn
+              depressed
+              color="error"
+              @click="test3"
+            >
+              proxy 3 test
+            </v-btn>
+          </v-col>
+        </v-row>
+    </v-card-text>
   </v-card>
 </template>
 
