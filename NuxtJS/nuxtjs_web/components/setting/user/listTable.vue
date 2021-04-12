@@ -1,6 +1,10 @@
 <template>
   <v-card raised outlined class="pa-3" min-height="900">
     <v-card-title>
+      <v-spacer></v-spacer>
+      <slot name="edit_button"></slot>
+    </v-card-title>
+    <v-card-title>
       Vuetify DataTables Test
       <v-spacer></v-spacer>
       <v-text-field

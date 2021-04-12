@@ -4,21 +4,25 @@
       <h2>사용자 관리</h2>
     </v-card-title>
     <v-card-text>
-      <list-table :list="list"></list-table>
+      <list-table :list="list">
+        <edit-user slot="edit_button"/>
+      </list-table>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
 import listTable from '~/components/setting/user/listTable'
+import editUser from '~/components/setting/user/editUser'
 export default {
   layout:'setting',
   components: {
-    listTable
+    listTable,
+    editUser
   },
   data() {
     return {
-      list: [
+      list: [ //임시 데이터, store 이용해서 처리하게 바꿀 예정
         {
           name: 'Frozen Yogurt',
           calories: 159,
