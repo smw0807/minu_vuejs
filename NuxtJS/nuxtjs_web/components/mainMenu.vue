@@ -9,12 +9,17 @@
       >
       <v-list dense>
         <!-- 조직도 리스트 부분 시작 -->
-        <v-list-item @click.stop="org = !org">
+        <v-list-item>
           <v-list-item-action>
             <v-icon>mdi-sitemap</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>조직도</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-content>
+            <org-chart/>
           </v-list-item-content>
         </v-list-item>
         <!-- 조직도 리스트 부분 끝 -->
@@ -167,6 +172,7 @@
  * https://materialdesignicons.com/
  * 
  */
+import orgChart from '~/components/orgChart'
 export default {
   data () {
     return {
@@ -206,6 +212,7 @@ export default {
     }
   },
   components:{
+    orgChart
   },
   computed: {
   }
