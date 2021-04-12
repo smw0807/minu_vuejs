@@ -134,7 +134,7 @@
 
     
     <!-- 조직도 -->
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       v-model="org"
       fixed
       temporary
@@ -146,7 +146,7 @@
           조직도?
         </v-card-text>
       </v-card>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
 
     <v-app-bar
         app

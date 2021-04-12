@@ -1,5 +1,5 @@
 <template>
-  <v-card raised outlined min-height="900">
+  <v-card raised outlined class="pa-3" min-height="900">
     <v-card-title>
       Vuetify DataTables Test
       <v-spacer></v-spacer>

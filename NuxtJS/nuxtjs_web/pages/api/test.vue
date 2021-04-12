@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card raised outlined class="pa-3">
     <h1>API test</h1>
     <v-row>
       <v-col cols="8">

@@ -4,7 +4,7 @@
       <h2>index</h2>
     </v-card-title>
     <v-card-text align="center">
-      <v-card raised>
+      <v-card raised outlined class="pa-3">
         <v-card-text>
           <app-logo/>
         </v-card-text>

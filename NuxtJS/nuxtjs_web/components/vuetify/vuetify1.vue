@@ -1,5 +1,5 @@
 <template>
-  <v-card raised>
+  <v-card raised outlined class="pa-3">
     <v-row dense
       align="baseline"
       justify="start"

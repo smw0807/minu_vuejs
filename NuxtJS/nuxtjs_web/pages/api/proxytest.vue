@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card raised outlined class="pa-3">
     <v-card-title>
       <h2>proxy text page</h2>
     </v-card-title>
