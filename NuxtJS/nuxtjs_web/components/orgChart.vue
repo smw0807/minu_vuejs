@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="mx-auto"
+    class="mx-auto overflow-y-auto"
     max-width="250"
     max-height="450"
     min-height="450"
@@ -11,7 +11,6 @@
         :open.sync="open"
         activatable
         dense
-        scrollable
       >
         <template v-slot:prepend="{ item }">
           <v-icon
@@ -93,12 +92,10 @@ export default {
       caseSensitive: false,
     }
   },
+  created() {
+    console.log(this.$vuetify.theme);
+  },
   computed: {
-    filter () {
-      return this.caseSensitive
-        ? (item, search, textKey) => item[textKey].indexOf(search) > -1
-        : undefined
-    },
   },
   methods: {
     
