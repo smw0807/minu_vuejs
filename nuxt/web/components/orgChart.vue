@@ -4,16 +4,33 @@
     max-width="250"
     max-height="450"
     min-height="450"
-  >
+    >
+    <v-sheet>
+      <v-text-field
+        v-model="search"
+        label="Search"
+        dark
+        flat
+        solo-inverted
+        hide-details
+        clearable
+        dense
+        clear-icon="mdi-close-circle-outline"
+      ></v-text-field>
+    </v-sheet>
     <v-card-text>
       <v-treeview
         :items="items"
         :open.sync="open"
+        :search="search"
+        :filter="filter"
         activatable
         dense
+        align="start"
         >
         <template v-slot:prepend="{ item }">
           <v-icon
+            small
             v-if="item.children"
             v-text="`mdi-${item.id === 1 ? 'home-variant' : 'folder-network'}`"
           ></v-icon>
@@ -28,6 +45,8 @@ export default {
   name:'orgChart',
   data() {
     return {
+      search: null,
+      caseSensitive: false,
       //임시 데이터 제대로 된 데이터는 store에서 가져오게 변경하기
       items: [
         {
@@ -95,6 +114,11 @@ export default {
   created() {
   },
   computed: {
+    filter () {
+      return this.caseSensitive
+        ? (item, search, textKey) => item[textKey].indexOf(search) > -1
+        : undefined
+    },
   },
   methods: {
     

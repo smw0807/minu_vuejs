@@ -137,22 +137,6 @@
       </v-list>
     </v-navigation-drawer>
 
-    
-    <!-- 조직도 -->
-    <!-- <v-navigation-drawer
-      v-model="org"
-      fixed
-      temporary
-      >
-      <v-card
-        max-width="256">
-        <v-card-title>조직도</v-card-title>
-        <v-card-text>
-          조직도?
-        </v-card-text>
-      </v-card>
-    </v-navigation-drawer> -->
-
     <v-app-bar
         app
         clipped-left
@@ -185,10 +169,11 @@ export default {
         {
           title: '장비설정', icon: 'mdi-cog',
           model: false,
-          children: [
-            { title: '응용관리', to: '/'},
-            { title: '사용자관리', to: '/setting/user'}
-          ]
+          to: '/setting/user'
+          // children: [
+          //   { title: '응용관리', to: '/'},
+          //   { title: '사용자관리', to: '/setting/user'}
+          // ]
         }
       ],
       tmp_menu: [
