@@ -11,7 +11,7 @@
         :open.sync="open"
         activatable
         dense
-      >
+        >
         <template v-slot:prepend="{ item }">
           <v-icon
             v-if="item.children"
@@ -93,7 +93,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$vuetify.theme);
   },
   computed: {
   },
