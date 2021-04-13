@@ -5,7 +5,7 @@
       <slot name="edit_button"></slot>
     </v-card-title>
     <v-card-title>
-      Vuetify DataTables Test
+      Vuetify DataTables
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
