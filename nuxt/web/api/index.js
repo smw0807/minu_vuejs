@@ -10,8 +10,10 @@ app.post('/', (req, res) => {
   res.send('API test');
 })
 
-app.use('/mg', require('./router/mongo'));
-app.use('/es', require('./router/elastic'));
+// app.use('/mg', require('./router/mongo'));
+
+app.use('/es/setting/user', require('./router/setting/user'));
+
 module.exports = {
   path: '/api',
   handler: app

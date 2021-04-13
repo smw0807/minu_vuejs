@@ -39,18 +39,18 @@ module.exports = {
   ],
   axios: {
     proxy: true,
-    // baseURL: 'http://localhost:3000'
+    baseURL: 'http://192.168.3.92:8200'
   },
   proxy: {
     // '/nct': { //axios 요청에 /v1/이 url을 설정
     //   target: 'http://192.168.1.29:3000'
     // },
-    '/api/es': {
-      target: 'http://localhost:9200'
-    },
-    '/api/mg': {
-      target: 'http://localhost:27017/song'
-    }
+    // '/api/es': {
+    //   target: 'http://localhost:9200'
+    // },
+    // '/api/mg': {
+    //   target: 'http://localhost:27017/song'
+    // }
 
   },
   /*
