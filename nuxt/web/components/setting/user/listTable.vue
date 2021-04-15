@@ -73,7 +73,7 @@ export default {
         { text: '사용자명', value: 'user_nm' },
         { text: '권한', value: 'user_auth_nm' },
         { text: '설명', value: 'user_desc' },
-        { text: '-', value: '_id', sortalbe: false}
+        { text: '-', value: 'actions', sortalbe: false}
       ]
     }
   },
