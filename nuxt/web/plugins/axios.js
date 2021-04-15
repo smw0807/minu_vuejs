@@ -3,6 +3,7 @@ export default function ({$cookiz, $axios, store, redirect  }) {
   //request 요청 
   $axios.onRequest(config => {
     // console.log('request : ', config);
+    config.timeout = 10000;
     return config;
   });
 

@@ -44,7 +44,7 @@ export const actions = {
           }
         }
         let rs = await this.$axios.post('/api/es/setting/user/list', {query: query});
-        console.log('response : ', rs.data.result.error);
+        console.log('response : ', rs.data.result);
         let userList = [];
         if (!rs.data.result.error) {
           userList = els.getSearchHits(rs.data.result);

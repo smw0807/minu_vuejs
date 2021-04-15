@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <setting-menu/>
+    <es/>
       <transition name="component-fade" mode="out-in">
         <v-main>
           <nuxt/>
@@ -11,9 +12,11 @@
 
 <script>
 import settingMenu from '~/components/settingMenu'
+import es from '~/components/error/elasticConnect'
 export default {
   components:{
-   settingMenu
+   settingMenu,
+   es
   },
   created() {
     this.$vuetify.theme.dark = true;
