@@ -1,3 +1,4 @@
+import els from '~/utils/elastic'
 export const state = () => {
   return {
     list: [],
@@ -33,8 +34,24 @@ export const actions = {
   initUserList({ commit }) {
     return new Promise( async (resolve, reject) => {
       try {
-        let rs = await this.$axios.post('/api/es/setting/user/list');
-        console.log('response', rs);
+        let query = {
+          "query":{
+            "bool":{
+              "must":[
+               
+              ]
+            }
+          }
+        }
+        let rs = await this.$axios.post('/api/es/setting/user/list', {query: query});
+        console.log('response : ', rs.data.result.error);
+        let userList = [];
+        if (!rs.data.result.error) {
+          userList = els.getSearchHits(rs.data.result);
+          commit('SET_USER_LIST', userList);
+        } else {
+          commit('SET_USER_LIST', userList);
+        }
       } catch (err) {
         console.log('initUserList Error', err);
         reject(err);

@@ -2,7 +2,7 @@
 export default function ({$cookiz, $axios, store, redirect  }) {
   //request 요청 
   $axios.onRequest(config => {
-    console.log('request : ', config);
+    // console.log('request : ', config);
     return config;
   });
 

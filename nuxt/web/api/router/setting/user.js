@@ -9,17 +9,22 @@ router.get('/test', function (req, res) {
   res.send({test:'test'});
 });
 
+/**
+ * 사용자 리스트 불러오기
+ */
 router.post('/list', async (req, res) => {
   console.log('/api/es/setting/user/list');
-  
+  let param = req.body;
   let error = false;
   let rs = {};
+  let query = {};
+  if (param.query) {
+    query = param.query;
+  }
   try {
     let search = await els.search({
       index: index_name,
-      body: {
-
-      }
+      body: query
     })
     rs.error = error;
     rs.msg = search;
@@ -31,5 +36,15 @@ router.post('/list', async (req, res) => {
   res.send({result: rs});
 })
 
+/**
+ * 사용자 등록
+ */
+router.post('/insertUser', async (req, res) => {
+  console.log('/api/es/setting/user/insertUser');
+  let param = req.body;
+  console.log(param);
+  let error = false;
+  let rs = {};
+})
 
 module.exports = router;    

@@ -5,7 +5,7 @@
     </v-card-title>
     <v-card-text>
       <list-table :list="list">
-        <edit-user slot="edit_button"/>
+        <!-- <edit-user slot="edit_button"/> -->
       </list-table>
     </v-card-text>
   </v-card>
@@ -13,12 +13,12 @@
 
 <script>
 import listTable from '~/components/setting/user/listTable'
-import editUser from '~/components/setting/user/editUser'
+// import editUser from '~/components/setting/user/editUser'
 export default {
   layout:'setting',
   components: {
     listTable,
-    editUser
+    // editUser
   },
   data() {
     return {
