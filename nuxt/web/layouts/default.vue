@@ -29,6 +29,7 @@ export default {
   opacity: 0;
 }
 
+/* ======== 스크롤바 CSS =========== */
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
