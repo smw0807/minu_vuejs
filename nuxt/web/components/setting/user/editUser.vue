@@ -16,7 +16,7 @@
           <span class="headline">사용자 등록</span>
         </v-card-title>
         <v-card-text>
-          <v-form ref="form">
+          <v-form ref="form" lazy-validation>
             <v-row>
               <v-col cols="12">
                 <v-text-field v-model="user_id" label="아이디*" :rules="user_id_rule" required></v-text-field>
@@ -28,7 +28,7 @@
                 <v-text-field v-model="user_pw" label="비밀번호*" type="password" :rules="user_pw_rule" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field v-model="user_pw_chk" label="비밀번호 확인*" type="password" :rules="user_pw_rule" required></v-text-field>
+                <v-text-field v-model="user_pw_chk" label="비밀번호 확인*" type="password" :rules="user_pw_rule2" required></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-select
@@ -37,6 +37,8 @@
                 :items="authList"
                 item-text="name"
                 item-value="value"
+                return-object
+                :rules="user_auth_rule"
                 >
                 </v-select>
               </v-col>
@@ -45,7 +47,7 @@
               </v-col>
             </v-row>
           </v-form>
-          <small>*표시는 반드시 입력해야하는 항목입니다.</small>
+          <small class="red--text">*표시는 반드시 입력해야하는 항목입니다.</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -63,6 +65,12 @@
 
 <script>
 export default {
+  props:{
+    edit: Boolean,
+    state: {
+      default: 'ins'
+    }
+  },
   data() {
     return {
       dialog: false,
@@ -86,9 +94,17 @@ export default {
       user_pw_chk: '',
       user_pw_rule: [
         v => !!v || '패스워드는 필수 입력사항입니다.',
-        v => v.length <= 30 || '패스워드는 30자 이상 입력할 수 없습니다.'
+        v => v.length <= 30 || '패스워드는 30자 이상 입력할 수 없습니다.',
+      ],
+      user_pw_rule2: [
+        v => !!v || '패스워드는 필수 입력사항입니다.',
+        v => v.length <= 30 || '패스워드는 30자 이상 입력할 수 없습니다.',
+        v => v === this.user_pw || '패스워드가 일치하지 않습니다.'
       ],
       user_auth: '',
+      user_auth_rule: [
+        v => !!v || '권한은 필수 선택 사항입니다.'
+      ],
       user_desc: '',
       user_desc_rule: [
         v => v.length <= 100 || '설명은 100자 이상 입력할 수 업습니다.'
@@ -96,20 +112,37 @@ export default {
     }
   },
   computed: {
-    nameErrors() {
-      const errors = [];
-      !this.$v.name.required && errors.push('Name is required.')
-      return error;
+    pw_match() {
+      if (this.user_pw === this.user_pw_chk) {
+        return '';
+      } else {
+        return '패스워드가 일치하지 않습니다.'
+      }
     }
   },
   watch: {
   },
-  created() {
-  },
   methods: {
-    save() {
-      
-    }
+    async save() {
+      const validate = this.$refs.form.validate();
+      if (validate) {
+        const params = {
+          user_id: this.user_id,
+          user_nm: this.user_nm,
+          user_pw: this.user_pw,
+          user_auth_code: this.user_auth.value,
+          user_auth_nm: this.user_auth.name,
+          user_desc: this.user_desc
+        }
+        try {
+          const rs = await this.$store.dispatch('setting/user/insertUser', params);
+          console.log(rs);
+          //성공 결과 받으면 dialog = false 시켜서 v-dialog 닫게하고 리스트 다시 불러오는 로직 만들기
+        } catch (err) {
+          alert(err);
+        }
+      }
+    },
   }
 }
 </script>

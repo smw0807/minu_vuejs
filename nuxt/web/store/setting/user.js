@@ -43,7 +43,7 @@ export const actions = {
             }
           }
         }
-        let rs = await this.$axios.post('/api/es/setting/user/list', {query: query});
+        const rs = await this.$axios.post('/api/es/setting/user/list', {query: query});
         console.log('response : ', rs.data.result);
         let userList = [];
         if (!rs.data.result.error) {
@@ -53,13 +53,21 @@ export const actions = {
           commit('SET_USER_LIST', userList);
         }
       } catch (err) {
-        console.log('initUserList Error', err);
+        console.error('initUserList Error', err);
         reject(err);
       }
     })
   },
   insertUser({ commit }, params) {
-
+    return new Promise(async (resolve, reject) => {
+      try {
+        const rs = await this.$axios.post('/api/es/setting/user/insertUser', params);
+        console.log(rs);
+      } catch (err) {
+        console.error('insertUser Error : ', err);
+        reject(err);
+      }
+    })
   },
   updateUser({ commit }, params) {
 

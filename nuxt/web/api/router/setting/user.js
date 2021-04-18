@@ -45,6 +45,14 @@ router.post('/insertUser', async (req, res) => {
   console.log(param);
   let error = false;
   let rs = {};
+  try {
+    //사용자 추가 로직 넣기
+  } catch (err) {
+    error = true;
+    rs.error = error;
+    rs.msg = err;
+  }
+  res.send({result: rs});
 })
 
 module.exports = router;    
