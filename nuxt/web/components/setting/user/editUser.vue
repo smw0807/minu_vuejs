@@ -137,7 +137,10 @@ export default {
         try {
           const rs = await this.$store.dispatch('setting/user/insertUser', params);
           console.log(rs);
-          //성공 결과 받으면 dialog = false 시켜서 v-dialog 닫게하고 리스트 다시 불러오는 로직 만들기
+          if (rs.data.result.error == false) {
+            this.dialog = false;
+            this.$store.dispatch('setting/user/initUserList');
+          }
         } catch (err) {
           alert(err);
         }

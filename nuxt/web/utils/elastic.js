@@ -8,11 +8,14 @@ function getSearchHits (data) {
     let rt = {};
     rt.index = doc._index;
     rt._id = doc._id;
-    let key = Object.keys(doc._source);
-    let val = doc._source;
+    rt.type = doc._source.type;
+
+    let key = Object.keys(doc._source.type);
+    let val = doc._source[doc._source.type];
     for (key in val) {
       rt[key] = val[key];
     }
+    
     return rt;
   })
   return rs;

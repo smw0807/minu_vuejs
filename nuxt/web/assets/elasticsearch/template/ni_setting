@@ -1,0 +1,183 @@
+{
+  "order": 0,
+  "index_patterns": [
+    "ni_*"
+  ],
+  "settings": {
+    "index": {
+      "routing": {
+        "allocation": {
+          "include": {
+            "_name": ""
+          }
+        }
+      },
+      "refresh_interval": "1ms",
+      "number_of_shards": "3",
+      "translog": {
+        "flush_threshold_size": "1gb",
+        "durability": "async"
+      },
+      "merge": {
+        "scheduler": {
+          "max_thread_count": "1"
+        }
+      },
+      "max_result_window": "20000",
+      "unassigned": {
+        "node_left": {
+          "delayed_timeout": "2628000m"
+        }
+      },
+      "number_of_replicas": "1"
+    }
+  },
+  "mappings": {
+    "dynamic_templates": [
+      {
+        "field_sum": {
+          "mapping": {
+            "type": "long"
+          },
+          "match": "*_sum"
+        }
+      },
+      {
+        "field_avg": {
+          "mapping": {
+            "type": "long"
+          },
+          "match": "*_avg"
+        }
+      },
+      {
+        "field_min": {
+          "mapping": {
+            "type": "long"
+          },
+          "match": "*_min"
+        }
+      },
+      {
+        "field_max": {
+          "mapping": {
+            "type": "long"
+          },
+          "match": "*_max"
+        }
+      },
+      {
+        "field_int_value": {
+          "mapping": {
+            "type": "integer"
+          },
+          "match": "*_i_val"
+        }
+      },
+      {
+        "field_string_value": {
+          "mapping": {
+            "type": "keyword"
+          },
+          "match": "*_s_val"
+        }
+      },
+      {
+        "field_count": {
+          "mapping": {
+            "type": "integer"
+          },
+          "match": "*_cnt"
+        }
+      },
+      {
+        "field_boolean": {
+          "mapping": {
+            "type": "boolean"
+          },
+          "match": "is_*"
+        }
+      },
+      {
+        "field_flag": {
+          "mapping": {
+            "type": "boolean"
+          },
+          "match": "*_flag"
+        }
+      },
+      {
+        "field_single_ip_1": {
+          "mapping": {
+            "type": "ip"
+          },
+          "match": "*_ip"
+        }
+      },
+      {
+        "field_single_ip_2": {
+          "mapping": {
+            "type": "ip"
+          },
+          "match": "ip_*"
+        }
+      },
+      {
+        "field_range_ip_1": {
+          "mapping": {
+            "type": "ip_range"
+          },
+          "match": "*_rip"
+        }
+      },
+      {
+        "field_range_ip_2": {
+          "mapping": {
+            "type": "ip_range"
+          },
+          "match": "rip_*"
+        }
+      },
+      {
+        "field_port": {
+          "mapping": {
+            "type": "integer"
+          },
+          "match": "*_port"
+        }
+      },
+      {
+        "_datetime": {
+          "mapping": {
+            "type": "date",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSSZ||yyyy-MM-dd HH:mm:ss.SSSZ||yyyy-MM-dd HH:mm:ssZ||yyyy-MM-ddZ||yyyy-MM-dd HH:mm:ss"
+          },
+          "match": "_datetime"
+        }
+      },
+      {
+        "field_dt": {
+          "mapping": {
+            "type": "date",
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSSZ||yyyy-MM-dd HH:mm:ss.SSSZ||yyyy-MM-dd HH:mm:ssZ||yyyy-MM-ddZ||yyyy-MM-dd HH:mm:ss"
+          },
+          "match": "*dt"
+        }
+      },
+      {
+        "_strings": {
+          "mapping": {
+            "type": "keyword"
+          },
+          "match_mapping_type": "string"
+        }
+      }
+    ],
+    "properties": {
+      "type": {
+        "type": "keyword"
+      }
+    }
+  },
+  "aliases": {}
+}

@@ -35,16 +35,16 @@ export const actions = {
     return new Promise( async (resolve, reject) => {
       try {
         let query = {
-          "query":{
-            "bool":{
-              "must":[
-               
+          "query": {
+            "bool": {
+              "must": [
+                { "term": { "type": "user" } }
               ]
             }
           }
         }
         const rs = await this.$axios.post('/api/es/setting/user/list', {query: query});
-        console.log('response : ', rs.data.result);
+
         let userList = [];
         if (!rs.data.result.error) {
           userList = els.getSearchHits(rs.data.result);
@@ -62,7 +62,7 @@ export const actions = {
     return new Promise(async (resolve, reject) => {
       try {
         const rs = await this.$axios.post('/api/es/setting/user/insertUser', params);
-        console.log(rs);
+        resolve(rs);
       } catch (err) {
         console.error('insertUser Error : ', err);
         reject(err);
