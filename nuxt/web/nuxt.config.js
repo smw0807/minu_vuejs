@@ -4,6 +4,8 @@
  */
 import path from 'path'
 const { es } = require(path.resolve('apiConfig')).default;
+const { logger } = require(path.resolve('logger')).default;
+logger.init();
 
 let title = "NuxtJS_Web";
 module.exports = {
