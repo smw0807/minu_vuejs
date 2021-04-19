@@ -1,0 +1,18 @@
+/api/utils
+api에서 사용할 util 파일들을 모은 디렉터리입니다.
+
+1. date.js : 날짜 관련 함수들
+  - makeDate(format)
+    => 매개변수로 날짜 포맷을 넘겨주면 moment를 이용하여 현재시간을 해당 포맷에 맞게 반환해줌
+      ex: makeDate('YYYY-MM-DD') -> return 2021-04-19
+
+2. sha256.js : sha256 암호화 관련 함수들
+  - sha256(val)
+    => 전달 받은 매개변수를 crypto를 이용해 sha256으로 암호화해서 반환해줌
+  
+  - salt_sha256(val, salt)
+    => 전달 받은 매개변수 2개를 맞쳐서 sha256으로 암호화해서 반환해줌
+      val : 암호화할 값
+      salt : 솔트값으로 넣을 값
+      val + salt로 암호화를 해서 반환함
+

@@ -2,6 +2,9 @@
  * 한글 어느정도 지원되는 버전 documnet사이트
  * https://v2.vuetifyjs.com/ko/getting-started/quick-start/
  */
+import path from 'path'
+const { es } = require(path.resolve('apiConfig')).default;
+
 let title = "NuxtJS_Web";
 module.exports = {
   /*
@@ -23,11 +26,11 @@ module.exports = {
     '~assets/bootstrap/css/bootstrap.css'
   ],
   plugins: [
-    '~/plugins/axios.js',
+    '@/plugins/axios.js',
     '@/plugins/vuetify.js'
   ],
   serverMiddleware: [
-    '~api/index.js'
+    '@/api/index.js'
   ],
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
@@ -46,7 +49,7 @@ module.exports = {
     //   target: 'http://192.168.1.29:3000'
     // },
     '/api/es': {
-      target: 'https://192.168.3.21:8200'
+      target: es.proxyHost
     },
     // '/api/mg': {
     //   target: 'http://localhost:27017/song'

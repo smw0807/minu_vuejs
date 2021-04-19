@@ -1,0 +1,6 @@
+/utils
+component, store 등 화면 단에서 사용할 util 파일들을 모은 디렉터리입니다.
+
+1. elastic.js : 엘라스틱 결과를 변환해서 반환시킬 함수들
+  - getSearchHits(data)
+    => search 쿼리 결과에서 _index, _id, 그리고 _source안에 있는 type과 데이터를 하나의 객체에 담아서 반환
