@@ -3,7 +3,7 @@
     <v-card-title>
       <v-spacer></v-spacer>
     </v-card-title>
-    <v-card-title></v-card-title>
+    <v-card-title>
       a
     </v-card-title>
     <v-card-text>

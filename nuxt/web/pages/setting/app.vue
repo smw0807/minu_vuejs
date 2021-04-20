@@ -1,16 +1,16 @@
 <template>
   <v-card>
     <v-card-title>
-      <h2>사용자 관리</h2>
+      <h2>응용 관리</h2>
     </v-card-title>
     <v-card-text>
-      <list-table :list="list"/>
+      <list-table/>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import listTable from '~/components/setting/user/listTable'
+import listTable from '~/components/setting/app/listTable'
 export default {
   layout:'setting',
   components: {
@@ -21,13 +21,12 @@ export default {
     }
   },
   created() {
-    //사용자 리스트 불러오기
-    this.$store.dispatch('setting/user/initUserList');
+    // this.$store.dispatch('setting/user/initUserList');
   },
   computed: {
-    list() {
-      return this.$store.getters['setting/user/GET_USER_LIST'];
-    }
+    // list() {
+    //   return this.$store.getters['setting/user/GET_USER_LIST'];
+    // }
   }
 }
 </script>
