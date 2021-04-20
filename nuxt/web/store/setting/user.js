@@ -31,17 +31,20 @@ export const getters = {
 }
 
 export const actions = {
-  initUserList({ commit }) {
+  initUserList({ commit }) { //사용자 리스트
+    //TODO : size에 대해서 생각해봐야함
     return new Promise( async (resolve, reject) => {
       try {
         let query = {
+          "size": 5000,
           "query": {
             "bool": {
               "must": [
                 { "term": { "type": "user" } }
               ]
             }
-          }
+          },
+          "sort":{ "user.user_upd_dt" : "desc" }
         }
         const rs = await this.$axios.post('/api/es/setting/user/list', {query: query});
         let userList = [];
@@ -57,7 +60,7 @@ export const actions = {
       }
     })
   },
-  insertUser({ commit }, params) {
+  insertUser({ commit }, params) { //사용자 등록
     return new Promise(async (resolve, reject) => {
       try {
         const rs = await this.$axios.post('/api/es/setting/user/insertUser', params);
@@ -68,10 +71,26 @@ export const actions = {
       }
     })
   },
-  updateUser({ commit }, params) {
-
+  updateUser({ commit }, params) { //사용자 수정
+    return new Promise(async (resolve, reject) => {
+      try {
+        const rs = await this.$axios.post('/api/es/setting/user/updateUser', params);
+        resolve(rs);
+      } catch (err) {
+        console.error('updateUser Error : ', err);
+        reject(err);
+      }
+    })
   },
-  deleteUser({ commit }, params) {
-    
+  deleteUser({ commit }, params) { //사용자 삭제
+    return new Promise(async (resolve, reject) => {
+      try {
+        const rs = await this.$axios.post(`/api/es/setting/user/deleteUser/${params}`);
+        resolve(rs);
+      } catch (err) {
+        console.error('deleteUser Error', err);
+        reject(err);
+      }
+    })
   }
 }

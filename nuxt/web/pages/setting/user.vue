@@ -4,16 +4,13 @@
       <h2>사용자 관리</h2>
     </v-card-title>
     <v-card-text>
-      <list-table :list="list">
-        <!-- <edit-user slot="edit_button"/> -->
-      </list-table>
+      <list-table :list="list"/>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
 import listTable from '~/components/setting/user/listTable'
-// import editUser from '~/components/setting/user/editUser'
 export default {
   layout:'setting',
   components: {

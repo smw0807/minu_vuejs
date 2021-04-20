@@ -2,8 +2,7 @@
   <v-card raised outlined class="pa-3" min-height="700">
     <v-card-title>
       <v-spacer></v-spacer>
-      <!-- <slot name="edit_button"></slot> -->
-      <edit-user/>
+      <edit-user :user_info="user_info_data"/>
     </v-card-title>
     <v-card-title>
       Vuetify DataTables
@@ -13,7 +12,6 @@
         append-icon="mdi-magnify"
         label="Search"
         single-line
-        
       ></v-text-field>
     </v-card-title>
     <v-card-text>
@@ -58,6 +56,7 @@ export default {
   props:["list"],
   data() {
     return {
+      user_info: null,
       search:'',
       page: 1,
       pageCount: 0,
@@ -78,16 +77,26 @@ export default {
     }
   },
   computed: {
-    listData() {
+    listData() { //리스트 불러오기
       return this.list;
+    },
+    user_info_data() { //상세정보
+      return this.user_info;
     }
   },
   methods: {
     editItem(data) {
-      console.log('editItem : ', data);
+      this.user_info = data;
     },
-    deleteItem(data) {
-      console.log('deleteItem : ', data);
+    async deleteItem(data) {
+      if (confirm(`${data.user_id} 계정을 삭제하시겠습니까?`)) {
+        const rs = await this.$store.dispatch('setting/user/deleteUser', data._id);
+        if (rs.data.result.error == false) {
+          this.$store.dispatch('setting/user/initUserList');
+        } else {
+          alert(rs.data.msg)
+        }
+      }
     }
   },
   components: { editUser }
