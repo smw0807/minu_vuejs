@@ -2,6 +2,7 @@ import express from 'express'
 import els from '../../els'
 import { sha256, salt_sha256 } from '../../utils/sha256'
 import { makeDate } from '../../utils/date'
+import { sleep } from '../../utils/utils'
 
 const router = express.Router();
 
@@ -25,6 +26,7 @@ router.post('/list', async (req, res) => {
     query = param.query;
   }
   try {
+    await sleep(5000);
     let search = await els.search({
       index: index_name,
       body: query

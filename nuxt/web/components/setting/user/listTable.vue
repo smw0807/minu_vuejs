@@ -25,6 +25,9 @@
         @page-count="pageCount = $event"
         :search="search"
         height="500"
+        :loading="loading"
+        loading-text="데이터를 불러오는 중입니다."
+        no-data-text="데이터가 없습니다."
         >
         <template v-slot:item.actions="{ item }">
           <v-icon
@@ -56,6 +59,7 @@ export default {
   props:["list"],
   data() {
     return {
+      loading: true,
       user_info: null,
       search:'',
       page: 1,
