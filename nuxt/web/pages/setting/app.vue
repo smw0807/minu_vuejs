@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      <h2>응용 관리</h2>
+      <h2>{{ pageName }}</h2>
     </v-card-title>
     <v-card-text>
       <list-table/>
@@ -18,6 +18,7 @@ export default {
   },
   data() {
     return {
+      pageName : '응용 관리',
     }
   },
   created() {

@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      <h2>Board</h2>
+      <h2>{{ pageName }}</h2>
     </v-card-title>
     <v-card-text>
       <list-table :list="list"></list-table>
@@ -13,6 +13,11 @@
 import listTable from '~/components/board/listTable'
 
 export default {
+  data() {
+    return {
+      pageName: 'index'
+    }
+  },
   created() {
     this.$store.dispatch('board/initBoardList');
   },

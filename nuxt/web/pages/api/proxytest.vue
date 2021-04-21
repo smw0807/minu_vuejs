@@ -1,7 +1,7 @@
 <template>
   <v-card raised outlined class="pa-3">
     <v-card-title>
-      <h2>proxy text page</h2>
+      <h2>{{ pageName }}</h2>
     </v-card-title>
     <v-card-text>
       <v-row
@@ -40,6 +40,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      pageName: 'proxy text page'
+    }
+  },
   methods: {
     async test1() {
       console.log('test1');

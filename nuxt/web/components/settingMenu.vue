@@ -109,9 +109,10 @@
       <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn 
-        @click="back"
+        raised outlined 
+        @click="home"
         >
-        <v-icon>mdi-keyboard-return</v-icon>
+        <v-icon>mdi-home-variant-outline</v-icon>
       </v-btn>
     </v-app-bar>
   </div>
@@ -144,13 +145,14 @@ export default {
   computed: {
   },
   methods: {
-    back() {
-      try {
-        this.$router.push(this.$nuxt.context.from.path);
-      } catch (err) {
-        console.log('back error', err);
-        this.$router.push('/');
-      }
+    home() {
+      this.$router.push('/');
+      // try {
+      //   this.$router.push(this.$nuxt.context.from.path);
+      // } catch (err) {
+      //   console.log('back error', err);
+      //   this.$router.push('/');
+      // }
     }
   },
 }

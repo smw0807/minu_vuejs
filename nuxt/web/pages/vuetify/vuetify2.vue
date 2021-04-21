@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      <h2>Vuetify2</h2>
+      <h2>{{ pageName }}</h2>
     </v-card-title>
     <v-card-text>
       <vuetify2/>
@@ -12,6 +12,11 @@
 <script>
 import vuetify2 from '~/components/vuetify/vuetify2'
 export default {
+  data() {
+    return {
+      pageName: 'Vuetify2'
+    }
+  },
   components:{
     vuetify2
   }

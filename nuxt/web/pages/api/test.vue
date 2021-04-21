@@ -1,6 +1,6 @@
 <template>
   <v-card raised outlined class="pa-3">
-    <h1>API test</h1>
+    <h1>{{ pageName }}</h1>
     <v-row>
       <v-col cols="8">
         {{apiCheck}}
@@ -17,6 +17,7 @@
 export default {
   data() {
     return {
+      pageName: 'API test',
       apiCheck: ''
     }
   },

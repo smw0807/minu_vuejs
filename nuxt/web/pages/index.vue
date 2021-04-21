@@ -1,7 +1,7 @@
 <template>
   <v-card min-height="768">
     <v-card-title>
-      <h2>index</h2>
+      <h2>{{ pageName }}</h2>
     </v-card-title>
     <v-card-text align="center">
       <v-card raised outlined class="pa-3">
@@ -17,6 +17,11 @@
 import AppLogo from '~/components/AppLogo.vue'
 
 export default {
+  data() {
+    return {
+      pageName: 'index'
+    }
+  },
   components: {
     AppLogo
   }

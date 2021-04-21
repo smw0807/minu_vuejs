@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      <h2>Vuetify1</h2>
+      <h2>{{ pageName }}</h2>
     </v-card-title>
     <v-card-text>
       <vuetify1 :cards="cards"/>
@@ -17,6 +17,7 @@ export default {
   },
   data() {
     return {
+      pageName: 'Vuetify1',
       cards: [
         { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 12 },
         { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 3 },
