@@ -59,7 +59,6 @@ export default {
   props:["list"],
   data() {
     return {
-      loading: true,
       user_info: null,
       search:'',
       page: 1,
@@ -86,6 +85,9 @@ export default {
     },
     user_info_data() { //상세정보
       return this.user_info;
+    },
+    loading() {
+      return this.$store.getters['GET_LOADING'];
     }
   },
   methods: {

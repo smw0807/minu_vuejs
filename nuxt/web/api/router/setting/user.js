@@ -26,7 +26,7 @@ router.post('/list', async (req, res) => {
     query = param.query;
   }
   try {
-    await sleep(5000);
+    await sleep(3000);
     let search = await els.search({
       index: index_name,
       body: query
