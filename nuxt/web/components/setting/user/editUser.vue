@@ -3,10 +3,10 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          dark
+          raised
+          color="primary"
           v-bind="attrs"
           v-on="on"
-          outlined
         >
           사용자 등록
         </v-btn>

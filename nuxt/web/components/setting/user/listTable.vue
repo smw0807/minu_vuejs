@@ -5,7 +5,8 @@
       <edit-user :user_info="user_info_data"/>
     </v-card-title>
     <v-card-title>
-      Vuetify DataTables
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -65,12 +66,6 @@ export default {
       pageCount: 0,
       itemsPerPage: 10,
       headers: [ //props로 받아서 처리하게끔 변경해보기
-        // {
-        //   text: 'Dessert (100g serving)',
-        //   align: 'start',
-        //   sortable: false,
-        //   value: 'name',
-        // },
         { text: '아이디', value: 'user_id' },
         { text: '사용자명', value: 'user_nm' },
         { text: '권한', value: 'user_auth_nm' },
