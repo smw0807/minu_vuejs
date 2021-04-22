@@ -9,7 +9,7 @@
   </v-card>
 </template>
 
-<script>
+<script></script>
 import listTable from '~/components/setting/user/listTable'
 export default {
   layout:'setting',
