@@ -11,7 +11,7 @@
           사용자 등록
         </v-btn>
       </template>
-      <v-card raised outlined class="pa-3"> 
+      <v-card raised outlined class="pa-3" :loading="loading"> 
         <v-card-title>
           <span class="headline">사용자 등록</span>
         </v-card-title>
@@ -19,7 +19,7 @@
           <v-form ref="form" lazy-validation>
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model="user_id" label="아이디*" :rules="user_id_rule" :disabled="state == 'ins' ? false : true" required></v-text-field>
+                <v-text-field v-model.lazy="user_id" label="아이디*" :rules="user_id_rule" :disabled="state == 'ins' ? false : true" required></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field v-model="user_nm" label="이름*" :rules="user_nm_rule" required></v-text-field>
@@ -108,6 +108,9 @@ export default {
     }
   },
   watch: {
+    user_id(v) {
+      console.log('watch user_id : ', v);
+    },
     user_info() { 
       //listTable 컴포넌트에서 user_info 데이터를 넘기면 수정화면으로 판단 시키고 text field에 데이터를 넣어줌
       const user = this.user_info;
@@ -117,6 +120,11 @@ export default {
       this.user_auth = user.user_auth_code;
       this.user_desc = user.user_desc;
       this.dialog = true;
+    }
+  },
+  computed: {
+    loading() {
+      return this.$store.getters['GET_LOADING'];
     }
   },
   methods: {

@@ -32,6 +32,7 @@ export const getters = {
 
 export const actions = {
   initUserList({ commit, dispatch }) { //사용자 리스트
+    commit('SET_USER_LIST', []); //리스트 처음에 한번 초기화
     //TODO : size에 대해서 생각해봐야함
     return new Promise( async (resolve, reject) => {
       try {
@@ -62,10 +63,12 @@ export const actions = {
       }
     })
   },
-  insertUser({ commit }, params) { //사용자 등록
+  insertUser({dispatch, commit }, params) { //사용자 등록
     return new Promise(async (resolve, reject) => {
       try {
+        dispatch('updateLoading', true, {root: true}); //로딩 시작
         const rs = await this.$axios.post('/api/es/setting/user/insertUser', params);
+        dispatch('updateLoading', false, {root: true}); //로딩 끝
         resolve(rs);
       } catch (err) {
         console.error('insertUser Error : ', err);
@@ -73,10 +76,12 @@ export const actions = {
       }
     })
   },
-  updateUser({ commit }, params) { //사용자 수정
+  updateUser({dispatch, commit }, params) { //사용자 수정
     return new Promise(async (resolve, reject) => {
       try {
+        dispatch('updateLoading', true, {root: true}); //로딩 시작
         const rs = await this.$axios.post('/api/es/setting/user/updateUser', params);
+        dispatch('updateLoading', false, {root: true}); //로딩 끝
         resolve(rs);
       } catch (err) {
         console.error('updateUser Error : ', err);
