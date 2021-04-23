@@ -19,7 +19,8 @@
           <v-form ref="form" lazy-validation>
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model.lazy="user_id" label="아이디*" :rules="user_id_rule" :disabled="state == 'ins' ? false : true" required></v-text-field>
+                <v-text-field v-model="user_id" label="아이디*" :rules="user_id_rule" :disabled="state == 'ins' ? false : true" required></v-text-field>
+                <!-- <v-text-field :value="user_id" @change="v => user_id = v" label="아이디*" :rules="user_id_rule" :disabled="state == 'ins' ? false : true" required></v-text-field> -->
               </v-col>
               <v-col cols="12">
                 <v-text-field v-model="user_nm" label="이름*" :rules="user_nm_rule" required></v-text-field>
@@ -108,9 +109,6 @@ export default {
     }
   },
   watch: {
-    user_id(v) {
-      console.log('watch user_id : ', v);
-    },
     user_info() { 
       //listTable 컴포넌트에서 user_info 데이터를 넘기면 수정화면으로 판단 시키고 text field에 데이터를 넣어줌
       const user = this.user_info;

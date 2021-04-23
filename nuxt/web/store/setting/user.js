@@ -1,14 +1,7 @@
 import els from '~/utils/elastic'
 export const state = () => {
   return {
-    list: [],
-    user: {
-      user_id: '',
-      user_nm: '',
-      user_pw: '',
-      user_auth: '',
-      user_desc: ''
-    }
+    list: []
   }
 };
 

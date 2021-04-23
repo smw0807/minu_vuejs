@@ -169,7 +169,7 @@ export default {
         {
           title: '장비설정', icon: 'mdi-cog',
           model: false,
-          to: '/setting/user'
+          to: '/setting/app'
           // children: [
           //   { title: '응용관리', to: '/'},
           //   { title: '사용자관리', to: '/setting/user'}
