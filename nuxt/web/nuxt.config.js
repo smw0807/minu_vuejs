@@ -37,7 +37,24 @@ module.exports = {
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
     '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
+    '@nuxtjs/auth-next'
   ],
+  auth: {
+    strategies: {
+      cookie: {
+        cookie: {
+          // (선택사항) 설정된 경우 이 쿠키의 존재 여부를 확인합니다.체크인중
+          name: 'XSRF-TOKEN',
+        },
+        endpoints: {
+          // (선택사항) 설정된 경우 로그인 전에 이 끝점으로 가져오기 요청을 보냅니다.
+          csrf: {
+            url: ''
+          }
+        }
+      },
+    }
+  },
   buildModules: [
     // Simple usage
     '@nuxtjs/vuetify',
@@ -65,9 +82,9 @@ module.exports = {
   /*
   ** Build configuration
   */
-  // mode: 'spa',
+  mode: 'spa',
   build: {
-    ssr: true, //SSR앱을 빌드한다.
+    // ssr: false, //SSR앱을 빌드한다.
     /**
     * Run ESLint on save
     * 저장할 때마다 자동으로 ESLint가 실행하려고 할 때 사용한다. 

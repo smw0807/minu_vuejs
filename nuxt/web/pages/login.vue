@@ -23,7 +23,7 @@
                 <v-toolbar-title>Login</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <v-form @submit.prevent="submit">
                   <v-text-field
                     v-model="user_id"
                     @keyup.enter="submit"
@@ -31,6 +31,7 @@
                     name="login"
                     prepend-icon="mdi-account"
                     type="text"
+                    :rules="user_id_rule"
                   ></v-text-field>
 
                   <v-text-field
@@ -41,6 +42,7 @@
                     name="password"
                     prepend-icon="mdi-lock"
                     type="password"
+                    :rules="user_pw_rule"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
@@ -62,14 +64,38 @@ export default {
   data() {
     return {
       user_id: '',
-      user_pw: ''
+      user_id_rule: [
+        v => !!v || '아이디를 입력해주시기 바랍니다.'
+      ],
+      user_pw: '',
+      user_pw_rule: [
+        v => !!v || '패스워드를 입력해주시기 바랍니다.'
+      ]
     }
   },
   methods: {
-    submit() {
+    async submit() {
       console.log('Login!!!');
       console.log(this.user_id);
       console.log(this.user_pw);
+      try {
+        const params = {
+          user_id : this.user_id,
+          user_pw : this.user_pw
+        }
+        const rs = await this.$store.dispatch('login/login', params);
+
+      } catch (err) {
+        console.error(err);
+      }
+    //   await fetch('/api/es/login', {
+    //     method: 'POST',
+    //     Headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify({
+    //       user_id: this.user_id,
+    //       user_pw: this.user_pw
+    //     })
+    //   })
     }
   }
 }
