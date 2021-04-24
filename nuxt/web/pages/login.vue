@@ -23,7 +23,7 @@
                 <v-toolbar-title>Login</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form @submit.prevent="submit">
+                <v-form @submit.prevent="submit" ref="form">
                   <v-text-field
                     v-model="user_id"
                     @keyup.enter="submit"
@@ -32,6 +32,7 @@
                     prepend-icon="mdi-account"
                     type="text"
                     :rules="user_id_rule"
+                    autocomplete="false"
                   ></v-text-field>
 
                   <v-text-field
@@ -43,6 +44,7 @@
                     prepend-icon="mdi-lock"
                     type="password"
                     :rules="user_pw_rule"
+                    autocomplete="false"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
@@ -75,27 +77,36 @@ export default {
   },
   methods: {
     async submit() {
-      console.log('Login!!!');
-      console.log(this.user_id);
-      console.log(this.user_pw);
-      try {
-        const params = {
-          user_id : this.user_id,
-          user_pw : this.user_pw
+      const validate = this.$refs.form.validate();
+      if (validate == true) {
+        try {
+          const params = {
+            user_id : this.user_id,
+            user_pw : this.user_pw
+          }
+          const rs = await this.$store.dispatch('login/login', params);
+          if (!rs.result) {
+            alert(rs.msg);
+            this.reset();
+          } else {
+            console.log('login : ', rs.result);
+          }
+        } catch (err) {
+          console.error(err);
         }
-        const rs = await this.$store.dispatch('login/login', params);
+      //   await fetch('/api/es/login', {
+      //     method: 'POST',
+      //     Headers: {'Content-Type': 'application/json'},
+      //     body: JSON.stringify({
+      //       user_id: this.user_id,
+      //       user_pw: this.user_pw
+      //     })
+      //   })
 
-      } catch (err) {
-        console.error(err);
       }
-    //   await fetch('/api/es/login', {
-    //     method: 'POST',
-    //     Headers: {'Content-Type': 'application/json'},
-    //     body: JSON.stringify({
-    //       user_id: this.user_id,
-    //       user_pw: this.user_pw
-    //     })
-    //   })
+    },
+    reset() {
+      this.$refs.form.reset();
     }
   }
 }

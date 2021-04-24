@@ -34,6 +34,9 @@ module.exports = {
   serverMiddleware: [
     '@/api/index.js'
   ],
+  router: {
+    middleware: ['auth'] //auth 모듈을 모든 페이지에 기본적으로 적용시켜줌
+  },
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
     '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
@@ -46,12 +49,20 @@ module.exports = {
           // (선택사항) 설정된 경우 이 쿠키의 존재 여부를 확인합니다.체크인중
           name: 'XSRF-TOKEN',
         },
-        endpoints: {
-          // (선택사항) 설정된 경우 로그인 전에 이 끝점으로 가져오기 요청을 보냅니다.
-          csrf: {
-            url: ''
-          }
-        }
+        // endpoints: {
+        //   // (선택사항) 설정된 경우 로그인 전에 이 끝점으로 가져오기 요청을 보냅니다.
+        //   csrf: {
+        //     url: ''
+        //   }
+        // }
+        token: {
+          property: 'access_token',
+          maxAge: 60 * 60
+        },
+        refreshToken: {
+          property: 'refresh_token',
+          maxAge: 20160 * 60
+        },
       },
     }
   },
