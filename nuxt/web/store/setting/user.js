@@ -40,7 +40,7 @@ export const actions = {
           },
           "sort":{ "user.user_upd_dt" : "desc" }
         }
-        dispatch('updateLoading', true, {root: true}); //로딩 시작
+        dispatch('updateLoading', {loading_1: true}, {root: true}); //로딩 시작
         const rs = await this.$axios.post('/api/es/setting/user/list', {query: query});
         let userList = [];
         if (!rs.data.result.error) {
@@ -49,7 +49,7 @@ export const actions = {
         } else {
           commit('SET_USER_LIST', userList);
         }
-        dispatch('updateLoading', false, {root: true}); //로딩 끝
+        dispatch('updateLoading', {loading_1: false}, {root: true}); //로딩 끝
       } catch (err) {
         console.error('initUserList Error', err);
         reject(err);
@@ -59,9 +59,9 @@ export const actions = {
   insertUser({dispatch, commit }, params) { //사용자 등록
     return new Promise(async (resolve, reject) => {
       try {
-        dispatch('updateLoading', true, {root: true}); //로딩 시작
+        dispatch('updateLoading', {loading_2: true}, {root: true}); //로딩 시작
         const rs = await this.$axios.post('/api/es/setting/user/insertUser', params);
-        dispatch('updateLoading', false, {root: true}); //로딩 끝
+        dispatch('updateLoading', {loading_2: false}, {root: true}); //로딩 끝
         resolve(rs);
       } catch (err) {
         console.error('insertUser Error : ', err);
@@ -72,9 +72,9 @@ export const actions = {
   updateUser({dispatch, commit }, params) { //사용자 수정
     return new Promise(async (resolve, reject) => {
       try {
-        dispatch('updateLoading', true, {root: true}); //로딩 시작
+        dispatch('updateLoading', {loading_2: true}, {root: true}); //로딩 시작
         const rs = await this.$axios.post('/api/es/setting/user/updateUser', params);
-        dispatch('updateLoading', false, {root: true}); //로딩 끝
+        dispatch('updateLoading', {loading_2: false}, {root: true}); //로딩 끝
         resolve(rs);
       } catch (err) {
         console.error('updateUser Error : ', err);

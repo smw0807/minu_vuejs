@@ -82,7 +82,7 @@ export default {
       return this.user_info;
     },
     loading() {
-      return this.$store.getters['GET_LOADING'];
+      return this.$store.getters['GET_LOADING_1'];
     }
   },
   methods: {

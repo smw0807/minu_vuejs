@@ -122,7 +122,7 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.getters['GET_LOADING'];
+      return this.$store.getters['GET_LOADING_2'];
     }
   },
   methods: {
