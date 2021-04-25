@@ -38,9 +38,7 @@ export const actions = {
             rs.msg = '패스워드가 일치하지 않습니다.';
           } else {
             console.log('ok');
-            // console.log(this.$auth);
             const login = await this.$axios.post('/api/es/login/login', {user_id: params.user_id});
-            const test = await this.$auth.strategy.token.set('access_token', "aaaa");
             console.log(test);
             rs.result = true;
             rs.msg = 'ok';
