@@ -29,10 +29,17 @@ export const actions = {
         if (!rs.data.result.error) {
           const token = rs.data.result.auth_info;
           console.log(token);
+          // console.log(this.$auth.user);
           console.log(this.$auth);
-          await this.$auth.strategy.token.set('...')(token.accessToken);
-          await this.$auth.cookie.refresh_token.set(token.refreshToken);
-          console.log(this.$auth);
+          // const test = await this.$auth.loginWith('cookie', {
+          //   user: token
+          // })
+          await this.$auth.strategy.token.set(token.accessToken);
+          await this.$auth.strategy.refreshToken.set(token.refreshToken);
+          // await this.$auth.cookie.refresh_token.set(token.refreshToken);
+          // await this.$auth.strategy.access_token.set(token.accessToken);
+          // await this.$auth.strategy.refresh_token.set(token.refreshToken);
+          // console.log(this.$auth);
         }
         // const idCheck = await this.$axios.post(`/api/es/login/login/${params.user_id}`);
         // console.log(idCheck);

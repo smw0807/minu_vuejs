@@ -31,13 +31,13 @@ router.post('/login', async (req, res) => {
         }
       }
     })
-    console.log(search);
+    // console.log(search);
     if (search.hits.hits.length === 0) {
       rs.error = true;
       rs.msg = '존재하지 않는 아이디입니다.';
     } else {
       const data = search.hits.hits[0]._source;
-      console.log(data);
+      // console.log(data);
       const pass = salt_sha256(user_pw, data.user.user_mk_dt);
       if (pass !== data.user.user_pw) {
         rs.error = true;
@@ -51,8 +51,7 @@ router.post('/login', async (req, res) => {
           'accessToken' : accessToken,
           'refreshToken': refreshToken
         };
-        console.log(auth);
-        // this.$auth.strategy.token.set('...')
+        rs.user = data;
       }
     }
   } catch (err) { 

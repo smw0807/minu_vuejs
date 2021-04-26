@@ -43,18 +43,51 @@ module.exports = {
     '@nuxtjs/auth-next'
   ],
   auth: {
+    localStorage: false,
     strategies: {
-      cookie: {
-        access_token: {
+      local: {
+        token: {
           property: 'access_token',
           maxAge: 60
         },
-        refresh_token: {
+        refreshToken: {
           property: 'refresh_token',
           maxAge: 60 * 60
         },
+        endpoints: {
+          login: { url: '/api/es/login/login', method: 'post' },
+        }
       }
     }
+    // strategies: {
+    //   cookie: {
+    //     access_token: {
+    //       name: 'access_token',
+    //       prefix: '_token1',
+    //       property: 'access_token',
+    //       maxAge: 60
+    //     },
+    //     refresh_token: {
+    //       name: 'refresh_token',
+    //       prefix: '_token2',
+    //       property: 'refresh_token',
+    //       maxAge: 60 * 60
+    //     },
+    //     user: {},
+    //     endpoints: {
+    //       login: {url: '/api/es/login/login', method: 'post'},
+    //       logout: {url: '/logout' , method: 'post'},
+    //       user: {url: '/auth/user'}
+    //     }
+    //   }
+      // cookie:{
+      //   endpoints: {
+      //     login: {url: '/login', method: 'post'},
+      //     logout: {url: '/logout' , method: 'post'},
+      //     user: {url: '/auth/user'}
+      //   }
+      // }
+    // }
     // strategies: {
     //   cookie: {
     //     cookie: {
