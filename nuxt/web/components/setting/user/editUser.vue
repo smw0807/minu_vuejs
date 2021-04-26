@@ -79,7 +79,8 @@ export default {
       user_id_rule: [
         v => !!v || '아이디는 필수 입력사항입니다.',
         v => /^[a-zA-Z0-9]*$/.test(v) || '아이디는 영문+숫자만 입력 가능합니다.',
-        v => !( v && v.length >= 15) || '아이디는 15자 이상 입력할 수 없습니다.'
+        v => !( v && v.length >= 15) || '아이디는 15자 이상 입력할 수 없습니다.',
+        v => this.state === 'ins' ? this.checkDuplicate(v) : true
       ],
       user_nm: '',
       user_nm_rule: [
@@ -155,6 +156,18 @@ export default {
           }
         }
       }
+    },
+    //id 중복체크
+     checkDuplicate(user_id) {     
+      const user_data = this.$store.getters['setting/user/GET_USER_LIST'];
+
+        for(var i in user_data) {
+          var user_idcheck = user_data[i].user_id;
+        if(user_id == user_idcheck){
+          return '이미 사용중인 아이디가 있습니다.';
+        }
+      }
+      return true
     },
     close() {
       this.dialog = false;
