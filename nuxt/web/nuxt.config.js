@@ -35,7 +35,10 @@ module.exports = {
     '@/api/index.js'
   ],
   router: {
-    middleware: ['auth'] //auth 모듈을 모든 페이지에 기본적으로 적용시켜줌
+    middleware: [
+      'auth', //auth 모듈을 모든 페이지에 기본적으로 적용시켜줌
+      'guard'
+  ] 
   },
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
@@ -45,18 +48,21 @@ module.exports = {
   auth: {
     localStorage: false,
     strategies: {
-      local: {
+      local: false,
+      cookie: {
         token: {
           property: 'access_token',
+          required: true,
+          type: "Bearer",
           maxAge: 60
         },
         refreshToken: {
           property: 'refresh_token',
           maxAge: 60 * 60
         },
-        endpoints: {
-          login: { url: '/api/es/login/login', method: 'post' },
-        }
+        // endpoints: {
+        //   login: { url: '/api/es/login/login', method: 'post' },
+        // }
       }
     }
     // strategies: {

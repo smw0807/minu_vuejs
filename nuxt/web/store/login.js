@@ -31,11 +31,11 @@ export const actions = {
           console.log(token);
           // console.log(this.$auth.user);
           console.log(this.$auth);
-          // const test = await this.$auth.loginWith('cookie', {
-          //   user: token
+          // const test = await this.$auth.loginWith('local', {
+          //   data: rs.data.result.user
           // })
-          await this.$auth.strategy.token.set(token.accessToken);
-          await this.$auth.strategy.refreshToken.set(token.refreshToken);
+          await this.$auth.strategy.token.set();
+          // await this.$auth.strategy.refreshToken.set(token.refreshToken);
           // await this.$auth.cookie.refresh_token.set(token.refreshToken);
           // await this.$auth.strategy.access_token.set(token.accessToken);
           // await this.$auth.strategy.refresh_token.set(token.refreshToken);

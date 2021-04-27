@@ -13,7 +13,6 @@
 import listTable from '~/components/setting/user/listTable'
 export default {
   layout:'setting',
-  auth: false,
   components: {
     listTable,
   },

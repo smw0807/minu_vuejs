@@ -1,0 +1,1 @@
+await $auth.logout('cookie'); //로그아웃
