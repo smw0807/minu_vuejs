@@ -1,19 +1,21 @@
 import jwt from 'jsonwebtoken';
 
 export default async function({ $cookiz, route, store, redirect }) {
-  let token = {
+  const token = {
     accessToken: $cookiz.get('accessToken') ? $cookiz.get('accessToken') : null,
     refreshToken: $cookiz.get('refreshToken') ? $cookiz.get('refreshToken') : null
   };
   store.auth_id = 0;
   console.log('?? : ', route.path);
+  console.log('test1 : ', route.path.includes('login'));
   //로그인 페이지는 권한체크 제외
-  if (route.path.includes('/login')) {
+  if (route.path.includes('login')) {
     return false;
   }
 
   //로그인
   try {
+    console.log("123123123 : ", token);
     if (!token.accessToken && !token.refreshToken) {
       alert('로그인이 필요합니다.');
       return redirect('/login');

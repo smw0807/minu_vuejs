@@ -3,12 +3,14 @@ const  { salt_sha256 }  = require('~/utils/utils').default;
 export const state = () => {
   return {
     accessToken: null,
-    refreshToken: null
+    refreshToken: null,
+    auth_id: null
   }
 }
 
 export const mutations = {
   loginToken (state, payload) {
+    console.log('?????? ', payload);
     state.accessToken = payload.accessToken;
     state.refreshToken = payload.refreshToken;
     this.$cookiz.set('accessToken', payload.accessToken, {
@@ -64,10 +66,6 @@ export const actions = {
           const token = rs.data.result.auth_info;
           console.log(token);
           commit('loginToken', rs.data.result.auth_info);
-          // console.log(this.$auth);
-          // console.log(this.$auth.strategy);
-          // console.log(this.$auth.strategies);
-          // const a = await this.$auth.setUser(rs.data.result.user);
         }
         resolve(rs.data);
       } catch (err) {
