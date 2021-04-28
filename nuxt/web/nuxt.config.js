@@ -36,87 +36,44 @@ module.exports = {
   ],
   router: {
     middleware: [
-      'auth', //auth 모듈을 모든 페이지에 기본적으로 적용시켜줌
-      'guard'
+      'auth',
+      // 'guard'
   ] 
   },
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
     '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
-    '@nuxtjs/auth-next'
+    // '@nuxtjs/auth-next', //제대로된 적용 방법을 모르겠어서 남겨는 둠. 현재 사용 안함
+    ['cookie-universal-nuxt', { alias: 'cookiz' }],
   ],
-  auth: {
-    localStorage: false,
-    strategies: {
-      local: false,
-      cookie: {
-        token: {
-          property: 'access_token',
-          required: true,
-          type: "Bearer",
-          maxAge: 60
-        },
-        refreshToken: {
-          property: 'refresh_token',
-          maxAge: 60 * 60
-        },
-        // endpoints: {
-        //   login: { url: '/api/es/login/login', method: 'post' },
-        // }
-      }
-    }
-    // strategies: {
-    //   cookie: {
-    //     access_token: {
-    //       name: 'access_token',
-    //       prefix: '_token1',
-    //       property: 'access_token',
-    //       maxAge: 60
-    //     },
-    //     refresh_token: {
-    //       name: 'refresh_token',
-    //       prefix: '_token2',
-    //       property: 'refresh_token',
-    //       maxAge: 60 * 60
-    //     },
-    //     user: {},
-    //     endpoints: {
-    //       login: {url: '/api/es/login/login', method: 'post'},
-    //       logout: {url: '/logout' , method: 'post'},
-    //       user: {url: '/auth/user'}
-    //     }
-    //   }
-      // cookie:{
-      //   endpoints: {
-      //     login: {url: '/login', method: 'post'},
-      //     logout: {url: '/logout' , method: 'post'},
-      //     user: {url: '/auth/user'}
-      //   }
-      // }
-    // }
-    // strategies: {
-    //   cookie: {
-    //     cookie: {
-    //       // (선택사항) 설정된 경우 이 쿠키의 존재 여부를 확인합니다.체크인중
-    //       name: 'XSRF-TOKEN',
-    //     },
-    //     // endpoints: {
-    //     //   // (선택사항) 설정된 경우 로그인 전에 이 끝점으로 가져오기 요청을 보냅니다.
-    //     //   csrf: {
-    //     //     url: ''
-    //     //   }
-    //     // }
-    //     accessToken: {
-    //       property: 'access_token',
-    //       maxAge: 60
-    //     },
-    //     refreshToken: {
-    //       property: 'refresh_token',
-    //       maxAge: 60 * 60
-    //     },
-    //   },
-    // }
-  },
+  // auth: {
+  //   localStorage: false,
+  //   strategies: {
+  //     token: {
+  //       name : 'access_token',
+  //       property: 'access_token',
+  //       maxAge: 60
+  //     },
+  //     cookie: {
+  //       _scheme: 'refresh',
+        
+  //       refreshToken: {
+  //         name: 'refresh_token',
+  //         property: 'refresh_token', // change to your refresh token property
+  //         maxAge: 60 * 60
+  //       },
+  //       user: false,
+  //       endpoints: {
+  //         // login: { url: '/api/es/login/jwt/create/', method: 'post' },
+  //         // refresh: { url: '/api/v1/auth/jwt/refresh/', method: 'post' }, // change to your refresh token url
+  //         // user: { url: '/api/v1/auth/users/me/', method: 'get' },
+  //         logout: false
+  //       },
+  //       tokenRequired: true,
+  //       tokenType: 'JWT'
+  //     }
+  //   }
+  // },
   buildModules: [
     // Simple usage
     '@nuxtjs/vuetify',

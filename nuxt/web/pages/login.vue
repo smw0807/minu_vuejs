@@ -90,20 +90,12 @@ export default {
             alert(rs.result.msg);
             this.reset();
           } else {
-            console.log('login : ', rs.result);
+            // console.log('login : ', rs.result);
+            this.$router.push('/');
           }
         } catch (err) {
           console.error(err);
         }
-      //   await fetch('/api/es/login', {
-      //     method: 'POST',
-      //     Headers: {'Content-Type': 'application/json'},
-      //     body: JSON.stringify({
-      //       user_id: this.user_id,
-      //       user_pw: this.user_pw
-      //     })
-      //   })
-
       }
     },
     reset() {

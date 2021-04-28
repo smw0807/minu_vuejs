@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 const app = express();
+global.userMap = new Map();
+
 app.use(express.json());
 app.use(bodyParser.json());
 

@@ -8,58 +8,67 @@ export const state = () => {
 }
 
 export const mutations = {
-  SET_TOKEN(state, payload) {
+  loginToken (state, payload) {
     state.accessToken = payload.accessToken;
     state.refreshToken = payload.refreshToken;
+    this.$cookiz.set('accessToken', payload.accessToken, {
+      path: '/',
+      maxAge: 60
+    });
+    this.$cookiz.set('refreshToken', payload.refreshToken, {
+      path: '/',
+      maxAge: 3600
+    });
+  },
+  refreshToken(state, payload) {
+    //accessToken 재셋팅
+    console.log('refresh');
+    this.$cookiz.set('accessToken', payload.accessToken, {
+      path: '/',
+      maxAge: 60
+    });
+    this.$cookiz.set('refreshToken', payload.refreshToken, {
+      path: '/',
+      maxAge: 3600
+    });
+    state.accessToken = payload.accessToken;
+    state.refreshToken = payload.refreshToken;
+  },
+  removeToken(state) {
+    console.log('remove');
+    console.log(`access : ${this.$cookiz.get('accessToken')}`);
+    console.log(`refresh : ${this.$cookiz.get('refreshToken')}`);
+    this.$cookiz.remove('accessToken');
+    this.$cookiz.remove('refreshToken');
+    state.accessToken = null;
+    state.refreshToken = null;
   }
 }
 
 export const getters = {
-  GET_TOKEN(state) {
-    return state
+  getToken(state) {
+    return {
+      access: state.accessToken,
+      refresh: state.refreshToken
+    };
   }
 }
 
 export const actions = {
-  login({commit}, params) {
+  login({commit, dispatch}, params) {
     return new Promise(async (resolve, reject) => {
       try {
-        const rs = await this.$axios.post('/api/es/login/login', params);
+        const rs = await this.$axios.post('/api/es/login/login', params, { retry: true });
         console.log('store/login', rs);
         if (!rs.data.result.error) {
           const token = rs.data.result.auth_info;
           console.log(token);
-          // console.log(this.$auth.user);
-          console.log(this.$auth);
-          // const test = await this.$auth.loginWith('local', {
-          //   data: rs.data.result.user
-          // })
-          await this.$auth.strategy.token.set();
-          // await this.$auth.strategy.refreshToken.set(token.refreshToken);
-          // await this.$auth.cookie.refresh_token.set(token.refreshToken);
-          // await this.$auth.strategy.access_token.set(token.accessToken);
-          // await this.$auth.strategy.refresh_token.set(token.refreshToken);
+          commit('loginToken', rs.data.result.auth_info);
           // console.log(this.$auth);
+          // console.log(this.$auth.strategy);
+          // console.log(this.$auth.strategies);
+          // const a = await this.$auth.setUser(rs.data.result.user);
         }
-        // const idCheck = await this.$axios.post(`/api/es/login/login/${params.user_id}`);
-        // console.log(idCheck);
-        // if (idCheck.data.result.msg.hits.hits.length == 0) {
-        //   rs.result = false;
-        //   rs.msg = '존재하지 않는 아이디 입니다.';
-        // } else {
-        //   const data = idCheck.data.result.msg.hits.hits[0];
-        //   const check = salt_sha256(params.user_pw, data._source.user.user_mk_dt);
-        //   if (check != data._source.user.user_pw) {
-        //     rs.result = false;
-        //     rs.msg = '패스워드가 일치하지 않습니다.';
-        //   } else {
-        //     console.log('ok');
-        //     const login = await this.$axios.post('/api/es/login/login', data);
-        //     console.log('login : ', login);
-        //     rs.result = true;
-        //     rs.msg = 'ok';
-        //   }
-        // }
         resolve(rs.data);
       } catch (err) {
         console.error(err);
@@ -67,7 +76,34 @@ export const actions = {
       }
     })
   },
-  refreshToken({commit}, params) {
-
+  refreshToken({ commit, dispatch }) {
+    // accessToken 재요청
+    //accessToken 만료로 재발급 후 재요청시 비동기처리로는 제대로 처리가 안되서 promise로 처리함
+    return new Promise(async (resolve, reject) => {
+      try {
+        const options = {
+          retry: true,
+          headers: { 'x-refresh-token': this.$cookiz.get('refreshToken') }
+        }
+        const rs = await this.$axios.post('/api/es/login/certify',{}, options);
+        console.log('refresh : ', rs);
+        if (rs && rs.data.result.error !== false) {
+          const token = res.data.result.auth_info;
+          commit('refreshToken', token);
+          resolve(token);
+        } else {
+          commit('removeToken');
+          reject('failed');
+        }
+      } catch (err) {
+        console.log('refreshToken error : ', err);
+        commit('removeToken');
+        reject(err);
+      }
+    });
+  },
+  logout({ commit }) {
+    // 로그아웃
+    commit('removeToken');
   }
 }
