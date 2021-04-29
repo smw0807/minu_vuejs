@@ -1,21 +1,17 @@
 import jwt from 'jsonwebtoken';
 
 export default async function({ $cookiz, route, store, redirect }) {
-  const token = {
+  let token = {
     accessToken: $cookiz.get('accessToken') ? $cookiz.get('accessToken') : null,
     refreshToken: $cookiz.get('refreshToken') ? $cookiz.get('refreshToken') : null
   };
   store.auth_id = 0;
-  console.log('?? : ', route.path);
-  console.log('test1 : ', route.path.includes('login'));
   //로그인 페이지는 권한체크 제외
   if (route.path.includes('login')) {
     return false;
   }
-
   //로그인
   try {
-    console.log("123123123 : ", token);
     if (!token.accessToken && !token.refreshToken) {
       alert('로그인이 필요합니다.');
       return redirect('/login');
@@ -54,13 +50,12 @@ export default async function({ $cookiz, route, store, redirect }) {
       }
     });
 
-    console.log(auth_arr);
     if (auth_arr.length > 0 && !auth_arr[0].auth.includes(store.auth_id)) {
       alert('접근 권한이 없습니다.');
       return redirect('/');
     }
   } catch (error) {
-    console.log(error);
+    console.error('Auth Request Error : ',error);
     alert('권한 확인 중 에러가 발생하였습니다.\n다시 로그인 해 주세요.');
     await store.dispatch('logout');
     return redirect('/login');

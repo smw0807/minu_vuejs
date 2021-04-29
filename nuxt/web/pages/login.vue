@@ -85,7 +85,6 @@ export default {
             user_pw : this.user_pw
           }
           const rs = await this.$store.dispatch('login/login', params);
-          console.log('loginvue', rs);
           if (rs.result.error) {
             alert(rs.result.msg);
             this.reset();

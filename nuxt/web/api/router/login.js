@@ -1,7 +1,7 @@
 import aRoot from 'app-root-path'
 import express from 'express'
 import els from '../els'
-const { encryptPassword, certifyPassword, generateAccessToken, generateRefreshToken, certifyRefreshToken } =  require(aRoot + '/api/utils/authenticate');
+const { certifyPassword, generateAccessToken, generateRefreshToken, certifyRefreshToken } =  require(aRoot + '/api/utils/authenticate');
 
 const router = express.Router();
 
@@ -14,7 +14,6 @@ router.post('/login', async (req, res) => {
   const param = req.body;
   let error = false;
   let rs = {};
-  console.log('login...', param);
   try {
     const user_id = param.user_id;
     const user_pw = param.user_pw;
@@ -32,7 +31,6 @@ router.post('/login', async (req, res) => {
         }
       }
     })
-    // console.log(search);
     if (search.hits.hits.length === 0) {
       rs.error = true;
       rs.msg = '존재하지 않는 아이디입니다.';
@@ -49,12 +47,8 @@ router.post('/login', async (req, res) => {
 
         rs.error = error;
         rs.msg = '로그인 성공';
-        rs.auth_info = {
-          'accessToken' : accessToken,
-          'refreshToken': refreshToken
-        };
+        rs.auth_info = { accessToken, refreshToken };
         rs.user = data;
-        
       } else {
         rs.error = true;
         rs.msg = '패스워드가 일치하지 않습니다.';
@@ -70,7 +64,6 @@ router.post('/certify', async (req, res) => {
   console.log('api/es/login/certify');
   let rs = {};
   let error = false;
-  let rt_status = 401;
   const refreshToken = req.headers['x-refresh-token'];
   try {
     let token = await certifyRefreshToken(refreshToken);
@@ -80,10 +73,7 @@ router.post('/certify', async (req, res) => {
       const accessToken = generateAccessToken({ uid, auth_id }, access_time);
       rs.error = error;
       rs.msg = 'ok';
-      rs.uath_info = {
-        'accessToken' : accessToken, 
-        'refreshToken' : refreshToken
-      }
+      rs.auth_info = { accessToken, refreshToken }
     } else {
       console.log('refresh Token 만료??');
       rs.error = true;

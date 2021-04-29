@@ -1,6 +1,5 @@
 import express from 'express'
 import els from '../../els'
-import { sha256, salt_sha256 } from '../../utils/sha256'
 import { makeDate } from '../../utils/date'
 import { sleep } from '../../utils/utils'
 import { encryptPassword } from '../../utils/authenticate'
