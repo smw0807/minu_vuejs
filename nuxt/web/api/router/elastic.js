@@ -3,7 +3,7 @@ const router = express.Router();
 const els = require('../els');
 
 router.post('/', async (req, res) => {
-  console.log('/api/es/');
+  console.log('/api/v1/');
   res.json('dd');
 })
 

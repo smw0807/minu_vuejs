@@ -56,7 +56,7 @@ export const actions = {
   login({commit, dispatch}, params) {
     return new Promise(async (resolve, reject) => {
       try {
-        const rs = await this.$axios.post('/api/es/login/login', params, { retry: true });
+        const rs = await this.$axios.post('/api/v1/login/login', params, { retry: true });
         if (!rs.data.result.error) {
           const token = rs.data.result.auth_info;
           commit('loginToken', rs.data.result.auth_info);
@@ -75,7 +75,7 @@ export const actions = {
           retry: true,
           headers: { 'x-refresh-token': this.$cookiz.get('refreshToken') }
         }
-        const rs = await this.$axios.post('/api/es/login/certify',{}, options);
+        const rs = await this.$axios.post('/api/v1/login/certify',{}, options);
         if (rs && rs.data.result.error === false) {
           const token = rs.data.result.auth_info;
           commit('refreshToken', token);

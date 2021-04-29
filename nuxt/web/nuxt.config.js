@@ -86,7 +86,7 @@ module.exports = {
     // '/nct': { //axios 요청에 /v1/이 url을 설정
     //   target: 'http://192.168.1.29:3000'
     // },
-    '/api/es': {
+    '/api/v1': {
       target: es.proxyHost
     },
     // '/api/mg': {

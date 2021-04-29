@@ -17,7 +17,7 @@ router.get('/test', function (req, res) {
  * 사용자 리스트 불러오기
  */
 router.post('/list', async (req, res) => {
-  console.log('/api/es/setting/user/list');
+  console.log('/api/v1/setting/user/list');
   let param = req.body;
   let error = false;
   let rs = {};
@@ -46,7 +46,7 @@ router.post('/list', async (req, res) => {
  * 사용자 등록
  */
 router.post('/insertUser', async (req, res) => {
-  console.log('/api/es/setting/user/insertUser');
+  console.log('/api/v1/setting/user/insertUser');
   let param = req.body;
   let error = false;
   let rs = {};
@@ -88,7 +88,7 @@ router.post('/insertUser', async (req, res) => {
  * 사용자 수정
  */
 router.post('/updateUser', async (req, res) => {
-  console.log('/api/es/setting/user/updateUser');
+  console.log('/api/v1/setting/user/updateUser');
   let param = req.body;
   let error = false;
   let rs = {};
@@ -140,7 +140,7 @@ router.post('/updateUser', async (req, res) => {
  * 사용자 삭제
  */
 router.post('/deleteUser/:id', async (req, res) => {
-  console.log('/api/es/setting/user/deleteUser');
+  console.log('/api/v1/setting/user/deleteUser');
   let param = req.params;
   let error = false;
   let rs = {};

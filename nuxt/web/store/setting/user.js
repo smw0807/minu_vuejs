@@ -41,7 +41,7 @@ export const actions = {
           "sort":{ "user.user_upd_dt" : "desc" }
         }
         dispatch('updateLoading', {loading_1: true}, {root: true}); //로딩 시작
-        const rs = await this.$axios.post('/api/es/setting/user/list', {query: query});
+        const rs = await this.$axios.post('/api/v1/setting/user/list', {query: query});
         let userList = [];
         if (!rs.data.result.error) {
           userList = els.getSearchHits(rs.data.result);
@@ -60,7 +60,7 @@ export const actions = {
     return new Promise(async (resolve, reject) => {
       try {
         dispatch('updateLoading', {loading_2: true}, {root: true}); //로딩 시작
-        const rs = await this.$axios.post('/api/es/setting/user/insertUser', params);
+        const rs = await this.$axios.post('/api/v1/setting/user/insertUser', params);
         dispatch('updateLoading', {loading_2: false}, {root: true}); //로딩 끝
         resolve(rs);
       } catch (err) {
@@ -73,7 +73,7 @@ export const actions = {
     return new Promise(async (resolve, reject) => {
       try {
         dispatch('updateLoading', {loading_2: true}, {root: true}); //로딩 시작
-        const rs = await this.$axios.post('/api/es/setting/user/updateUser', params);
+        const rs = await this.$axios.post('/api/v1/setting/user/updateUser', params);
         dispatch('updateLoading', {loading_2: false}, {root: true}); //로딩 끝
         resolve(rs);
       } catch (err) {
@@ -85,7 +85,7 @@ export const actions = {
   deleteUser({ commit }, params) { //사용자 삭제
     return new Promise(async (resolve, reject) => {
       try {
-        const rs = await this.$axios.post(`/api/es/setting/user/deleteUser/${params}`);
+        const rs = await this.$axios.post(`/api/v1/setting/user/deleteUser/${params}`);
         resolve(rs);
       } catch (err) {
         console.error('deleteUser Error', err);

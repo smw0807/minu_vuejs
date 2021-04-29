@@ -12,8 +12,8 @@ app.post('/', (req, res) => {
   res.send('API test');
 })
 
-app.use('/es/login', require('./router/login'));
-app.use('/es/setting/user', require('./router/setting/user'));
+app.use('/v1/login', require('./router/login'));
+app.use('/v1/setting/user', require('./router/setting/user'));
 
 module.exports = {
   path: '/api',

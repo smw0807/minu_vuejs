@@ -10,7 +10,7 @@ const r_time = 60 * 60; //1시간
 const access_time = 60;
 
 router.post('/login', async (req, res) => {
-  console.log('/api/es/login');
+  console.log('/api/v1/login');
   const param = req.body;
   let error = false;
   let rs = {};
@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/certify', async (req, res) => {
-  console.log('api/es/login/certify');
+  console.log('api/v1/login/certify');
   let rs = {};
   let error = false;
   const refreshToken = req.headers['x-refresh-token'];
@@ -86,7 +86,7 @@ router.post('/certify', async (req, res) => {
 })
 
 router.post('/login/:id', async (req, res) => {
-  console.log('/api/es/:id');
+  console.log('/api/v1/:id');
   const id = req.params.id;
   let error = false;
   let rs = {};

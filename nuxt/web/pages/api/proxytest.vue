@@ -57,7 +57,7 @@ export default {
     async test2() {
       console.log('test2');
       try {
-        let rs = await this.$axios.post('/api/es/test_idx', {idx: 'test_idx'});
+        let rs = await this.$axios.post('/api/v1/test_idx', {idx: 'test_idx'});
         console.log('response : ', rs);
       } catch (err) {
         console.log('err : ', err);
