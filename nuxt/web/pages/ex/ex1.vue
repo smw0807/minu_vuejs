@@ -5,22 +5,22 @@
     </v-card-title>
     <v-card-text>
       <v-card raised outlined class="pa-3" min-height="700">
-        <vuetify2/>
+        <ex1/>
       </v-card>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import vuetify2 from '~/components/vuetify/vuetify2'
+import ex1 from '~/components/ex/ex1/ex1-1'
 export default {
   data() {
     return {
-      pageName: 'Vuetify2'
+      pageName: '예제 1',
     }
   },
-  components:{
-    vuetify2
+  components: {
+    ex1
   }
 }
 </script>

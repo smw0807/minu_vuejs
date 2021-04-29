@@ -1,5 +1,5 @@
 <template>
-  <v-card raised outlined class="pa-3" min-height="900">
+  <v-card>
     <v-card-title>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
@@ -21,7 +21,7 @@
       :search="search"
       align="center"
       >
-      <template v-slot:item.poster="{ item }">
+      <template v-slot:[`item.poster`]="{ item }">
         <img :src="item.poster">
       </template>
     </v-data-table>

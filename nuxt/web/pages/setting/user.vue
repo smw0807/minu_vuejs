@@ -4,7 +4,9 @@
       <h2>{{ pageName }}</h2>
     </v-card-title>
     <v-card-text>
-      <list-table :list="list"/>
+      <v-card raised outlined class="pa-3" min-height="700">
+        <list-table :list="list"/>
+      </v-card>
     </v-card-text>
   </v-card>
 </template>

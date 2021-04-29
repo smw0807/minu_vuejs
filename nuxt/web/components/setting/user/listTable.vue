@@ -1,5 +1,5 @@
 <template>
-  <v-card raised outlined class="pa-3" min-height="700">
+  <v-card>
     <v-card-title>
       <v-spacer></v-spacer>
       <edit-user :user_info="user_info_data"/>
