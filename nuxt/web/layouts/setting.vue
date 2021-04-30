@@ -1,8 +1,9 @@
 <template>
   <v-app>
     <setting-menu/>
-    <es/>
+    <!-- <es/> -->
     <alt/>
+    <over/>
       <transition name="component-fade" mode="out-in">
         <v-main>
           <nuxt/>
@@ -15,11 +16,13 @@
 import settingMenu from '~/components/settingMenu'
 import es from '~/components/error/elasticConnect'
 import alt from '~/components/cmn/alert'
+import over from '~/components/cmn/overlay'
 export default {
   components:{
    settingMenu,
    es, 
-   alt
+   alt,
+   over
   },
   created() {
     this.$vuetify.theme.dark = true;

@@ -6,7 +6,11 @@
 
 <script>
 export default {
-  props:['overlay']
+  computed: {
+    overlay() {
+      return this.$store.getters['GET_OVERLAY'];
+    }
+  }
 }
 </script>
 

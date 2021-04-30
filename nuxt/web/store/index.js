@@ -15,7 +15,8 @@ export const state = () => {
       rs: false,
       type: 'primary',
       text: ''
-    }
+    },
+    overlay: false
   }
 };
 
@@ -28,6 +29,9 @@ export const mutations = {
     state.alert = payload.alert;
     state.alert_data.type = payload.type;
     state.alert_data.text = payload.text;
+  },
+  SET_OVERLAY(state, payload) {
+    state.overlay = payload;
   }
 }
 
@@ -52,6 +56,9 @@ export const getters = {
   },
   GET_ALERT_DATA(state) {
     return state.alert_data;
+  },
+  GET_OVERLAY(state) {
+    return state.overlay;
   }
 }
 
@@ -61,5 +68,8 @@ export const actions = {
   },
   updateAlert({commit}, params) {
     commit('SET_ALERT', params);
+  },
+  updateOverlay({commit}, params) {
+    commit('SET_OVERLAY', params);
   }
 }
