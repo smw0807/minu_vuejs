@@ -168,11 +168,10 @@ export default {
     //id 중복체크
      checkDuplicate(user_id) {     
       const user_data = this.$store.getters['setting/user/GET_USER_LIST'];
-
         for(var i in user_data) {
           var user_idcheck = user_data[i].user_id;
         if(user_id == user_idcheck){
-          return '이미 사용중인 아이디가 있습니다.';
+          return '이미 사용중인 아이디입니다.';
         }
       }
       return true

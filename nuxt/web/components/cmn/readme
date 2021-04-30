@@ -8,3 +8,11 @@ template 안에  <over :overlay="over"/> 이런식으로 작성해둠
 data에 over: false로 해두면 평상시에는 안뜸
 띄우고 싶을 땐 this.over = true로 변경을 시키면 오버레이 로딩창이 출력됨
 사용 예제 페이지 components/setting/user/editUser.vue 여기에 사용해둠
+
+2. alert.vue : 경고창 컴포넌트 (alert 띄울 때 사용)
+layout 쪽에 선언해놔서 따로 import할 필요없고
+사용할 때 alert창을 띄우고 싶은 곳에 아래 처럼 작성하면됨
+this.$store.dispatch('updateAlert', {alert: true, type: 'error', text: '저장!!!!!'});
+alert: true는 고정
+type: success, info, warnin, error  이렇게 4가지 중 1개 사용가능 4개마다 alert창 색이 다름
+text: '' alert창에 출력할 문구 입력

@@ -1,52 +1,44 @@
 <template>
-  <v-row justify="center">
-    <v-dialog
-      v-model="dialog"
-      max-width="290"
-      z-index="10000"
+  <v-dialog
+    v-model="dialog"
+    max-width="290"
+    z-index="10000"
+    persistent
     >
-      <v-card>
-        <!-- <v-card-title class="headline">Use Google's location service?</v-card-title> -->
-        <v-card-text>
-          <v-alert :type="type">
-          {{ text }}
-          </v-alert>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
+    <v-alert :type="dialog_data.type">
+      <v-row>
+        <v-col cols="12">
+          {{ dialog_data.text }}
+        </v-col>
+      </v-row>
+      <v-row justify="end">
+       <v-col cols="5">
           <v-btn
-            color="green darken-1"
-            text
+            outlined
             @click="close"
-          >
+            >
             확인
           </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
+        </v-col>
+      </v-row>
+    </v-alert>
+  </v-dialog>
 </template>
 
 <script>
 export default {
   //type은 success, info, warnin, error 이렇게 4가지를 쓸 수 있음
-  props: ['text', 'show', 'type'],
-  data() {
-    return {
-      dialog: false
-    }
-  },
-  watch: {
-    show() {
-      console.log("alert : ", show);
-      if (show) {
-        this.dialog = show;
-      }
+  computed: {
+    dialog() {
+      return this.$store.getters['GET_ALERT'];
+    },
+    dialog_data() {
+      return this.$store.getters['GET_ALERT_DATA'];
     }
   },
   methods: {
     close() {
-      this.dialog = false;
+      this.$store.dispatch('updateAlert', {alert: false, type: 'error', text: ''});
     }
   }
 }

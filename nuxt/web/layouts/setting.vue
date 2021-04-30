@@ -2,6 +2,7 @@
   <v-app>
     <setting-menu/>
     <es/>
+    <alt/>
       <transition name="component-fade" mode="out-in">
         <v-main>
           <nuxt/>
@@ -13,10 +14,12 @@
 <script>
 import settingMenu from '~/components/settingMenu'
 import es from '~/components/error/elasticConnect'
+import alt from '~/components/cmn/alert'
 export default {
   components:{
    settingMenu,
-   es
+   es, 
+   alt
   },
   created() {
     this.$vuetify.theme.dark = true;
