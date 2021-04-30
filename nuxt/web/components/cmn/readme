@@ -14,5 +14,5 @@ layout 쪽에 선언해놔서 따로 import할 필요없고
 사용할 때 alert창을 띄우고 싶은 곳에 아래 처럼 작성하면됨
 this.$store.dispatch('updateAlert', {alert: true, type: 'error', text: '저장!!!!!'});
 alert: true는 고정
-type: success, info, warnin, error  이렇게 4가지 중 1개 사용가능 4개마다 alert창 색이 다름
+type: success, info, warning, error  이렇게 4가지 중 1개 사용가능 4개마다 alert창 색이 다름
 text: '' alert창에 출력할 문구 입력

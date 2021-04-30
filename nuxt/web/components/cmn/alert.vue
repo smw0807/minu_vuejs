@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  //type은 success, info, warnin, error 이렇게 4가지를 쓸 수 있음
+  //type은 success, info, warning, error 이렇게 4가지를 쓸 수 있음
   computed: {
     dialog() {
       return this.$store.getters['GET_ALERT'];
