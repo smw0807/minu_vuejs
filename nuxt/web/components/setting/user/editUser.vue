@@ -61,15 +61,18 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <over :overlay="over"/>
   </v-row>
 </template>
 
 <script>
+import over from '~/components/cmn/overlay'
 export default {
   props: [ 'user_info' ],
   data() {
     return {
       dialog: false,
+      over: false,
       state: 'ins',
       authList: [
         { name: '관리자', value: 'A'},
@@ -109,6 +112,9 @@ export default {
       ]
     }
   },
+  components:{
+    over
+  },
   watch: {
     user_info() { 
       //listTable 컴포넌트에서 user_info 데이터를 넘기면 수정화면으로 판단 시키고 text field에 데이터를 넣어줌
@@ -145,9 +151,11 @@ export default {
   
           }
           try {
+            this.over = true;
             const url = (this.state == 'ins' ? 'setting/user/insertUser' : 'setting/user/updateUser');
             const rs = await this.$store.dispatch(url, params);
             if (rs.data.result.error == false) {
+              this.over = false;
               this.$store.dispatch('setting/user/initUserList');
               this.close();
             }

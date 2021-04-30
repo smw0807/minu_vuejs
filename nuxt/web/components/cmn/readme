@@ -1,0 +1,10 @@
+공통적으로 사용할 수 있는 컴포넌트들 사용법
+
+1. overlay.vue : 오버레이 로딩 컴포넌트 (리스트 말고 데이터 저장 같은 이벤트 때 사용하기 좋음)
+사용하고자 하는 컴포넌트에서 import 시킴
+import over from '~/components/cmn/overlay'
+이후 components에 등록하고
+template 안에  <over :overlay="over"/> 이런식으로 작성해둠
+data에 over: false로 해두면 평상시에는 안뜸
+띄우고 싶을 땐 this.over = true로 변경을 시키면 오버레이 로딩창이 출력됨
+사용 예제 페이지 components/setting/user/editUser.vue 여기에 사용해둠
