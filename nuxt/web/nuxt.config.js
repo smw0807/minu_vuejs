@@ -79,21 +79,21 @@ module.exports = {
     '@nuxtjs/vuetify',
   ],
   axios: {
-    proxy: true,
+    proxy: false,
     // baseURL: 'https://192.168.3.21:8200'
   },
-  proxy: {
-    // '/nct': { //axios 요청에 /v1/이 url을 설정
-    //   target: 'http://192.168.1.29:3000'
-    // },
-    '/api/v1': {
-      target: es.proxyHost
-    },
-    // '/api/mg': {
-    //   target: 'http://localhost:27017/song'
-    // }
+  // proxy: { 웹에서 다이렉트로 다른 url주소로 요청 보내는거 아니면 사실상 필요없음
+  //   // '/nct': { //axios 요청에 /v1/이 url을 설정
+  //   //   target: 'http://192.168.1.29:3000'
+  //   // },
+  //   '/api/v1': {
+  //     target: es.proxyHost
+  //   },
+  //   // '/api/mg': {
+  //   //   target: 'http://localhost:27017/song'
+  //   // }
 
-  },
+  // },
   /*
   ** Customize the progress bar color
   */
