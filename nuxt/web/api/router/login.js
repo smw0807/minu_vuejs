@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/certify', async (req, res) => {
-  console.log('api/v1/login/certify');
+  console.log('/api/v1/login/certify');
   let rs = {};
   let error = false;
   const refreshToken = req.headers['x-refresh-token'];
