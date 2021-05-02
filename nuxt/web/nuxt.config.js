@@ -9,9 +9,7 @@ logger.init();
 
 let title = "NuxtJS_Web";
 module.exports = {
-  /*
-  ** Headers of the page
-  */
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     // title: 'NuxtJS_Web',
     title: `${title}`,
@@ -24,13 +22,18 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~assets/bootstrap/css/bootstrap.css'
   ],
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/axios.js',
     '@/plugins/vuetify.js'
   ],
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  // components: true,
+
   serverMiddleware: [
     '@/api/index.js'
   ],
@@ -38,8 +41,10 @@ module.exports = {
     middleware: [
       'auth',
       // 'guard'
-  ] 
+    ] 
   },
+
+  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
     '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
@@ -74,6 +79,7 @@ module.exports = {
   //     }
   //   }
   // },
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // Simple usage
     '@nuxtjs/vuetify',
