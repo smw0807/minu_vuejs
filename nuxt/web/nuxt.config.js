@@ -22,6 +22,11 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  loadingIndicator: {
+    name: 'chasing-dots',
+    color: 'purple',
+    background: 'green'
+  },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~assets/bootstrap/css/bootstrap.css'
@@ -104,10 +109,16 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  loadingIndicator: {
+    name: 'cube-grid',
+    color: '#3B8070',
+    background: 'white'
+  },
   /*
   ** Build configuration
   */
-  mode: 'spa',
+ ssr: false,
+  // mode: 'spa',
   build: {
     // ssr: false, //SSR앱을 빌드한다.
     /**
