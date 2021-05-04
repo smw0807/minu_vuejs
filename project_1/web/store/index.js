@@ -1,0 +1,32 @@
+export const state = () => {
+  return {
+    api_test: ''
+  }
+}
+
+export const mutations = {
+  SET_API_TEST(state, payload) {
+    state.api_test = payload;
+  }
+}
+
+export const getters = {
+  GET_API_TEST(state) {
+    return state.api_test;
+  }
+}
+
+export const actions = {
+  apitest({commit}) { //api 테스트 용
+    return new Promise( async (resolve, reject) => {
+      try {
+        const rs = await this.$axios.post('/api/test');
+        commit('SET_API_TEST', rs);
+        resolve(rs);
+      } catch (err) {
+        console.error('apitest err : ' , err);
+        reject(err);
+      }
+    })
+  }
+}

@@ -41,15 +41,17 @@ export default {
     '@nuxtjs/proxy'
   ],
 
-  // serverMiddleware: [
-  //   '@/api/index.js'
-  // ],
+  serverMiddleware: [
+    '@/api/index.js'
+  ],
   
   // router: {
   //   middleware: [
   //     // 'auth',
   //   ] 
   // },
+
+  loading: '~/components/loading.vue',
 
   axios: {
     proxy: false,
