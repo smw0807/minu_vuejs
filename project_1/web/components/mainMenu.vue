@@ -55,7 +55,8 @@ export default {
       clipped: true,
       menus: [
         { title: 'index', icon: 'mdi-view-dashboard', to: '/' },
-        { title: 'test', icon: 'mdi-api', model: false, to: '/api/apiTest' }
+        { title: 'test', icon: 'mdi-api', to: '/api/apiTest' },
+        { title: 'DataTables', icon: 'mdi-table-multiple', to: '/vtable/datatables'}
       ]
     }
   },
