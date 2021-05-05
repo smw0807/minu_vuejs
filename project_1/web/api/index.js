@@ -1,3 +1,8 @@
+/**
+ * API site
+ * https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html
+ * https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html
+ */
 import express from 'express'
 import bodyParser from 'body-parser'
 
@@ -10,6 +15,10 @@ app.post('/test', (req, res) => {
   console.log('/api/test');
   res.send('API Success!!');
 })
+
+//dd
+app.use('/v1/test', require('./router/test'));
+app.use('/v1/data', require('./router/table'));
 
 module.exports = {
   path: '/api',
