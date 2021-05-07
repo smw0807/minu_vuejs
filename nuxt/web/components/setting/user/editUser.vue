@@ -145,13 +145,13 @@ export default {
   
           }
           try {
-            this.$store.dispatch('updateOverlay', true);
+            this.$nuxt.$loading.start();
             const url = (this.state == 'ins' ? 'setting/user/insertUser' : 'setting/user/updateUser');
             const rs = await this.$store.dispatch(url, params);
             if (rs.data.result.error == false) {
-              this.$store.dispatch('updateOverlay', false);
-              this.$store.dispatch('setting/user/initUserList');
-              this.close();
+                this.$nuxt.$loading.finish();
+                this.$store.dispatch('setting/user/initUserList');
+                this.close();
             }
           } catch (err) {
             alert(err);

@@ -1,7 +1,6 @@
 import express from 'express'
 import els from '../../els'
 import { makeDate } from '../../utils/date'
-import { sleep } from '../../utils/utils'
 import { encryptPassword } from '../../utils/authenticate'
 
 const router = express.Router();
@@ -26,7 +25,6 @@ router.post('/list', async (req, res) => {
     query = param.query;
   }
   try {
-    await sleep(3000);
     let search = await els.search({
       index: index_name,
       body: query
@@ -56,7 +54,6 @@ router.post('/insertUser', async (req, res) => {
       "user": {
         "user_id" : param.user_id,
         "user_nm" : param.user_nm,
-        // "user_pw" : salt_sha256(param.user_pw, makeDate('YYYY-MM-DD HH:mm:ss')),
         "user_pw" : encryptPassword(param.user_pw),
         "user_auth_nm" : param.user_auth_nm,
         "user_auth_code" : param.user_auth_code,
@@ -106,7 +103,6 @@ router.post('/updateUser', async (req, res) => {
       data.user.user_nm = param.user_nm
     }
     if (param.user_pw && param.user_pw != '') {
-      // data.user.user_pw = salt_sha256(param.user_pw, param.user_mk_dt);
       data.user.user_pw = encryptPassword(param.user_pw)
     }
     if (param.user_auth_code && param.user_auth_code != '') {
