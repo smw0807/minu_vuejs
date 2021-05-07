@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-card tile>
+    <!-- <v-card tile> -->
       <v-toolbar dense dark>
         <!-- <v-app-bar-nav-icon> </v-app-bar-nav-icon> -->
         <v-app-bar-title class="mr-8" to="/">
@@ -133,7 +133,7 @@
           </v-card>
         </v-menu>
       </v-toolbar>
-    </v-card>
+    <!-- </v-card> -->
 
     <transition name="component-fade" mode="out-in">
       <v-main>
