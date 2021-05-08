@@ -53,37 +53,9 @@ module.exports = {
   modules: [
     '@nuxtjs/axios', //$axios를 사용할 수 있음
     '@nuxtjs/proxy', //axios를 proxy 모듈과 쉽게 통합할 수 있게해준다.
-    // '@nuxtjs/auth-next', //제대로된 적용 방법을 모르겠어서 남겨는 둠. 현재 사용 안함
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
   ],
-  // auth: {
-  //   localStorage: false,
-  //   strategies: {
-  //     token: {
-  //       name : 'access_token',
-  //       property: 'access_token',
-  //       maxAge: 60
-  //     },
-  //     cookie: {
-  //       _scheme: 'refresh',
-        
-  //       refreshToken: {
-  //         name: 'refresh_token',
-  //         property: 'refresh_token', // change to your refresh token property
-  //         maxAge: 60 * 60
-  //       },
-  //       user: false,
-  //       endpoints: {
-  //         // login: { url: '/api/es/login/jwt/create/', method: 'post' },
-  //         // refresh: { url: '/api/v1/auth/jwt/refresh/', method: 'post' }, // change to your refresh token url
-  //         // user: { url: '/api/v1/auth/users/me/', method: 'get' },
-  //         logout: false
-  //       },
-  //       tokenRequired: true,
-  //       tokenType: 'JWT'
-  //     }
-  //   }
-  // },
+  
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // Simple usage
@@ -94,16 +66,9 @@ module.exports = {
     // baseURL: 'https://192.168.3.21:8200'
   },
   // proxy: { 웹에서 다이렉트로 다른 url주소로 요청 보내는거 아니면 사실상 필요없음
-  //   // '/nct': { //axios 요청에 /v1/이 url을 설정
-  //   //   target: 'http://192.168.1.29:3000'
-  //   // },
   //   '/api/v1': {
   //     target: es.proxyHost
   //   },
-  //   // '/api/mg': {
-  //   //   target: 'http://localhost:27017/song'
-  //   // }
-
   // },
   /*
   ** Customize the progress bar color
@@ -117,8 +82,7 @@ module.exports = {
   /*
   ** Build configuration
   */
- ssr: false,
-  // mode: 'spa',
+  ssr: false,
   build: {
     // ssr: false, //SSR앱을 빌드한다.
     /**
