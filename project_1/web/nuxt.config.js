@@ -57,7 +57,7 @@ export default {
     proxy: false,
     // baseURL: 'https://192.168.3.21:8200'
   },
-  // proxy: { 웹에서 다이렉트로 다른 url주소로 요청 보내는거 아니면 사실상 필요없음
+  // proxy: {
   //   '/api/v1': {
   //     target: es.proxyHost
   //   },
