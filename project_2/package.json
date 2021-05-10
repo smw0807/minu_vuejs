@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "core-js": "^3.9.1",
-    "nuxt": "^2.15.3"
+    "nuxt": "^2.15.3",
+    "vue-navigation-bar": "^4.1.0",
+    "vue-simple-drawer": "^1.0.6"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"

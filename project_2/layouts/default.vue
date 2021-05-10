@@ -1,139 +1,6 @@
 <template>
   <v-app dark>
-    <!-- <v-card tile> -->
-      <v-toolbar dense dark>
-        <!-- <v-app-bar-nav-icon> </v-app-bar-nav-icon> -->
-        <v-app-bar-title class="mr-8" to="/">
-            AF Manager
-        </v-app-bar-title>
-        <v-toolbar-items>
-
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                위협
-              </v-btn>
-            </template>
-            <v-list dense>
-              <v-list-item v-for="(item, index) in threat" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                트래픽
-              </v-btn>
-            </template>
-            <v-list dense>
-              <v-list-item v-for="(item, index) in traffic" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                통계
-              </v-btn>
-            </template>
-            <v-list dense>
-              <v-list-item v-for="(item, index) in statistics" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-          
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                보안정책
-              </v-btn>
-            </template>
-            <v-list dense>
-              <v-list-item v-for="(item, index) in securityPolicy" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                장비설정
-              </v-btn>
-            </template>
-            <v-list dense>
-              <v-list-item v-for="(item, index) in equipmentSetting" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                설정
-              </v-btn>
-            </template>
-            <v-list dense>
-              <v-list-item v-for="(item, index) in setting" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-        </v-toolbar-items>
-
-        <v-spacer></v-spacer>
-
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn to="/log">감사이력</v-btn>
-          <!-- <v-btn to="/login" flat>login</v-btn> -->
-        </v-toolbar-items>
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn to="/signup">상황판</v-btn>
-          <!-- <v-btn to="/login" flat>login</v-btn> -->
-        </v-toolbar-items>
-        <v-menu open-on-hover transition="slide-x-transition" bottom right offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn icon v-bind="attrs" v-on="on">
-                <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
-          </template>
-          <v-card class="mx-auto" max-width="300" tile>
-            <v-list dense>
-              <v-subheader>THEMES</v-subheader>
-              <v-list-item-group v-model="theme" color="primary">
-                <v-list-item v-for="(item, i) in themes" :key="i" router :to="item.link">
-                  <v-list-item-action>
-                    <v-icon v-text="item.icon"></v-icon>
-                  </v-list-item-action>
-                  <v-list-item-action>
-                    <v-list-item-title v-text="item.text"></v-list-item-title>
-                  </v-list-item-action>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
-          </v-card>
-        </v-menu>
-      </v-toolbar>
-    <!-- </v-card> -->
+    <vue-navigation-bar :options="navbarOptions" />
 
     <transition name="component-fade" mode="out-in">
       <v-main>
@@ -147,14 +14,82 @@
 export default {
   data () {
     return {
-      activate: true,
-        theme: 1,
-        themes: [
-          { text: "Dark", icon: "mdi-clock" }, 
-          { text: "Light", icon: "mdi-account" }
+      navbarOptions: {
+        elementId: "main-navbar",
+        isUsingVueRouter: true,
+        mobileBreakpoint: 992,
+        collapseButtonOpenColor: "#661c23",
+        collapseButtonCloseColor: "#661c23",
+        showBrandImageInMobilePopup: true,
+        ariaLabelMainNav: "Main Navigation",
+        tooltipAnimationType: "shift-away",
+        tooltipPlacement: "bottom",
+        menuOptionsLeft: [
+          {
+            type: "link",
+            text: "AF Manager",
+            path: { name: "pricing"},
+            iconRight: '<i class="fa fa-long-arrow-right fa-fw"></i>',
+          },
+          {
+            type: "link",
+            text: "위협경보",
+            arrowColor: "#659CC8",
+            subMenuOptions: [
+              {
+                isLinkAction: true,
+                type: "link",
+                text: "모니터링",
+                // subText: "Stupid corporate wet blankets. Like booze ever killed anyone.",
+                path: {path : "/" }
+              },
+              {
+                type: "hr",
+              },
+            ]
+          },
+          {
+            type: "link",
+            text: "Contact",
+            subMenuOptions: [
+              {
+                type: "link",
+                text: "Customer Service",
+                path: { name: "customer-service" },
+              },
+              {
+                type: "link",
+                text: "Accounting",
+                path: { name: "accounting" },
+              },
+              {
+                type: "hr",
+              },
+              {
+                type: "link",
+                text: "Reception",
+                path: { name: "reception"},
+                iconLeft: '<svg id="i-telephone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M3 12 C3 5 10 5 16 5 22 5 29 5 29 12 29 20 22 11 22 11 L10 11 C10 11 3 20 3 12 Z M11 14 C11 14 6 19 6 28 L26 28 C26 19 21 14 21 14 L11 14 Z" /> <circle cx="16" cy="21" r="4" /> </svg>',
+              },
+            ]
+          }
         ],
-        mini: true,
-
+        menuOptionsRight: [
+          {
+            type: "button",
+            text: "Signup",
+            path: { name: "signup" },
+            class: "button-red"
+          },
+          {
+            type: "button",
+            text: "Login",
+            path: { name: "login" },
+            iconRight: '<svg id="i-arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M22 6 L30 16 22 26 M30 16 L2 16" /> </svg>'
+          }
+        ]
+      },
+      
         //위협경보 메뉴
         threat: [
           { title: "모니터링", link: "/threat/threat" },
@@ -249,5 +184,13 @@ export default {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.vnb .button-red {
+  background: #ff3b30;
+}
+ 
+.vnb .button-red:hover {
+  background: #fc0d00;
 }
 </style>
