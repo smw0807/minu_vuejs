@@ -1,3 +1,4 @@
+# 사이드바 메뉴 기반 프로젝트
 # 사용하는 것들
 ## NuxtJS + Vuex + Express + ElasticSearch + VuetifyJS
 VueJS 기반의 웹애플리케이션 프레임워크인 NuxtJS와 디자인 프레임워크인 Vuetify를 이용하여 프로젝트를 만들었습니다.
