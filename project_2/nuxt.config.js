@@ -22,11 +22,14 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/node_modules/ag-grid-community/dist/styles/ag-grid.css',
+    '@/node_modules/ag-grid-community/dist/styles/ag-theme-material.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/vnb.js'
+    '@/plugins/vnb.js',
+    '@/plugins/ag-grid'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,9 +41,25 @@ export default {
     '@nuxtjs/vuetify',
   ],
 
+  serverMiddleware: [
+    '@/api/index.js'
+  ],
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
+
+  axios: {
+    proxy: false
+    // baseURL: 'https://192.168.3.21:8200'
+  },
+  proxy: {
+    // '/api/v1': {
+    //   target: es.proxyHost
+    // },
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

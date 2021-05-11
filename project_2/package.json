@@ -9,10 +9,20 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "core-js": "^3.9.1",
+    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/proxy": "^2.1.0",
     "nuxt": "^2.15.3",
+    "core-js": "^3.9.1",
+    "app-root-path": "^3.0.0",
+    "express": "^4.17.1",
+    "elasticsearch": "^16.7.2",
     "vue-navigation-bar": "^4.1.0",
-    "vue-simple-drawer": "^1.0.6"
+    "vue-simple-drawer": "^1.0.6",
+    "vue-class-component": "^7.2.6",
+    "vue-property-decorator": "^9.1.2",
+    "ag-grid-community": "^25.2.1",
+    "ag-grid-vue": "^25.2.0"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"
