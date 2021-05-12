@@ -22,7 +22,8 @@
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2",
     "ag-grid-community": "^25.2.1",
-    "ag-grid-vue": "^25.2.0"
+    "ag-grid-vue": "^25.2.0",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"

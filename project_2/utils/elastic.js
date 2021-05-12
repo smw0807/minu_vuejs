@@ -15,6 +15,22 @@ function flatmap (data) {
   return rt;
 }
 
+function singleFlatMap (data) {
+  let rt = data.hits.hits.flatMap( (doc) => {
+    let d= {};
+    d._index = doc._index;
+    d._id = doc._id;
+    let key = Object.keys(doc._source);
+    let val = doc._source;
+    for (key in val) {
+      d[key] = val[key];
+    }
+    return d;
+  });
+  return rt;
+}
+
 export default {
-  flatmap
+  flatmap,
+  singleFlatMap
 }
