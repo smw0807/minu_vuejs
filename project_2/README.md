@@ -1,4 +1,4 @@
-# AF_Manager
+# 상단 메뉴 기반 프로젝트
 
 ## Build Setup
 
