@@ -61,6 +61,13 @@ export default {
     // },
   },
 
+  loading: '~/components/loading.vue',
+  loadingIndicator: {
+    name: 'three-bounce',
+    color: 'white',
+    background: '#1e1e1e'
+  },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
