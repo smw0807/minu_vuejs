@@ -1,30 +1,35 @@
 <template>
   <v-app dark>
-    <v-row align="center" justify="center">
-      <v-col cols="6">
-        <v-alert
-          border="right"
-          colored-border
-          type="error"
-          elevation="2"
-        >
-          <template v-if="error.statusCode === 404">
-            <h1> {{ pageNotFound }} </h1>
-          </template>
-          <template v-else>
-            <h1> {{ otherError }} </h1>
-            <p> {{msg}}</p>
-          </template>
-          <v-btn
-            link
-            raised outlined
-            to="/"
+    <v-layout column justify-center align-center>
+      <v-flex xs12 sm12 md12>
+        <v-row align="center" justify="center">
+          <v-col cols="12">
+            <v-alert
+              border="right"
+              colored-border
+              type="error"
+              elevation="2"
             >
-            <v-icon>mdi-home-variant-outline</v-icon> 메인으로 돌아가기
-          </v-btn>
-        </v-alert>
-      </v-col>
-    </v-row>
+              <template v-if="error.statusCode === 404">
+                <h1> {{ pageNotFound }} </h1>
+              </template>
+              <template v-else>
+                <h1> {{ otherError }} </h1>
+                <p> {{msg}}</p>
+              </template>
+              <v-btn
+                color="error"
+                link
+                raised outlined
+                to="/"
+                >
+                <v-icon>mdi-home-variant-outline</v-icon> 메인으로 돌아가기
+              </v-btn>
+            </v-alert>
+          </v-col>
+        </v-row>
+      </v-flex>
+    </v-layout>
   </v-app>
 </template>
 
