@@ -18,12 +18,13 @@
                 <p> {{msg}}</p>
               </template>
               <v-btn
+                class="mt-2"
                 color="error"
                 link
                 raised outlined
                 to="/"
                 >
-                <v-icon>mdi-home-variant-outline</v-icon> 메인으로 돌아가기
+                <v-icon>mdi-home-variant-outline</v-icon> 메인으로
               </v-btn>
             </v-alert>
           </v-col>

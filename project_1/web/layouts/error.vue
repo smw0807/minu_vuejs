@@ -18,6 +18,7 @@
                 <p> {{msg}}</p>
               </template>
               <v-btn
+                class="mt-2"
                 color="error"
                 link
                 raised outlined
