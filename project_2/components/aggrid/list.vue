@@ -55,10 +55,38 @@ export default {
     this.gridOptions = {};
     this.columnDefs = [
       {
+        headerName: 'No.',
+        maxWidth: 100,
+        valueGetter: 'node.id',
+        cellRenderer: 'loadingRenderer',
+      },
+      // {
+      //   field: 'athlete',
+      //   minWidth: 150,
+      // },
+      // { field: 'age' },
+      // {
+      //   field: 'country',
+      //   minWidth: 150,
+      // },
+      // { field: 'year' },
+      // {
+      //   field: 'date',
+      //   minWidth: 150,
+      // },
+      // {
+      //   field: 'sport',
+      //   minWidth: 150,
+      // },
+      // { field: 'gold' },
+      // { field: 'silver' },
+      // { field: 'bronze' },
+      // { field: 'total' },
+      {
         headerName: '수집일시',
         field: 'date_time',
         maxWidth: 100,
-        cellRenderer: 'loadingRenderer',
+        // cellRenderer: 'loadingRenderer',
       },
       {
         headerName: '출발지IP',
@@ -88,6 +116,7 @@ export default {
     };
     this.components = {
       loadingRenderer: (params) => {
+        console.log('??? :', params);
         if (params.value !== undefined) {
           return params.value;
         } else {
