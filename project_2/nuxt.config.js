@@ -6,7 +6,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'AF_Manager',
+    title: 'Proejct2',
     htmlAttrs: {
       lang: 'en'
     },

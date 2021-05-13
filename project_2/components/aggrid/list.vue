@@ -4,7 +4,7 @@
     </v-card-title>
     <v-card-text>
       <ag-grid-vue
-        tyle="width: 100%; height: 100%;"
+        style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
         id="myGrid"
         :gridOptions="gridOptions"

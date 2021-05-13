@@ -3,14 +3,14 @@
     <v-card tile>
       <v-toolbar dense dark>
         <v-app-bar-title class="mr-8">
-              AF Manager
+              Project_2
         </v-app-bar-title>
         <v-toolbar-items>
 
           <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" v-on="on">
-                위협
+                ag-grid
               </v-btn>
             </template>
             <v-list dense dark>
@@ -22,86 +22,11 @@
             </v-list>
           </v-menu>
 
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                트래픽
-              </v-btn>
-            </template>
-            <v-list dense dark>
-              <v-list-item v-for="(item, index) in traffic" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                통계
-              </v-btn>
-            </template>
-            <v-list dense dark>
-              <v-list-item v-for="(item, index) in statistics" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-          
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                보안정책
-              </v-btn>
-            </template>
-            <v-list dense dark>
-              <v-list-item v-for="(item, index) in securityPolicy" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                장비설정
-              </v-btn>
-            </template>
-            <v-list dense dark>
-              <v-list-item v-for="(item, index) in equipmentSetting" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">
-                설정
-              </v-btn>
-            </template>
-            <v-list dense dark>
-              <v-list-item v-for="(item, index) in setting" :key="index" router :to="item.link">
-                <v-list-item-action>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
         </v-toolbar-items>
 
-        <v-spacer></v-spacer>
+        <!-- <v-spacer></v-spacer> -->
 
-        <v-toolbar-items class="hidden-sm-and-down">
+        <!-- <v-toolbar-items class="hidden-sm-and-down">
           <v-btn to="/log">감사이력</v-btn>
         </v-toolbar-items>
         <v-toolbar-items class="hidden-sm-and-down">
@@ -128,8 +53,8 @@
               </v-list-item-group>
             </v-list>
           </v-card>
-        </v-menu>
-      </v-toolbar>
+        </v-menu>-->
+      </v-toolbar> 
     </v-card>
 
     <transition name="component-fade" mode="out-in">
@@ -145,70 +70,16 @@ export default {
   data () {
     return {
       activate: true,
-        theme: 1,
-        themes: [
-          { text: "Dark", icon: "mdi-clock" }, 
-          { text: "Light", icon: "mdi-account" }
-        ],
-        mini: true,
+      theme: 1,
+      themes: [
+        { text: "Dark", icon: "mdi-clock" }, 
+        { text: "Light", icon: "mdi-account" }
+      ],
+      mini: true,
 
-        //위협경보 메뉴
-        threat: [
-          { title: "모니터링", link: "/threat/monitoring" },
-          { title: "분석/완료", link: "/threat/threat" },
-          { title: "위협경보 현황", link: "/threat/threat" },
-          { title: "추적도구", link: "/threat/threat" },
-          { title: "검색", link: "/threat/threat" }
-        ],
-
-        //트래픽 메뉴
-        traffic : [
-          { title: "전체트래픽", link: "/traffic/all" },
-          { title: "객체(그룹)트래픽", link: "/traffic/all" },
-          { title: "검색", link: "/traffic/all" },
-          { title: "패킷덤프", link: "/traffic/all" },
-        ],
-
-        //통계 메뉴
-        statistics: [
-          { title: "위협탐지 통계", link: "/statistics/all" },
-          { title: "트래픽 통계", link: "/statistics/all" },
-          { title: "보고서", link: "/statistics/all" },
-        ],
-
-        //보안정책 메뉴
-        securityPolicy: [
-          { title: "Snort 탐지규칙 설정", link: "/policy/snort" },
-          { title: "Yara 탐지규칙 설정", link: "/policy/yara" },
-          { title: "탐지규칙 현황", link: "/policy/yara" },
-          { title: "탐지규칙 연계 이력", link: "/policy/yara" },
-          { title: "블랙리스트 관리", link: "/policy/yara" },
-          { title: "검증기관 관리", link: "/policy/yara" },
-          { title: "snort 탐지규칙 일괄검증", link: "/policy/yara" },
-          { title: "탐지규칙 업데이트", link: "/policy/yara" },
-        ],
-
-        //장비설정 메뉴
-        equipmentSetting: [
-          { title: "수집장비관리", link: "/equipment/yara" },
-          { title: "수집장비 가용성점검", link: "/equipment/yara" },
-          { title: "장비별 탐지규칙 적용", link: "/equipment/yara" },
-          { title: "원본데이터 수집 현황", link: "/equipment/yara" },
-          { title: "연동 장비관리", link: "/equipment/yara" },
-          { title: "연동 장비 모니터링", link: "/equipment/yara" },
-        ],
-
-        //설정 메뉴
-        setting: [
-          { title: "사용자 관리", link: "/seting/user" },
-          { title: "사용자 권한 설정", link: "/seting/user" },
-          { title: "기관 관리", link: "/seting/user" },
-          { title: "공통코드 관리", link: "/seting/user" },
-          { title: "검색 범위 설정", link: "/seting/user" },
-          { title: "주기 관리", link: "/seting/user" },
-          { title: "임계치 관리", link: "/seting/user" },
-          { title: "백업 및 복구", link: "/seting/user" },
-        ]
+      threat: [
+        { title: "Infinite Scrolling", link: "/aggrid/grid1" },
+      ],
     }
   },
   created() {
