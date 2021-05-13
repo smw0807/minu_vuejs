@@ -9,7 +9,6 @@ function flatmap (data) {
     for (key in val) {
       d[key] = val[key];
     }
-    console.log(JSON.stringify(d));
     return d;
   })
   return rt;

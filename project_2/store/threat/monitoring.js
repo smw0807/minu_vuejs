@@ -18,9 +18,10 @@ export const getters = {
 
 export const actions = {
   initList({commit}, params) {
+    console.log(params);
     return new Promise( async (resolve, reject) => {
       let q = {
-        size: 5,
+        size: params.size,
         query: {
           bool:{
             must: [

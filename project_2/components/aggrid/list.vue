@@ -4,13 +4,15 @@
     </v-card-title>
     <v-card-text>
       <ag-grid-vue
-        style="width: 100%; height: 100%;"
+        style="width: 100%; height: 500px;"
         class="ag-theme-alpine"
         id="myGrid"
         :gridOptions="gridOptions"
         @grid-ready="onGridReady"
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
+        :components="components"
+        :rowBuffer="rowBuffer"
         :rowSelection="rowSelection"
         :rowModelType="rowModelType"
         :paginationPageSize="paginationPageSize"
@@ -18,15 +20,17 @@
         :maxConcurrentDatasourceRequests="maxConcurrentDatasourceRequests"
         :infiniteInitialRowCount="infiniteInitialRowCount"
         :maxBlocksInCache="maxBlocksInCache"
-        :getRowNodeId="getRowNodeId"
-        :components="components"
+        :modules="modules"
         >
-      </ag-grid-vue>
+    </ag-grid-vue>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import { InfiniteRowModelModule } from '@ag-grid-community/infinite-row-model'
+import '@ag-grid-community/core/dist/styles/ag-grid.css';
+import '@ag-grid-community/core/dist/styles/ag-theme-alpine.css';
 export default {
   data() {
     return {
@@ -35,6 +39,8 @@ export default {
       columnApi: null,
       columnDefs: null,
       defaultColDef: null,
+      components: null,
+      rowBuffer: null,
       rowSelection: null,
       rowModelType: null,
       paginationPageSize: null,
@@ -42,49 +48,43 @@ export default {
       maxConcurrentDatasourceRequests: null,
       infiniteInitialRowCount: null,
       maxBlocksInCache: null,
-      getRowNodeId: null,
-      components: null,
-      rowData: null
+      modules: [InfiniteRowModelModule]
     }
   },
-   beforeMount() {
+  beforeMount() {
     this.gridOptions = {};
     this.columnDefs = [
       {
-        headerName: '수집시간',
+        headerName: '수집일시',
         field: 'date_time',
-      },
-      { 
-        headerName: '유형',
-        field: 'type' 
+        maxWidth: 100,
+        cellRenderer: 'loadingRenderer',
       },
       {
-        headerName: '탐지규칙명',
-        field: 'rule_name',
-      },
-      { 
-        headerName: '공격IP',
-        field: 'attack_ip'
+        headerName: '출발지IP',
+        field: 'attack_ip',
+        minWidth: 150,
       },
       {
-        headerName: '공격 PORT',
+        headerName: '출발지Port',
         field: 'attack_port',
+        minWidth: 150,
       },
       {
-        headerName: '피해IP',
+        headerName: '목적지IP',
         field: 'victim_ip',
+        minWidth: 150,
       },
-      { 
-        headerName: '피해 PORT',
-        field: 'victim_port'
+      {
+        headerName: '목적지Port',
+        field: 'victim_port',
+        minWidth: 150,
       }
     ];
     this.defaultColDef = {
       flex: 1,
-      minWidth: 150,
-      sortable: true,
       resizable: true,
-      floatingFilter: true,
+      minWidth: 100,
     };
     this.components = {
       loadingRenderer: (params) => {
@@ -95,31 +95,24 @@ export default {
         }
       },
     };
+    this.rowBuffer = 0;
     this.rowSelection = 'multiple';
     this.rowModelType = 'infinite';
     this.paginationPageSize = 100;
     this.cacheOverflowSize = 2;
-    this.maxConcurrentDatasourceRequests = 2;
-    this.infiniteInitialRowCount = 1;
-    this.maxBlocksInCache = 2;
-    this.getRowNodeId = (item) => {
-      return item.id;
-    };
+    this.maxConcurrentDatasourceRequests = 1;
+    this.infiniteInitialRowCount = 1000;
+    this.maxBlocksInCache = 10;
   },
   mounted() {
     this.gridApi = this.gridOptions.api;
     this.gridColumnApi = this.gridOptions.columnApi;
   },
-  computed: {
-    rowDatas() {
-      return this.rowData;
-    }
-  },
   methods: {
     async onGridReady(params) {
-      console.log('onGridReady!! ', params);
+      console.log('test: ', params);
       const updateData = (data) => {
-        // console.log(data);
+        console.log(data);
         var dataSource = {
           rowCount: null,
           getRows: function (params) {
@@ -139,8 +132,8 @@ export default {
         params.api.setDatasource(dataSource);
       };
       try {
-        const rs = await this.$store.dispatch('threat/monitoring/initList');
-        console.log('dd : ', rs);
+        let rs = await this.$store.dispatch('threat/monitoring/initList', {size: params.endRow === undefined ? 100 : params.endRow});
+        console.log(rs);
         updateData(rs.data);
       } catch (err) {
         console.log('onGridReady err : ', err);
