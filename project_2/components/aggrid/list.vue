@@ -54,12 +54,12 @@ export default {
   beforeMount() {
     this.gridOptions = {};
     this.columnDefs = [
-      {
-        headerName: 'No.',
-        maxWidth: 100,
-        valueGetter: 'node.id',
-        cellRenderer: 'loadingRenderer',
-      },
+      // {
+      //   headerName: 'No.',
+      //   maxWidth: 100,
+      //   valueGetter: 'node.id',
+      //   cellRenderer: 'loadingRenderer',
+      // },
       // {
       //   field: 'athlete',
       //   minWidth: 150,
@@ -86,7 +86,10 @@ export default {
         headerName: '수집일시',
         field: 'date_time',
         maxWidth: 100,
-        // cellRenderer: 'loadingRenderer',
+        headerCheckboxSelection: true,
+        headerCheckboxSelectionFilteredOnly: true,
+        checkboxSelection: true,
+        cellRenderer: 'loadingRenderer',
       },
       {
         headerName: '출발지IP',

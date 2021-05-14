@@ -45,7 +45,7 @@ export const actions = {
         }
       } catch (err) {
         console.error('monitoring list err : ', err);
-        resolve(err);
+        reject(err);
       }
     })
   }
