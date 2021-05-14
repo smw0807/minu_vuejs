@@ -20,17 +20,17 @@
         :maxConcurrentDatasourceRequests="maxConcurrentDatasourceRequests"
         :infiniteInitialRowCount="infiniteInitialRowCount"
         :maxBlocksInCache="maxBlocksInCache"
-        :modules="modules"
         >
+        <!-- :modules="modules" -->
     </ag-grid-vue>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import { InfiniteRowModelModule } from '@ag-grid-community/infinite-row-model'
-import '@ag-grid-community/core/dist/styles/ag-grid.css';
-import '@ag-grid-community/core/dist/styles/ag-theme-alpine.css';
+// import { InfiniteRowModelModule } from '@ag-grid-community/infinite-row-model'
+// import '@ag-grid-community/core/dist/styles/ag-grid.css';
+// import '@ag-grid-community/core/dist/styles/ag-theme-alpine.css';
 export default {
   data() {
     return {
@@ -48,7 +48,7 @@ export default {
       maxConcurrentDatasourceRequests: null,
       infiniteInitialRowCount: null,
       maxBlocksInCache: null,
-      modules: [InfiniteRowModelModule]
+      // modules: [InfiniteRowModelModule]
     }
   },
   beforeMount() {
