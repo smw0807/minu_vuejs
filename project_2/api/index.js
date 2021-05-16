@@ -35,8 +35,7 @@
   res.send(rt);
 })
 
- //dd
- app.use('/v1/test', require('./router/test'));
+ //router
  app.use('/v1/threat', require('./router/threat/threat'));
  
  module.exports = {
