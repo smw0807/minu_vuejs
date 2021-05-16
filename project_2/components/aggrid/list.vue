@@ -28,9 +28,6 @@
 </template>
 
 <script>
-// import { InfiniteRowModelModule } from '@ag-grid-community/infinite-row-model'
-// import '@ag-grid-community/core/dist/styles/ag-grid.css';
-// import '@ag-grid-community/core/dist/styles/ag-theme-alpine.css';
 export default {
   data() {
     return {
@@ -119,7 +116,6 @@ export default {
     };
     this.components = {
       loadingRenderer: (params) => {
-        console.log('??? :', params);
         if (params.value !== undefined) {
           return params.value;
         } else {
@@ -142,7 +138,6 @@ export default {
   },
   methods: {
     async onGridReady(params) {
-      console.log('test: ', params);
       const updateData = (data) => {
         console.log(data);
         var dataSource = {
