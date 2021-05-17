@@ -1,7 +1,6 @@
 <template>
   <v-dialog
     v-model="dialog"
-    max-width="290"
     z-index="10000"
     persistent
     >
@@ -11,8 +10,8 @@
           {{ dialog_data.text }}
         </v-col>
       </v-row>
-      <v-row justify="end">
-       <v-col cols="5">
+      <v-row>
+       <v-col cols="12" align="center">
           <v-btn
             outlined
             @click="close"
