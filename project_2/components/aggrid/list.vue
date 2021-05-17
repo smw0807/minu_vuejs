@@ -21,8 +21,7 @@
         :infiniteInitialRowCount="infiniteInitialRowCount"
         :maxBlocksInCache="maxBlocksInCache"
         >
-        <!-- :modules="modules" -->
-    </ag-grid-vue>
+      </ag-grid-vue>
     </v-card-text>
   </v-card>
 </template>
