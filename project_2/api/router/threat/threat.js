@@ -16,15 +16,15 @@ router.post('/list', async (req, res) => {
   let rt = {};
   try {
     const rs = await es_client.search({
-      index: `${index_name}${dt}`,
-      // index: 'test_data',
+      // index: `${index_name}${dt}`,
+      index: 'test_data',
       type: '_doc',
       body: params
     })
     rt.error = false;
     rt.msg = 'ok';
-    rt.data = flatmap(rs);
-    // rt.data = singleFlatMap(rs);
+    // rt.data = flatmap(rs);
+    rt.data = singleFlatMap(rs);
   } catch (err) {
     console.error(err);
     rt.error = true;

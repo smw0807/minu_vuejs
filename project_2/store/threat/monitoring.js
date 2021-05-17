@@ -33,8 +33,9 @@ export const actions = {
           }
         },
         sort:{
-          "snort.date_time":"desc", 
-          "yara.date_time":"desc"
+          'detectionDateTime': 'desc'
+          // "snort.date_time":"desc", 
+          // "yara.date_time":"desc"
         }
       }
       try {
