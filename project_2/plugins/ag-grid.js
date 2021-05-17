@@ -1,3 +1,6 @@
+/**
+ * https://www.ag-grid.com/vue-grid/
+ */
 import Vue from 'vue'
 import { AgGridVue } from 'ag-grid-vue'
 
