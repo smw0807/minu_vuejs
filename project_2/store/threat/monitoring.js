@@ -17,7 +17,7 @@ export const getters = {
 }
 
 export const actions = {
-  initList({commit}, params) {
+  initList({commit, dispatch }, params) {
     console.log(params);
     return new Promise( async (resolve, reject) => {
       let q = {
@@ -39,9 +39,13 @@ export const actions = {
       }
       try {
         const rs = await this.$axios.post('/api/v1/threat/list', q);
+        console.log('rs : ', rs);
         if (rs && rs.data.error === false) {
           commit('SET_LIST', rs.data.data);
           resolve(rs.data);
+        } else {
+          dispatch('updateAlert', {alert: true, type: 'error', text: rs.data.msg}, {root: true});
+          reject(rs);
         }
       } catch (err) {
         console.error('monitoring list err : ', err);

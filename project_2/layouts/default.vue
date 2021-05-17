@@ -56,6 +56,8 @@
         </v-menu>-->
       </v-toolbar> 
     </v-card>
+    
+    <alt/>
 
     <transition name="component-fade" mode="out-in">
       <v-main>
@@ -66,6 +68,7 @@
 </template>
 
 <script>
+import alt from '~/components/cmn/alert'
 export default {
   data () {
     return {
@@ -81,6 +84,9 @@ export default {
         { title: "Infinite Scrolling", link: "/aggrid/grid1" },
       ],
     }
+  },
+  components:{
+   alt,
   },
   created() {
     this.$vuetify.theme.dark = false;
