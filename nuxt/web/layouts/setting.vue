@@ -16,13 +16,13 @@
 import settingMenu from '~/components/settingMenu'
 import es from '~/components/error/elasticConnect'
 import alt from '~/components/cmn/alert'
-import over from '~/components/cmn/overlay'
+// import over from '~/components/cmn/overlay'
 export default {
   components:{
    settingMenu,
    es, 
    alt,
-   over
+  //  over
   },
   created() {
     this.$vuetify.theme.dark = true;
