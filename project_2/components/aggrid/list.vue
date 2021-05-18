@@ -166,16 +166,8 @@ export default {
   },
   watch: {
    async totCount() {
-     try {
-       console.log('!!!: ', this.totCount);
-       let rs = await this.$store.dispatch('threat/monitoring/initList', {size: this.totCount});
-       if (rs && rs.data.error === false) {
-         this.onGridReady();
-       }
-     } catch (err) {
-       console.error(err);
-     }
-    }
+     this.onGridReady(this.gridOptions);
+   }
   },
   methods: {
     async onGridReady(params) {
@@ -200,7 +192,10 @@ export default {
         params.api.setDatasource(dataSource);
       };
       try {
-        let rs = await this.$store.dispatch('threat/monitoring/initList', {size: this.totCount});
+        let param = {
+          size: this.totCount
+        }
+        let rs = await this.$store.dispatch('threat/monitoring/initList', param);
         console.log(rs);
         updateData(rs.data);
       } catch (err) {
