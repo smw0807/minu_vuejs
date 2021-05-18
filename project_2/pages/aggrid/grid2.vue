@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      pageName : '무한 스크롤링 그리드2'
+      pageName : '일반 그리드'
     }
   },
   components: {
