@@ -18,7 +18,7 @@ app.post('/test', (req, res) => {
 
 //dd
 app.use('/v1/test', require('./router/test'));
-app.use('/v1/data', require('./router/table'));
+app.use('/v1/vtable', require('./router/table'));
 
 module.exports = {
   path: '/api',

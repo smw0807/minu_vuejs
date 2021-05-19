@@ -1,7 +1,10 @@
 export const state = () => {
   return {
     api_test: '',
-    es_test: ''
+    es_test: '',
+    loading_1: false,
+    loading_2: false,
+    loading_3: false,
   }
 }
 
@@ -11,6 +14,10 @@ export const mutations = {
   },
   SET_ES_TEST(state, payload) {
     state.es_test = payload;
+  },
+  SET_LOADING(state, payload) {
+    const key = Object.keys(payload);
+    state[key] = payload[key];
   }
 }
 
@@ -20,6 +27,15 @@ export const getters = {
   },
   GET_ES_TEST(state) {
     return state.es_test;
+  },
+  GET_LOADING_1(state) {
+    return state.loading_1;
+  },
+  GET_LOADING_2(state) {
+    return state.loading_2;
+  },
+  GET_LOADING_3(state) {
+    return state.loading_3;
   }
 }
 
@@ -48,5 +64,8 @@ export const actions = {
         reject(err);
       }
     })
+  },
+  updateLoading({commit}, params) {
+    commit('SET_LOADING', params);
   }
 }
