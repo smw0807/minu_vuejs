@@ -8,20 +8,6 @@
       permanent
       >
       <v-list dense>
-        <!-- 조직도 리스트 부분 시작 -->
-        <!-- <v-list-item @click.stop="org = !org">
-          <v-list-item-action>
-            <v-icon>mdi-sitemap</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>조직도</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item> -->
-        <!-- 조직도 리스트 부분 끝 -->
-
-        <!-- 구분선 -->
-        <!-- <v-divider dark></v-divider>  -->
-        
         <template v-for="menu in menus">
           <!-- 트리 메뉴 시작 -->
           <v-list-group
@@ -84,23 +70,7 @@
 
       <v-divider dark></v-divider><!-- 구분선 -->
     </v-navigation-drawer>
-
     
-    <!-- 조직도 -->
-    <!-- <v-navigation-drawer
-      v-model="org"
-      fixed
-      temporary
-      >
-      <v-card
-        max-width="256">
-        <v-card-title>조직도</v-card-title>
-        <v-card-text>
-          조직도?
-        </v-card-text>
-      </v-card>
-    </v-navigation-drawer> -->
-
     <v-app-bar
       app
       clipped-left
@@ -130,7 +100,7 @@
 export default {
   data () {
     return {
-      title: '장비설정', //상단 app-bar 이름
+      title: '설정', //상단 app-bar 이름
       org: false, 
       drawer: true,
       clipped: true,
