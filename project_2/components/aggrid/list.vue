@@ -14,6 +14,7 @@
         :components="components"
         :rowBuffer="rowBuffer"
         :rowSelection="rowSelection"
+        :suppressRowClickSelection="true"
         :rowModelType="rowModelType"
         :paginationPageSize="paginationPageSize"
         :cacheOverflowSize="cacheOverflowSize"
@@ -37,6 +38,7 @@
  * 컬럼헤드를 눌러서 소팅기능을 작동 시키면 되는 것 마냥 로딩바가 도는데 데이터 순서가 그대로임.
  * 소팅 처리해주는 함수를 만들어야하는 것 같음.
  * 만들어야 한다면 소팅값을 넘겨서 엘라스틱에서 데이터를 새로 가져오게끔 데이터를 수정해야할 것 같음.
+ * => 이건 아직 방법을 모르겠다.
  * 
  * 2번은 애초에 데이터를 가져올 때 한번에 다 가져와서 일부만 draw 시킨 후 스크롤을 내렸을 때 특정 지점에 도달하면
  * 뒤에 일부분을 그려주는 방식인 것 같음
@@ -45,11 +47,15 @@
  * 이런 방법이 가능한지 찾아봐야함
  * 근데 공식 Docs문서에 비슷한 함수가 제공되는 것 같은데 사용 방법같은게 설명이 너무 부족해서
  * 적용을 못하겠음.
+ * => 따로 카운트를 저장해놓고 해당 카운트와 테이블의 endRow값과 일치하면 카운트값을 증가시켜 그 사이즈로
+ * 새로 조회하게끔 성공함. 아직 부족한 부분이 조금 있지만 기능은 정상 작동함.
+ * 
  */
 export default {
   data() {
     return {
-      totCount: 100,
+      totCount: 200,
+      sortData: 'detectionDateTime',
       gridOptions: null,
       gridApi: null,
       columnApi: null,
@@ -139,7 +145,7 @@ export default {
     };
     this.components = {
       loadingRenderer: (params) => {
-        console.log(params.rowIndex);
+        // console.log(params.rowIndex);
         if (params.value !== undefined) {
           if (this.totCount === (params.rowIndex + 1)) {
             this.totCount += 100
@@ -154,7 +160,7 @@ export default {
     this.rowBuffer = 0;
     this.rowSelection = 'multiple';
     this.rowModelType = 'infinite';
-    this.paginationPageSize = 100;
+    this.paginationPageSize = 200;
     this.cacheOverflowSize = 2;
     this.maxConcurrentDatasourceRequests = 1;
     this.infiniteInitialRowCount = 1000;
@@ -201,9 +207,6 @@ export default {
       } catch (err) {
         console.log('onGridReady err : ', err);
       }
-      // fetch('https://www.ag-grid.com/example-assets/olympic-winners.json')
-      //   .then((resp) => resp.json())
-      //   .then((data) => updateData(data));
     },
   },
 }

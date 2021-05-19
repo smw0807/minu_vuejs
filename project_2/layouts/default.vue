@@ -24,14 +24,8 @@
 
         </v-toolbar-items>
 
-        <!-- <v-spacer></v-spacer> -->
+        <v-spacer></v-spacer>
 
-        <!-- <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn to="/log">감사이력</v-btn>
-        </v-toolbar-items>
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn to="/signup">상황판</v-btn>
-        </v-toolbar-items>
         <v-menu open-on-hover transition="slide-x-transition" bottom right offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn icon v-bind="attrs" v-on="on">
@@ -53,7 +47,7 @@
               </v-list-item-group>
             </v-list>
           </v-card>
-        </v-menu>-->
+        </v-menu>
       </v-toolbar> 
     </v-card>
     
@@ -82,6 +76,7 @@ export default {
 
       threat: [
         { title: "Infinite Scrolling", link: "/aggrid/grid1" },
+        { title: 'ag-grid-vue', link: '/aggrid/grid2'}
       ],
     }
   },
