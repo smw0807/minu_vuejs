@@ -56,7 +56,6 @@ export const actions = {
     return new Promise( async (resolve, reject) => {
       try {
         const rs = await this.$axios.post('/api/v1/test/es_test');
-        console.log('elasticTest :' , rs);
         commit('SET_ES_TEST', rs);
         resolve(rs);
       } catch (err) {
