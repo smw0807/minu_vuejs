@@ -1,3 +1,4 @@
+const { sleep } = require('/utils/utils').default;
 export const state = () => {
   return {
     list: []
@@ -21,9 +22,10 @@ export const actions = {
     return new Promise ( async (resolve, reject) => {
       try {
         dispatch('updateLoading', {loading_1: true}, {root: true}); //로딩 시작
+        await sleep(3000);
         const rs = await this.$axios.post('/api/v1/vtable/list');
         if (rs && rs.data.error === false) {
-          commit(rs.data.data);
+          commit('SET_LIST', rs.data.data);
           resolve(rs.data);
         } else {
           reject(rs.data);

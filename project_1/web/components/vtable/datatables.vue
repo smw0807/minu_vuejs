@@ -20,11 +20,14 @@
         hide-default-footer
         @page-count="pageCount = $event"
         :search="search"
-        height="600"
+        height="550"
         :loading="loading"
         loading-text="데이터를 불러오는 중입니다."
         no-data-text="데이터가 없습니다."
       ></v-data-table>
+      <div class="text-center">
+        <v-pagination v-model="page" :length="pageCount"></v-pagination>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -46,10 +49,9 @@ export default {
         { text: 'victimPort', value: 'victimPort' },
         { text: 'detectCnt', value: 'detectionCount' }
       ],
-      list: []
     }
   },
-  coumputed: {
+  computed: {
     loading() {
       return this.$store.getters['GET_LOADING_1'];
     },
