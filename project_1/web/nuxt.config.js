@@ -1,5 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
-
+/**
+ * 링크
+ * Vuetify : https://v2.vuetifyjs.com/ko/getting-started/quick-start/
+ * icon : https://materialdesignicons.com/
+ */
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
