@@ -76,7 +76,7 @@ export default {
 
       threat: [
         { title: "Infinite Scrolling", link: "/aggrid/grid1" },
-        { title: 'ag-grid-vue', link: '/aggrid/grid2'}
+        { title: 'ag-grid-vue', link: '/aggrid/grid2'},
       ],
     }
   },

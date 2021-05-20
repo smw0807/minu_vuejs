@@ -14,6 +14,9 @@
         :suppressRowClickSelection="true"
         :rowSelection="rowSelection"
         :rowData="rowData"
+
+        :infiniteInitialRowCount="infiniteInitialRowCount"
+        :components="components"
         ></ag-grid-vue>
     </v-card-text>
   </v-card>
@@ -23,6 +26,7 @@
 export default {
   data() {
     return {
+      totCount: 1000,
       gridOptions: null,
       gridApi: null,
       columnApi: null,
@@ -30,61 +34,100 @@ export default {
       defaultColDef: null,
       rowSelection: null,
       rowData: null,
+
     }
   },
   beforeMount() {
     this.gridOptions = {};
     this.columnDefs = [
       {
-        headerName: 'Athlete',
-        field: 'athlete',
-        minWidth: 180,
+        headerName: '',
+        // field: 'athlete',
+        maxWidth: 30,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
         checkboxSelection: true,
       },
-      { field: 'age' },
       {
-        field: 'country',
-        minWidth: 150,
-      },
-      { field: 'year' },
-      {
-        field: 'date',
-        minWidth: 150,
+        headerName: '기관명',
+        field: 'institutionName',
+        cellRenderer: 'loadingRenderer',
       },
       {
-        field: 'sport',
-        minWidth: 150,
+        headerName: '출발지 IP',
+        field: 'attackIp'
       },
-      { field: 'gold' },
-      { field: 'silver' },
-      { field: 'bronze' },
-      { field: 'total' },
+      {
+        headerName: '출발지 Port',
+        field: 'attackPort'
+      },
+      {
+        headerName: '목적지 IP',
+        field: 'victimIp'
+      },
+      {
+        headerName: '목적지 Port',
+        field: 'victimPort'
+      },
+      {
+        headerName: '탐지회수',
+        field: 'detectionCount'
+      }
     ];
     this.defaultColDef = {
       flex: 1,
       minWidth: 100,
       resizable: true,
+      sortable: true
     };
     this.rowSelection = 'multiple';
+
+    this.infiniteInitialRowCount = 1000;
+    this.components = {
+      loadingRenderer: (params) => {
+        if (params.value !== undefined) {
+          if (this.totCount === (params.rowIndex + 1)) {
+            this.totCount += 100;
+          } else {
+            return params.value;
+          }
+        } 
+      },
+    };
   },
   mounted() {
     this.gridApi = this.gridOptions.api;
     this.gridColumnApi = this.gridOptions.columnApi;
   },
+  watch: {
+    async totCount() {
+      this.onGridReady(this.gridOptions);
+    }
+  },
   methods: {
     onQuickFilterChanged() {
       this.gridApi.setQuickFilter(document.getElementById('quickFilter').value);
     },
-    onGridReady(params) {
+    async onGridReady(params) {
+      console.log(params);
       const updateData = (data) => {
         this.rowData = data;
+        // var dataSource = {
+        //   getRows (params) {
+        //     console.log(params);
+        //   }
+        // }
       };
-
-      fetch('https://www.ag-grid.com/example-assets/olympic-winners.json')
-        .then((resp) => resp.json())
-        .then((data) => updateData(data));
+      try {
+        let param = {
+          size: this.totCount
+        }
+        let rs = await this.$store.dispatch('threat/monitoring/initList', param);
+        console.log(rs);
+        updateData(rs.data);
+      } catch (err) {
+        console.log('onGridReady err : ', err);
+      }
     },
   },
 }

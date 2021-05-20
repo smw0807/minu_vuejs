@@ -11,17 +11,20 @@
         @grid-ready="onGridReady"
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
-        :components="components"
+        :suppressRowClickSelection="true"
         :rowBuffer="rowBuffer"
         :rowSelection="rowSelection"
-        :suppressRowClickSelection="true"
         :rowModelType="rowModelType"
+        :components="components"
+        :infiniteInitialRowCount="infiniteInitialRowCount"
+        >
+        <!-- 
         :paginationPageSize="paginationPageSize"
         :cacheOverflowSize="cacheOverflowSize"
         :maxConcurrentDatasourceRequests="maxConcurrentDatasourceRequests"
-        :infiniteInitialRowCount="infiniteInitialRowCount"
         :maxBlocksInCache="maxBlocksInCache"
-        >
+
+          -->
       </ag-grid-vue>
     </v-card-text>
   </v-card>
@@ -54,7 +57,7 @@
 export default {
   data() {
     return {
-      totCount: 200,
+      totCount: 500,
       sortData: 'detectionDateTime',
       gridOptions: null,
       gridApi: null,
@@ -65,7 +68,7 @@ export default {
       rowBuffer: null,
       rowSelection: null,
       rowModelType: null,
-      paginationPageSize: null,
+      // paginationPageSize: null,
       cacheOverflowSize: null,
       maxConcurrentDatasourceRequests: null,
       infiniteInitialRowCount: null,
@@ -160,7 +163,7 @@ export default {
     this.rowBuffer = 0;
     this.rowSelection = 'multiple';
     this.rowModelType = 'infinite';
-    this.paginationPageSize = 200;
+    // this.paginationPageSize = 200;
     this.cacheOverflowSize = 2;
     this.maxConcurrentDatasourceRequests = 1;
     this.infiniteInitialRowCount = 1000;
@@ -177,8 +180,9 @@ export default {
   },
   methods: {
     async onGridReady(params) {
+      console.log(params);
       const updateData = (data) => {
-        console.log(data);
+        // console.log(data);
         var dataSource = {
           rowCount: null,
           getRows (params) {
