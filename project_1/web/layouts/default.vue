@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <main-menu/>
+    <alt/>
       <transition name="component-fade" mode="out-in">
         <v-main>
           <nuxt/>
@@ -11,9 +12,10 @@
 
 <script>
 import mainMenu from '~/components/mainMenu'
+import alt from '~/components/cmn/alert'
 export default {
   components:{
-   mainMenu,
+   mainMenu, alt
   },
   created() {
     this.$vuetify.theme.dark = true;

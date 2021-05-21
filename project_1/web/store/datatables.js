@@ -22,12 +22,12 @@ export const actions = {
     return new Promise ( async (resolve, reject) => {
       try {
         dispatch('updateLoading', {loading_1: true}, {root: true}); //로딩 시작
-        await sleep(3000);
         const rs = await this.$axios.post('/api/v1/vtable/list');
         if (rs && rs.data.error === false) {
           commit('SET_LIST', rs.data.data);
           resolve(rs.data);
         } else {
+          dispatch('updateAlert', {alert: true, type: 'error', text: rs.data.data.message}, {root: true});
           reject(rs.data);
         }
         dispatch('updateLoading', {loading_1: false}, {root: true}); //로딩 끝
