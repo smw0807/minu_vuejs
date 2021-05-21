@@ -7,15 +7,17 @@
           <nuxt/>
         </v-main>
       </transition>
+      <bottom-nav/>
   </v-app>
 </template>
 
 <script>
 import mainMenu from '~/components/mainMenu'
+import bottomNav from '~/components/bottom'
 import alt from '~/components/cmn/alert'
 export default {
   components:{
-   mainMenu, alt
+   mainMenu, alt, bottomNav
   },
   created() {
     this.$vuetify.theme.dark = true;
