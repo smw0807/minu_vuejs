@@ -56,7 +56,8 @@ export default {
       menus: [
         { title: 'index', icon: 'mdi-view-dashboard', to: '/' },
         { title: 'test', icon: 'mdi-api', to: '/api/apiTest' },
-        { title: 'DataTables', icon: 'mdi-table-multiple', to: '/vtable/datatables'}
+        { title: 'DataTables', icon: 'mdi-table-multiple', to: '/vtable/datatables'},
+        { title: 'Dataiterator', icon: 'mdi-table-multiple', to: '/vtable/dataiterator'}
       ]
     }
   },
