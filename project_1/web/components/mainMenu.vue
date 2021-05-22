@@ -9,10 +9,19 @@
       >
       <v-list dense>
         <template v-for="menu in menus">
-          <!-- 단일 메뉴 시작 -->
+          <!-- 구분선 긋기 -->
+          <v-list-item
+            v-if="menu.divider"
+            :key="menu.title"
+            >
+            <v-divider dark></v-divider>
+          </v-list-item>
+
+          <!-- 메뉴 넣기 -->
           <v-list-item 
             :to="menu.to"
             :key="menu.title"
+            v-else
             >
             <v-list-item-icon>
               <v-icon>{{ menu.icon }}</v-icon>
@@ -23,8 +32,7 @@
           </v-list-item>
         </template>
       </v-list>
-      <!-- 구분선 -->
-      <!-- <v-divider dark></v-divider> -->
+
     </v-navigation-drawer>
 
     <v-app-bar
@@ -56,8 +64,12 @@ export default {
       menus: [
         { title: 'index', icon: 'mdi-view-dashboard', to: '/' },
         { title: 'test', icon: 'mdi-api', to: '/api/apiTest' },
+        { divider: true },
         { title: 'DataTables', icon: 'mdi-table-multiple', to: '/vtable/datatables'},
-        { title: 'Dataiterator', icon: 'mdi-table-multiple', to: '/vtable/dataiterator'}
+        { title: 'Dataiterator', icon: 'mdi-table-multiple', to: '/vtable/dataiterator'},
+        { divider: true },
+        { title: 'v-card grid', icon: 'mdi-view-grid', to: '/grid/vcard'},
+        { title: 'v-layout grid', icon: 'mdi-view-grid-outline', to: '/grid/vlayout'},
       ]
     }
   },
