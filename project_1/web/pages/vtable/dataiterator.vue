@@ -1,23 +1,23 @@
 <template>
-  <v-card>
-    <v-card-title>{{ title }}</v-card-title>
-    <v-card-text>
-      <v-card raised outlined class="pa-3">
-        <vtable></vtable>
-      </v-card>
-    </v-card-text>
-  </v-card>
-  <!-- <v-layout column justify-center align-center>
-    <v-flex>
-      <v-card>
-        <v-card-title>{{ title }}</v-card-title>
-        <v-card-text>
-          <vtable/>
-        </v-card-text>
-      </v-card>
-
+  <v-layout column>
+    
+    <v-flex class="mt-4 ml-9">
+      <v-row>
+        <v-col cols="12" align="start">
+          <h2>{{ title }}</h2>
+        </v-col>
+      </v-row>
     </v-flex>
-  </v-layout> -->
+
+    <v-flex class="ma-4">
+      <v-row class="px-4">
+        <v-col cols="12">
+          <vtable></vtable>
+        </v-col>
+      </v-row>
+    </v-flex>
+
+  </v-layout>
 </template>
 
 <script>
