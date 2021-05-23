@@ -55,9 +55,10 @@
         </template>
       </v-list>
 
-      <v-divider dark></v-divider><!-- 구분선 -->
+      <!-- 구분선 -->
+      <!-- <v-divider dark></v-divider> -->
 
-      <v-list dense>
+      <!-- <v-list dense>
         <v-list-item>
           <v-list-item-action>
             <v-icon>mdi-cogs</v-icon>
@@ -66,9 +67,10 @@
             <v-list-item-title>설정</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list>
+      </v-list> -->
 
-      <v-divider dark></v-divider><!-- 구분선 -->
+      <!-- 구분선 -->
+      <!-- <v-divider dark></v-divider> -->
     </v-navigation-drawer>
     
     <v-app-bar
@@ -105,7 +107,7 @@ export default {
       drawer: true,
       clipped: true,
       menus: [
-        { title: '응용관리', icon: 'mdi-cog-box', to: '/setting/app' },
+        // { title: '응용관리', icon: 'mdi-cog-box', to: '/setting/app' },
         { title: '사용자관리', icon: 'mdi-account', to: '/setting/user' },
       ]
     }

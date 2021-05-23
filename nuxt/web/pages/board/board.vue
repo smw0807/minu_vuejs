@@ -1,14 +1,25 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <h2>{{ pageName }}</h2>
-    </v-card-title>
-    <v-card-text>
-      <v-card raised outlined class="pa-3">
-        <list-table :list="list"></list-table>
-      </v-card>
-    </v-card-text>
-  </v-card>
+  <v-layout column>
+
+    <v-flex class="mt-4 ml-9">
+      <v-row>
+        <v-col cols="12" align="start">
+          <h2>{{ pageName }}</h2>
+        </v-col>
+      </v-row>
+    </v-flex>
+
+    <v-flex class="ma-4" style="overflow:auto">
+      <v-row class="px-4">
+        <v-col cols="12">
+          <v-card raised outlined class="pa-3">
+            <list-table :list="list"/>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-flex>
+
+  </v-layout>
 </template>
 
 <script>

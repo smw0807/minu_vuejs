@@ -169,7 +169,7 @@ export default {
         {
           title: '장비설정', icon: 'mdi-cog',
           model: false,
-          to: '/setting/app'
+          to: '/setting/user'
           // children: [
           //   { title: '응용관리', to: '/'},
           //   { title: '사용자관리', to: '/setting/user'}
@@ -184,15 +184,7 @@ export default {
             { title: 'vuetify1', to: '/vuetify/vuetify1'},
             { title: 'vuetify2', to: '/vuetify/vuetify2'}
           ]
-        },
-        {
-          title: 'API', 'icon': 'mdi-api',
-          model: false,
-          children: [
-            { title: 'API 1', to: '/api/test'},
-            { title: 'API 2', to: '/api/proxytest'}
-          ]
-        },
+        }
       ]
     }
   },
