@@ -70,6 +70,8 @@ export default {
         { divider: true },
         { title: 'v-card grid', icon: 'mdi-view-grid', to: '/grid/vcard'},
         { title: 'v-layout grid', icon: 'mdi-view-grid-outline', to: '/grid/vlayout'},
+        { divider: true },
+        { title: 'v-layout grid', icon: 'mdi-calendar', to: '/vpicker/datepicker'},
       ]
     }
   },

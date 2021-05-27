@@ -68,15 +68,6 @@
 export default {
   data() {
     return {
-      totCount: 500,
-      gridOptions: null,
-      gridApi: null,
-      columnApi: null,
-      columnDefs: null,
-      defaultColDef: null,
-      rowSelection: null,
-      rowData: null,
-
       date: new Date().toISOString().substr(0, 10),
       s_date: new Date().toISOString().substr(0, 10),
       e_date: new Date().toISOString().substr(0, 10),
@@ -89,13 +80,11 @@ export default {
       this.s_date = v;
       this.menu1 = false;
       this.$refs.menu1.save(v);
-      this.onGridReady(this.gridOptions);
     },
     e_date_search(v) {
       this.e_date = v;
       this.menu2 = false;
       this.$refs.menu2.save(v);
-      this.onGridReady(this.gridOptions);
     }
   },
 }
