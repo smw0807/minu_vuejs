@@ -16,7 +16,8 @@
     "app-root-path": "^3.0.0",
     "bcryptjs": "^2.4.3",
     "elasticsearch": "^16.7.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "vue-slimgrid": "^0.1.39"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"
