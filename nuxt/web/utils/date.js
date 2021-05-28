@@ -15,6 +15,6 @@ function makeDate (format) {
   }
 }
 
-module.exports = {
+export default {
   makeDate
 }

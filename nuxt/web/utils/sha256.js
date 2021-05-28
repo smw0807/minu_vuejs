@@ -27,7 +27,7 @@ function salt_sha256(val, salt) {
   }
 }
 
-module.exports = {
+export default {
   sha256,
   salt_sha256
 }

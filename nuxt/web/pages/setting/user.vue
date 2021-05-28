@@ -25,7 +25,7 @@
 <script>
 import listTable from '~/components/setting/user/listTable'
 export default {
-  layout:'setting',
+  // layout:'setting',
   components: {
     listTable,
   },

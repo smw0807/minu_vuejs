@@ -93,7 +93,7 @@ function getUid(token) {
   }
 }
 
-module.exports = {
+export default {
   certifyAccessToken,
   certifyRefreshToken,
   authCheck,

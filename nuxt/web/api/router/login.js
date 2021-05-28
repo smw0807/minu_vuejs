@@ -1,7 +1,7 @@
 import aRoot from 'app-root-path'
 import express from 'express'
 import els from '../els'
-const { certifyPassword, generateAccessToken, generateRefreshToken, certifyRefreshToken } =  require(aRoot + '/api/utils/authenticate');
+const { certifyPassword, generateAccessToken, generateRefreshToken, certifyRefreshToken } =  require(aRoot + '/utils/authenticate').default;
 
 const router = express.Router();
 

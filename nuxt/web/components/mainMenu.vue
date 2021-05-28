@@ -174,7 +174,8 @@ export default {
           //   { title: '응용관리', to: '/'},
           //   { title: '사용자관리', to: '/setting/user'}
           // ]
-        }
+        },
+        { title: '사용자관리', icon: 'mdi-account', to: '/setting/user' },
       ],
       tmp_menu: [
         { title: 'Board', icon: 'mdi-file-table-box', to: '/board/board' },

@@ -13,7 +13,15 @@ function salt_sha256(val, salt) {
     return false;
   }
 }
+//슬릭
+function sleep (ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  })
+};
+
 
 export default {
-  salt_sha256
+  salt_sha256,
+  sleep
 }

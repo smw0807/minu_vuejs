@@ -1,7 +1,9 @@
 import express from 'express'
+import aRoot from 'app-root-path'
 import els from '../../els'
-import { makeDate } from '../../utils/date'
-import { encryptPassword } from '../../utils/authenticate'
+
+const { makeDate } = require(aRoot + '/utils/date').default;
+const { encryptPassword } = require(aRoot + '/utils/authenticate').default; 
 
 const router = express.Router();
 
