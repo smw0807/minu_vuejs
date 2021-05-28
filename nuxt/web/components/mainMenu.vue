@@ -166,15 +166,15 @@ export default {
       clipped: true,
       menus: [
         { title: 'Dashboard', icon: 'mdi-view-dashboard', to: '/' },
-        {
-          title: '장비설정', icon: 'mdi-cog',
-          model: false,
-          to: '/setting/user'
-          // children: [
-          //   { title: '응용관리', to: '/'},
-          //   { title: '사용자관리', to: '/setting/user'}
-          // ]
-        },
+        // {
+        //   title: '장비설정', icon: 'mdi-cog',
+        //   model: false,
+        //   to: '/setting/user'
+        //   // children: [
+        //   //   { title: '응용관리', to: '/'},
+        //   //   { title: '사용자관리', to: '/setting/user'}
+        //   // ]
+        // },
         { title: '사용자관리', icon: 'mdi-account', to: '/setting/user' },
       ],
       tmp_menu: [
