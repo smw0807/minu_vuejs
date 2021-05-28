@@ -17,10 +17,13 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: '/lib/slick/slick.css' }
     ],
     script: [
-      { type: 'text/javascript',  src: 'jquery.js'}
+      { type: 'text/javascript',  src: 'jquery.js'},
+      {src: '/lib/slick/slick.core.js', type: 'text/javascript' },
+      { src: '/lib/slick/slick.grid.js', type: 'text/javascript' }
     ]
   },
 

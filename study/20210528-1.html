@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex - 3</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vuex"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="app">
+    <input
+      v-model="mybool"
+      type="checkbox"
+      @click="toggle"
+    >
+    {{ mybool }}
+  </div>
+  
+<script>
+ new Vue({
+  el: "#app",
+  data: {
+    mybool: true,
+  },
+  methods: {
+  	toggle(e) {
+      console.log(e);
+    	// if (this.mybool) {
+      	if(confirm('Are you sure you want to uncheck that?')) {
+          console.log('??');
+        } else {
+          console.log('!!');
+        	e.preventDefault();
+        }
+      // }
+  	}
+  }
+})
+</script>
+</body>
+</html>

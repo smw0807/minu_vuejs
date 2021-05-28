@@ -1,0 +1,248 @@
+/* = slick ==========*/
+.slick-header.ui-state-default, .slick-headerrow.ui-state-default {
+  width: 100%;
+  overflow: hidden;
+  border-left: 0px;
+  border-color: #dddddd;
+  vertical-align: bottom;
+  background-color: #ffffff;
+  color: #565656;
+  font-weight: bold;
+  border-bottom: 2px solid #dddddd;
+}
+.slick-header-columns, .slick-headerrow-columns {
+  position: relative;
+  white-space: nowrap;
+  cursor: default;
+  overflow: hidden;
+
+  padding: 8px;
+  line-height: 1.42857143;
+}
+.slick-header-column.ui-state-default {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 18px;
+  text-align: center;
+  /*margin-left: 5px;*/
+  /*padding:0 5px 0 5px;*/
+  border-right:1px solid #ddd;
+
+  float: left;
+
+}
+.slick-headerrow-column.ui-state-default {
+  padding: 4px;
+}
+.slick-header-column-sorted {
+  font-weight: bold;
+}
+.slick-sort-indicator::before {
+  /*
+  font-family: 'icomoon';
+  font-style: normal;
+  font-size: 14px;
+  speak: none;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  color: #555;
+  display: inline-block;
+  width: 8px;
+  height: 10px;
+  margin-left: 5px;
+  */
+
+  position: absolute;
+  bottom: -2px;
+  right: 8px;
+  display: block;
+  font-family: 'Glyphicons Halflings';
+
+  opacity: 0.2;
+  content: "\e150";
+}
+.slick-sort-indicator-desc::before {
+  opacity: 0.5;
+  content: "\e156";
+  /*
+content: "\e044";
+float: right;
+height: 0px;*/
+}
+.slick-sort-indicator-asc::before {
+  opacity: 0.5;
+  content: "\e155";
+  /*
+ content: "\e042";
+ float: right;
+ height: 0px;*/
+}
+.slick-resizable-handle {
+  position: absolute;
+  font-size: 0.1px;
+  display: block;
+  cursor: col-resize;
+  width: 4px;
+  right: 0px;
+  top: 0;
+  height: 100%;
+}
+.slick-sortable-placeholder {
+  background: silver;
+}
+.grid-canvas {
+  position: relative;
+  outline: 0;
+}
+.slick-row.ui-widget-content, .slick-row.ui-state-active {
+  position: absolute;
+  border: 0px;
+  width: 100%;
+}
+.slick-cell, .slick-headerrow-column {
+  position: absolute;
+  border: 1px solid transparent;
+
+  border-bottom-color: #ddd;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+.slick-group {}
+.slick-group-toggle {
+  display: inline-block;
+}
+.slick-cell.highlighted {
+  background: lightskyblue;
+  background: rgba(0, 0, 255, 0.2);
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.slick-cell.flashing {
+  border: 1px solid red !important;
+}
+.slick-cell.editable {
+  z-index: 11;
+  overflow: visible;
+  background: white;
+  border-color: black;
+  border-style: solid;
+}
+.slick-cell:focus {
+  outline: none;
+}
+.slick-reorder-proxy {
+  display: inline-block;
+  background: blue;
+  opacity: 0.15;
+  filter: alpha(opacity = 15);
+  cursor: move;
+}
+.slick-reorder-guide {
+  display: inline-block;
+  height: 2px;
+  background: blue;
+  opacity: 0.7;
+  filter: alpha(opacity = 70);
+}
+.slick-selection {
+  z-index: 10;
+  position: absolute;
+  border: 2px dashed black;
+}
+/*
+.slick-header-columns {
+  background: url('images/slick/header-columns-bg.gif') repeat-x center bottom;
+  border-bottom: 1px solid silver;
+}
+.slick-header-column {
+  background: url('images/slick/header-columns-bg.gif') repeat-x center bottom;
+  border-right: 1px solid silver;
+}
+.slick-header-column:hover, .slick-header-column-active {
+  background: white url('images/slick/header-columns-over-bg.gif') repeat-x center bottom;
+}
+*/
+.slick-row.ui-state-active {
+  background: #F5F7D7;
+}
+.slick-row {
+  position: absolute;
+  background: white;
+  border: 0px;
+  line-height: 23px;
+}
+.slick-row.selected {
+  z-index: 10;
+  background: #DFE8F6;
+}
+.slick-cell {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.slick-group {
+  border-bottom: 2px solid silver;
+}
+.slick-group-toggle {
+  width: 9px;
+  height: 9px;
+  margin-right: 5px;
+}
+.slick-group-toggle.expanded {
+  background: url(images/collapse.gif) no-repeat center center;
+}
+.slick-group-toggle.collapsed {
+  background: url(images/expand.gif) no-repeat center center;
+}
+.slick-group-totals {
+  color: gray;
+  background: white;
+}
+.slick-cell.active {
+  border-color: #EC7322;
+  border-style: solid;
+}
+.slick-sortable-placeholder {
+  background: silver !important;
+}
+.slick-row.odd {
+  background: #f9f9f9;
+}
+.slick-row.ui-state-active {
+  background: #F5F7D7;
+}
+.slick-row.loading {
+  opacity: 0.5;
+  filter: alpha(opacity = 50);
+}
+.slick-cell.invalid {
+  border-color: red;
+}
+.slick-cell.selected {
+  background-color: #FFDE66;
+}
+.slick-cell_over {
+  background-color: #FFE999 !important;
+}
+
+.slick-header {
+	font-size: 12px;
+}
+
+.slick-viewport {
+	font-size: 12px;
+}
+
+/* 컬럼 헤더와 내용 열 맞춤 */
+.slickgrid,
+.slickgrid *,
+.slick-header-column {
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+}

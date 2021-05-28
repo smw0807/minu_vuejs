@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex - 3</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vuex"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="app">
+    <v-app id="inspire">
+      <v-content>
+        <v-checkbox label="Select this item" v-on:click="itemSelectionChanged" v-model="item.selected"></v-checkbox>
+        <div>Selection Count: {{selectionCount}}</div>
+        <div>item.selected: {{item.selected}}</div>
+      </v-content>
+    </v-app>
+  </div>
+  
+<script>
+new Vue({
+  el: '#app',
+  data: function() {
+            return {
+                item: {
+                  selected: false
+                },
+              selectionCount: 0
+            };
+        },
+  methods: {
+    itemSelectionChanged: function() {
+      this.selectionCount++;
+    }
+  }
+})
+</script>
+</body>
+</html>
