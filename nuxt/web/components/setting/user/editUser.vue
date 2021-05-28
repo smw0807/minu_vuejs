@@ -112,13 +112,15 @@ export default {
   watch: {
     user_info() { 
       //listTable 컴포넌트에서 user_info 데이터를 넘기면 수정화면으로 판단 시키고 text field에 데이터를 넣어줌
-      const user = this.user_info;
-      this.state = 'upd';
-      this.user_id = user.user_id;
-      this.user_nm = user.user_nm;
-      this.user_auth = user.user_auth_code;
-      this.user_desc = user.user_desc;
-      this.dialog = true;
+      if (user_info !== null) {
+        const user = this.user_info;
+        this.state = 'upd';
+        this.user_id = user.user_id;
+        this.user_nm = user.user_nm;
+        this.user_auth = user.user_auth_code;
+        this.user_desc = user.user_desc;
+        this.dialog = true;
+      }
     }
   },
   computed: {
@@ -174,6 +176,7 @@ export default {
       this.dialog = false;
       this.state = 'ins';
       this.$refs.form.reset();
+      this.$emit('set_info', null);
     }
   }
 }

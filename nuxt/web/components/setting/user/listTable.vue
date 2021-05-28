@@ -2,7 +2,7 @@
   <v-card>
     <v-card-title>
       <v-spacer></v-spacer>
-      <edit-user :user_info="user_info_data"/>
+      <edit-user :user_info="user_info_data" @set_info="set_user_info"/>
     </v-card-title>
     <v-card-title>
       <v-spacer></v-spacer>
@@ -98,6 +98,9 @@ export default {
           alert(rs.data.msg)
         }
       }
+    },
+    set_user_info(data) {
+      this.user_info = data;
     }
   },
   components: { editUser }
