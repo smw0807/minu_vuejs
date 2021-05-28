@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <slim-grid :column-options="columnOptions" :data="rows"></slim-grid>
-  </div>
+  <v-card>
+    <v-card-title></v-card-title>
+    <v-card-text>
+      <div>
+        <slim-grid :column-options="columnOptions" :data="rows"></slim-grid>
+      </div>
+    </v-card-text>
+  </v-card>
+    
 </template>
 
 <script>

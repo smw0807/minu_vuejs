@@ -10,14 +10,8 @@
 
     <v-flex class="ma-4">
       <v-row class="px-4">
-        <v-col cols="6">
-          
-        </v-col>
-      </v-row>
-
-      <v-row class="px-4">
-        <v-col>
-          
+        <v-col cols="12">
+          <grid></grid>
         </v-col>
       </v-row>
     </v-flex>
@@ -26,8 +20,11 @@
 </template>
 
 <script>
+import grid from '~/components/slimgrid/grid1'
 export default {
-
+  components: {
+    grid
+  }
 }
 </script>
 

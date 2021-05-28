@@ -10,13 +10,8 @@
 
     <v-flex class="ma-4">
       <v-row class="px-4">
-        <v-col cols="6">
+        <v-col cols="12">
           <date-picker/>
-        </v-col>
-      </v-row>
-      <v-row class="px-4">
-        <v-col>
-          
         </v-col>
       </v-row>
     </v-flex>
@@ -25,7 +20,7 @@
 </template>
 
 <script>
-import datePicker from '~/components/vpicker'
+import datePicker from '~/components/vpicker/datepicker'
 export default {
   components: {
     datePicker

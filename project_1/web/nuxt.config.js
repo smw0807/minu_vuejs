@@ -5,6 +5,7 @@ import colors from 'vuetify/es5/util/colors'
  * icon : https://materialdesignicons.com/
  */
 export default {
+  ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxt',
@@ -28,6 +29,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/axios.js',
+    '@/plugins/vue-slimgrid.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -70,6 +70,10 @@ export default {
         { divider: true },
         { title: 'v-card grid', icon: 'mdi-view-grid', to: '/grid/vcard'},
         { title: 'v-layout grid', icon: 'mdi-view-grid-outline', to: '/grid/vlayout'},
+        { divider: true },
+        { title: 'v-picker', icon: 'mdi-calendar', to: '/vpicker/datepicker'},
+        { divider: true },
+        { title: 'vue slimgrid', icon: 'mdi-grid', to: '/slimgrid/grid1'},
       ]
     }
   },
