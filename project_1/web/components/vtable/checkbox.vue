@@ -1,5 +1,4 @@
 <template>
-<!-- 작업자:임지연 -->
   <v-card>
     <v-card-title>
       <v-spacer></v-spacer>
@@ -25,29 +24,29 @@
         hide-default-footer
         class="elevation-1"
         :search="search"
-        height="650"
-      >
-      <template v-slot:[`item.is_use`]="{ item }">
-        <input type="checkbox" v-model="item.is_use" @click="switch_isUse(item, $event)"/>
-      </template>
+        >
+        <template v-slot:[`item.is_use`]="{ item }">
+          <input type="checkbox" v-model="item.is_use" @click="is_checkbox(item, $event)"/>
+          <!-- <v-checkbox v-model="item.is_use" @click="is_checkbox(item, $event)"/> -->
+        </template>
 
-      <template v-slot:[`item.actions`]="{ item }">
-      <v-icon
-        small
-        class="mr-2"
-        @click="editItem(item)"
-      >
-          mdi-pencil
-      </v-icon>
-      <v-icon
-          small
-          @click="deleteItem(item)"
-      >
-        mdi-delete
-      </v-icon>
-      </template>
-          </v-data-table>
-      </v-card-text>    
+        <template v-slot:[`item.actions`]="{ item }">
+          <v-icon
+            small
+            class="mr-2"
+            @click="editItem(item)"
+            >
+            mdi-pencil
+          </v-icon>
+          <v-icon
+            small
+            @click="deleteItem(item)"
+            >
+            mdi-delete
+          </v-icon>
+        </template>
+      </v-data-table>
+    </v-card-text>    
   </v-card>
 </template>
 
@@ -57,30 +56,32 @@ export default {
   props:["list"],
   data(){
     return{
-      firstId : '', 
-      eq_info : null,
       search: '',
       headers : [
-     
+        { value: 'is_use'},
+        { text: 'Dessert (100g serving)', value: 'name' },
+        { text: 'Calories', value: 'calories' },
+        { text: 'Fat (g)', value: 'fat' },
+        { text: 'Carbs (g)', value: 'carbs' },
+        { text: 'Protein (g)', value: 'protein' },
+        { text: 'Iron (%)', value: 'iron' },
+        { text: '-', value:'actions', sortalbe: false}
       ]
     }
   },
   computed: {
     listData() { 
-      console.log(this.list);
       return this.list;
-    },
-    eq_info_data(){
-      return this.eq_info;
     },
   },
   methods:{
-    switch_isUse(item, e){
-      if (confirm('')) {
+    is_checkbox(item, e){
+      if (confirm('해제하시겠습니까?')) {
         const params = {
           _id : item._id,
           is_use : e.target.checked
         }
+        console.log('data : ', params);
       } else {
         e.preventDefault();
       }
@@ -96,9 +97,6 @@ export default {
 </script>
 
 <style>
-  .equipList .v-input__slot{
-      width:24px;
-  }
   input[type="checkbox"] {
     border-radius: 50%;
     cursor: pointer;

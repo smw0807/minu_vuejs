@@ -66,6 +66,7 @@ export default {
         { title: 'test', icon: 'mdi-api', to: '/api/apiTest' },
         { divider: true },
         { title: 'DataTables', icon: 'mdi-table-multiple', to: '/vtable/datatables'},
+        { title: 'DT checkbox', icon: 'mdi-check-bold', to: '/vtable/datatable2'},
         { title: 'Dataiterator', icon: 'mdi-table-multiple', to: '/vtable/dataiterator'},
         { divider: true },
         { title: 'v-card grid', icon: 'mdi-view-grid', to: '/grid/vcard'},

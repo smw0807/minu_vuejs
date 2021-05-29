@@ -2,6 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 /**
  * 링크
  * Vuetify : https://v2.vuetifyjs.com/ko/getting-started/quick-start/
+ * https://dev.vuetifyjs.com/en/getting-started/installation/
  * icon : https://materialdesignicons.com/
  */
 export default {
