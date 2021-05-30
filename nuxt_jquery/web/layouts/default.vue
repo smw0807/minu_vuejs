@@ -6,6 +6,8 @@
       :clipped="clipped"
       fixed
       app
+      permanent
+      expand-on-hover
     >
       <v-list>
         <v-list-item
@@ -62,23 +64,7 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+
     <v-footer
       :absolute="!fixed"
       app
@@ -92,7 +78,7 @@
 export default {
   data () {
     return {
-      clipped: false,
+      clipped: true,
       drawer: false,
       fixed: false,
       items: [
@@ -110,6 +96,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'jQuery',
           to: '/jquery'
+        },
+        {
+          icon: 'mdi-view-grid',
+          title: 'Slick.Grid.js',
+          to: '/slick'
         }
       ],
       miniVariant: false,

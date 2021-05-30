@@ -99,5 +99,10 @@ function slick_start() {
 </script>
 
 <style>
-
+/* .them--dark.slick-cell {
+  color: blue;
+} */
+.slick-cell {
+  color: red;
+}
 </style>

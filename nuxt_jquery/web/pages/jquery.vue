@@ -2,7 +2,7 @@
   <v-layout column>
     <v-flex>
       <v-card>
-        <v-card-title>jQUeryJS</v-card-title>
+        <v-card-title>jQueryJS Test</v-card-title>
         <v-card-text>
           <v-row>
             <v-col cols="9">

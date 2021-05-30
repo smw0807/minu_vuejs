@@ -22,7 +22,7 @@ export default {
     ],
     script: [
       { type: 'text/javascript',  src: 'jquery.js'},
-      {src: '/lib/slick/slick.core.js', type: 'text/javascript' },
+      { src: '/lib/slick/slick.core.js', type: 'text/javascript' },
       { src: '/lib/slick/slick.grid.js', type: 'text/javascript' }
     ]
   },
