@@ -4,71 +4,44 @@
     <v-card-title>
     </v-card-title>
     <v-card-text>
-      <div id="threat_list" style="height: 650px"></div>
+      <div id="threat_list" style="height: 650px; width: 100%;"></div>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      totCount: 300,
-      test: [
-        {test: 'test'}
-      ],
-      slickgrid: null,
-      rows: [],
-      columns: [],
-    }
-  },
-  watch: {
-  },
-  beforeCreate() {
-    console.log('1');
-    this.rows = [
-    {
-      name: "a",
-      contents: "안녕하세요."
-    },
-    {
-      name: "호동",
-      contents: "반갑습니다."
-    }
-  ];
-  this.columns = [
-    {
-      name: "이름",
-      field: "name",
-      id: "name",
-      sortable: true
-    },
-    {
-      name: "내용",
-      field: "contents",
-      id: "contents",
-      sortable: true
-    }
-  ];
-  },
-  created () {
-    console.log('2');
-    // $('#threat_list').append("sdfsdfsdf");
-    //  this.slickgrid = new Slick.Grid("#threat_list", this.rows, this.columns, {enableColumnReorder: false});
-  },
   mounted() {
-    console.log('3');
-    // slickgrid = new Slick.Grid("#threat_list", this.rows, this.columns, {enableColumnReorder: false});
     slick_start();
   },
-  computed: {
-  },
   methods: {
-  },
+    test(v) {
+      console.log('test : ' , v);
+    }
+  }
 }
-
+let slickgrid = null;
+const options = {
+  editable: true,
+  enableCellNavigation: true,
+  asyncEditorLoading: false,
+  enableAsyncPostRender: true,
+  autoEdit: false,
+  enableColumnReorder: false
+}
+function fmtName (row, cell, value, def, data) {
+  console.log(row);
+  console.log(cell);
+  console.log(value);
+  console.log(def);
+  console.log(data);
+  let html = '';
+  // html += `<a href="javascript:;" @click="test('${value}')">${value}</a>`;
+  html += `<a href="javascript:;" onClick="test('${value}')">${value}</a>`;
+  // return value;
+  return html;
+}
 function slick_start() {
-  console.log('11');
     let rows = [
     {
       name: "은복",
@@ -84,7 +57,8 @@ function slick_start() {
       name: "이름",
       field: "name",
       id: "name",
-      sortable: true
+      sortable: true,
+      formatter: fmtName
     },
     {
       name: "내용",
@@ -93,9 +67,16 @@ function slick_start() {
       sortable: true
     }
   ];
-  const slickgrid = new Slick.Grid("#threat_list", rows, columns, {enableColumnReorder: false});
-}
+  slickgrid = new Slick.Grid("#threat_list", rows, columns, options);
+  function test(v) {
+    console.log('?? ', v);
+  }
 
+  slickgrid.onClick.subscribe(function(e, args) {
+    var dataItem = args.item;
+    console.log('onClick : ', dataItem);
+  });
+}
 </script>
 
 <style>
@@ -103,6 +84,6 @@ function slick_start() {
   color: blue;
 } */
 .slick-cell {
-  color: red;
+  color: black;
 }
 </style>
