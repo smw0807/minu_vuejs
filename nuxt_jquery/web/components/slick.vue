@@ -30,11 +30,11 @@ const options = {
   enableColumnReorder: false
 }
 function fmtName (row, cell, value, def, data) {
-  console.log(row);
-  console.log(cell);
-  console.log(value);
-  console.log(def);
-  console.log(data);
+  // console.log(row);
+  // console.log(cell);
+  // console.log(value);
+  // console.log(def);
+  // console.log(data);
   let html = '';
   // html += `<a href="javascript:;" @click="test('${value}')">${value}</a>`;
   html += `<a href="javascript:;" onClick="test('${value}')">${value}</a>`;
@@ -42,7 +42,7 @@ function fmtName (row, cell, value, def, data) {
   return html;
 }
 function slick_start() {
-    let rows = [
+  let rows = [
     {
       name: "은복",
       contents: "안녕하세요."
@@ -67,10 +67,9 @@ function slick_start() {
       sortable: true
     }
   ];
+
+  // console.log('o : ', options);
   slickgrid = new Slick.Grid("#threat_list", rows, columns, options);
-  function test(v) {
-    console.log('?? ', v);
-  }
 
   slickgrid.onClick.subscribe(function(e, args) {
     var dataItem = args.item;
