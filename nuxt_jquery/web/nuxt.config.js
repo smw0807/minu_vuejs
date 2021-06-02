@@ -21,9 +21,11 @@ export default {
       { rel: 'stylesheet', href: '/lib/slick/slick.css' }
     ],
     script: [
-      { type: 'text/javascript',  src: 'jquery.js'},
-      { src: '/lib/slick/slick.core.js', type: 'text/javascript' },
-      { src: '/lib/slick/slick.grid.js', type: 'text/javascript' }
+      { type: 'text/javascript', src: '/lib/jquery.js' },
+      { type: 'text/javascript', src: '/lib/slick/slick.core.js' },
+      { type: 'text/javascript', src: '/lib/slick/slick.grid.js' },
+      { type: 'text/javascript', src: '/lib/slick/plugins/slick.checkboxselectcolumn.js' },
+      { type: 'text/javascript', src: '/lib/slick/plugins/slick.rowselectionmodel.js' },
     ]
   },
 
