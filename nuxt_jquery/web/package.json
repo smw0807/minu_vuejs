@@ -9,6 +9,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/proxy": "^2.1.0",
+    "app-root-path": "^3.0.0",
+    "elasticsearch": "^16.7.2",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3"
   },

@@ -1,4 +1,3 @@
-/** 작업자 : 송민우 */
 <template>
    <v-card>
     <v-card-title>
@@ -103,11 +102,14 @@ export default {
   },
   mounted() {
     this.totCount = 0;
-    this.searchSize = 500;
+    this.searchSize = 5;
+
     this.setColumns();
+
     this.grid = new Slick.Grid("#threat_list", this.rows, this.columns, this.options);
     this.grid.setSelectionModel(new Slick.RowSelectionModel({selectActiveRow: false}));
 		this.grid.registerPlugin(this.checkboxSelector);
+
     this.getData();
 
     //sort 기능
@@ -129,7 +131,7 @@ export default {
         console.log(this.searchSize);
         if (this.totCount !== 0) {
           if (this.totCount >= this.searchSize) {
-            this.searchSize += 100;
+            this.searchSize += 2;
             this.getData()
           }
         }
@@ -153,13 +155,12 @@ export default {
       });
       this.columns.push(this.checkboxSelector.getColumnDefinition());
       this.columns.push(
-        { name: "장비유형", field: "type", id: "type", cssClass:'text-center', sortable: true }, 
-        { name: "수집일시", field: "date_time", id: "date_time", cssClass:'text-center', width:200, sortable: true }, 
-        { name: "탐지규칙명", field: "rule_name", id: "rule_name", cssClass:'text-center', width:250, sortable: true, formatter: this.fmt_drule}, 
-        { name: "공격IP", field: "attack_ip", id: "attack_ip", cssClass:'text-center', width:110, sortable: true }, 
-        { name: "공격Port", field: "attack_port", id: "attack_port", cssClass:'text-center', sortable: true }, 
-        { name: "피해IP", field: "victim_ip", id: "victim_ip", cssClass:'text-center', width:110, sortable: true }, 
-        { name: "피해Port", field: "victim_port", id: "victim_port", cssClass:'text-center', sortable: true }, 
+        { name: "생성일", field: "test_mk_dt", id: "test_mk_dt", cssClass:'text-center', sortable: true }, 
+        { name: "이름", field: "name", id: "name", cssClass:'text-center',sortable: true }, 
+        { name: "나이", field: "age", id: "age", cssClass:'text-center',sortable: true }, 
+        { name: "아이피", field: "test_ip", id: "test_ip", cssClass:'text-center',sortable: true }, 
+        { name: "포트", field: "test_port", id: "test_port", cssClass:'text-center',sortable: true }, 
+        { name: "사용여부", field: "is_use", id: "is_use", cssClass:'text-center',sortable: false }, 
       )
     },
     async getData() {
@@ -170,7 +171,7 @@ export default {
           e_date: this.e_date,
           sort: this.sort
         }
-        const rs = await this.$store.dispatch('threat/monitoring/initList', params);
+        const rs = await this.$store.dispatch('initList', params);
         console.log(rs);
         this.totCount = rs.data.length;
         console.log('getDate : ', this.totCount, this.searchSize);
