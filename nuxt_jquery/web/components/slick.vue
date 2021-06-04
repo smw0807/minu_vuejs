@@ -77,10 +77,8 @@ export default {
       columns: [],
       includes:[], // 검색 필터 담을 곳
       excludes:[], // 제외 필터 담을 곳
-      sort: {
-        key: 'date_time',
-        val: 'desc'
-      },
+      selectRows: [],
+      sort: `{"test_mk_dt": "desc"}`,
       checkboxSelector: null,
       options: {
         editable: true,
@@ -102,7 +100,7 @@ export default {
   },
   mounted() {
     this.totCount = 0;
-    this.searchSize = 5;
+    this.searchSize = 200;
 
     this.setColumns();
 
@@ -112,6 +110,13 @@ export default {
 
     this.getData();
 
+    //checkbox
+    this.grid.onSelectedRowsChanged.subscribe((e, args) => {
+      this.selectRows = [];
+      for (var i in args.rows) {
+        this.selectRows.push(args.rows[i]);
+      }
+    });
     //contextMenu
     this.grid.onContextMenu.subscribe((e) => {
       e.preventDefault();
@@ -121,32 +126,16 @@ export default {
 			const val = data[obj.id];
       console.log(cell, obj, data, val);
     });
-    //checkbox 기능 
-    this.grid.onSelectedRowsChanged.subscribe((e, args) => {
-      this.checkRows = [];
-      for (var i in args.rows) {
-        this.checkRows.push(args.rows[i]);
-      }
-      console.log('checkRows : ' , this.checkRows);
-    });
     //sort 기능
     this.grid.onSort.subscribe((e, args) => {
-      const key = args.sortCol.id;
-      // const type = args.sortAsc === true ? 'asc' : 'desc';
-      
-      let dataList;
       if (args.sortAsc) {
-        dataList = args.grid.getData().sort(function(a, b){
-          return a[key] - b[key];
-        })
+        this.sort = `{"${args.sortCol.id}":"asc"}`;
       } else {
-        dataList = args.grid.getData().sort(function(a, b){
-          return b[key] - a[key];
-        })
+        this.sort = `{"${args.sortCol.id}":"desc"}`;
       }
-      this.grid.setData(dataList);
-      this.grid.render();
-    });
+      this.searchSize = 200;
+      this.getData();
+		});
     //scroll 기능
     this.grid.onScroll.subscribe((e, o) => {
       if (o.scrollTop >= $("#slickgrid .grid-canvas").height() - $("#slickgrid .slick-viewport").height()) {
@@ -156,8 +145,8 @@ export default {
             this.getData()
           }
         }
-      }
-    });
+			}
+		});
   },
   methods: {
     setColumns() {
@@ -166,12 +155,12 @@ export default {
       });
       this.columns.push(this.checkboxSelector.getColumnDefinition());
       this.columns.push(
-        { name: "생성일", field: "test_mk_dt", id: "test_mk_dt", cssClass:'text-center', sortable: true }, 
+        { name: "생성일", field: "test_mk_dt", id: "test_mk_dt", cssClass:'text-center', width:150, sortable: true }, 
         { name: "이름", field: "name", id: "name", cssClass:'text-center',sortable: true }, 
         { name: "나이", field: "age", id: "age", cssClass:'text-center',sortable: true }, 
         { name: "아이피", field: "test_ip", id: "test_ip", cssClass:'text-center',sortable: true }, 
         { name: "포트", field: "test_port", id: "test_port", cssClass:'text-center',sortable: true }, 
-        { name: "사용여부", field: "is_use", id: "is_use", cssClass:'text-center',sortable: false }, 
+        { name: "사용여부", field: "is_use", id: "is_use", cssClass:'text-center',sortable: false, formatter: this.fmt_is_use }, 
       )
     },
     async getData() {
@@ -183,10 +172,9 @@ export default {
           sort: this.sort
         }
         const rs = await this.$store.dispatch('initList', params);
-        console.log(rs);
-        this.totCount = rs.data.length;
-        console.log('getDate : ', this.totCount, this.searchSize);
-        this.grid.setData(rs.data);
+        this.rows = rs.data.data;
+        this.totCount = rs.data.data.length;
+        this.grid.setData(this.rows);
         this.grid.render();
       } catch (err) {
         console.error('monitoring getData err : ', err);
@@ -204,16 +192,19 @@ export default {
     },
 
     //slick.grid formatter
-    fmt_drule(row, cell, value, def, data) {
-      if (data.type === 'yara') {
-        return data.rule_names;
+    fmt_is_use(row, cell, value, def, data) {
+      if (data.is_use) {
+        return '사용';
+      } else {
+        return '사용안함'
       }
-      return value;
     }
   }
 }
 </script>
 
 <style>
-
+.slick-cell {
+  color: black;
+}
 </style>

@@ -31,7 +31,7 @@ export const actions = {
     return new Promise( async (resolve, reject) => {
       try {
         const rs = await this.$axios.post('/api/test/list', params);
-        console.log(rs);
+        commit('SET_LIST', rs.data.data);
         resolve(rs);
       } catch (err) {
         console.error('store/initList err : ', err);
