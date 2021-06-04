@@ -112,6 +112,15 @@ export default {
 
     this.getData();
 
+    //contextMenu
+    this.grid.onContextMenu.subscribe((e) => {
+      e.preventDefault();
+			const cell = this.grid.getCellFromEvent(e);
+			const obj = this.grid.getColumns()[cell.cell];
+			const data = this.grid.getDataItem(cell.row);
+			const val = data[obj.id];
+      console.log(cell, obj, data, val);
+    });
     //checkbox 기능 
     this.grid.onSelectedRowsChanged.subscribe((e, args) => {
       this.checkRows = [];
