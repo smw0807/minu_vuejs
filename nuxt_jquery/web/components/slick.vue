@@ -60,7 +60,7 @@
       </v-row>
     </v-card-title>
     <v-card-text>
-      <div id="threat_list" style="height: 650px"></div>
+      <div id="slickgrid" style="height: 650px"></div>
     </v-card-text>
     
   </v-card>
@@ -106,47 +106,49 @@ export default {
 
     this.setColumns();
 
-    this.grid = new Slick.Grid("#threat_list", this.rows, this.columns, this.options);
+    this.grid = new Slick.Grid("#slickgrid", this.rows, this.columns, this.options);
     this.grid.setSelectionModel(new Slick.RowSelectionModel({selectActiveRow: false}));
 		this.grid.registerPlugin(this.checkboxSelector);
 
     this.getData();
 
-    //sort 기능
-    this.grid.onSort.subscribe(function (e, args) {
-      console.log('onSort.....');
-      console.log(args);
-      console.log(this.sort);
-      this.sort = {
-        key: args.sortCol.id,
-        val: args.sortAsc === true ? 'asc' : 'desc'
+    //checkbox 기능 
+    this.grid.onSelectedRowsChanged.subscribe((e, args) => {
+      this.checkRows = [];
+      for (var i in args.rows) {
+        this.checkRows.push(args.rows[i]);
       }
-      console.log(this.sort);
-		});
+      console.log('checkRows : ' , this.checkRows);
+    });
+    //sort 기능
+    this.grid.onSort.subscribe((e, args) => {
+      const key = args.sortCol.id;
+      // const type = args.sortAsc === true ? 'asc' : 'desc';
+      
+      let dataList;
+      if (args.sortAsc) {
+        dataList = args.grid.getData().sort(function(a, b){
+          return a[key] - b[key];
+        })
+      } else {
+        dataList = args.grid.getData().sort(function(a, b){
+          return b[key] - a[key];
+        })
+      }
+      this.grid.setData(dataList);
+      this.grid.render();
+    });
     //scroll 기능
-    this.grid.onScroll.subscribe(function (e, o) {
-      if (o.scrollTop >= $("#threat_list .grid-canvas").height() - $("#threat_list .slick-viewport").height()) {
-        console.log(' ???? ');
-        console.log(this.totCount);
-        console.log(this.searchSize);
+    this.grid.onScroll.subscribe((e, o) => {
+      if (o.scrollTop >= $("#slickgrid .grid-canvas").height() - $("#slickgrid .slick-viewport").height()) {
         if (this.totCount !== 0) {
           if (this.totCount >= this.searchSize) {
-            this.searchSize += 2;
+            this.searchSize += 100;
             this.getData()
           }
         }
-			// 	if (rt_cnt.tot_size != 0) {
-			// 		if (rt_cnt.tot_size > (rt_cnt.rt_size)) {
-			// 			var check_time = new Date();
-			// 			if (check_time - list_time > pageConf.scroll * 60000) {
-			// 			} else {
-			// 				rt_cnt.rt_size += pageConf.rtSize;
-			// 				$scope.load_data();
-			// 			}
-			// 		}
-			// 	}
-			}
-		});
+      }
+    });
   },
   methods: {
     setColumns() {
