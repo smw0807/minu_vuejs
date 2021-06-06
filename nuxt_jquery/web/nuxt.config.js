@@ -1,5 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
-
+const p_path = '~/plugins/';
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -36,6 +36,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     // { src: '~/plugins/jquery.js', ssr: false }
+    {src: p_path + 'context-menu.js'}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
