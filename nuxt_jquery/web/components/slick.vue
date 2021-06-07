@@ -60,6 +60,22 @@
       </v-row>
     </v-card-title>
     <v-card-text>
+      <context-menu id="context-menu" ref="ctxMenu">
+        <v-row>
+          <v-col cols="12">
+            <p class="font-weight-black>">검색조건</p>
+          </v-col>
+          <v-col cols="12">
+            <v-text-field @click.stop></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-btn>test</v-btn>
+          </v-col>
+          <v-col cols="6">
+            <v-btn>test</v-btn>
+          </v-col>
+        </v-row>
+      </context-menu>
       <div id="slickgrid" style="height: 650px"></div>
     </v-card-text>
     
@@ -125,6 +141,7 @@ export default {
 			const data = this.grid.getDataItem(cell.row);
 			const val = data[obj.id];
       console.log(cell, obj, data, val);
+      this.$refs.ctxMenu.open(e, val);
     });
     //sort 기능
     this.grid.onSort.subscribe((e, args) => {
