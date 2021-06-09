@@ -1,15 +1,58 @@
 <template>
   <div>
-    <!-- <v-app-bar
+    <v-app-bar
         app
         dark
       >
       <v-app-bar-nav-icon @click.stop="drawer =!drawer"></v-app-bar-nav-icon>
       <v-divider vertical class="ml-1"></v-divider>
       <v-breadcrumbs
-        :items="test"
+        :items="breadcrumbs"
         large
       ></v-breadcrumbs>
+      <v-spacer></v-spacer>
+      <v-app-bar-nav-icon @click.stop="searchMenu =!searchMenu">
+        <v-icon>mdi-magnify</v-icon>
+      </v-app-bar-nav-icon>
+      <!-- <v-autocomplete
+        label="메뉴 검색"
+        class="mt-3"
+      >
+        <template v-slot:prepend-item>
+            <v-list-item 
+              v-for="item in items"
+              :to="item.to"
+              :key="item.title"
+              >
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+        </template>
+      </v-autocomplete> -->
+      <!-- <v-icon @click="searchMenu =!searchMenu">mdi-magnify</v-icon> -->
+      <!-- <v-autocomplete
+        v-model="model"
+        :hint="!isEditing ? 'Click the icon to edit' : 'Click the icon to save'"
+        :items="states"
+        :readonly="!isEditing"
+        :label="`State — ${isEditing ? 'Editable' : 'Readonly'}`"
+        persistent-hint
+        prepend-icon="mdi-city"
+      >
+        <template v-slot:append-outer>
+          <v-slide-x-reverse-transition
+            mode="out-in"
+          >
+            <v-icon
+              :key="`icon-${isEditing}`"
+              :color="isEditing ? 'success' : 'info'"
+              @click="isEditing = !isEditing"
+              v-text="isEditing ? 'mdi-check-outline' : 'mdi-circle-edit-outline'"
+            ></v-icon>
+          </v-slide-x-reverse-transition>
+        </template>
+      </v-autocomplete> -->
     </v-app-bar>
 
     <v-navigation-drawer
@@ -35,11 +78,18 @@
         <v-divider dark></v-divider> 
         
         <template v-for="item in items">
-          <v-list-group
-            v-if="item.items"
+          <!-- 구분선 긋기 -->
+          <v-list-item
+            v-if="item.divider"
             :key="item.title"
-            :prepend-icon="item.action"
-            class="mb-5"
+            >
+            <v-divider dark></v-divider>
+          </v-list-item>
+
+          <v-list-group
+            v-else-if="item.items"
+            :key="item.title"
+            :prepend-icon="item.icon"
             >
             <template v-slot:activator>
               <v-list-item-content>
@@ -66,10 +116,9 @@
             v-else
             :to="item.to"
             :key="item.title"
-            class="mb-5"
             >
             <v-list-item-icon>
-                <v-icon v-if="item.action">{{item.action}}</v-icon>
+                <v-icon v-if="item.icon">{{item.icon}}</v-icon>
               </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -77,49 +126,6 @@
           </v-list-item>
         </template>
       </v-list>
-    </v-navigation-drawer>
-     -->
-     <v-app-bar
-        app
-        clipped-left
-      >
-      <v-app-bar-nav-icon @click.stop="drawer =!drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>{{title}}</v-toolbar-title>
-    </v-app-bar>
-    
-    <v-navigation-drawer 
-      v-model="drawer"
-      app
-      :clipped="clipped"
-      :expand-on-hover="drawer"
-      permanent
-      >
-      <v-list dense>
-        <template v-for="item in items">
-          <!-- 구분선 긋기 -->
-          <v-list-item
-            v-if="item.divider"
-            :key="item.title"
-            >
-            <v-divider dark></v-divider>
-          </v-list-item>
-
-          <!-- 메뉴 넣기 -->
-          <v-list-item 
-            :to="item.to"
-            :key="item.title"
-            v-else
-            >
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </template>
-      </v-list>
-
     </v-navigation-drawer>
   </div>
 </template>
@@ -140,6 +146,8 @@ export default {
       org: false, 
       drawer: true,
       clipped: true,
+      miniVariant: true,
+      searchMenu: false,
       items: [
         { title: 'index', icon: 'mdi-view-dashboard', to: '/' },
         { title: 'test', icon: 'mdi-api', to: '/api/apiTest' },
@@ -154,16 +162,15 @@ export default {
         { title: 'v-picker', icon: 'mdi-calendar', to: '/vpicker/datepicker'},
         { divider: true },
         { title: 'vue slimgrid', icon: 'mdi-grid', to: '/slimgrid/grid1'},
-      ],
-      temp: [
+        { divider: true },
         {
-          action: 'mdi-view-dashboard',
           title: 'menu1',
+          icon: 'mdi-view-dashboard',
           to:'/dashboard'
         },
         {
-          action: 'mdi-alert-outline',
           title: 'menu2',
+          icon: 'mdi-alert-outline',
           active: true,
           items: [
             { title: 'sub1', to: '/threat/monitoring', icon: 'mdi-monitor-dashboard' },
@@ -174,8 +181,8 @@ export default {
           ],
         },
         {
-          action: 'mdi-traffic-light',
           title: 'menu3',
+          icon: 'mdi-traffic-light',
           items: [
             { title: 'sub1', to: '/traffic/allTraffic', icon: 'mdi-traffic-light' },
             { title: 'sub2', to: '/traffic/all', icon: 'mdi-account-multiple' },
