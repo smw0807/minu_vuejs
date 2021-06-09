@@ -79,6 +79,14 @@
       </v-list>
     </v-navigation-drawer>
      -->
+     <v-app-bar
+        app
+        clipped-left
+      >
+      <v-app-bar-nav-icon @click.stop="drawer =!drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>{{title}}</v-toolbar-title>
+    </v-app-bar>
+    
     <v-navigation-drawer 
       v-model="drawer"
       app
@@ -113,14 +121,6 @@
       </v-list>
 
     </v-navigation-drawer>
-
-    <v-app-bar
-        app
-        clipped-left
-      >
-      <v-app-bar-nav-icon @click.stop="drawer =!drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>{{title}}</v-toolbar-title>
-    </v-app-bar>
   </div>
 </template>
 
@@ -183,16 +183,53 @@ export default {
             { title: 'sub4', to: '/traffic/serverPkt', icon:'mdi-text-box-search' }
           ],
         },
-      ]
+      ],
+      breadcrumbs:[]
     }
   },
   components:{
   },
   computed: {
+  },
+  watch: {
+    $route(route) {
+      this.setBreadcrumbs(route);
+    }
+  },
+  created() {
+    if (this.breadcrumbs.length === 0) {
+      this.setBreadcrumbs(this.$nuxt.$route);
+    }
+  },
+  methods: {
+    setBreadcrumbs(route) {
+      this.breadcrumbs = [];
+      const path = route.path;
+      const items = this.items;
+      for (var i in items) {
+        if (items[i].items) {
+          const sub = items[i].items;
+          for (var j in sub) {
+            if (path === sub[j].to) {
+              this.breadcrumbs.push({ text: items[i].title, disabled: false })
+              this.breadcrumbs.push({ text: sub[j].title, disabled: false })
+            }
+          }
+        } else {
+          if (path === items[i].to) {
+            this.breadcrumbs.push({ text: items[i].title, disabled: false })
+          }
+        }
+      }
+    }
   }
 }
 </script>
 
 <style>
-
+#main_nav {
+  top: 0 !important;
+  max-height:100% !important;
+  z-index: 10000 !important;
+}
 </style>
