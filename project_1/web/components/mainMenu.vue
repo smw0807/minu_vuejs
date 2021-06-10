@@ -15,48 +15,21 @@
         </template>
       </v-breadcrumbs>
       <v-spacer></v-spacer>
-      <v-app-bar-nav-icon @click.stop="searchMenu =!searchMenu">
+      <v-app-bar-nav-icon @click.stop="searchingMenu =!searchingMenu">
         <v-icon>mdi-magnify</v-icon>
       </v-app-bar-nav-icon>
-      <!-- <v-autocomplete
-        label="메뉴 검색"
-        class="mt-3"
-      >
-        <template v-slot:prepend-item>
-            <v-list-item 
-              v-for="item in items"
-              :to="item.to"
-              :key="item.title"
-              >
-              <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-        </template>
-      </v-autocomplete> -->
-      <!-- <v-icon @click="searchMenu =!searchMenu">mdi-magnify</v-icon> -->
-      <!-- <v-autocomplete
-        v-model="model"
-        :hint="!isEditing ? 'Click the icon to edit' : 'Click the icon to save'"
-        :items="states"
-        :readonly="!isEditing"
-        :label="`State — ${isEditing ? 'Editable' : 'Readonly'}`"
-        persistent-hint
-        prepend-icon="mdi-city"
-      >
-        <template v-slot:append-outer>
-          <v-slide-x-reverse-transition
-            mode="out-in"
-          >
-            <v-icon
-              :key="`icon-${isEditing}`"
-              :color="isEditing ? 'success' : 'info'"
-              @click="isEditing = !isEditing"
-              v-text="isEditing ? 'mdi-check-outline' : 'mdi-circle-edit-outline'"
-            ></v-icon>
-          </v-slide-x-reverse-transition>
-        </template>
-      </v-autocomplete> -->
+      <v-col cols="3" v-if="searchingMenu" transition="fab-transition">
+        <v-autocomplete
+          no-data-text="존재하지 않는 메뉴입니다."
+          label="메뉴 검색"
+          class="mt-6"
+          :items="searchMenu"
+          item-text="title"
+          clearable
+          v-model="searchSelect"
+          @change="selectMenu"
+          ></v-autocomplete>
+      </v-col>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -151,7 +124,9 @@ export default {
       drawer: true,
       clipped: true,
       miniVariant: true,
-      searchMenu: false,
+      searchSelect: null,
+      searchingMenu: false,
+      searchMenu: [],
       items: [
         { title: 'index', icon: 'mdi-view-dashboard', to: '/' },
         { title: 'test', icon: 'mdi-api', to: '/api/apiTest' },
@@ -231,6 +206,14 @@ export default {
             this.breadcrumbs.push({ text: items[i].title, disabled: false })
           }
         }
+      }
+    },
+    selectMenu() {
+      console.log('selectMenu', this.searchSelect);
+      if (this.searchSelect) {
+        this.$router.push(this.searchSelect);
+        this.searchingMenu = false;
+        this.searchSelect = null;
       }
     }
   }
