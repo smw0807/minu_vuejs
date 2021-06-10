@@ -186,6 +186,9 @@ export default {
     if (this.breadcrumbs.length === 0) {
       this.setBreadcrumbs(this.$nuxt.$route);
     }
+    if (this.searchMenu.length === 0) {
+      this.setSearchMenu();
+    }
   },
   methods: {
     setBreadcrumbs(route) {
@@ -208,8 +211,20 @@ export default {
         }
       }
     },
+    setSearchMenu() {
+      const items = this.items;
+      for (var i in items) {
+        if (items[i].items) {
+          const sub = items[i].items;
+          for (var j in sub) {
+            this.searchMenu.push({ title: items[i].title + ' > ' + sub[j].title, value: sub[j].to })
+          }
+        } else {
+          this.searchMenu.push({ title: items[i].title, value: items[i].to })
+        }
+      }
+    },
     selectMenu() {
-      console.log('selectMenu', this.searchSelect);
       if (this.searchSelect) {
         this.$router.push(this.searchSelect);
         this.searchingMenu = false;
