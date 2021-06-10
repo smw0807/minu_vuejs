@@ -26,8 +26,8 @@
         :search="search"
         >
         <template v-slot:[`item.is_use`]="{ item }">
-          <input type="checkbox" v-model="item.is_use" @click="is_checkbox(item, $event)"/>
-          <!-- <v-checkbox v-model="item.is_use" @click="is_checkbox(item, $event)"/> -->
+          <!-- <input type="checkbox" v-model="item.is_use" @click="is_checkbox(item, $event)"/> -->
+          <v-checkbox v-model="item.is_use" @click.native.prevent.capture="is_checkbox(item, $event)"/>
         </template>
 
         <template v-slot:[`item.actions`]="{ item }">
@@ -83,6 +83,7 @@ export default {
         }
         console.log('data : ', params);
       } else {
+        e.stopPropagation();
         e.preventDefault();
       }
     },
