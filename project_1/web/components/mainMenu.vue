@@ -30,6 +30,7 @@
           @change="selectMenu"
           ></v-autocomplete>
       </v-col>
+      <cahnge-theme></cahnge-theme>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -116,6 +117,7 @@
  * https://materialdesignicons.com/
  * 
  */
+import chanageTheme from '~/components/changeTheme'
 export default {
   data () {
     return {
@@ -174,6 +176,7 @@ export default {
     }
   },
   components:{
+    chanageTheme,
   },
   computed: {
   },
