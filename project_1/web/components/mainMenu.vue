@@ -1,11 +1,9 @@
 <template>
   <div>
-    <v-app-bar
-        app
-        dark
-      >
+    <v-app-bar app dark >
       <v-app-bar-nav-icon @click.stop="drawer =!drawer"></v-app-bar-nav-icon>
       <v-divider vertical class="ml-1"></v-divider>
+
       <v-breadcrumbs
         :items="breadcrumbs"
         large
@@ -14,7 +12,9 @@
           <v-icon>mdi-chevron-right</v-icon>
         </template>
       </v-breadcrumbs>
+
       <v-spacer></v-spacer>
+
       <v-app-bar-nav-icon @click.stop="searchingMenu =!searchingMenu">
         <v-icon>mdi-magnify</v-icon>
       </v-app-bar-nav-icon>
@@ -30,7 +30,9 @@
           @change="selectMenu"
           ></v-autocomplete>
       </v-col>
-      <cahnge-theme></cahnge-theme>
+
+      <change-theme></change-theme>
+      
     </v-app-bar>
 
     <v-navigation-drawer
@@ -117,7 +119,8 @@
  * https://materialdesignicons.com/
  * 
  */
-import chanageTheme from '~/components/changeTheme'
+import changeTheme from '~/components/changeTheme'
+import { default as menu } from '~/menu'
 export default {
   data () {
     return {
@@ -129,54 +132,12 @@ export default {
       searchSelect: null,
       searchingMenu: false,
       searchMenu: [],
-      items: [
-        { title: 'index', icon: 'mdi-view-dashboard', to: '/' },
-        { title: 'test', icon: 'mdi-api', to: '/api/apiTest' },
-        { divider: true },
-        { title: 'DataTables', icon: 'mdi-table-multiple', to: '/vtable/datatables'},
-        { title: 'DT checkbox', icon: 'mdi-check-bold', to: '/vtable/datatable2'},
-        { title: 'Dataiterator', icon: 'mdi-table-multiple', to: '/vtable/dataiterator'},
-        { divider: true },
-        { title: 'v-card grid', icon: 'mdi-view-grid', to: '/grid/vcard'},
-        { title: 'v-layout grid', icon: 'mdi-view-grid-outline', to: '/grid/vlayout'},
-        { divider: true },
-        { title: 'v-picker', icon: 'mdi-calendar', to: '/vpicker/datepicker'},
-        { divider: true },
-        { title: 'vue slimgrid', icon: 'mdi-grid', to: '/slimgrid/grid1'},
-        { divider: true },
-        {
-          title: 'menu1',
-          icon: 'mdi-view-dashboard',
-          to:'/dashboard'
-        },
-        {
-          title: 'menu2',
-          icon: 'mdi-alert-outline',
-          active: true,
-          items: [
-            { title: 'sub1', to: '/threat/monitoring', icon: 'mdi-monitor-dashboard' },
-            { title: 'sub2', to: '/threat/analysis', icon: 'mdi-playlist-check' },
-            { title: 'sub3', to: '/threat/threat', icon:'mdi-sync-alert' },
-            { title: 'sub4', to: '/threat/threat', icon:'mdi-radar' },
-            { title: 'sub5', to: '/threat/threat', icon:'mdi-magnify' }
-          ],
-        },
-        {
-          title: 'menu3',
-          icon: 'mdi-traffic-light',
-          items: [
-            { title: 'sub1', to: '/traffic/allTraffic', icon: 'mdi-traffic-light' },
-            { title: 'sub2', to: '/traffic/all', icon: 'mdi-account-multiple' },
-            { title: 'sub3', to: '/traffic/all', icon:'mdi-magnify' },
-            { title: 'sub4', to: '/traffic/serverPkt', icon:'mdi-text-box-search' }
-          ],
-        },
-      ],
+      items: null,
       breadcrumbs:[]
     }
   },
   components:{
-    chanageTheme,
+    changeTheme,
   },
   computed: {
   },
@@ -186,6 +147,7 @@ export default {
     }
   },
   created() {
+    this.items = menu.items;
     if (this.breadcrumbs.length === 0) {
       this.setBreadcrumbs(this.$nuxt.$route);
     }
@@ -223,7 +185,9 @@ export default {
             this.searchMenu.push({ title: items[i].title + ' > ' + sub[j].title, value: sub[j].to })
           }
         } else {
-          this.searchMenu.push({ title: items[i].title, value: items[i].to })
+          if (!items[i].divider) {
+            this.searchMenu.push({ title: items[i].title, value: items[i].to })
+          }
         }
       }
     },
