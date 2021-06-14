@@ -28,13 +28,18 @@
           clearable
           v-model="searchSelect"
           @change="selectMenu"
+          return-object
           ></v-autocomplete>
       </v-col>
 
       <change-theme></change-theme>
       
     </v-app-bar>
-
+    <v-row style="position:relative; top:72px; left:60px; height:50px;">
+      <v-col col="12">
+        <menu-history :menus="menuHistory" @closeMenu="closeMenu"/>
+      </v-col>
+    </v-row>
     <v-navigation-drawer
       id="main_nav"
       app
@@ -120,6 +125,7 @@
  * 
  */
 import changeTheme from '~/components/changeTheme'
+import menuHistory from '~/components/menuHistory'
 import { default as menu } from '~/menu'
 export default {
   data () {
@@ -129,6 +135,7 @@ export default {
       drawer: true,
       clipped: true,
       miniVariant: true,
+      menuHistory: [],
       searchSelect: null,
       searchingMenu: false,
       searchMenu: [],
@@ -138,6 +145,7 @@ export default {
   },
   components:{
     changeTheme,
+    menuHistory,
   },
   computed: {
   },
@@ -165,13 +173,15 @@ export default {
           const sub = items[i].items;
           for (var j in sub) {
             if (path === sub[j].to) {
-              this.breadcrumbs.push({ text: items[i].title, disabled: false })
-              this.breadcrumbs.push({ text: sub[j].title, disabled: false })
+              this.breadcrumbs.push({ text: items[i].title, disabled: false });
+              this.breadcrumbs.push({ text: sub[j].title, disabled: false });
+              this.setMenuHistory({title: sub[j].title, to: sub[j].to});
             }
           }
         } else {
           if (path === items[i].to) {
-            this.breadcrumbs.push({ text: items[i].title, disabled: false })
+            this.breadcrumbs.push({ text: items[i].title, disabled: false });
+            this.setMenuHistory({title: items[i].title, to: items[i].to});
           }
         }
       }
@@ -193,11 +203,25 @@ export default {
     },
     selectMenu() {
       if (this.searchSelect) {
-        this.$router.push(this.searchSelect);
+        this.$router.push(this.searchSelect.to);
         this.searchingMenu = false;
         this.searchSelect = null;
       }
-    }
+    },
+    setMenuHistory(v) {
+      let check = true;
+      this.menuHistory.find((e) => {
+        if (e.to === v.to) {
+          check = false;
+        }
+      })
+      if (check) {
+        this.menuHistory.push(v);
+      }
+    },
+    closeMenu(v) {
+      this.menuHistory.splice(v, 1);
+    },
   }
 }
 </script>
