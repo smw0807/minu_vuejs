@@ -164,8 +164,12 @@ export default {
         }
 			}
 		});
+    window.addEventListener('resize', this.onResize);
   },
   methods: {
+    onResize() {
+      console.log('resize', $(window).height());
+    },
     setColumns() {
       this.checkboxSelector = new Slick.CheckboxSelectColumn({
         cssClass: "slick-cell-checkboxsel"
