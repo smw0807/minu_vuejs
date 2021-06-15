@@ -1,3 +1,4 @@
+export const strict = false;
 export const state = () => {
   return {
     api_test: '',
@@ -5,6 +6,7 @@ export const state = () => {
     loading_1: false,
     loading_2: false,
     loading_3: false,
+    menuHistory: [],
     alert : false,
     alert_data: {
       type: 'primary', //type은 success, info, warning, error 이렇게 4가지를 쓸 수 있음
@@ -28,7 +30,10 @@ export const mutations = {
     state.alert = payload.alert;
     state.alert_data.type = payload.type;
     state.alert_data.text = payload.text;
-  }
+  },
+  SET_MENU_HISTORY(state, payload) {
+    state.menuHistory = payload;
+  },
 }
 
 export const getters = {
@@ -52,7 +57,10 @@ export const getters = {
   },
   GET_ALERT_DATA(state) {
     return state.alert_data;
-  }
+  },
+  GET_MENU_HISTORY(state) {
+    return state.menuHistory;
+  },
 }
 
 export const actions = {

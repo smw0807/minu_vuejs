@@ -35,11 +35,7 @@
       <change-theme></change-theme>
       
     </v-app-bar>
-    <v-row style="position:relative; top:72px; left:60px; height:50px;">
-      <v-col col="12">
-        <menu-history :menus="menuHistory" @closeMenu="closeMenu"/>
-      </v-col>
-    </v-row>
+
     <v-navigation-drawer
       id="main_nav"
       app
@@ -125,7 +121,6 @@
  * 
  */
 import changeTheme from '~/components/changeTheme'
-import menuHistory from '~/components/menuHistory'
 import { default as menu } from '~/menu'
 export default {
   data () {
@@ -135,7 +130,6 @@ export default {
       drawer: true,
       clipped: true,
       miniVariant: true,
-      menuHistory: [],
       searchSelect: null,
       searchingMenu: false,
       searchMenu: [],
@@ -145,7 +139,6 @@ export default {
   },
   components:{
     changeTheme,
-    menuHistory,
   },
   computed: {
   },
@@ -210,17 +203,16 @@ export default {
     },
     setMenuHistory(v) {
       let check = true;
-      this.menuHistory.find((e) => {
+      const menuHistory = this.$store.getters['GET_MENU_HISTORY'];
+      menuHistory.find((e) => {
         if (e.to === v.to) {
           check = false;
         }
       })
       if (check) {
-        this.menuHistory.push(v);
+        menuHistory.push(v);
+        this.$store.commit('SET_MENU_HISTORY', menuHistory);
       }
-    },
-    closeMenu(v) {
-      this.menuHistory.splice(v, 1);
     },
   }
 }

@@ -4,6 +4,7 @@
     <alt/>
       <transition name="component-fade" mode="out-in">
         <v-main>
+          <menu-history class="mt-3 ml-4"/>
           <nuxt/>
         </v-main>
       </transition>
@@ -15,9 +16,10 @@
 import mainMenu from '~/components/mainMenu'
 import bottomNav from '~/components/bottom'
 import alt from '~/components/cmn/alert'
+import menuHistory from '~/components/menuHistory'
 export default {
   components:{
-   mainMenu, alt, bottomNav
+   mainMenu, alt, bottomNav, menuHistory
   },
   created() {
     this.$vuetify.theme.dark = true;

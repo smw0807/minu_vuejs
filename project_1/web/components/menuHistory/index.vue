@@ -1,6 +1,6 @@
 <template>
   <v-sheet
-    max-width="96%"
+    max-width="97.5%"
    >
     <v-slide-group
       show-arrows
@@ -22,19 +22,39 @@
         </v-chip>
       </v-slide-item>
     </v-slide-group>
+
+    <v-snackbar
+      v-model="snackbar"
+      timeout="2000"
+      top
+      right
+      >
+      {{text}}
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="pink"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-sheet>
 </template>
 
 <script>
 export default {
-  props:{
-    menus: {
-      type: Array
+  data() {
+    return {
+      snackbar: false,
+      text: '현재 페이지는 닫을 수 없습니다.',
     }
   },
   computed: {
     items() {
-      return this.menus;
+      return this.$store.getters['GET_MENU_HISTORY'];
     }
   },
   methods: {
@@ -42,7 +62,13 @@ export default {
       this.$nuxt.$router.push(v);
     },
     close(v) {
-      this.$emit('closeMenu', v);
+      const menus = this.$store.getters['GET_MENU_HISTORY'];
+      if (this.$nuxt.$route.path === menus[v].to) {
+        this.snackbar = true
+      } else {
+        menus.splice(v, 1);
+        this.$store.commit('SET_MENU_HISTORY', menus);
+      }
     }
   },
 }
