@@ -3,11 +3,11 @@ export const state = () => {
   return {
     list: [],
     filters:[
-      { type: 'include', mode: 'direct', field:'name', text: '이름', data: '민우' },
-      { type: 'exclude', mode: 'indirect', field:'name', text: '이름', data: '송민우' },
-      { type: 'exclude', mode: 'direct', field:'name', text: '이름', data: '민우5' },
-      { type: 'include', mode: 'indirect', field:'test_port', text: '포트', data: '8201' },
-      { type: 'exclude', mode: 'indirect', field:'age', text: '나이', data: '30' },
+      { type: 'include', mode: 'direct', name:'name', text: '이름', data: '민우' },
+      { type: 'exclude', mode: 'indirect', name:'name', text: '이름', data: '송민우' },
+      { type: 'exclude', mode: 'direct', name:'name', text: '이름', data: '민우5' },
+      { type: 'include', mode: 'indirect', name:'test_port', text: '포트', data: '8201' },
+      { type: 'exclude', mode: 'indirect', name:'age', text: '나이', data: '30' },
     ],
     context_menu: {
       type:'string',
