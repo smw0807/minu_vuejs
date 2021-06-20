@@ -11,6 +11,8 @@ router.post('/list', async (req, res) => {
   console.log('/api/test/list');
   const params = req.body;
   console.log(JSON.stringify(params));
+  console.table(params);
+  console.table(params.filters);
   let rt = {};
   try {
     let q = {

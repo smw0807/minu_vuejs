@@ -15,3 +15,8 @@
   - 웹 브라우저에 연결되지 않은 DOM 복사본에 먼저 변경 사항을 적용한 후 우리가 보는 뷰에 해당 변경 사항들을 적용하는 방식?
   
 https://vuejs.org/v2/guide/comparison.html (다른 프레임워크와의 비교에 대한 글)
+
+
+
+https://dev.vuetifyjs.com/en/getting-started/installation/
+icon : https://materialdesignicons.com/

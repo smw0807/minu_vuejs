@@ -29,7 +29,12 @@ function singleFlatMap (data) {
   return rt;
 }
 
+function make_fliter_query (data) {
+
+}
+
 export default {
   flatmap,
-  singleFlatMap
+  singleFlatMap,
+  make_fliter_query
 }

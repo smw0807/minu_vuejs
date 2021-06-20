@@ -2,7 +2,7 @@
    <v-card>
     <v-card-title>
       <v-row>
-        <v-col cols="12" lg="2">
+        <v-col cols="3">
           <v-menu
             ref="menu1"
             v-model="menu1"
@@ -29,36 +29,21 @@
             </v-date-picker>
           </v-menu>
         </v-col>
-        
-        <!-- <v-col cols="12" lg="2">
-          <v-menu
-            ref="menu2"
-            v-model="menu2"
-            :close-on-content-click="false"
-            :return-value.sync="e_date"
-            transition="scale-transition"
-            offset-y
-            min-width="290px"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-text-field
-                v-model="e_date"
-                prepend-icon="mdi-calendar"
-                readonly
-                v-bind="attrs"
-                v-on="on"
-              ></v-text-field>
-            </template>
-            <v-date-picker v-model="e_date" no-title scrollable :min="s_date" :max="date">
-              <v-spacer></v-spacer>
-              <v-btn text color="primary" @click="menu2 = false">Cancel</v-btn>
-              <v-btn text color="primary" @click="e_date_search(e_date)">OK</v-btn>
-            </v-date-picker>
-          </v-menu>
-        </v-col> -->
-        
+        <v-spacer></v-spacer>
+        <v-col cols="3" align="end">
+          <v-btn small color="primary" @click="filter_reset">
+            <v-icon small>mdi-filter-remove-outline</v-icon> 필터 초기화
+          </v-btn>
+          <v-btn small outlined @click="refresh">
+            <v-icon small>mdi-refresh</v-icon>
+          </v-btn>
+
+        </v-col>
       </v-row>
     </v-card-title>
+    <v-card-text>
+      <slick-filters @reload="refresh"/>
+    </v-card-text>
     <v-card-text>
       <context-menu id="context-menu" ref="ctxMenu">
         <v-row>
@@ -91,8 +76,6 @@ export default {
       grid: null,
       rows: [],
       columns: [],
-      includes:[], // 검색 필터 담을 곳
-      excludes:[], // 제외 필터 담을 곳
       selectRows: [],
       sort: `{"test_mk_dt": "desc"}`,
       checkboxSelector: null,
@@ -164,7 +147,7 @@ export default {
         }
 			}
 		});
-    window.addEventListener('resize', this.onResize);
+    // window.addEventListener('resize', this.onResize);
   },
   methods: {
     onResize() {
@@ -190,7 +173,8 @@ export default {
           size: this.searchSize,
           s_date: this.s_date,
           e_date: this.e_date,
-          sort: this.sort
+          sort: this.sort,
+          filters: this.$store.getters['GET_FILTERS']
         }
         const rs = await this.$store.dispatch('initList', params);
         this.rows = rs.data.data;
@@ -206,10 +190,20 @@ export default {
       this.menu1 = false;
       this.$refs.menu1.save(v);
     },
-    e_date_search(v) {
-      this.e_date = v;
-      this.menu2 = false;
-      this.$refs.menu2.save(v);
+    // e_date_search(v) {
+    //   this.e_date = v;
+    //   this.menu2 = false;
+    //   this.$refs.menu2.save(v);
+    // },
+
+    //필터 초기화
+    filter_reset() {
+      console.log('filter_reset');
+    },
+
+    //데이터 리로드
+    refresh() {
+      this.getData();
     },
 
     //slick.grid formatter
