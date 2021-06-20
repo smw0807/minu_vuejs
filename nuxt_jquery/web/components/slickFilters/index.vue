@@ -1,66 +1,31 @@
 <template>
-  <v-sheet
-    class="mx-auto"
-  >
-    <v-slide-group
-      show-arrows
-    >
-      <v-slide-item
-        v-for="(item, index) in items"
-        :key="index"
-      >
-        <v-chip
-          v-if="item.type === 'include' && item.mode === 'direct'"
-          class="ma-2"
-          close
-          @click:close="del_filter(index)"
-          color="blue"
-          small
+  <v-slide-group show-arrows>
+    <v-slide-item v-for="(filter, index) in filters" :key="index">
+      <v-chip
+        class="mx-1"
+        :class="filter.mode === 'include' ? 'blue' : 'error'"
+        small
+        rounded
+        depressed
+        close
+        @click:close="del_filter(index)"
         >
-          {{item.text}} : *{{item.data}}*
-        </v-chip>
-        <v-chip
-          v-else-if="item.type === 'include' && item.mode === 'indirect'"
-          class="ma-2"
-          close
-          @click:close="del_filter(index)"
-          color="blue"
-          small
-        >
-          {{item.text}} : {{item.data}}
-        </v-chip>
-        <v-chip
-          v-else-if="item.type === 'exclude' && item.mode === 'direct'"
-          class="ma-2"
-          close
-          @click:close="del_filter(index)"
-          color="error"
-          small
-        >
-          {{item.text}} : *{{item.data}}*
-        </v-chip>
-        <v-chip
-          v-else
-          class="ma-2"
-          close
-          @click:close="del_filter(index)"
-          color="error"
-          small
-        >
-          {{item.text}} : {{item.data}}
-        </v-chip>
-       
-      </v-slide-item>
-    </v-slide-group>
-  </v-sheet>
+        <template v-if="filter.type === 'direct' && filter.data2">
+          <strong>{{ filter.name }} : {{ filter.data}} ~ {{ filter.data2 }}</strong>
+        </template>
+        <template v-else-if="filter.type === 'direct'">
+          <strong>{{ filter.name }} : *{{ filter.data}}*</strong>
+        </template>
+        <template v-else>
+          <strong>{{ filter.name }} : {{ filter.data}}</strong>
+        </template>
+      </v-chip>
+    </v-slide-item>
+  </v-slide-group>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-    }
-  },
   computed: {
     items() {
       return this.$store.getters['GET_FILTERS'];

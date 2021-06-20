@@ -37,7 +37,8 @@
 
  //router
  app.use('/test', require('./router/test'));
- 
+ app.use('/slick', require('./router/slick'));
+
  module.exports = {
    path: '/api',
    handler: app
