@@ -1,8 +1,7 @@
 <template>
-  <v-dialog
-    v-model="dialog"
-    z-index="10000"
-    persistent
+  <v-overlay
+    :value="is_show"
+    z-index="100005"
     >
     <v-alert :type="dialog_data.type">
       <v-row>
@@ -21,14 +20,14 @@
         </v-col>
       </v-row>
     </v-alert>
-  </v-dialog>
+  </v-overlay>
 </template>
 
 <script>
 export default {
   //type은 success, info, warning, error 이렇게 4가지를 쓸 수 있음
   computed: {
-    dialog() {
+    is_show() {
       return this.$store.getters['GET_ALERT'];
     },
     dialog_data() {
