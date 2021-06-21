@@ -58,6 +58,9 @@
 </template>
 
 <script>
+/**
+ * ip 형식은 어떻게 처리할지 생각해보기
+ */
 export default {
   data() {
     return {
@@ -73,10 +76,6 @@ export default {
     },
   },
   methods: {
-    change(ip,port,valid) {   //필수
-      let data = this.$store.getters['GET_CONTEXT_MENU'];
-      data.text = ip;
-    },
     /** 
      * data.type에 따라서 direct, indirect 생각하기
      * 'string'은 값 변경이 있으면 direct, 없으면 indirect
@@ -86,67 +85,82 @@ export default {
      */
     include_filter() {
       let data = this.$store.getters['GET_CONTEXT_MENU'];
-      let filter = this.$store.getters['GET_FILTERS'];
-      let search = {};
-      let change = false;
-      search.mode = 'include';
-      search.name = data.name;
-      search.field = data.info.obj.field;
-
-      if (data.text === String(data.info.val)) { //indirect
-        search.type = 'indirect';
-        search.data = data.text;
-        change = true;
-      } else {//direct
-        //context_menu 의 type이 integer, select면 indirect로
-        if (data.type === 'string') {
-          search.type = 'direct';
-          search.data = data.text;
-          change = true;
-        } else if (data.type === 'integer' || data.type === 'select') {
+      if (data.text === null || data.text === '') {
+        this.show_alert();
+      } else {
+        let filter = this.$store.getters['GET_FILTERS'];
+        let search = {};
+        let change = false;
+        search.mode = 'include';
+        search.name = data.name;
+        search.field = data.info.obj.field;
+  
+        if (data.text === String(data.info.val)) { //indirect
           search.type = 'indirect';
           search.data = data.text;
           change = true;
+        } else {//direct
+          //context_menu 의 type이 integer, select면 indirect로
+          if (data.type === 'string') {
+            search.type = 'direct';
+            search.data = data.text;
+            change = true;
+          } else if (data.type === 'integer' || data.type === 'select') {
+            search.type = 'indirect';
+            search.data = data.text;
+            change = true;
+          } else if (data.type === 'ip') {
+            search.type = 'direct';
+            // search.data = data.
+          }
         }
-      }
-      if (change) {
-        filter.push(search);
-        this.$store.commit('SET_FILTERS', filter);
-        this.$emit('reload', true);
-        console.log('include_filter : ', data);
+        if (change) {
+          filter.push(search);
+          this.$store.commit('SET_FILTERS', filter);
+          this.$emit('reload', true);
+        }
       }
     },
     exclude_filter() {
       let data = this.$store.getters['GET_CONTEXT_MENU'];
-      let filter = this.$store.getters['GET_FILTERS'];
-      let search = {};
-      let change = false;
-      search.mode = 'exclude';
-      search.name = data.name;
-      search.field = data.info.obj.field;
-
-      if (data.text === String(data.info.val)) { //indirect
-        search.type = 'indirect';
-        search.data = data.text;
-        change = true;
-      } else {//direct
-        //context_menu 의 type이 integer, select면 indirect로
-        if (data.type === 'string') {
-          search.type = 'direct';
-          search.data = data.text;
-          change = true;
-        } else if (data.type === 'integer' || data.type === 'select') {
+      if (data.text === null || data.text === '') {
+        this.show_alert();
+      } else {
+        let filter = this.$store.getters['GET_FILTERS'];
+        let search = {};
+        let change = false;
+        search.mode = 'exclude';
+        search.name = data.name;
+        search.field = data.info.obj.field;
+  
+        if (data.text === String(data.info.val)) { //indirect
           search.type = 'indirect';
           search.data = data.text;
           change = true;
+        } else {//direct
+          //context_menu 의 type이 integer, select면 indirect로
+          if (data.type === 'string') {
+            search.type = 'direct';
+            search.data = data.text;
+            change = true;
+          } else if (data.type === 'integer' || data.type === 'select') {
+            search.type = 'indirect';
+            search.data = data.text;
+            change = true;
+          } else if (data.type === 'ip') {
+            search.type = 'direct';
+            // search.data = data.
+          }
+        }
+        if (change) {
+          filter.push(search);
+          this.$store.commit('SET_FILTERS', filter);
+          this.$emit('reload', true);
         }
       }
-      if (change) {
-        filter.push(search);
-        this.$store.commit('SET_FILTERS', filter);
-        this.$emit('reload', true);
-        console.log('exclude_filter : ', data);
-      }
+    },
+    show_alert() {
+      this.$store.dispatch('updateAlert', {alert: true, type: 'warning', text: '빈 값으로 검색조건을 실행할 수 없습니다.'});
     },
   }
 }

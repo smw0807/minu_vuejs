@@ -1,5 +1,6 @@
 function make_list_query(params) {
   console.table(params.filters);
+  //! todo 쿼리 수정 꼭하기
   let q = {
     _source: {
       excludes: ["detec_file_content"]

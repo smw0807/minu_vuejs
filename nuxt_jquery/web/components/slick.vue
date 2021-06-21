@@ -77,6 +77,18 @@ export default {
         enableColumnReorder: false
       },
 
+      context_menu: {
+        type: 'string',
+        name: '',
+        text: '', //화면에 뿌려줄 value,
+        value: '',//필터링용 value
+      },
+      no_context_menu: ['test_mk_dt'], //context_menu 활성화 안시킬 컬럼
+      context_type_string: ['name'], //indirect는 term, direct는 wildcard
+      context_type_ip : ['test_ip'],
+      context_type_int : ['age', 'test_port'], //indirect, direct 둘다 term 조건으로 검색
+      context_type_sel : ['is_use'], //셀렉트 박스라 무조건 term
+
       date: new Date().toISOString().substr(0, 10),
       s_date: new Date().toISOString().substr(0, 10),
       e_date: new Date().toISOString().substr(0, 10),
@@ -110,8 +122,23 @@ export default {
 			const obj = this.grid.getColumns()[cell.cell];
 			const data = this.grid.getDataItem(cell.row);
 			const val = data[obj.id];
-      console.log(cell, obj, data, val);
-      this.$refs.ctxMenu.open(e, val);
+      if (this.no_context_menu.indexOf(obj.id) === -1 && val !== undefined) {
+        if (this.context_type_string.indexOf(obj.id) !== -1) {
+          this.context_menu.type = 'string';
+        } else if (this.context_type_ip.indexOf(obj.id) !== -1) {
+          this.context_menu.type = 'ip'
+        } else if (this.context_type_int.indexOf(obj.id) !== -1) {
+          this.context_menu.type = 'integer'
+        } else if (this.context_type_sel.indexOf(obj.id) !== -1) {
+          this.context_menu.type = 'select'
+        }
+        this.context_menu.name = obj.name;
+        this.context_menu.text = String(val);
+        this.context_menu.info = {cell, obj, data, val};
+        
+        this.$store.commit('SET_CONTEXT_MENU', this.context_menu);
+        this.$refs.ctxMenu.open(e, val);
+      }
     });
     //sort 기능
     this.grid.onSort.subscribe((e, args) => {
@@ -185,7 +212,13 @@ export default {
 
     //필터 초기화
     filter_reset() {
-      console.log('filter_reset');
+       if (this.$store.getters['GET_FILTERS'].length === 0) {
+        this.$store.dispatch('updateAlert', {alert: true, type: 'info', text: '초기화할 검색조건이 없습니다.'});
+      } else {
+        this.$store.commit('SET_FILTERS', []);
+        this.searchSize = 500;
+        this.getData();
+      }
     },
 
     //데이터 리로드
