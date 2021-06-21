@@ -59,6 +59,7 @@
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
+    <alert/>
     <v-main>
       <nuxt />
     </v-main>
@@ -73,7 +74,11 @@
 </template>
 
 <script>
+import alert from '~/components/cmn/alert'
 export default {
+  components:{
+    alert
+  },
   data () {
     return {
       clipped: true,

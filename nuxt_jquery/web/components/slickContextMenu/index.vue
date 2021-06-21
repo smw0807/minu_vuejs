@@ -65,8 +65,8 @@ export default {
   data() {
     return {
       type_option: [ 
-        { text: 'Snort', value: 'snort'},
-        { text: 'Yara', value: 'yara'}
+        { text: '사용', value: true},
+        { text: '사용안함', value: false}
       ]
     }
   },
@@ -183,14 +183,12 @@ export default {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
-/* .cm_text {
-  text-align: center;
-  padding: 15px 18px;
-  font-size: 17px;
-} */
-.theme--dark .cm_text {
+.cm_text >* {
+  color: red;
+}
+.theme--dark ccm_text > * {
   font-size: 13px;
-  color: black;
+  color: red;
 }
 .theme--light .cm_text {
   font-size: 13px;

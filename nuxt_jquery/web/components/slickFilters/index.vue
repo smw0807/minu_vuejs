@@ -27,7 +27,7 @@
 <script>
 export default {
   computed: {
-    items() {
+    filters() {
       return this.$store.getters['GET_FILTERS'];
     }
   },

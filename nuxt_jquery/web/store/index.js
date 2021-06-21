@@ -3,16 +3,21 @@ export const state = () => {
   return {
     list: [],
     filters:[
-      { type: 'include', mode: 'direct', name:'name', text: '이름', data: '민우' },
-      { type: 'exclude', mode: 'indirect', name:'name', text: '이름', data: '송민우' },
-      { type: 'exclude', mode: 'direct', name:'name', text: '이름', data: '민우5' },
-      { type: 'include', mode: 'indirect', name:'test_port', text: '포트', data: '8201' },
-      { type: 'exclude', mode: 'indirect', name:'age', text: '나이', data: '30' },
+      { mode: 'include', type: 'direct', field:'name', name: '이름', data: '민우' },
+      { mode: 'exclude', type: 'indirect', field:'name', name: '이름', data: '송민우' },
+      { mode: 'exclude', type: 'direct', field:'name', name: '이름', data: '민우5' },
+      { mode: 'include', type: 'indirect', field:'test_port', name: '포트', data: '8201' },
+      { mode: 'exclude', type: 'indirect', field:'age', name: '나이', data: '30' },
     ],
     context_menu: {
       type:'string',
       text:'',
       info: {}
+    },
+    alert : false,
+    alert_data: {
+      type: 'primary', //type은 success, info, warning, error 이렇게 4가지를 쓸 수 있음
+      text: ''
     },
   }
 };
@@ -26,7 +31,12 @@ export const mutations = {
   },
   SET_CONTEXT_MENU(state, payload) {
     state.context_menu = payload;
-  }
+  },
+  SET_ALERT(state, payload) {
+    state.alert = payload.alert;
+    state.alert_data.type = payload.type;
+    state.alert_data.text = payload.text;
+  },
 }
 
 export const getters = {
@@ -38,7 +48,13 @@ export const getters = {
   },
   GET_CONTEXT_MENU(state) {
     return state.context_menu;
-  }
+  },
+  GET_ALERT(state) {
+    return state.alert;
+  },
+  GET_ALERT_DATA(state) {
+    return state.alert_data;
+  },
 }
 
 export const actions = {
@@ -63,5 +79,8 @@ export const actions = {
         reject(err);
       }
     })
+  },
+  updateAlert({commit}, params) {
+    commit('SET_ALERT', params);
   }
 }
