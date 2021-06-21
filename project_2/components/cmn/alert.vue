@@ -10,7 +10,7 @@
         </v-col>
       </v-row>
       <v-row>
-       <v-col cols="12" align="center">
+       <v-col cols="12" align="end">
           <v-btn
             outlined
             @click="close"

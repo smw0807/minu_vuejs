@@ -9,7 +9,7 @@
           {{ dialog_data.text }}
         </v-col>
       </v-row>
-      <v-row justify="end">
+      <v-row align="end">
        <v-col cols="5">
           <v-btn
             outlined
