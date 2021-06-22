@@ -52,12 +52,8 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      
+      <change-theme/>
     </v-app-bar>
     <alert/>
     <v-main>
