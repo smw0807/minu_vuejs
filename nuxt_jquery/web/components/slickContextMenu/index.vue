@@ -1,6 +1,10 @@
 /** 작업자 : 송민우 */
 <template>
-  <div>
+  <context-menu id="context-menu" ref="ctxMenu" 
+    :closeOnClick="closeOnClick"
+    :lazy="lazy"
+    style="min-width:270px;"
+    >
     <li class="cm_header">검색조건</li>
     <v-divider></v-divider>
     <v-divider></v-divider>
@@ -38,7 +42,7 @@
           item-value="value"
           hide-details
           :menu-props="{ top: true, offsetY: true }"
-          @click.stop
+          @change="keepMenu"
           >
         </v-select>
       </template>
@@ -54,7 +58,7 @@
         </v-col>
       </v-row>
     </li>
-  </div>
+  </context-menu>
 </template>
 
 <script>
@@ -62,8 +66,16 @@
  * ip 형식은 어떻게 처리할지 생각해보기
  */
 export default {
+  props: {
+    context_info: {
+      type: Object
+    }
+  },
   data() {
     return {
+      context_menu : null,
+      closeOnClick: false, //context-menu 영역 클릭해도 안닫히게 해줌
+      lazy: true, //셀렉트박스 change이벤트에 메뉴 안 닫히게 쓸 용도
       type_option: [ 
         { text: '사용', value: true},
         { text: '사용안함', value: false}
@@ -75,7 +87,24 @@ export default {
       return this.$store.getters['GET_CONTEXT_MENU'];
     },
   },
+  watch: {
+    context_info(v) {
+      this.context_menu.open(v);
+    }
+  },
+  mounted() {
+    this.context_menu = this.$refs.ctxMenu;
+  },
+  updated() {
+    if (this.context_data.type === 'select') {
+      //셀렉트박스 change 이벤트가 발생하면 닫히는거 대응용...
+      this.open();
+    }
+  },
   methods: {
+    keepMenu() { //context_menu가 안닫히게끔 해주기 위한 것
+      this.context_menu.show = false;
+    },
     /** 
      * data.type에 따라서 direct, indirect 생각하기
      * 'string'은 값 변경이 있으면 direct, 없으면 indirect
@@ -119,6 +148,7 @@ export default {
           this.$store.commit('SET_FILTERS', filter);
           this.$emit('reload', true);
         }
+        this.close();
       }
     },
     exclude_filter() {
@@ -157,10 +187,17 @@ export default {
           this.$store.commit('SET_FILTERS', filter);
           this.$emit('reload', true);
         }
+        this.close();
       }
     },
     show_alert() {
       this.$store.dispatch('updateAlert', {alert: true, type: 'warning', text: '빈 값으로 검색조건을 실행할 수 없습니다.'});
+    },
+    open() { //context_menu 열기
+      this.context_menu.open(this.context_info);
+    },
+    close() { //context_menu 닫기
+      this.context_menu.close();
     },
   }
 }

@@ -45,9 +45,7 @@
       <slick-filters @reload="refresh"/>
     </v-card-text>
     <v-card-text>
-      <context-menu id="context-menu" ref="ctxMenu">
-        <slick-context-menu @reload="getData"/>
-      </context-menu>
+      <slick-cntext-menu :context_info="context_info" @reload="getData"/>
       <div id="slickgrid" style="height: 650px"></div>
     </v-card-text>
     
@@ -77,6 +75,7 @@ export default {
         enableColumnReorder: false
       },
 
+      context_info: null,
       context_menu: {
         type: 'string',
         name: '',
@@ -137,7 +136,7 @@ export default {
         this.context_menu.info = {cell, obj, data, val};
         
         this.$store.commit('SET_CONTEXT_MENU', this.context_menu);
-        this.$refs.ctxMenu.open(e, val);
+        this.context_info = e;
       }
     });
     //sort 기능
