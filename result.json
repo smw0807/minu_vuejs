@@ -1,0 +1,159 @@
+{
+  "took": 9,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "idx_test1",
+        "_type": "_doc",
+        "_id": "8bna1nkBI0YEVu9w4mRf",
+        "_score": 1,
+        "_source": {
+          "test_mk_dt": "2021-06-04 08:49:01",
+          "name": "송민우",
+          "age": "28",
+          "test_ip": "192.168.11.2",
+          "test_port": 8583,
+          "is_use": true
+        }
+      },
+      {
+        "_index": "idx_test1",
+        "_type": "_doc",
+        "_id": "8rna1nkBI0YEVu9w4mRf",
+        "_score": 1,
+        "_source": {
+          "test_mk_dt": "2021-06-04 08:49:01",
+          "name": "송민우2",
+          "age": "28",
+          "test_ip": "192.168.11.3",
+          "test_port": 8931,
+          "is_use": true
+        }
+      },
+      {
+        "_index": "idx_test1",
+        "_type": "_doc",
+        "_id": "9bna1nkBI0YEVu9w4mRf",
+        "_score": 1,
+        "_source": {
+          "test_mk_dt": "2021-06-04 08:49:01",
+          "name": "송민우1",
+          "age": "29",
+          "test_ip": "192.168.11.4",
+          "test_port": 8323,
+          "is_use": true
+        }
+      },
+      {
+        "_index": "idx_test1",
+        "_type": "_doc",
+        "_id": "-7na1nkBI0YEVu9w4mRf",
+        "_score": 1,
+        "_source": {
+          "test_mk_dt": "2021-06-04 08:49:01",
+          "name": "민우1",
+          "age": "30",
+          "test_ip": "192.168.11.5",
+          "test_port": 8342,
+          "is_use": false
+        }
+      },
+      {
+        "_index": "idx_test1",
+        "_type": "_doc",
+        "_id": "_7na1nkBI0YEVu9w4mRf",
+        "_score": 1,
+        "_source": {
+          "test_mk_dt": "2021-06-04 08:49:01",
+          "name": "민우2",
+          "age": "32",
+          "test_ip": "192.168.11.3",
+          "test_port": 8759,
+          "is_use": true
+        }
+      },
+      {
+        "_index": "idx_test1",
+        "_type": "_doc",
+        "_id": "Arna1nkBI0YEVu9w4mVf",
+        "_score": 1,
+        "_source": {
+          "test_mk_dt": "2021-06-04 08:49:01",
+          "name": "민우3",
+          "age": "27",
+          "test_ip": "192.168.11.3",
+          "test_port": 8863,
+          "is_use": false
+        }
+      },
+      {
+        "_index": "idx_test1",
+        "_type": "_doc",
+        "_id": "Bbna1nkBI0YEVu9w4mVf",
+        "_score": 1,
+        "_source": {
+          "test_mk_dt": "2021-06-04 08:49:01",
+          "name": "송민우1",
+          "age": "27",
+          "test_ip": "192.168.11.3",
+          "test_port": 8509,
+          "is_use": true
+        }
+      },
+      {
+        "_index": "idx_test1",
+        "_type": "_doc",
+        "_id": "Brna1nkBI0YEVu9w4mVf",
+        "_score": 1,
+        "_source": {
+          "test_mk_dt": "2021-06-04 08:49:01",
+          "name": "민우",
+          "age": "29",
+          "test_ip": "192.168.11.1",
+          "test_port": 8435,
+          "is_use": false
+        }
+      },
+      {
+        "_index": "idx_test1",
+        "_type": "_doc",
+        "_id": "B7na1nkBI0YEVu9w4mVf",
+        "_score": 1,
+        "_source": {
+          "test_mk_dt": "2021-06-04 08:49:01",
+          "name": "송민우2",
+          "age": "31",
+          "test_ip": "192.168.11.3",
+          "test_port": 8458,
+          "is_use": true
+        }
+      },
+      {
+        "_index": "idx_test1",
+        "_type": "_doc",
+        "_id": "CLna1nkBI0YEVu9w4mVf",
+        "_score": 1,
+        "_source": {
+          "test_mk_dt": "2021-06-04 08:49:01",
+          "name": "민우3",
+          "age": "30",
+          "test_ip": "192.168.11.4",
+          "test_port": 8080,
+          "is_use": true
+        }
+      }
+    ]
+  }
+}
