@@ -45,7 +45,7 @@
       <slick-filters @reload="refresh"/>
     </v-card-text>
     <v-card-text>
-      <slick-cntext-menu :context_info="context_info" @reload="getData"/>
+      <slick-context-menu :context_info="context_info" @reload="getData"/>
       <div id="slickgrid" style="height: 650px"></div>
     </v-card-text>
     

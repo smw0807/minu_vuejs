@@ -41,8 +41,9 @@
           item-text="text"
           item-value="value"
           hide-details
-          :menu-props="{ top: true, offsetY: true }"
+          :menu-props="{ bottom: true, offsetY: true }"
           @change="keepMenu"
+          color="blue"
           >
         </v-select>
       </template>
@@ -77,8 +78,8 @@ export default {
       closeOnClick: false, //context-menu 영역 클릭해도 안닫히게 해줌
       lazy: true, //셀렉트박스 change이벤트에 메뉴 안 닫히게 쓸 용도
       type_option: [ 
-        { text: '사용', value: true},
-        { text: '사용안함', value: false}
+        { text: '사용', value: 'true'},
+        { text: '사용안함', value: 'false'}
       ]
     }
   },
@@ -231,10 +232,12 @@ export default {
   font-size: 13px;
   color: blue;
 }
-/* .theme--dark li {
-  color: red;
+.v-text-field__slot input {
+   color: #000 !important;
 }
-.theme--light li {
-  color: blue;
-} */
+.v-select__selections #type_select {
+  color: #000 !important;
+}
+</style>
+
 </style>
