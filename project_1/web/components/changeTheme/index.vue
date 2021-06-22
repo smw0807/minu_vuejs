@@ -25,6 +25,7 @@ export default {
   methods:{
     darkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      localStorage.setItem('theme', this.$vuetify.theme.dark === true ? 'dark' : 'light');
     },
   }
 }

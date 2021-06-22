@@ -22,7 +22,13 @@ export default {
    mainMenu, alt, bottomNav, menuHistory
   },
   created() {
-    this.$vuetify.theme.dark = true;
+    const theme = localStorage.getItem('theme');
+    if (theme === null) {
+      this.$vuetify.theme.dark = false;
+      localStorage.setItem('theme', 'light');
+    } else {
+      this.$vuetify.theme.dark = (theme === 'dark' ? true : false);
+    }
   }
 }
 </script>
