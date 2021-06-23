@@ -2,6 +2,7 @@
   <v-app>
     <main-menu/>
     <alt/>
+    <confirm/>
       <transition name="component-fade" mode="out-in">
         <v-main>
           <menu-history class="mt-3 ml-4"/>
@@ -17,9 +18,10 @@ import mainMenu from '~/components/mainMenu'
 import bottomNav from '~/components/bottom'
 import alt from '~/components/cmn/alert'
 import menuHistory from '~/components/menuHistory'
+import confirm from '~/components/custom/confirm'
 export default {
   components:{
-   mainMenu, alt, bottomNav, menuHistory
+   mainMenu, alt, bottomNav, menuHistory, confirm,
   },
   created() {
     const theme = localStorage.getItem('theme');

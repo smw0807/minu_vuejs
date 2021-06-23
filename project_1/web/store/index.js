@@ -12,6 +12,12 @@ export const state = () => {
       type: 'primary', //type은 success, info, warning, error 이렇게 4가지를 쓸 수 있음
       text: ''
     },
+    confirm: false,
+    confirm_data: {
+      type: 'error',
+      title: 'test11',
+      text: 'ttttttttttttttt'
+    }
   }
 }
 
@@ -34,6 +40,9 @@ export const mutations = {
   SET_MENU_HISTORY(state, payload) {
     state.menuHistory = payload;
   },
+  SET_CONFIRM(state, payload) {
+    state.confirm = payload;
+  }
 }
 
 export const getters = {
@@ -61,6 +70,12 @@ export const getters = {
   GET_MENU_HISTORY(state) {
     return state.menuHistory;
   },
+  GET_CONFIRM(state) {
+    return state.confirm;
+  },
+  GET_CONFIRM_DATA(state) {
+    return state.confirm_data;
+  }
 }
 
 export const actions = {

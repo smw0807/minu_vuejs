@@ -12,7 +12,7 @@ export default {
     { divider: true },
     { title: 'v-picker', icon: 'mdi-calendar', to: '/vpicker/datepicker'},
     { divider: true },
-    { title: 'vue slimgrid', icon: 'mdi-grid', to: '/slimgrid/grid1'},
+    { title: 'custom confirm', icon: 'mdi-comment-question-outline', to: '/custom/confirm'},
     { divider: true },
     {
       title: 'menu1',
