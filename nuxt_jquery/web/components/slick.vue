@@ -54,6 +54,13 @@
 
 <script>
 export default {
+  head() {
+    return {
+      link: [
+        { rel:'stylesheet', href: '/lib/slick/slick-icons.css'}
+      ]
+    }
+  },
   data() {
     return {
       totCount: 0,
