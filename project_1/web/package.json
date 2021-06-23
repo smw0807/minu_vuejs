@@ -15,8 +15,7 @@
     "bcryptjs": "^2.4.3",
     "elasticsearch": "^16.7.2",
     "express": "^4.17.1",
-    "nuxt": "^2.15.3",
-    "vue-slimgrid": "^0.1.39"
+    "nuxt": "^2.15.3"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"

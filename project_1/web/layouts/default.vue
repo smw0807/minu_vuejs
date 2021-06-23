@@ -24,7 +24,7 @@ export default {
   created() {
     const theme = localStorage.getItem('theme');
     if (theme === null) {
-      this.$vuetify.theme.dark = false;
+      this.$vuetify.theme.dark = true;
       localStorage.setItem('theme', 'light');
     } else {
       this.$vuetify.theme.dark = (theme === 'dark' ? true : false);
