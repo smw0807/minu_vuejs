@@ -175,14 +175,14 @@ export default {
               this.breadcrumbs.push({ text: items[i].title, disabled: false });
               this.breadcrumbs.push({ text: sub[j].title, disabled: false });
               this.setMenuHistory({title: sub[j].title, to: sub[j].to});
-              this.title = this.default_tile + '-' + sub[j].title;
+              this.title = this.default_title + '-' + sub[j].title;
             }
           }
         } else {
           if (path === items[i].to) {
             this.breadcrumbs.push({ text: items[i].title, disabled: false });
             this.setMenuHistory({title: items[i].title, to: items[i].to});
-            this.title = this.default_tile + '-' + items[i].title;
+            this.title = this.default_title + '-' + items[i].title;
           }
         }
       }
