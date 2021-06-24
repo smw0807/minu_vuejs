@@ -100,6 +100,11 @@ export default {
           icon: 'mdi-view-grid',
           title: 'Slick.Grid.js',
           to: '/slick'
+        },
+        {
+          icon: 'mdi-test-tube',
+          title: '자식 함수 실행',
+          to: '/test1'
         }
       ],
       miniVariant: false,
