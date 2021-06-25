@@ -76,9 +76,10 @@
 
 <script>
 import detail from './saveFilterDetail'
+import confirm from '~/components/cmn/confirm'
 export default {
   components:{
-    detail,
+    detail, confirm,
   },
   data() {
     return {

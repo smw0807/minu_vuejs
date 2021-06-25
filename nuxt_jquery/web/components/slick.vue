@@ -45,6 +45,7 @@
       <slick-filters @reload="refresh"/>
     </v-card-text>
     <v-card-text>
+      <confirm ref="cf"/>
       <slick-context-menu :context_info="context_info" @reload="getData"/>
       <div id="slickgrid" style="height: 650px"></div>
     </v-card-text>
@@ -53,7 +54,11 @@
 </template>
 
 <script>
+import confirm from '~/components/cmn/confirm'
 export default {
+  components: {
+    confirm
+  },
   head() {
     return {
       link: [
@@ -221,9 +226,16 @@ export default {
        if (this.$store.getters['GET_FILTERS'].length === 0) {
         this.$store.dispatch('updateAlert', {alert: true, type: 'info', text: '초기화할 검색조건이 없습니다.'});
       } else {
-        this.$store.commit('SET_FILTERS', []);
-        this.searchSize = 500;
-        this.getData();
+        const rs = await this.$refs.cf.open({
+          type:'warning',
+          title: '검색조건 초기화',
+          text: '검색조건을 초기화 하시겠습니까?'
+        });
+        if (rs) {
+          this.$store.commit('SET_FILTERS', []);
+          this.searchSize = 500;
+          this.getData();
+        }
       }
     },
 

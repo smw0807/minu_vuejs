@@ -87,7 +87,11 @@
   </v-dialog>
 </template>
 <script>
+import confirm from '~/components/cmn/confirm'
 export default {
+  components: {
+    confirm,
+  },
   data() {
     return {
       dialog: false,
