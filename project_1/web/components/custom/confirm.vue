@@ -16,15 +16,15 @@
       <v-row >
         <v-col cols="12" align="end">
           <v-btn
-              color="green darken-1"
-              @click="ok"
+            :color="type"
+            @click="ok"
             >
               예
             </v-btn>
           <v-btn
-              color="green darken-1"
-              outlined
-              @click="cancel"
+            text
+            outlined
+            @click="cancel"
             >
               아니요
             </v-btn>
@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       is_show: false,
-      type: '',
+      type: 'info', //success, info, warning, error 이렇게 4가지 사용 가능
       title: '',
       text: '',
       result_ok :  undefined,
@@ -49,7 +49,7 @@ export default {
   methods:{
     open (options) {
       this.is_show = true;
-      this.type = options.type;
+      this.type = options.type === (null || '') ? 'info' : options.type;
       this.title = options.title;
       this.text = options.text;
       return new Promise( (resolve, reject) => {
