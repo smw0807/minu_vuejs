@@ -1,11 +1,7 @@
 /** 작업자 : 송민우 */
 export const state = () => {
   return {
-    detail: {
-      // title:'',
-      // desc:'',
-      // data: [],
-    }, //상세정보
+    detail: {}, //상세정보
     save_filter_list: [], //저장된 검색조건 리스트
   }
 }

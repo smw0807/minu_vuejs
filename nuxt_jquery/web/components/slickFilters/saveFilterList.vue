@@ -22,9 +22,10 @@
       <v-divider/>
       <v-card-text align="end" class="px-3 pb-2 mt-2">
         <!-- 검색조건 저장 등록 및 상세보기 컴포넌트 -->
-        <detail ref="detail"/>
+        <detail ref="detail" @reload="getData" />
       </v-card-text>
       <v-card-text class="px-3 py-1">
+        <confirm ref="cf"/>
         <v-data-table
           :headers="headers"
           :items="items"
@@ -122,7 +123,6 @@ export default {
           params.location = 'analysis';
         }
         const rs = await this.$store.dispatch('threat/saveFilter/filterList', params);
-        console.log('filter : ', rs);
       } catch (err) {
         console.error(err);
       }
@@ -131,8 +131,25 @@ export default {
       this.$store.commit('threat/saveFilter/SET_DETAIL', v);
       this.$refs.detail.show_detail();
     },
-    deleteItem(v) {
-      console.log('deleteItem : ', v);
+    async deleteItem(v) {
+      const rs = await this.$refs.cf.open({
+        type:'warning',
+        title: '검색조건 삭제',
+        text: '해당 검색조건을 삭제하시겠습니까?'
+      })
+      if (rs) {
+        const params = {};
+        params._id = v;
+        try {
+          const rt = await this.$store.dispatch('threat/saveFilter/delete', params);
+          if (rt) {
+            this.getData();
+            this.$store.dispatch('updateAlert', {alert: true, type: 'success', title: '검색조건 삭제', text: '삭제 완료되었습니다.'});
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
     }
   },
 }

@@ -1,18 +1,23 @@
+/** 작업자 : 송민우 */
 <template>
   <v-overlay
     :value="is_show"
     z-index="100005"
     >
-    <v-alert :type="dialog_data.type">
+    <v-alert :type="dialog_data.type" border="right" colored-border>
       <v-row>
+        <v-col cols="12">
+          {{ dialog_data.title }}
+        </v-col>
         <v-col cols="12">
           {{ dialog_data.text }}
         </v-col>
       </v-row>
-      <v-row>
-       <v-col cols="12" align="end">
+      <v-row >
+        <v-col cols="12" align="end">
           <v-btn
             outlined
+            :color="dialog_data.type"
             @click="close"
             >
             확인

@@ -19,6 +19,7 @@
       </v-card-title>
       <v-divider></v-divider>
       <v-card-text>
+        <confirm ref="cf"/>
         <v-layout column>
           <v-flex>
             <v-form ref="form" lazy-validation>
@@ -92,6 +93,7 @@ export default {
       dialog: false,
       mode: '',
       path: '',
+      type: '',
 
       title: '',
       desc: '',
@@ -106,9 +108,11 @@ export default {
   },
   created() {
     if (this.$nuxt.$route.path.indexOf('monitoring') !== -1) {
-      this.path = 'threat/monitoring/'
+      this.path = 'threat/monitoring/';
+      this.type = 'monitoring';
     } else {
-      this.path = 'threat/analysis/'
+      this.path = 'threat/analysis/';
+      this.type = 'analysis';
     }
   },
   methods:{
@@ -117,12 +121,13 @@ export default {
       this.detail = {};
       this.filters = [];
       const data = this.$store.getters[this.path + 'GET_FILTERS'];
-      console.log(data);
       if (data.length === 0) {
         this.$store.dispatch('updateAlert', {alert: true, type: 'error', text: '저장할 검색조건이 없습니다.'}, {root: true});
       } else {
         this.dialog = true;
-        this.$refs.form.reset();
+        if (this.title !== '') {
+          this.$refs.form.reset();
+        }
         this.filters = this.$store.getters[this.path + 'GET_FILTERS'];
       }
     },
@@ -131,6 +136,7 @@ export default {
       const v = this.$store.getters['threat/saveFilter/GET_DETAIL'];
       const title = v.title;
       const desc = v.desc;
+      
       this.title = title;
       this.desc = desc;
       this.detail = v;
@@ -140,23 +146,38 @@ export default {
     async save() {
       const validate = this.$refs.form.validate();
       if (validate) {
-        let msg = this.mode === 'ins' ? '등록하시겠습니까?' : '수정하시겠습니까?';
-        console.log(this.mode);
-        console.log(this.detail);
-        if (confirm(msg)) {
+        const msg = this.mode === 'ins' ? '등록하시겠습니까?' : '수정하시겠습니까?';
+        const rs_msg = this.mode === 'ins' ? '등록완료되었습니다.' : '수정완료되었습니다.';
+        const rs = await this.$refs.cf.open({
+          type:'info',
+          title: '검색조건',
+          text: msg
+        });
+        if (rs) {
           let params = {};
           params.mode = this.mode;
+          params.location = this.type;
+          params.title = this.title;
+          params.desc = this.desc;
           params.detail = this.detail;
-          params.detail.title = this.title;
-          params.detail.desc = this.desc;
           params.filters = this.filters;
+          if (this.mode === 'upd') params._id = this.detail._id;
           const rs = await this.$store.dispatch('threat/saveFilter/action', params);
-          console.log(rs);
+          if (rs) {
+            this.$store.dispatch('updateAlert', {alert: true, type: 'success', text:rs_msg});
+            this.$emit("reload", true);
+            this.dialog = false;
+          }
         }
       }
     },
-    getFilter() {
-      if (confirm('검색조건을 가져오시겠습니까?')) {
+    async getFilter() {
+      const rs = await this.$refs.cf.open({
+        type:'info',
+        title: '검색조건',
+        text: '해당 검색조건을 가져오시겠습니까?'
+      });
+      if (rs) {
         this.$store.commit(this.path + 'SET_FILTERS', this.filters);
         this.dialog = false;
         this.$store.dispatch('updateAlert', {alert: true, type: 'success', text:'완료되었습니다!'});
