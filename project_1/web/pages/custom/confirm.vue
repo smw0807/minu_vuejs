@@ -1,6 +1,6 @@
 <template>
   <v-layout column>
-    
+    <confirm ref="cf" />
     <v-flex class="ma-4">
       <v-row>
         <v-col cols="12">
@@ -18,20 +18,24 @@
 </template>
 
 <script>
+import confirm from '~/components/custom/confirm'
 export default {
+  components: {
+    confirm
+  },
   methods:{
     go() {
       console.log('go!');
-      //1. store를 이용해 confirm 컴포넌트를 실행시킴
-      // const rs = ... 
-
-      //2. Ok 누르면 if문 정상적으로 타고 Cancel 누르면 else문 타게하기
-      // if (rs) {
-
-      // } else {
-
-      // }
-      //... 어떻게 하면 만들수 있을까...?
+      const rs = await this.$refs.cf.open({
+        type:'success',
+        title: 'Confirm!!',
+        text: 'Ok??'
+      });
+      if (rs) {
+        console.log('true!!!');
+      } else {
+        console.log('false!!!');
+      }
     }
   }
 }

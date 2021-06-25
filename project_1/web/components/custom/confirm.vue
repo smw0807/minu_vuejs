@@ -1,40 +1,33 @@
+/** 작업자 : 송민우 */
 <template>
   <v-overlay
     :value="is_show"
     z-index="100005"
     >
-    <v-alert 
-      :type="confirm_data.type"
-      border="right"
-      colored-border
-      >
+    <v-alert :type="type" border="right" colored-border>
       <v-row>
         <v-col cols="12">
-          {{ confirm_data.title }}
+          {{ title }}
         </v-col>
-
         <v-col cols="12">
-          {{ confirm_data.text }}
+          {{ text }}
         </v-col>
-  
-        <v-col cols="6" align="center" >
+      </v-row>
+      <v-row >
+        <v-col cols="12" align="end">
           <v-btn
-            @click="ok"
-            block
+              color="green darken-1"
+              @click="ok"
             >
-            Ok
-          </v-btn>
-        </v-col>
-
-        <v-col cols="6" align="center">
+              예
+            </v-btn>
           <v-btn
-            text
-            outlined
-            block
-            @click="close"
+              color="green darken-1"
+              outlined
+              @click="cancel"
             >
-            Close
-          </v-btn>
+              아니요
+            </v-btn>
         </v-col>
       </v-row>
     </v-alert>
@@ -45,23 +38,32 @@
 export default {
   data() {
     return {
-
+      is_show: false,
+      type: '',
+      title: '',
+      text: '',
+      result_ok :  undefined,
+      result_cancel : undefined,
     }
   },
-  computed: {
-    is_show() {
-      return this.$store.getters['GET_CONFIRM'];
+  methods:{
+    open (options) {
+      this.is_show = true;
+      this.type = options.type;
+      this.title = options.title;
+      this.text = options.text;
+      return new Promise( (resolve, reject) => {
+        this.result_ok = resolve;
+        this.result_cancel = reject;
+      })
     },
-    confirm_data() {
-      return this.$store.getters['GET_CONFIRM_DATA'];
-    }
-  },
-  methods: {
     ok() {
-      console.log('confirm Ok!');
+      this.is_show = false;
+      this.result_ok(true);
     },
-    close() {
-      console.log('confirm Close!');
+    cancel() {
+      this.is_show = false;
+      this.result_ok(false);
     }
   }
 }
