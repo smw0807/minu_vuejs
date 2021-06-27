@@ -2,6 +2,7 @@ export const strict = false;
 export const state = () => {
   return {
     list: [],
+    loading: false,
     filters:[
       { mode: 'include', type: 'direct', field:'name', name: '이름', data: '민우' },
       { mode: 'exclude', type: 'indirect', field:'name', name: '이름', data: '송민우' },
@@ -33,6 +34,9 @@ export const mutations = {
   SET_CONTEXT_MENU(state, payload) {
     state.context_menu = payload;
   },
+  SET_LOADING(state, payload) {
+    state.loading = payload;
+  },
   SET_ALERT(state, payload) {
     state.alert = payload.alert;
       state.alert_data.title = payload.title === (null || undefined || '') ? '' : payload.title;
@@ -50,6 +54,9 @@ export const getters = {
   },
   GET_CONTEXT_MENU(state) {
     return state.context_menu;
+  },
+  GET_LOADING(state) {
+    return state.loading;
   },
   GET_ALERT(state) {
     return state.alert;
@@ -81,6 +88,9 @@ export const actions = {
         reject(err);
       }
     })
+  },
+  updateLoading({commit}, params) {
+    commit('SET_LOADING', params);
   },
   updateAlert({commit}, params) {
     commit('SET_ALERT', params);

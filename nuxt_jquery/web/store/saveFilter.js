@@ -29,19 +29,20 @@ export const actions = {
   filterList({commit, dispatch}, params) {
     return new Promise( async (resolve, reject) => {
       try {
-        dispatch('updateLoading', {loading_1: true}, {root: true});
-        const rs = await this.$axios.post('/api/v1/threat/filter_list', params);
+        dispatch('updateLoading', true, {root: true});
+        const rs = await this.$axios.post('/api/slick/save_filter_list');
         if (rs && rs.data.error === false) {
-          commit('SET_FILTER_LIST', rs.data.data);
+          commit('SET_FILTER_LIST', rs.data.result);
           resolve(rs.data);
         } else {
-          dispatch('updateAlert', {alert: true, type: 'error', text: rs.data.msg}, {root: true});
-          reject(rs);
+          dispatch('updateAlert', {alert: true, type: 'error', text: rs.data.result}, {root: true});
+          reject(rs.data);
         }
-        dispatch('updateLoading', {loading_1: false}, {root: true});
+        dispatch('updateLoading', false, {root: true});
       } catch (err) {
         console.error('threat save filter err : ', err);
-        dispatch('updateLoading', {loading_1: false}, {root: true});
+        dispatch('updateAlert', {alert: true, type: 'error', text: rs.data.result}, {root: true});
+        dispatch('updateLoading', false, {root: true});
         reject(err);
       }
     })
@@ -49,20 +50,30 @@ export const actions = {
   //검색조건 등록, 수정
   action({dispatch}, params) {
     return new Promise( async (resolve, reject) => {
-      console.log('params : ', params);
       try {
-        resolve(params);
+        const path = params.mode === 'ins' ? 'ins_filter' : 'upd_filter';
+        const rs = await this.$axios.post('/api/slick/' + path, params);
+        if (rs && !rs.data.error) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
       } catch (err) {
         console.error('threat save filter action err : ', err);
-        reject(err);
+        reject(false);
       }
     })
   },
   //검새곶건 삭제
-  delelte({dispatch}, params) {
+  delete({dispatch}, params) {
     return new Promise( async (resolve, reject) => {
       try {
-
+        const rs = await this.$axios.post('/api/slick/del_filter', params);
+        if (rs && !rs.data.error) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
       } catch (err) {
         console.log('threat save filter del err : ', err);
         reject(err);

@@ -39,7 +39,7 @@
           :loading="loading"
           loading-text="데이터를 불러오는 중입니다."
           >
-          <template v-slot:[`item.actions2`]="{ item }">
+          <template v-slot:[`item.actions`]="{ item }">
             <v-icon
               small
               class="mr-2 btn_action"
@@ -91,7 +91,7 @@ export default {
         { text: '검색조건 명칭', value: 'title', width: 150},
         { text: '검색조건 설명', value: 'desc', width: 200 },
         { text: '작성일', value: 'upd_dt', width: 150 },
-        { text: '-', value: 'actions2', align: 'center', width: 80, sortable: false },
+        { text: '-', value: 'actions', align: 'center', width: 80, sortable: false },
       ],
     }
   },
@@ -106,30 +106,22 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.getters['GET_LOADING_1'];
+      return this.$store.getters['GET_LOADING'];
     },
     items() {
-      return this.$store.getters['threat/saveFilter/GET_FILTER_LIST'];
+      return this.$store.getters['saveFilter/GET_FILTER_LIST'];
     }
   },
   methods:{
     async getData() {
       try {
-        let params = {
-          user_id: 'admin'
-        };
-        if (this.$nuxt.$route.path.indexOf('monitoring') !== -1) {
-          params.location = 'monitoring';
-        } else {
-          params.location = 'analysis';
-        }
-        const rs = await this.$store.dispatch('threat/saveFilter/filterList', params);
+        const rs = await this.$store.dispatch('saveFilter/filterList');
       } catch (err) {
         console.error(err);
       }
     },
     detail(v) {
-      this.$store.commit('threat/saveFilter/SET_DETAIL', v);
+      this.$store.commit('saveFilter/SET_DETAIL', v);
       this.$refs.detail.show_detail();
     },
     async deleteItem(v) {
@@ -142,7 +134,7 @@ export default {
         const params = {};
         params._id = v;
         try {
-          const rt = await this.$store.dispatch('threat/saveFilter/delete', params);
+          const rt = await this.$store.dispatch('saveFilter/delete', params);
           if (rt) {
             this.getData();
             this.$store.dispatch('updateAlert', {alert: true, type: 'success', title: '검색조건 삭제', text: '삭제 완료되었습니다.'});

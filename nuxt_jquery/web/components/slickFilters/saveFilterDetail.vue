@@ -96,8 +96,6 @@ export default {
     return {
       dialog: false,
       mode: '',
-      path: '',
-      type: '',
 
       title: '',
       desc: '',
@@ -110,21 +108,12 @@ export default {
       ]
     }
   },
-  created() {
-    if (this.$nuxt.$route.path.indexOf('monitoring') !== -1) {
-      this.path = 'threat/monitoring/';
-      this.type = 'monitoring';
-    } else {
-      this.path = 'threat/analysis/';
-      this.type = 'analysis';
-    }
-  },
   methods:{
     open() {
       this.mode = 'ins';
       this.detail = {};
       this.filters = [];
-      const data = this.$store.getters[this.path + 'GET_FILTERS'];
+      const data = this.$store.getters['GET_FILTERS'];
       if (data.length === 0) {
         this.$store.dispatch('updateAlert', {alert: true, type: 'error', text: '저장할 검색조건이 없습니다.'}, {root: true});
       } else {
@@ -132,12 +121,12 @@ export default {
         if (this.title !== '') {
           this.$refs.form.reset();
         }
-        this.filters = this.$store.getters[this.path + 'GET_FILTERS'];
+        this.filters = this.$store.getters['GET_FILTERS'];
       }
     },
     show_detail() {
       this.mode = 'upd';
-      const v = this.$store.getters['threat/saveFilter/GET_DETAIL'];
+      const v = this.$store.getters['saveFilter/GET_DETAIL'];
       const title = v.title;
       const desc = v.desc;
       
@@ -160,16 +149,15 @@ export default {
         if (rs) {
           let params = {};
           params.mode = this.mode;
-          params.location = this.type;
           params.title = this.title;
           params.desc = this.desc;
           params.detail = this.detail;
           params.filters = this.filters;
           if (this.mode === 'upd') params._id = this.detail._id;
-          const rs = await this.$store.dispatch('threat/saveFilter/action', params);
+          const rs = await this.$store.dispatch('saveFilter/action', params);
           if (rs) {
             this.$store.dispatch('updateAlert', {alert: true, type: 'success', text:rs_msg});
-            this.$emit("reload", true);
+            this.$emit("reload", true); //리스트 컴포넌트에 리스트 불러오는 함수 실행
             this.dialog = false;
           }
         }
@@ -182,7 +170,7 @@ export default {
         text: '해당 검색조건을 가져오시겠습니까?'
       });
       if (rs) {
-        this.$store.commit(this.path + 'SET_FILTERS', this.filters);
+        this.$store.commit('SET_FILTERS', this.filters);
         this.dialog = false;
         this.$store.dispatch('updateAlert', {alert: true, type: 'success', text:'완료되었습니다!'});
       }

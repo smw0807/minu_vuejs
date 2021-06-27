@@ -30,10 +30,11 @@
           </v-menu>
         </v-col>
         <v-spacer></v-spacer>
-        <v-col cols="3" align="end">
+        <v-col cols="5" align="end">
           <v-btn small color="primary" @click="filter_reset">
             <v-icon small>mdi-filter-remove-outline</v-icon> 필터 초기화
           </v-btn>
+          <save-filter-list/>
           <v-btn small outlined @click="refresh">
             <v-icon small>mdi-refresh</v-icon>
           </v-btn>
@@ -55,9 +56,11 @@
 
 <script>
 import confirm from '~/components/cmn/confirm'
+import saveFilterList from '~/components/slickFilters/saveFilterList'
 export default {
   components: {
-    confirm
+    confirm,
+    saveFilterList,
   },
   head() {
     return {
@@ -222,7 +225,7 @@ export default {
     // },
 
     //필터 초기화
-    filter_reset() {
+    async filter_reset() {
        if (this.$store.getters['GET_FILTERS'].length === 0) {
         this.$store.dispatch('updateAlert', {alert: true, type: 'info', text: '초기화할 검색조건이 없습니다.'});
       } else {

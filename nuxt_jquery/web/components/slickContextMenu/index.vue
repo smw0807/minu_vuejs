@@ -19,6 +19,7 @@
           v-model="context_data.text"
           hide-details
           clearable
+          light
           ></v-text-field>
       </template>
       <template v-else-if="context_data.type === 'integer'">
@@ -31,6 +32,7 @@
           v-model="context_data.text"
           hide-details
           clearable
+          light
           ></v-text-field>
       </template>
       <template v-else-if="context_data.type === 'select'">
@@ -44,6 +46,7 @@
           :menu-props="{ bottom: true, offsetY: true }"
           @change="keepMenu"
           color="blue"
+          light
           >
         </v-select>
       </template>
@@ -224,7 +227,7 @@ export default {
 .cm_text >* {
   color: red;
 }
-.theme--dark ccm_text > * {
+/* .theme--dark cm_text > * {
   font-size: 13px;
   color: red;
 }
@@ -237,7 +240,7 @@ export default {
 }
 .v-select__selections #type_select {
   color: #000 !important;
-}
+} */
 </style>
 
 </style>
