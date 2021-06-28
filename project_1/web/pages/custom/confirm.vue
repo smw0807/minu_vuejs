@@ -24,7 +24,7 @@ export default {
     confirm
   },
   methods:{
-    go() {
+    async go() {
       console.log('go!');
       const rs = await this.$refs.cf.open({
         type:'success',
