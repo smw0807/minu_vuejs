@@ -30,7 +30,13 @@
           </v-menu>
         </v-col>
         <v-spacer></v-spacer>
-        <v-col cols="5" align="end">
+        <v-col cols="6" align="end">
+          <v-btn small color="red darken-3" @click="stop_auto_reload" v-if="auto_reload === true">
+            <v-icon small>mdi-pause</v-icon> 정지
+          </v-btn>
+          <v-btn small color="blue darken-3" @click="start_auto_reload" v-else>
+            <v-icon small>mdi-play</v-icon> 시작
+          </v-btn>
           <v-btn small color="primary" @click="filter_reset">
             <v-icon small>mdi-filter-remove-outline</v-icon> 필터 초기화
           </v-btn>
@@ -90,6 +96,10 @@ export default {
         enableColumnReorder: false
       },
 
+      auto_reload: false, //인터벌 사용 여부
+      auto_reload_delay: 5 * 1000, // 인터벌 시간 
+      auto_reload_func: null, //인터벌 함수 담을 곳
+
       context_info: null,
       context_menu: {
         type: 'string',
@@ -110,6 +120,9 @@ export default {
       menu2: false
     }
   },
+  destroyed() {
+    clearInterval(this.auto_reload_func);
+  },
   mounted() {
     this.totCount = 0;
     this.searchSize = 200;
@@ -121,6 +134,10 @@ export default {
 		this.grid.registerPlugin(this.checkboxSelector);
 
     this.getData();
+
+    if (this.auto_reload) {
+      this.start_auto_reload();
+    }
 
     //checkbox
     this.grid.onSelectedRowsChanged.subscribe((e, args) => {
@@ -181,6 +198,18 @@ export default {
     onResize() {
       console.log('resize', $(window).height());
     },
+    start_auto_reload() {
+      console.log('start!!');
+      this.auto_reload = true;
+      this.auto_reload_func = setInterval(() => {
+        this.getData(true);
+      }, this.auto_reload_delay)
+    },
+    stop_auto_reload() {
+      console.log('stop!!'); 
+      this.auto_reload = false;
+      clearInterval(this.auto_reload_func);
+    },
     setColumns() {
       this.checkboxSelector = new Slick.CheckboxSelectColumn({
         cssClass: "slick-cell-checkboxsel"
@@ -195,7 +224,7 @@ export default {
         { name: "사용여부", field: "is_use", id: "is_use", cssClass:'text-center',sortable: false, formatter: this.fmt_is_use }, 
       )
     },
-    async getData() {
+    async getData(v) {
       try {
         const params = {
           size: this.searchSize,
@@ -203,6 +232,9 @@ export default {
           e_date: this.e_date,
           sort: this.sort,
           filters: this.$store.getters['GET_FILTERS']
+        }
+        if (v) {
+          console.log('interval로 인한 데이터 load!!');
         }
         const rs = await this.$store.dispatch('initList', params);
         this.rows = rs.data.data;
