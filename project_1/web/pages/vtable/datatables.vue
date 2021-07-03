@@ -23,9 +23,9 @@ export default {
   components: {
     datatables
   },
-  created() {
+  async created() {
     //최초 데이터 생성
-    this.$store.dispatch('datatables/initList');
+    await this.$store.dispatch('datatables/initList');
   },
   computed: {
     list() {

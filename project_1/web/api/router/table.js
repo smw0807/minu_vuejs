@@ -29,13 +29,13 @@ router.post('/list', async (req, res) => {
       body: q
     })
     rt.error = false;
-    rt.data = singleFlatMap(search);
     rt.msg = 'ok';
+    rt.result = singleFlatMap(search);
   } catch (err) {
     console.error(err);
     rt.error = true;
-    rt.data = err;
     rt.msg = 'no';
+    rt.result = err.message;
   }
   res.send(rt);
 })

@@ -12,12 +12,6 @@ export const state = () => {
       type: 'primary', //type은 success, info, warning, error 이렇게 4가지를 쓸 수 있음
       text: ''
     },
-    confirm: false,
-    confirm_data: {
-      type: 'error',
-      title: 'test11',
-      text: 'ttttttttttttttt'
-    }
   }
 }
 
@@ -35,6 +29,7 @@ export const mutations = {
   SET_ALERT(state, payload) {
     state.alert = payload.alert;
     state.alert_data.type = payload.type;
+    state.alert_data.title = payload.title;
     state.alert_data.text = payload.text;
   },
   SET_MENU_HISTORY(state, payload) {

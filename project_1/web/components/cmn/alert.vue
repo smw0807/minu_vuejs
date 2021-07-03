@@ -3,8 +3,15 @@
     :value="is_show"
     z-index="100005"
     >
-    <v-alert :type="dialog_data.type">
+    <v-alert 
+      :type="dialog_data.type"
+      colored-border
+      border="right"
+      >
       <v-row>
+        <v-col cols="12">
+          {{ dialog_data.title}}
+        </v-col>
         <v-col cols="12">
           {{ dialog_data.text }}
         </v-col>
