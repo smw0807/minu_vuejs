@@ -14,7 +14,7 @@ export default {
     { divider: true },
     { title: 'custom confirm', icon: 'mdi-comment-question-outline', to: '/custom/confirm'},
     { divider: true },
-    { title: 'vue-ip-input', icon: 'mdi-link-plus', to: '/npm/vue-ip-input'},
+    { title: 'NuxtJS', icon: 'mdi-nuxt', to: '/nuxt/nuxt1'},
     // {
     //   title: 'menu1',
     //   icon: 'mdi-view-dashboard',
