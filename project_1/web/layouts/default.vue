@@ -20,6 +20,7 @@ import alt from '~/components/cmn/alert'
 import menuHistory from '~/components/menuHistory'
 import confirm from '~/components/custom/confirm'
 export default {
+  
   components:{
    mainMenu, alt, bottomNav, menuHistory, confirm,
   },

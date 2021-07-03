@@ -63,6 +63,15 @@ export default {
 
   loading: '~/components/loading.vue',
 
+  // todo 잘 안됨. 좀더 제대로 알아봐야할 것 같음
+  // pageTransition: {
+  //   name: 'page',
+  //   mode: 'slide-right',
+  //   beforeEnter (el) {
+  //     console.log('Before enter...');
+  //   }
+  // },
+
   axios: {
     proxy: false,
     // baseURL: 'https://192.168.3.21:8200'
@@ -72,6 +81,11 @@ export default {
   //     target: es.proxyHost
   //   },
   // },
+
+  // todo : 공식 홈페이지에 있는 내용이 좀 부족해서 구글링 해봐야 이해할 수 있을 것 같음
+  globals: {
+    id : globalName => `__${globalName}`
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
