@@ -38,7 +38,8 @@ export default {
       what_key : null,
     }
   },
-  key(route) {
+  key(route) { //실행된 컴포넌트의 라우터 정보?
+    //이 컴포넌트에 들어와야지만 실행함
     console.log('component in key', route);
   },
   watch: {
