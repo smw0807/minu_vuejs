@@ -59,15 +59,21 @@
         <jsx/>
       </div>
     </v-card-text>
-    <v-card-text>ss
-      <div v-html="testhtml"></div>
-    </v-card-text>
   </v-card>
 </template>
 
 <script>
 import Vue from 'vue'
 import VueWithCompiler from "vue/dist/vue.esm";
+const check = {
+  render(h) { 
+    const div = `<div>
+        <v-icon small @click="edit_save">mdi-check</v-icon>
+        <v-icon small @click="edit_cancel">mdi-close</v-icon>
+      </div>`
+    return h(Vue.compile(div)); 
+  }
+}
 const jsx_test = {
   render(h) {
     return (
@@ -109,7 +115,6 @@ export default {
         { 'data1' : 'aaa5', 'data2': 'bbb5', 'data3':'ccc5'},
         { 'data1' : 'aaa6', 'data2': 'bbb6', 'data3':'ccc6'},
       ],
-      testhtml : '<v-icon>mdi-check</v-icon>'
     }
   },
   methods: {
@@ -144,6 +149,16 @@ export default {
     },
     edit(v, e) {
       console.log('edit', v, e);
+      const change = `
+        <tr>
+          <td><v-text-field value="k1"></v-text-field></td>
+          <td><v-text-field value="k2"></v-text-field></td>
+          <td><v-text-field value="k3"></v-text-field></td>
+          <td>
+            <v-icon small @click="edit_save">mdi-check</v-icon>
+            <v-icon small @click="edit_cancel">mdi-close</v-icon>
+          </td>
+        </tr>`;
       const test = document.getElementsByClassName('item_' + v);
       console.log(test);
       const el = test[0];
@@ -157,17 +172,12 @@ export default {
       // el.removeChild
       // el.remove(); //insert mode cancel
 
-      // const change = `
-      //   <tr>
-      //     <td><v-text-field value="k1"></v-text-field></td>
-      //     <td><v-text-field value="k2"></v-text-field></td>
-      //     <td><v-text-field value="k3"></v-text-field></td>
-      //     <td>
-      //       <v-icon small @click="edit_save">mdi-check</v-icon>
-      //       <v-icon small @click="edit_cancel">mdi-close</v-icon>
-      //     </td>
-      //   </tr>`;
-      // el.innerHTML=change;
+      
+        // el.innerHTML = Vue.compile(t.template);
+      el.innerHTML = change;
+      // el.innerHTML = '<div>{{{change}}}</div>';
+      // el.innerHTML = Vue.compile(change).render();
+      // el.innerHTML = VueWithCompiler.compile(change).render();
       // VueWithCompiler.compile(el);
       
       // console.log(VueWithCompiler.compile(el).render);
