@@ -1,77 +1,104 @@
 <template>
-  <v-data-table
-      :headers="headers"
-      :items="desserts"
-      :expanded="expanded"
-      item-key="name"
-      show-expand
-      class="elevation-1"
-      @click:row="clicked">
-      <template v-slot:top>
-        <v-toolbar flat color="white">
-          <v-toolbar-title>Expandable Table</v-toolbar-title>
-          <div class="flex-grow-1"></div>
-          <v-switch v-model="singleExpand" label="Single expand" class="mt-2"></v-switch>
-        </v-toolbar>
-      </template>
-      <template v-slot:expanded-item="{ headers }">
-        <td :colspan="headers.length">Peek-a-boo!</td>
-      </template>
-    </v-data-table>
+  <div>
+    <div v-for="(line, index) in lines" :key="index" class="row">
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-2">
+            <v-select
+              v-model="line.countryCode"
+              :items="line.countryCode"
+              label="Country Code"
+              :options="countryPhoneCodes"
+            />
+          </div>
+          <div class="col-10">
+            <v-text-field
+              v-model="line.number"
+              label="Phone Number"
+              type="tel"
+              placeholder="5551234567"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <v-select
+          v-model="line.phoneUsageType"
+          :items="line.phoneUsageTypes"
+          label="Type of Usage"
+          :options="phoneUsageTypes"
+        />
+      </div>
+
+      <div class="col-lg-2">
+        <div class="block float-right">
+          <v-btn @click="removeLine(index)" />
+          <v-btn v-if="index + 1 === lines.length" @click="addLine" />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      expanded: ['Donut'],
-      singleExpand: false,
-      headers: [
+      lines: [],
+      blockRemoval: true,
+      phoneUsageTypes: [
         {
-          text: 'Dessert (100g serving)',
-          align: 'left',
-          sortable: false,
-          value: 'name',
-        },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' },
-      ],
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: '1%',
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: '1%',
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: '7%',
+          label: 'Home', value: 'home'
+        }, {
+          label: 'Work', value: 'work'
+        }, {
+          label: 'Mobile', value: 'mobile'
+        }, {
+          label: 'Fax', value: 'fax'
         }
       ],
+      countryPhoneCodes: [
+        {
+          label: '+90',
+          value: '+90'
+        }, {
+          label: '+1',
+          value: '+1'
+        }
+      ]
+    }
+  },
+  watch: {
+    lines () {
+      this.blockRemoval = this.lines.length <= 1
     }
   },
   methods: {
-    clicked(value) {
-      this.expanded.push(value)
+    addLine () {
+      let checkEmptyLines = this.lines.filter(line => line.number === null)
+
+      if (checkEmptyLines.length >= 1 && this.lines.length > 0) {
+         return
+      } 
+
+      this.lines.push({
+        countryCode: null,
+        number: null,
+        phoneUsageType: null
+      })
+    },
+
+    removeLine (lineId) {
+      if (!this.blockRemoval) {
+         this.lines.splice(lineId, 1)
+      }
     }
-},
+  },
+  mounted () {
+    this.addLine()
+  }
 }
 </script>
 

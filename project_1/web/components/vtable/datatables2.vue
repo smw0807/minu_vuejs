@@ -38,14 +38,12 @@
             <td>
               <v-icon
                 small
-                class="mr-2 btn_action"
                 @click="edit(index, $event)"
                 style="color:#1976d2;">
                 mdi-magnify
               </v-icon>
               <v-icon
                 small
-                class="btn_action"
                 @click="del(index)"
                 style="color:#e23d3d;">
                 mdi-delete
@@ -53,22 +51,6 @@
             </td>
           </tr>
         </template>
-        <!-- <template v-slot:[`item.actions`]="{ index }">
-          <v-icon
-            small
-            class="mr-2 btn_action"
-            @click="edit(index, $event)"
-            style="color:#1976d2;">
-            mdi-magnify
-          </v-icon>
-          <v-icon
-            small
-            class="btn_action"
-            @click="del(index)"
-            style="color:#e23d3d;">
-            mdi-delete
-          </v-icon>
-        </template> -->
       </v-data-table>
       <div class="text-center">
         <v-pagination v-model="page" :length="pageCount"></v-pagination>
@@ -77,23 +59,34 @@
         <jsx/>
       </div>
     </v-card-text>
+    <v-card-text>ss
+      <div v-html="testhtml"></div>
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
+import Vue from 'vue'
+import VueWithCompiler from "vue/dist/vue.esm";
 const jsx_test = {
   render(h) {
     return (
       <div>
-        <v-btn small class="ml-1"><v-icon>mdi-check</v-icon></v-btn>
-        <v-btn small class="ml-1"><v-icon>mdi-close</v-icon></v-btn>
+        <v-icon small>mdi-check</v-icon>
+        <v-icon small>mdi-close</v-icon>
       </div>
     )
   },
 }
+const edit_com = {
+  template: `<div>
+        <v-icon small @click="edit_save">mdi-check</v-icon>
+        <v-icon small @click="edit_cancel">mdi-close</v-icon>
+      </div>`
+}
 export default {
   components:{
-    'jsx' : jsx_test
+    'jsx' : jsx_test,
   },
   data() {
     return {
@@ -109,24 +102,28 @@ export default {
         { text: '-', value: 'actions' },
       ],
       items: [
-        { 'data1' : 'aaa', 'data2': 'bbb', 'data3':'ccc'},
-        { 'data1' : 'aaa', 'data2': 'bbb', 'data3':'ccc'},
-        { 'data1' : 'aaa', 'data2': 'bbb', 'data3':'ccc'},
-        { 'data1' : 'aaa', 'data2': 'bbb', 'data3':'ccc'},
-        { 'data1' : 'aaa', 'data2': 'bbb', 'data3':'ccc'},
-        { 'data1' : 'aaa', 'data2': 'bbb', 'data3':'ccc'},
-      ]
+        { 'data1' : 'aaa1', 'data2': 'bbb1', 'data3':'ccc1'},
+        { 'data1' : 'aaa2', 'data2': 'bbb2', 'data3':'ccc2'},
+        { 'data1' : 'aaa3', 'data2': 'bbb3', 'data3':'ccc3'},
+        { 'data1' : 'aaa4', 'data2': 'bbb4', 'data3':'ccc4'},
+        { 'data1' : 'aaa5', 'data2': 'bbb5', 'data3':'ccc5'},
+        { 'data1' : 'aaa6', 'data2': 'bbb6', 'data3':'ccc6'},
+      ],
+      testhtml : '<v-icon>mdi-check</v-icon>'
     }
   },
   methods: {
     add() {
       console.log('add');
       const info = this.$refs.table;
-
     },
     add2() {
       const icon = document.createElement('i');
       icon.className = "mdi mdi-cancel";
+      icon.addEventListener('click', () => {
+        console.log("?")
+        this.add();
+      })
       // icon.innerHTML = "folder_open";
       var main = document.getElementById('test');
       main.appendChild(icon);
@@ -150,24 +147,61 @@ export default {
       const test = document.getElementsByClassName('item_' + v);
       console.log(test);
       const el = test[0];
+      console.log(el);
       console.log(el.cells[0]);
       console.log(el.cells[1]);
       console.log(el.cells[2]);
       console.log(el.cells[3]);
-      el.cells[3].innerHTML = '<v-icon>mdi-check</v-icon>'
-      /**
-       * 2021-07-07
-       * 여기서 문제,
-       * 각 tr 태그 안에 innerHTML로 데이터를 넣으면 vuetify 컴포넌트 적용이 안된다.
-       * 화면상에 실제 그려지는건 vuetify 태그가 아니기 때문에...
-       * 위에 add3 함수 처럼 createElement를 이용해서 만들어야 할 것 같은데 
-       * 조금만 더 하면 만들 수 있을 것 같다.
-       */
+
+      console.log(el.childElementCount);
+      // el.removeChild
+      // el.remove(); //insert mode cancel
+
+      // const change = `
+      //   <tr>
+      //     <td><v-text-field value="k1"></v-text-field></td>
+      //     <td><v-text-field value="k2"></v-text-field></td>
+      //     <td><v-text-field value="k3"></v-text-field></td>
+      //     <td>
+      //       <v-icon small @click="edit_save">mdi-check</v-icon>
+      //       <v-icon small @click="edit_cancel">mdi-close</v-icon>
+      //     </td>
+      //   </tr>`;
+      // el.innerHTML=change;
+      // VueWithCompiler.compile(el);
+      
+      // console.log(VueWithCompiler.compile(el).render);
+      // const icon = document.createElement('i');
+      // icon.className = "mdi mdi-cancel";
+      // icon.addEventListener('click', () => {
+      //   console.log("?")
+      //   this.add();
+      // })
+      // const f1 = '<v-text-field></v-text-field>';
+      // console.log(Vue.compile(f1).render);
+      // console.log(Vue.compile(f1));
+      // const btn =  `<div>
+      //   <v-icon small @click="edit_save">mdi-check</v-icon>
+      //   <v-icon small @click="edit_cancel">mdi-close</v-icon>
+      // </div>`
+      // const tt = VueWithCompiler.compile(edit_com).render;
+      // el.cells[3].innerHTML = VueWithCompiler.compile(edit_com).render;
+      // el.cells[3] = Vue.compile(btn).render;
+    },
+    draw(v) {
     },
     del(v) {
       console.log('del', v);
 
+    },
+
+    edit_save() {
+      console.log('edit_save');
+    },
+    edit_cancel() {
+      console.log('edit_cancel');
     }
+
   },
 }
 </script>
