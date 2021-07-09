@@ -9,6 +9,7 @@ export default {
     { divider: true },
     { title: 'v-card grid', icon: 'mdi-view-grid', to: '/grid/vcard'},
     { title: 'v-layout grid', icon: 'mdi-view-grid-outline', to: '/grid/vlayout'},
+    { title: 'v-if & v-show', icon: 'mdi-eye', to: '/vue/ifshow'},
     { divider: true },
     { title: 'v-picker', icon: 'mdi-calendar', to: '/vpicker/datepicker'},
     { divider: true },
