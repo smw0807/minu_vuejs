@@ -30,7 +30,9 @@
         height="550"
         ref="table"
         >
+        <!-- v-show? v-if?  그리고 어떤 방식으로 둘다 그리고 스위칭할 수 있을까? -->
         <template v-slot:[`item`]="{ item, index}">
+          <!-- <tr :class="['item_' + index,  index % 2 === 0 ? 'style-1' : 'style-2']"> -->
           <tr :class="'item_' + index">
             <td>{{ item.data1 }}</td>
             <td>{{ item.data2 }}</td>
@@ -38,16 +40,26 @@
             <td>
               <v-icon
                 small
-                @click="edit(index, $event)"
+                @click="edit(index, item)"
                 style="color:#1976d2;">
                 mdi-magnify
               </v-icon>
               <v-icon
                 small
-                @click="del(index)"
+                @click="del(index, item)"
                 style="color:#e23d3d;">
                 mdi-delete
               </v-icon>
+            </td>
+          </tr>
+          <!-- <tr :class="['item_edit_' + index,  index % 2 === 0 ? 'style-1' : 'style-2']" style="display:none;"> -->
+          <tr :class="'item_edit_' + index" style="display:none;">
+            <td><v-text-field value="k1" v-model="edit_field_1" hide-details clearable clear-icon="mdi-close-circle-outline"></v-text-field></td>
+            <td><v-text-field value="k2" v-model="edit_field_2" hide-details clearable clear-icon="mdi-close-circle-outline"></v-text-field></td>
+            <td><v-text-field value="k3" v-model="edit_field_3" hide-details clearable clear-icon="mdi-close-circle-outline"></v-text-field></td>
+            <td>
+              <v-icon small @click="edit_save(index)">mdi-check</v-icon>
+              <v-icon small @click="edit_cancel(index)">mdi-close</v-icon>
             </td>
           </tr>
         </template>
@@ -64,16 +76,6 @@
 
 <script>
 import Vue from 'vue'
-import VueWithCompiler from "vue/dist/vue.esm";
-const check = {
-  render(h) { 
-    const div = `<div>
-        <v-icon small @click="edit_save">mdi-check</v-icon>
-        <v-icon small @click="edit_cancel">mdi-close</v-icon>
-      </div>`
-    return h(Vue.compile(div)); 
-  }
-}
 const jsx_test = {
   render(h) {
     return (
@@ -84,24 +86,21 @@ const jsx_test = {
     )
   },
 }
-const edit_com = {
-  template: `<div>
-        <v-icon small @click="edit_save">mdi-check</v-icon>
-        <v-icon small @click="edit_cancel">mdi-close</v-icon>
-      </div>`
-}
 export default {
   components:{
     'jsx' : jsx_test,
   },
   data() {
     return {
+      noe_edit: false,
+      edit_field_1: '',
+      edit_field_2: '',
+      edit_field_3: '',
       search: '',
       page: 1,
       pageCount: 0,
       itemsPerPage: 10,
       headers: [
-        // { text: 'No', value: 'no' },
         { text: 'field A', value: 'data1' },
         { text: 'field B', value: 'data2' },
         { text: 'field C', value: 'data3' },
@@ -147,40 +146,74 @@ export default {
       // var main = document.getElementById('test');
       // main.appendChild(jsx_test);
     },
-    edit(v, e) {
+    edit (i, v) { //해당 tr 안에 데이터 수정
+      if (this.now_edit) {
+        this.$store.dispatch('updateAlert', {
+          alert: true,
+          type: 'warning',
+          title: '알림',
+          text: '이미 다른 작업이 있습니다.' 
+        })
+      } else {
+        this.now_edit = true;
+        this.edit_field_1 = v.data1;
+        this.edit_field_2 = v.data2;
+        this.edit_field_3 = v.data3;
+        const row = document.getElementsByClassName('item_' + i);
+        const el_row = row[0];
+        el_row.style.display = 'none'
+        const edit = document.getElementsByClassName('item_edit_' + i);
+        const el_edit = edit[0];
+        el_edit.style.display ='table-row';
+  
+        console.log(el_row);
+        console.log(el_edit);
+      }
+    },
+    del(i, v) { //해당 tr 데이터 삭제
+      console.log('del', v);
+    },
+
+    edit_save(i) { //수정 저장
+      console.log('edit_save', i);
+    },
+    edit_cancel(i) { //수정 취소
+      this.now_edit = false;
+      const row = document.getElementsByClassName('item_' + i);
+      const el_row = row[0];
+      el_row.style.display = 'table-row';
+      const edit = document.getElementsByClassName('item_edit_' + i);
+      const el_edit = edit[0];
+      el_edit.style.display ='none';
+    },
+    
+    edit_back(v, e) { //다른 방법을 찾아서 필요 없지만 나중에 다른 곳에서 필요한 상황이 생길 수도 있을 것 같아서 남겨둠
       console.log('edit', v, e);
       const change = `
+      <v-form ref="form" lazy-validation>
         <tr>
-          <td><v-text-field value="k1"></v-text-field></td>
-          <td><v-text-field value="k2"></v-text-field></td>
-          <td><v-text-field value="k3"></v-text-field></td>
+          <td><v-text-field value="k1" v-model="edit_field_1"></v-text-field></td>
+          <td><v-text-field value="k2" v-model="edit_field_2"></v-text-field></td>
+          <td><v-text-field value="k3" v-model="edit_field_3"></v-text-field></td>
           <td>
             <v-icon small @click="edit_save">mdi-check</v-icon>
             <v-icon small @click="edit_cancel">mdi-close</v-icon>
           </td>
-        </tr>`;
+        </tr>
+      </v-from>`;
+
       const test = document.getElementsByClassName('item_' + v);
       console.log(test);
       const el = test[0];
       console.log(el);
-      console.log(el.cells[0]);
-      console.log(el.cells[1]);
-      console.log(el.cells[2]);
-      console.log(el.cells[3]);
-
-      console.log(el.childElementCount);
       // el.removeChild
       // el.remove(); //insert mode cancel
-
       
-        // el.innerHTML = Vue.compile(t.template);
+      // el.innerHTML = Vue.compile(t.template);
       el.innerHTML = change;
       // el.innerHTML = '<div>{{{change}}}</div>';
       // el.innerHTML = Vue.compile(change).render();
-      // el.innerHTML = VueWithCompiler.compile(change).render();
-      // VueWithCompiler.compile(el);
       
-      // console.log(VueWithCompiler.compile(el).render);
       // const icon = document.createElement('i');
       // icon.className = "mdi mdi-cancel";
       // icon.addEventListener('click', () => {
@@ -194,28 +227,17 @@ export default {
       //   <v-icon small @click="edit_save">mdi-check</v-icon>
       //   <v-icon small @click="edit_cancel">mdi-close</v-icon>
       // </div>`
-      // const tt = VueWithCompiler.compile(edit_com).render;
-      // el.cells[3].innerHTML = VueWithCompiler.compile(edit_com).render;
       // el.cells[3] = Vue.compile(btn).render;
     },
-    draw(v) {
-    },
-    del(v) {
-      console.log('del', v);
-
-    },
-
-    edit_save() {
-      console.log('edit_save');
-    },
-    edit_cancel() {
-      console.log('edit_cancel');
-    }
-
   },
 }
 </script>
 
 <style>
-
+.style-1 {
+  background-color: rgb(76, 147, 214)
+}
+.style-2 {
+  background-color: rgb(202, 103, 50)
+}
 </style>
