@@ -24,10 +24,10 @@
                 v-on="on"
               ></v-text-field>
             </template>
-            <v-date-picker v-model="s_date" no-title scrollable :max="e_date">
+            <v-date-picker v-model="s_date" no-title scrollable :max="e_date" locale="KR">
               <v-spacer></v-spacer>
-              <v-btn text color="primary" @click="menu1 = false">Cancel</v-btn>
-              <v-btn text color="primary" @click="s_date_search(s_date)">OK</v-btn>
+              <v-btn text color="primary" @click="menu1 = false">취소</v-btn>
+              <v-btn text color="primary" @click="s_date_search(s_date)">확인</v-btn>
             </v-date-picker>
           </v-menu>
         </v-col>
@@ -65,6 +65,11 @@
 </template>
 
 <script>
+/**
+ * 2021-07-11 고민
+ * locale="ko-KR"을 넣으면 일자마다 '일'이라는 한글이 생기는데 없애는 방법은?
+ * ko-KR 말고도 ko, KR 이렇게만 넣어도 한글로 되긴함
+ */
 export default {
   data() {
     return {
