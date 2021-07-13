@@ -4,20 +4,19 @@
     :value="is_show"
     z-index="100005"
     >
-    <v-alert :type="dialog_data.type" border="right" colored-border>
+    <v-alert :type="alert_data.type" border="right" colored-border>
       <v-row>
         <v-col cols="12">
-          {{ dialog_data.title }}
+          {{ alert_data.title }}
         </v-col>
-        <v-col cols="12">
-          {{ dialog_data.text }}
+        <v-col cols="12" v-html="change(alert_data.text)">
         </v-col>
       </v-row>
       <v-row >
         <v-col cols="12" align="end">
           <v-btn
             outlined
-            :color="dialog_data.type"
+            :color="alert_data.type"
             @click="close"
             >
             확인
@@ -35,11 +34,14 @@ export default {
     is_show() {
       return this.$store.getters['GET_ALERT'];
     },
-    dialog_data() {
+    alert_data() {
       return this.$store.getters['GET_ALERT_DATA'];
     }
   },
   methods: {
+    change(v) {
+      return String(v).replace(/(?:\r\n|\r|\n)/g,"</br>");
+    },
     close() {
       this.$store.dispatch('updateAlert', {alert: false, type: 'error', text: ''});
     }

@@ -259,7 +259,12 @@ export default {
     //필터 초기화
     async filter_reset() {
        if (this.$store.getters['GET_FILTERS'].length === 0) {
-        this.$store.dispatch('updateAlert', {alert: true, type: 'info', text: '초기화할 검색조건이 없습니다.'});
+        this.$store.dispatch('updateAlert', {
+          alert: true, 
+          type: 'info', 
+          title:'검색조건', 
+          text: '초기화할 검색조건이 없습니다.'
+        });
       } else {
         const rs = await this.$refs.cf.open({
           type:'warning',

@@ -35,13 +35,13 @@ export const actions = {
           commit('SET_FILTER_LIST', rs.data.result);
           resolve(rs.data);
         } else {
-          dispatch('updateAlert', {alert: true, type: 'error', text: rs.data.result}, {root: true});
+          dispatch('updateAlert', {alert: true, type: 'error', title: '검색조건 리스트', text: rs.data.result}, {root: true});
           reject(rs.data);
         }
         dispatch('updateLoading', false, {root: true});
       } catch (err) {
         console.error('threat save filter err : ', err);
-        dispatch('updateAlert', {alert: true, type: 'error', text: rs.data.result}, {root: true});
+        dispatch('updateAlert', {alert: true, type: 'error', title: '검색조건 리스트', text: rs.data.result}, {root: true});
         dispatch('updateLoading', false, {root: true});
         reject(err);
       }

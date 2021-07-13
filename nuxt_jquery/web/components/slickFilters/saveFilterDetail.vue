@@ -115,7 +115,12 @@ export default {
       this.filters = [];
       const data = this.$store.getters['GET_FILTERS'];
       if (data.length === 0) {
-        this.$store.dispatch('updateAlert', {alert: true, type: 'error', text: '저장할 검색조건이 없습니다.'}, {root: true});
+        this.$store.dispatch('updateAlert', {
+          alert: true, 
+          type: 'error', 
+          title: '검색조건 저장',
+          text: '저장할 검색조건이 없습니다.'
+        });
       } else {
         this.dialog = true;
         if (this.title !== '') {
