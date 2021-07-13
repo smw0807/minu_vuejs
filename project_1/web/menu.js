@@ -14,6 +14,7 @@ export default {
     { title: 'v-picker', icon: 'mdi-calendar', to: '/vpicker/datepicker'},
     { divider: true },
     { title: 'custom confirm', icon: 'mdi-comment-question-outline', to: '/custom/confirm'},
+    { title: 'custom alert', icon: 'mdi-alert', to: '/custom/alert'},
     { divider: true },
     { title: 'NuxtJS', icon: 'mdi-nuxt', to: '/nuxt/nuxt1'},
     // {

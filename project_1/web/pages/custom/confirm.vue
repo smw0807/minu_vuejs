@@ -29,7 +29,7 @@ export default {
       const rs = await this.$refs.cf.open({
         type:'success',
         title: 'Confirm!!',
-        text: 'Ok??'
+        text: 'Ok??\nChoice Button!'
       });
       if (rs) {
         console.log('true!!!');

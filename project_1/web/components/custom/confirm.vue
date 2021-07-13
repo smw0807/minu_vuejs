@@ -9,8 +9,7 @@
         <v-col cols="12">
           {{ title }}
         </v-col>
-        <v-col cols="12">
-          {{ text }}
+        <v-col cols="12" v-html="change(text)">
         </v-col>
       </v-row>
       <v-row >
@@ -48,6 +47,9 @@ export default {
     }
   },
   methods:{
+    change(v) {
+      return String(v).replace(/(?:\r\n|\r|\n)/g,"</br>");
+    },
     open (options) {
       this.is_show = true;
       this.type = options.type === (null || '') ? 'info' : options.type;
