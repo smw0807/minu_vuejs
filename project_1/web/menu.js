@@ -6,6 +6,7 @@ export default {
     { title: 'DataTables', icon: 'mdi-table-multiple', to: '/vtable/datatables'},
     { title: 'DT checkbox', icon: 'mdi-check-bold', to: '/vtable/datatable2'},
     { title: 'Dataiterator', icon: 'mdi-table-multiple', to: '/vtable/dataiterator'},
+    { title: 'treeview', icon: 'mdi-file-tree-outline', to: '/vuetify/treeview'},
     { divider: true },
     { title: 'v-card grid', icon: 'mdi-view-grid', to: '/grid/vcard'},
     { title: 'v-layout grid', icon: 'mdi-view-grid-outline', to: '/grid/vlayout'},
