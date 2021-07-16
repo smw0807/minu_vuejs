@@ -6,10 +6,10 @@ import colors from 'vuetify/es5/util/colors'
  * icon : https://materialdesignicons.com/
  */
 export default {
-  // server: {
+  server: {
   //     // host: '0.0.0.0',
-  //     port: '5000'
-  //   },
+      port: '5000',
+    },
   ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {

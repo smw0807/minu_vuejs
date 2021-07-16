@@ -53,15 +53,15 @@
             </td>
           </tr>
           <!-- <tr :class="['item_edit_' + index,  index % 2 === 0 ? 'style-1' : 'style-2']" style="display:none;"> -->
-          <tr :class="'item_edit_' + index" style="display:none;">
-            <td><v-text-field value="k1" v-model="edit_field_1" hide-details clearable clear-icon="mdi-close-circle-outline"></v-text-field></td>
-            <td><v-text-field value="k2" v-model="edit_field_2" hide-details clearable clear-icon="mdi-close-circle-outline"></v-text-field></td>
-            <td><v-text-field value="k3" v-model="edit_field_3" hide-details clearable clear-icon="mdi-close-circle-outline"></v-text-field></td>
-            <td>
-              <v-icon small @click="edit_save(index)">mdi-check</v-icon>
-              <v-icon small @click="edit_cancel(index)">mdi-close</v-icon>
-            </td>
-          </tr>
+            <tr :class="'item_edit_' + index" style="display:none;" :ref="'item_edit_' + index" lazy-validation>
+              <td><v-text-field value="k1" v-model="edit_field_1" :ref="'text1_'+index" dense :rules="check" clearable clear-icon="mdi-close-circle-outline"></v-text-field></td>
+              <td><v-text-field value="k2" v-model="edit_field_2" :ref="'text2_'+index" dense :rules="check" clearable clear-icon="mdi-close-circle-outline"></v-text-field></td>
+              <td><v-text-field value="k3" v-model="edit_field_3" :ref="'text3_'+index" dense :rules="check" clearable clear-icon="mdi-close-circle-outline"></v-text-field></td>
+              <td>
+                <v-icon small @click="edit_save(index)">mdi-check</v-icon>
+                <v-icon small @click="edit_cancel(index)">mdi-close</v-icon>
+              </td>
+            </tr>
         </template>
       </v-data-table>
       <div class="text-center">
@@ -114,6 +114,10 @@ export default {
         { 'data1' : 'aaa5', 'data2': 'bbb5', 'data3':'ccc5'},
         { 'data1' : 'aaa6', 'data2': 'bbb6', 'data3':'ccc6'},
       ],
+
+      check: [
+        v => !!v || '값을 입력해주세요'
+      ]
     }
   },
   methods: {
@@ -176,6 +180,18 @@ export default {
 
     edit_save(i) { //수정 저장
       console.log('edit_save', i);
+      const test = this.$refs['item_edit_' + i];
+      console.log(test);
+      //validation check
+      const text1 = this.$refs['text1_' + i].validate();
+      const text2 = this.$refs['text2_' + i].validate();
+      const text3 = this.$refs['text3_' + i].validate();
+      console.log(text1);
+      console.log(text2);
+      console.log(text3);
+      //data update
+
+      //tale reload
     },
     edit_cancel(i) { //수정 취소
       this.now_edit = false;
