@@ -90,6 +90,12 @@
         },
       ],
     }),
+    async created() {
+      const params = {
+        code: 'main'
+      }
+      await this.$store.dispatch('code/treeList', params);
+    },
   }
 </script>
 

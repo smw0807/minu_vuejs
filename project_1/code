@@ -1,0 +1,155 @@
+_id code
+"type":"test1_code",
+"test1_code":{
+	"pcode": "main",
+	"code":	"main",
+	"name": "트리메뉴",
+	"flag": "main",
+  "level": 0
+}
+==================================
+_id code1
+"type":"test1_code",
+"test1_code":{
+	"pcode": "main",
+	"code":	"code1",
+	"name": "Code1",
+	"flag": "code1",
+  "level": 1
+}
+
+_id code1_1
+"type":"test1_code",
+"test1_code":{
+	"pcode": "code1",
+	"code":	"1",
+	"name": "코드1",
+	"flag": "code1",
+  "level": 9
+}
+
+_id code1_2
+"type":"test1_code",
+"test1_code":{
+	"pcode": "code1",
+	"code":	"2",
+	"name": "코드2",
+	"flag": "code1",
+  "level": 9
+}
+
+_id code1_3
+"type":"test1_code",
+"test1_code":{
+	"pcode": "code1",
+	"code":	"3",
+	"name": "코드3",
+	"flag": "code1",
+  "level": 9
+}
+==================================
+_id code2
+"type":"test1_code",
+"test1_code":{
+	"pcode": "main",
+	"code":	"code2",
+	"name": "Code2",
+	"flag": "code2",
+  "level": 1
+}
+
+_id code2_1
+"type":"test1_code",
+"test1_code":{
+	"pcode": "code2",
+	"code":	"1",
+	"name": "코드1",
+	"flag": "code2",
+  "level": 9
+}
+
+_id code2_2
+"type":"test1_code",
+"test1_code":{
+	"pcode": "code2",
+	"code":	"2",
+	"name": "코드2",
+	"flag": "code2",
+  "level": 9
+}
+
+_id code2_3
+"type":"test1_code",
+"test1_code":{
+	"pcode": "code2",
+	"code":	"3",
+	"name": "코드3",
+	"flag": "code2",
+  "level": 9
+}
+==================================
+_id depth
+"type":"test1_code",
+"test1_code":{
+	"pcode": "main",
+	"code":	"depth",
+	"name": "뎁스",
+	"flag": "depth",
+  "level": 1
+}
+_id depth1
+"type":"test1_code",
+"test1_code":{
+	"pcode": "depth",
+	"code":	"depth1",
+	"name": "뎁스1",
+	"flag": "depth",
+  "level": 2
+}
+
+_id depth1_1
+"type":"test1_code",
+"test1_code":{
+	"pcode": "depth1",
+	"code":	"1",
+	"name": "뎁스1 코드1",
+	"flag": "depth",
+  "level": 9
+}
+_id depth1_2
+"type":"test1_code",
+"test1_code":{
+	"pcode": "depth1",
+	"code":	"2",
+	"name": "뎁스1 코드2",
+	"flag": "depth",
+  "level": 9
+}
+
+_id depth2
+"type":"test1_code",
+"test1_code":{
+	"pcode": "depth",
+	"code":	"depth2",
+	"name": "뎁스2",
+	"flag": "depth",
+  "level": 2
+}
+_id depth2_1
+"type":"test1_code",
+"test1_code":{
+	"pcode": "depth2",
+	"code":	"1",
+	"name": "뎁스2 코드1",
+	"flag": "depth",
+  "level": 9
+}
+_id depth2_2
+"type":"test1_code",
+"test1_code":{
+	"pcode": "depth2",
+	"code":	"2",
+	"name": "뎁스2 코드2",
+	"flag": "depth",
+  "level": 9
+}

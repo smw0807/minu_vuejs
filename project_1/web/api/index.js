@@ -19,6 +19,7 @@ app.post('/test', (req, res) => {
 //dd
 app.use('/v1/test', require('./router/test'));
 app.use('/v1/vtable', require('./router/table'));
+app.use('/v1/code', require('./router/code'));
 
 module.exports = {
   path: '/api',
