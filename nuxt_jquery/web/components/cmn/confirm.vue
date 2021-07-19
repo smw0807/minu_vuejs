@@ -41,11 +41,29 @@ export default {
       type: 'info', //success, info, warning, error 이렇게 4가지 사용 가능
       title: '',
       text: '',
+      result: undefined,
       result_ok :  undefined,
       result_cancel : undefined,
     }
   },
+  mounted() {
+    document.addEventListener('keydown', this.onKeyEvent);
+  },
   methods:{
+    onKeyEvent(e) {
+      if (this.is_show) {
+        let code = e.keyCode;
+        console.log(code);
+        if (code === 27) { //esc
+          this.cancel();
+        } else if (code === 13) { //enter
+          this.ok();
+        } else {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+      }
+    },
     change(v) {
       return String(v).replace(/(?:\r\n|\r|\n)/g,"</br>");
     },
@@ -55,17 +73,20 @@ export default {
       this.title = options.title;
       this.text = options.text;
       return new Promise( (resolve, reject) => {
-        this.result_ok = resolve;
-        this.result_cancel = reject;
+        this.result = resolve;
+        // this.result_ok = resolve;
+        // this.result_cancel = reject;
       })
     },
     ok() {
       this.is_show = false;
-      this.result_ok(true);
+      this.result(true);
+      // this.result_ok(true);
     },
     cancel() {
       this.is_show = false;
-      this.result_ok(false);
+      this.result(false);
+      // this.result_ok(false);
     }
   }
 }

@@ -46,7 +46,24 @@ export default {
       result_cancel : undefined,
     }
   },
+  mounted() {
+    document.addEventListener('keydown', this.onKeyEvent);
+  },
   methods:{
+    onKeyEvent(e) {
+      if (this.is_show) {
+        let code = e.keyCode;
+        console.log(code);
+        if (code === 27) { //esc
+          this.cancel();
+        } else if (code === 13) { //enter
+          this.ok();
+        } else {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+      }
+    },
     change(v) {
       return String(v).replace(/(?:\r\n|\r|\n)/g,"</br>");
     },
