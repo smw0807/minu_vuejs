@@ -54,7 +54,7 @@
     <v-card-text>
       <confirm ref="cf"/>
       <slick-context-menu :context_info="context_info" @reload="getData"/>
-      <div id="slickgrid" style="height: 650px"></div>
+      <div id="slickgrid" :style="{height: gridHeight + 'px'}"></div>
     </v-card-text>
     
   </v-card>
@@ -77,6 +77,7 @@ export default {
   },
   data() {
     return {
+      gridHeight: window.innerHeight - 270,
       totCount: 0,
       searchSize: 0,
       grid: null,
@@ -117,7 +118,9 @@ export default {
       s_date: new Date().toISOString().substr(0, 10),
       e_date: new Date().toISOString().substr(0, 10),
       menu1: false,
-      menu2: false
+      menu2: false,
+
+      timer : null, //resize 용 변수
     }
   },
   destroyed() {
@@ -192,11 +195,15 @@ export default {
         }
 			}
 		});
-    // window.addEventListener('resize', this.onResize);
+    window.addEventListener('resize', this.onResize);
   },
   methods: {
     onResize() {
-      console.log('resize', $(window).height());
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        const win_height = window.innerHeight;
+        this.gridHeight = win_height - 270;
+      }, 300);
     },
     start_auto_reload() {
       console.log('start!!');
