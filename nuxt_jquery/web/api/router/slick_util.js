@@ -18,12 +18,7 @@ function make_list_query(params) {
       date_time : 'desc'
     }
   }
-  if (params.status && params.status === '0') {
-    q.query.bool.must.push({ "term" : {"status" : params.status } });
-  }
-  if (params.status && params.status !== '0') {
-    q.query.bool.must.push({ "terms" : {"status" : params.status } });
-  }
+
   if (params.filters.length !== 0) {
     /**
      * 필드별로 검색조건을 1개만 넣을 수 있으면 소스가 간단해지는데
@@ -103,11 +98,6 @@ function make_list_query(params) {
             in_rule_name.push({ "wildcard": { "rule_name" : "*" + val.data + "*"}});
           }
         } else {
-          // if (val.type === 'indirect') {
-          //   q.query.bool.must.bool.should.push(JSON.parse(`{ "term" : {"${val.field}" : "${val.data}" } }`));
-          // } else {
-          //   q.query.bool.must.bool.should.push(JSON.parse(`{ "wildcard" : {"${val.field}" : "*${val.data}*" } }`));
-          // }
         }
       } else if (val.mode === 'exclude') {
         if (val.field === 'attack_ip') {
@@ -141,11 +131,6 @@ function make_list_query(params) {
             ex_rule_name.push({ "wildcard": { "rule_name" : "*" + val.data + "*"}});
           }
         } else {
-          // if (val.type === 'indirect') {
-          //   q.query.bool.must_not.bool.should.push(JSON.parse(`{ "term" : {"${val.field}" : "${val.data}" } }`));
-          // } else {
-          //   q.query.bool.must_not.bool.should.push(JSON.parse(`{ "wildcard" : {"${val.field}" : "*${val.data}*" } }`));
-          // }
         }
       }
     }

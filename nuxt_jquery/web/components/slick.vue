@@ -77,7 +77,7 @@ export default {
   },
   data() {
     return {
-      gridHeight: window.innerHeight - 270,
+      gridHeight: window.innerHeight - 330,
       totCount: 0,
       searchSize: 0,
       grid: null,
@@ -202,7 +202,7 @@ export default {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
         const win_height = window.innerHeight;
-        this.gridHeight = win_height - 270;
+        this.gridHeight = win_height - 330;
       }, 300);
     },
     start_auto_reload() {
