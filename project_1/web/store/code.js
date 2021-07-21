@@ -29,6 +29,8 @@ export const actions = {
       try {
         const rs = await this.$axios.post('/api/v1/code/tree_list', params);
         console.log('treeList : ', rs);
+        //level0~3까지 3포문?
+        //0이후로 level이 달라질 때 마다 새 포문 사용? children...
       } catch (err) {
         console.error(err);
         reject(err);
