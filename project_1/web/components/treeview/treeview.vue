@@ -1,6 +1,9 @@
 <template>
   <v-card>
     <v-card-text>
+      <v-btn @click="test">Test</v-btn>
+    </v-card-text>
+    <v-card-text>
       <v-treeview
         v-model="tree"
         :open="initiallyOpen"
@@ -96,6 +99,14 @@
       }
       await this.$store.dispatch('code/treeList', params);
     },
+    methods: {
+      async test() {
+        const params = {
+          code: 'main'
+        }
+        await this.$store.dispatch('code/treeList', params);
+      }
+    }
   }
 </script>
 

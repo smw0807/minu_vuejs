@@ -12,7 +12,7 @@ router.post('/tree_list', async (req, res) => {
   let rt = {};
   try {
     const params = req.body;
-    console.log(params);
+    // console.log(params);
     let q = {
       size: 15,
       query: {
@@ -32,15 +32,19 @@ router.post('/tree_list', async (req, res) => {
             }
           ]
         }
-      }
+      },
+      sort:[
+        { "test1_code.level" : "asc" },
+        { "test1_code.pcode" : "desc" }
+      ]
     }
-    console.log(JSON.stringify(q));
+    // console.log(JSON.stringify(q));
     const rs = await es_client.search({
       index: index_name,
       type: '_doc',
       body: q
     })
-    console.dir(rs, {depth: 5});
+    // console.dir(rs, {depth: 5});
     rt.error = false;
     rt.msg = 'ok';
     rt.result = flatmap(rs);
