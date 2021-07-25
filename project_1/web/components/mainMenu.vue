@@ -106,7 +106,17 @@
             </v-list-item-content>
           </v-list-item>
         </template>
+
+        <v-list-item justify-end>
+          <v-list-item-icon>
+            <v-icon>mdi-check</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Botton test</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
+
     </v-navigation-drawer>
   </div>
 </template>

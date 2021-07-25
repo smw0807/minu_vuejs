@@ -30,9 +30,6 @@ export const actions = {
         const rs = await this.$axios.post('/api/v1/code/tree_list', params);
         console.log('treeList : ', rs);
         const data = rs.data.result;
-        //level0~3까지 3포문?
-        //0이후로 level이 달라질 때 마다 새 포문 사용? children... 
-        //어떻게 만들어야하지??? 머리가 안돌아간다.
         /**
          * [
          *  {
@@ -41,20 +38,35 @@ export const actions = {
          *  }
          * ]
          */
-        console.log(data);
         let list = [];
         let tree = {};
         let level = 0;
+        data[0].children = [];
+        console.log(data);
+        // const test = data.flatMap( doc => {
+        //   console.log(doc);
+        //   if (doc.level === 1) {
+        //     return doc;
+        //   } else {
+        //     return null;
+        //   }
+        // });
+        let tmp = [];
+        data.splice(1, 1);
+        console.log(data);
         for (let i in data) {
-          let d = data[i];
-          if (d.level === 0) {
-            list.push(d)
+          if (data[i].level === 1) {
+            tree = data[i];
           } else {
-            list[0].children.push(d);
-
+            if (data[i].level !== 1) {
+              tree.children = [];
+              tree.children.push(data[i]);
+            }
           }
+          tmp.push(tree);
         }
-        console.log(list);
+        console.log(tmp);
+        // commit('SET_TREE_LIST', list);
       } catch (err) {
         console.error(err);
         reject(err);

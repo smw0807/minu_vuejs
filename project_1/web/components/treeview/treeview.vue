@@ -99,6 +99,11 @@
       }
       await this.$store.dispatch('code/treeList', params);
     },
+    computed:{
+      tree_list() {
+        return this.$store.getters['code/GET_TREE_LIST'];
+      }
+    },
     methods: {
       async test() {
         const params = {
