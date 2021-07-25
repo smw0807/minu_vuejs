@@ -5,11 +5,12 @@
     </v-card-text>
     <v-card-text>
       <v-treeview
-        v-model="tree"
+        v-model="selected"
         :open="initiallyOpen"
         :items="items"
         activatable
         item-key="name"
+        @update:active="select"
       >
         <!-- open-on-click 이옵션은 treeview에서 화살표말고 디렉터리 눌러도 열리게함 -->
         <template v-slot:prepend="{ item, open }">
@@ -39,7 +40,7 @@
         txt: 'mdi-file-document-outline',
         xls: 'mdi-file-excel',
       },
-      tree: [],
+      selected: [],
       items: [
         {
           name: '.git',
@@ -105,6 +106,9 @@
       }
     },
     methods: {
+      select(v) {
+        console.log('select : ', this.selected);
+      },
       async test() {
         const params = {
           code: 'main'
