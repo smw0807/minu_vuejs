@@ -56,11 +56,11 @@ export default {
     '@/api/index.js'
   ],
   
-  // router: {
-  //   middleware: [
-  //     // 'auth',
-  //   ] 
-  // },
+  router: {
+    middleware: [
+      'readConfig',
+    ] 
+  },
 
   loading: '~/components/loading.vue',
 

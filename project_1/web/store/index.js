@@ -1,6 +1,7 @@
 export const strict = false;
 export const state = () => {
   return {
+    config: {},
     api_test: '',
     es_test: '',
     loading_1: false,
@@ -16,6 +17,9 @@ export const state = () => {
 }
 
 export const mutations = {
+  SET_CONFIG(state, payload) {
+    state.config = payload;
+  },
   SET_API_TEST(state, payload) {
     state.api_test = payload;
   },
@@ -41,6 +45,9 @@ export const mutations = {
 }
 
 export const getters = {
+  GET_CONFIG(state) {
+    return state.config;
+  },
   GET_API_TEST(state) {
     return state.api_test;
   },

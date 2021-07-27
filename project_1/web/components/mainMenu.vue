@@ -164,7 +164,40 @@ export default {
     }
   },
   created() {
-    this.items = menu.items;
+    const config = this.$store.getters['GET_CONFIG'];
+    const mode = config.mode;
+    
+    if (mode === 'dev') {
+      this.items = menu.items;
+    } else {
+      let tmp = [];
+      for (let i in menu.items) {
+        const menus = menu.items[i];
+        if (menus.use !== undefined) { //use 값이 있을 경우에만
+          const chk = menus.use.includes(mode); //use값 안에 mode값과 일치하는 값이 있으면 true
+          if (chk) {
+            if (menus.items === undefined) { //하위 메뉴가 없을 경우
+              tmp.push(menus);
+            } else { //하위 메뉴가 있을 경우
+              let sub_tmp = [];
+              for (let j in menus.items) {
+                const menus2 = menus.items[j];
+                if (menus2.use !== undefined) { //하위 메뉴에 use가 있을 경우
+                  const chk2 = menus2.use.includes(mode); //use값 안에 mode값과 일치하는 값이 있으면 true
+                  if (chk2) {
+                    sub_tmp.push(menus2); //하위 메뉴를 임시 배열에 담음
+                  }
+                }
+              }
+              menus.items = sub_tmp; //상위 메뉴 items에 하위 메뉴가 담긴 배열로 값을 지정
+              tmp.push(menus);
+            }
+          }
+        }
+      }
+      this.items = tmp;
+    }
+
     if (this.breadcrumbs.length === 0) {
       this.setBreadcrumbs(this.$nuxt.$route);
     }
