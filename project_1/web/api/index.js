@@ -5,6 +5,7 @@
  */
 import express from 'express'
 import bodyParser from 'body-parser'
+import aRoot from 'app-root-path'
 
 const app = express();
 
@@ -14,6 +15,20 @@ app.use(bodyParser.json());
 app.post('/test', (req, res) => {
   console.log('/api/test');
   res.send('API Success!!');
+})
+
+app.post('/read-config', async (req, res) => {
+  let rt = {};
+  try {
+    const config = require(aRoot + '/config.js').default;
+    rt.error = false;
+    rt.result = config;
+  } catch (err) {
+    console.error(err);
+    rt.error = true;
+    rt.result = err.message;
+  }
+  res.send(rt);
 })
 
 //dd

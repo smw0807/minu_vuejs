@@ -113,10 +113,6 @@ export default {
       plugins: [
         ['@babel/plugin-proposal-private-methods', { loose: true }]
       ]
-    },
-    extend(config, ctx) {
-      // Include the compiler version of Vue so that wp-content works
-      config.resolve.alias["vue$"] = "vue/dist/vue.esm.js"
     }
   }
 }

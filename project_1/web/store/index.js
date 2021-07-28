@@ -110,5 +110,17 @@ export const actions = {
   },
   updateAlert({commit}, params) {
     commit('SET_ALERT', params);
+  },
+  readConfig({commit}) {
+    return new Promise (async (resolve, reject) => {
+      try {
+        const rs = await this.$axios.post('/api/read-config');
+        commit('SET_CONFIG', rs.data.result);
+        resolve(true);
+      } catch (err) {
+        console.error(err);
+        reject(err);
+      }
+    })
   }
 }

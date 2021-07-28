@@ -1,7 +1,5 @@
-import { default as config } from '~/config.js';
-export default function ({store}) {
-  console.log('midd', store);
-  store.commit('SET_CONFIG', config);
+export default async ({store}) => {
+  await store.dispatch('readConfig');
 }
 
 /** config 기능 만들어보기.
@@ -34,4 +32,11 @@ export default function ({store}) {
  * readConfig.js에서 config.js 파일을 새로 읽는 로직이 있는데
  * 빌드 때 읽은 값으로만 가져오는게 이해가 안된다.
  * 빌드할 때 처음 읽은 값으로 픽스를 시키는건가?
+ * 
+ * + 추가
+ * import 할 때 config.js 내용 까지 빌드해버려서 값이 고정되는게 확인 됐다.
+ * 그래서 빌드에 포함하지 않는 api쪽 node단인 express에서 처리하게 끔 수정 했다.
+ * 이게 정상적인 방법인지는 솔직히 잘 모르겠다.
+ * 일단은 서버에 올려서 배포 모드로 돌렸을 때
+ * config.js 의 mode를 수정하고 재실행하면 정상 적용되긴한다.
  */
