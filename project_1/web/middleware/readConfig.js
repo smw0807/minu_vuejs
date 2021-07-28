@@ -24,4 +24,14 @@ export default function ({store}) {
  * /store/index.js (config 값 store에 저장)
  * /middleware/readConfig (config.js 값 읽어서 store에 commit)
  * /components/mainMenu.vue
+ * 
+ * 
+ * + 추가 (2021-07-28)
+ * 내가 생각했던거랑 다르게 작동된다.
+ * 빌드 후 배포 모드로 실행할 때
+ * 실행 중에 config.js를 바꿔도 적용되지 않는다.
+ * 바꾼 후 껐다가 다시 실행해도 똑같다.
+ * readConfig.js에서 config.js 파일을 새로 읽는 로직이 있는데
+ * 빌드 때 읽은 값으로만 가져오는게 이해가 안된다.
+ * 빌드할 때 처음 읽은 값으로 픽스를 시키는건가?
  */
