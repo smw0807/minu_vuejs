@@ -49,8 +49,13 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    '@nuxtjs/dotenv'
   ],
+	env: {
+		mode : process.env.mode,
+    es: process.env.ES_HOST,
+	},
 
   serverMiddleware: [
     '@/api/index.js'

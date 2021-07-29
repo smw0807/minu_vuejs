@@ -16,6 +16,7 @@ router.post('/es_test', async (req, res) => {
     console.error('es_test err : ', err);
     rt.error = true;
     rt.msg = err;
+    // throw new Error(err); //프로세스 멈춰 버림
   }
   res.send(rt);
 })

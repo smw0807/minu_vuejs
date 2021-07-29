@@ -1,7 +1,7 @@
 export default {
   items: [
     { title: 'index', icon: 'mdi-view-dashboard', to: '/' },
-    // { title: 'test', icon: 'mdi-api', to: '/api/apiTest' },
+    { title: 'test', icon: 'mdi-api', to: '/api/apiTest' },
     { divider: true },
     { title: 'DataTables', icon: 'mdi-table-multiple', to: '/vtable/datatables', use: ['vuetify']},
     { title: 'DT checkbox', icon: 'mdi-check-bold', to: '/vtable/datatable2', use: ['vuetify']},

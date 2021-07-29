@@ -7,6 +7,8 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import aRoot from 'app-root-path'
 
+require('dotenv').config();
+
 const app = express();
 
 app.use(express.json());
@@ -14,6 +16,7 @@ app.use(bodyParser.json());
 
 app.post('/test', (req, res) => {
   console.log('/api/test');
+  // console.log('dotenv test : ', process.env);
   res.send('API Success!!');
 })
 

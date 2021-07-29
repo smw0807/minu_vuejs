@@ -114,8 +114,12 @@ export const actions = {
   readConfig({commit}) {
     return new Promise (async (resolve, reject) => {
       try {
-        const rs = await this.$axios.post('/api/read-config');
-        commit('SET_CONFIG', rs.data.result);
+        // const rs = await this.$axios.post('/api/read-config');
+        // commit('SET_CONFIG', rs.data.result);
+        // console.log(process.env.mode);
+        // console.log(process.env.es); //nuxt.config.js에 env 안에 es라고 명칭을 지정해서 이렇게해야 가져와지는듯
+        // console.log(process.env.ES_HOST); 
+        commit('SET_CONFIG', {mode : process.mode});
         resolve(true);
       } catch (err) {
         console.error(err);
