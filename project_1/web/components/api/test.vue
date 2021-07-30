@@ -67,6 +67,8 @@ export default {
   },
   created() {
     this.$store.dispatch('apitest');
+    //nuxt.config.js publicRuntimeConfig Test
+    console.log('publicRuntimeConfig test vue file : ', this.$config);
   },
   computed: {
     result() {

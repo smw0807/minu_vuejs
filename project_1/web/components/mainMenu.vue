@@ -164,8 +164,9 @@ export default {
     }
   },
   created() {
-    const config = this.$store.getters['GET_CONFIG'];
-    const mode = config.mode;
+    // const config = this.$store.getters['GET_CONFIG'];
+    // const mode = config.mode;
+    const mode = this.$config.mode;
     
     if (mode === 'dev') {
       this.items = menu.items;

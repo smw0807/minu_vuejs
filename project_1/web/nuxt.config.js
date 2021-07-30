@@ -63,7 +63,7 @@ export default {
   
   router: {
     middleware: [
-      'readConfig',
+      // 'readConfig',
     ] 
   },
 
@@ -82,6 +82,16 @@ export default {
     proxy: false,
     // baseURL: 'https://192.168.3.21:8200'
   },
+
+  publicRuntimeConfig: {
+    mode: process.env.mode,
+    es: process.env.ES_HOST,
+    test1: process.env.test1,
+  },
+  // privateRuntimeConfig: { //이건 ssr : false에서는 안먹히는 것 같음
+  //   pr_mode: process.env.mode,
+  //   pr_es: process.env.ES_HOST,
+  // },
   // proxy: {
   //   '/api/v1': {
   //     target: es.proxyHost
@@ -89,9 +99,9 @@ export default {
   // },
 
   // todo : 공식 홈페이지에 있는 내용이 좀 부족해서 구글링 해봐야 이해할 수 있을 것 같음
-  globals: {
-    id : globalName => `__${globalName}`
-  },
+  // globals: {
+  //   id : globalName => `__${globalName}`
+  // },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

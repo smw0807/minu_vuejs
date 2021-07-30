@@ -20,19 +20,19 @@ app.post('/test', (req, res) => {
   res.send('API Success!!');
 })
 
-app.post('/read-config', async (req, res) => {
-  let rt = {};
-  try {
-    const config = require(aRoot + '/config.js').default;
-    rt.error = false;
-    rt.result = config;
-  } catch (err) {
-    console.error(err);
-    rt.error = true;
-    rt.result = err.message;
-  }
-  res.send(rt);
-})
+// app.post('/read-config', async (req, res) => {
+//   let rt = {};
+//   try {
+//     const config = require(aRoot + '/config.js').default;
+//     rt.error = false;
+//     rt.result = config;
+//   } catch (err) {
+//     console.error(err);
+//     rt.error = true;
+//     rt.result = err.message;
+//   }
+//   res.send(rt);
+// })
 
 //dd
 app.use('/v1/test', require('./router/test'));

@@ -1,5 +1,11 @@
-export default async ({store}) => {
-  await store.dispatch('readConfig');
+export default async ({store, $config}) => {
+  //nuxt.config.js privateRuntimeConfig Test
+  // console.log('readConfig privateRuntimeConfig : ', $config); //잘 나옴 
+  /**
+   * .,..?? publicRuntimeConfig에만 넣은 test1 값도 나옴. 
+   * 미들웨어는 privateRuntimeConfig 가 아니라 publicRuntimeConfig를 가져오는 것 같음
+   */
+  // await store.dispatch('readConfig');
 }
 
 /** config 기능 만들어보기.
@@ -39,4 +45,7 @@ export default async ({store}) => {
  * 이게 정상적인 방법인지는 솔직히 잘 모르겠다.
  * 일단은 서버에 올려서 배포 모드로 돌렸을 때
  * config.js 의 mode를 수정하고 재실행하면 정상 적용되긴한다.
+ * 
+ * + 추가 (2021-07-30)
+ * .env를 이용해서 처리하게끔 변경
  */

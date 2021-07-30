@@ -111,20 +111,25 @@ export const actions = {
   updateAlert({commit}, params) {
     commit('SET_ALERT', params);
   },
-  readConfig({commit}) {
-    return new Promise (async (resolve, reject) => {
-      try {
-        // const rs = await this.$axios.post('/api/read-config');
-        // commit('SET_CONFIG', rs.data.result);
-        // console.log(process.env.mode);
-        // console.log(process.env.es); //nuxt.config.js에 env 안에 es라고 명칭을 지정해서 이렇게해야 가져와지는듯
-        // console.log(process.env.ES_HOST); 
-        commit('SET_CONFIG', {mode : process.mode});
-        resolve(true);
-      } catch (err) {
-        console.error(err);
-        reject(err);
-      }
-    })
-  }
+  // readConfig({commit, $config}) {
+  //   return new Promise (async (resolve, reject) => {
+  //     try {
+  //       //nuxt.config.js privateRuntimeConfig Test
+  //       // console.log('store/index.js privateRuntimeConfig : ', $config); //undefined 뜸
+  //       //nuxt.config.js publicRuntimeConfig Test
+  //       // console.log('store/index.js publicRuntimeConfig : ', this.$config); //잘 나옴
+
+  //       // const rs = await this.$axios.post('/api/read-config');
+  //       // commit('SET_CONFIG', rs.data.result);
+  //       // console.log(process.env.mode);
+  //       // console.log(process.env.es); //nuxt.config.js에 env 안에 es라고 명칭을 지정해서 이렇게해야 가져와지는듯
+  //       // console.log(process.env.ES_HOST); 
+  //       // commit('SET_CONFIG', {mode : this.$config.mode});
+  //       resolve(true);
+  //     } catch (err) {
+  //       console.error(err);
+  //       reject(err);
+  //     }
+  //   })
+  // }
 }
