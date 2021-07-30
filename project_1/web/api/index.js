@@ -3,13 +3,19 @@
  * https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html
  * https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html
  */
+// process.env.DEBUG = 'nuxt:*';
 import express from 'express'
 import bodyParser from 'body-parser'
 import aRoot from 'app-root-path'
+const app = express();
+
+//nuxt.config.js 파일 읽는 법??
+const { Nuxt, Builder } = require('nuxt');
+const config = require(aRoot + '/nuxt.config.js'); 
+// console.log('read nuxt.config.js??? : ', config);
 
 require('dotenv').config();
-
-const app = express();
+console.log('env : ', process.env.NODE_ENV);
 
 app.use(express.json());
 app.use(bodyParser.json());

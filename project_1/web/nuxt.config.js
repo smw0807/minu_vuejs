@@ -6,6 +6,8 @@ import colors from 'vuetify/es5/util/colors'
  * icon : https://materialdesignicons.com/
  */
 export default {
+  // development, production
+  // dev: 'production', 
   server: {
   //     // host: '0.0.0.0',
       port: '5000',
@@ -61,11 +63,11 @@ export default {
     '@/api/index.js'
   ],
   
-  router: {
-    middleware: [
-      // 'readConfig',
-    ] 
-  },
+  // router: {
+  //   middleware: [
+  //     'readConfig',
+  //   ] 
+  // },
 
   loading: '~/components/loading.vue',
 
@@ -98,10 +100,14 @@ export default {
   //   },
   // },
 
-  // todo : 공식 홈페이지에 있는 내용이 좀 부족해서 구글링 해봐야 이해할 수 있을 것 같음
-  // globals: {
-  //   id : globalName => `__${globalName}`
-  // },
+  // cli 속성? https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-cli
+  cli: {
+    badgeMessages: [ 
+      'Hello World',
+      '별 신기한게 다 있네'
+    ],
+    bannerColor: 'cyanBright'
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
