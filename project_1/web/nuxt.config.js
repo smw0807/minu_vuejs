@@ -1,4 +1,14 @@
 import colors from 'vuetify/es5/util/colors'
+import path from 'path'
+const start_dt = new Date().toISOString();
+console.log('nuxt.config.js : ', process.env.NODE_ENV);
+const env = require('dotenv');
+env.config({
+  path: path.resolve(
+    process.cwd(),
+    process.env.NODE_ENV === "production" ? ".env" : ".env.dev"
+  ),
+});
 /**
  * 링크
  * Vuetify : https://v2.vuetifyjs.com/ko/getting-started/quick-start/
@@ -52,7 +62,9 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
-    '@nuxtjs/dotenv'
+    // ['@nuxtjs/dotenv',
+    //   {filename: process.env.NODE_ENV === 'development' ? '.env.dev' : '.env'}
+    // ],
   ],
 	env: {
 		mode : process.env.mode,
@@ -103,8 +115,7 @@ export default {
   // cli 속성? https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-cli
   cli: {
     badgeMessages: [ 
-      'Hello World',
-      '별 신기한게 다 있네'
+      `app Start date : ${start_dt}`,
     ],
     bannerColor: 'cyanBright'
   },

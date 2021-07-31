@@ -1,4 +1,5 @@
 export default async ({store, $config}) => {
+  console.log('middleware check : ', process.env.NODE_ENV, process.env.mode);
   //nuxt.config.js privateRuntimeConfig Test
   // console.log('readConfig privateRuntimeConfig : ', $config); //잘 나옴 
   /**
