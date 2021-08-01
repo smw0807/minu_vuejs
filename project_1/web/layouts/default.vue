@@ -25,6 +25,12 @@ export default {
    mainMenu, alt, bottomNav, menuHistory, confirm,
   },
   created() {
+    //-------S
+    // console.log('layout/default env : ', process.env.mode);
+    console.log('layout/default env : ', this.$config.mode);
+    //nuxt.config.js랑 api/index.js는 env 값 제대로 읽는데 여기는 왜 .env로만 읽는지 모르겠다.
+    //-------E
+
     const theme = localStorage.getItem('theme');
     if (theme === null) {
       this.$vuetify.theme.dark = true;

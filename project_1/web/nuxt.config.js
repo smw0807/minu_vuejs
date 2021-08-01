@@ -1,14 +1,16 @@
 import colors from 'vuetify/es5/util/colors'
 import path from 'path'
-const start_dt = new Date().toISOString();
 console.log('nuxt.config.js : ', process.env.NODE_ENV);
-const env = require('dotenv');
-env.config({
-  path: path.resolve(
-    process.cwd(),
-    process.env.NODE_ENV === "production" ? ".env" : ".env.dev"
-  ),
-});
+// const env = require('dotenv').config({
+//   path: path.resolve(
+//     process.cwd(),
+//     process.env.NODE_ENV === "production" ? ".env" : ".env.dev"
+//   ),
+// });
+// console.log("--------------------------S");
+// console.log(env);
+// console.log(process.env.mode);
+// console.log("--------------------------E");
 /**
  * 링크
  * Vuetify : https://v2.vuetifyjs.com/ko/getting-started/quick-start/
@@ -62,14 +64,27 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
-    // ['@nuxtjs/dotenv',
-    //   {filename: process.env.NODE_ENV === 'development' ? '.env.dev' : '.env'}
-    // ],
+    ['@nuxtjs/dotenv',
+      {filename: process.env.NODE_ENV === 'development' ? '.env.dev' : '.env'}
+    ],
   ],
-	env: {
-		mode : process.env.mode,
+	// env: {
+	// 	mode : env.mode,
+	// },
+  publicRuntimeConfig: {
+    mode: process.env.mode,
     es: process.env.ES_HOST,
-	},
+    test1: process.env.test1,
+  },
+  // privateRuntimeConfig: { //이건 ssr : false에서는 안먹히는 것 같음
+  //   pr_mode: process.env.mode,
+  //   pr_es: process.env.ES_HOST,
+  // },
+  // proxy: {
+  //   '/api/v1': {
+  //     target: es.proxyHost
+  //   },
+  // },
 
   serverMiddleware: [
     '@/api/index.js'
@@ -97,25 +112,11 @@ export default {
     // baseURL: 'https://192.168.3.21:8200'
   },
 
-  publicRuntimeConfig: {
-    mode: process.env.mode,
-    es: process.env.ES_HOST,
-    test1: process.env.test1,
-  },
-  // privateRuntimeConfig: { //이건 ssr : false에서는 안먹히는 것 같음
-  //   pr_mode: process.env.mode,
-  //   pr_es: process.env.ES_HOST,
-  // },
-  // proxy: {
-  //   '/api/v1': {
-  //     target: es.proxyHost
-  //   },
-  // },
-
   // cli 속성? https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-cli
   cli: {
     badgeMessages: [ 
-      `app Start date : ${start_dt}`,
+      '1.aaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      '2.bbbbbbbbbbbbbbbbbbbbbbbbbbbb',
     ],
     bannerColor: 'cyanBright'
   },

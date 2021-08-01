@@ -15,16 +15,16 @@ const app = express();
 // const config = require(aRoot + '/nuxt.config.js'); 
 // console.log('read nuxt.config.js??? : ', config);
 
-// const env = require('dotenv');
-// env.config({
-//   path: path.resolve(
-//     process.cwd(),
-//     process.env.NODE_ENV == "production" ? ".env" : ".env.dev"
-//   ),
-// });
-console.log('node_env : ', process.env.NODE_ENV);
-console.log('env : ', process.env.mode);
-
+const env = require('dotenv').config({
+  path: path.resolve(
+    process.cwd(),
+    process.env.NODE_ENV == "production" ? ".env" : ".env.dev"
+    // process.env.NODE_ENV == "production" ? ".env.dev" : ".env"
+  ),
+});
+console.log('API--------------------------------S');
+console.log(env);
+console.log('API--------------------------------E');
 
 app.use(express.json());
 app.use(bodyParser.json());
