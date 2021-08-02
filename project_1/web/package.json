@@ -21,6 +21,7 @@
     "vue-ip-input": "^2.0.2"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.11.3"
+    "@nuxtjs/vuetify": "^1.11.3",
+    "sass": "~1.32.12"
   }
 }
