@@ -1,16 +1,4 @@
 import colors from 'vuetify/es5/util/colors'
-import path from 'path'
-console.log('nuxt.config.js : ', process.env.NODE_ENV);
-// const env = require('dotenv').config({
-//   path: path.resolve(
-//     process.cwd(),
-//     process.env.NODE_ENV === "production" ? ".env" : ".env.dev"
-//   ),
-// });
-// console.log("--------------------------S");
-// console.log(env);
-// console.log(process.env.mode);
-// console.log("--------------------------E");
 /**
  * 링크
  * Vuetify : https://v2.vuetifyjs.com/ko/getting-started/quick-start/
@@ -64,9 +52,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
-    ['@nuxtjs/dotenv',
-      {filename: process.env.NODE_ENV === 'development' ? '.env.dev' : '.env'}
-    ],
+    '@nuxtjs/dotenv',
   ],
 	// env: {
 	// 	mode : env.mode,
