@@ -54,18 +54,19 @@ export default {
     '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
   ],
-	// env: {
-	// 	mode : env.mode,
-	// },
+
   publicRuntimeConfig: {
     mode: process.env.mode,
-    es: process.env.ES_HOST,
-    test1: process.env.test1,
   },
   // privateRuntimeConfig: { //이건 ssr : false에서는 안먹히는 것 같음
   //   pr_mode: process.env.mode,
   //   pr_es: process.env.ES_HOST,
   // },
+  
+  axios: {
+    proxy: false,
+    // baseURL: 'https://192.168.3.21:8200'
+  },
   // proxy: {
   //   '/api/v1': {
   //     target: es.proxyHost
@@ -92,11 +93,6 @@ export default {
   //     console.log('Before enter...');
   //   }
   // },
-
-  axios: {
-    proxy: false,
-    // baseURL: 'https://192.168.3.21:8200'
-  },
 
   // cli 속성? https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-cli
   cli: {
