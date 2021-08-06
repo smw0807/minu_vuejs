@@ -18,6 +18,7 @@ export default {
     { title: 'custom alert', icon: 'mdi-alert', to: '/custom/alert', use: ['vuetify', 'custom']},
     { divider: true },
     { title: 'NuxtJS', icon: 'mdi-nuxt', to: '/nuxt/nuxt1', use: ['test']},
+    { title: 'Test', icon: 'mdi-test-tube', to: '/test/props_test', use: ['test']},
     // {
     //   title: 'menu1',
     //   icon: 'mdi-view-dashboard',
