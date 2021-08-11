@@ -37,6 +37,21 @@
             </v-list>
           </v-menu>
 
+          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn v-bind="attrs" v-on="on">
+                test
+              </v-btn>
+            </template>
+            <v-list dense dark>
+              <v-list-item v-for="(item, index) in test" :key="index" router :to="item.link">
+                <v-list-item-action>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+
         </v-toolbar-items>
 
         <v-spacer></v-spacer>
@@ -96,6 +111,10 @@ export default {
 
       vuetify: [
         { title: 'v-tabs', link: '/vuetify/tabs'}
+      ],
+
+      test: [
+        { title: 'component test 1', link: '/test/test1'}
       ]
     }
   },
