@@ -35,7 +35,7 @@ export default {
   plugins: [
     '@/plugins/vnb.js',
     '@/plugins/ag-grid',
-    '@/plugins/test.js'
+    // '@/plugins/test.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
