@@ -114,7 +114,8 @@ export default {
       ],
 
       test: [
-        { title: 'component test 1', link: '/test/test1'}
+        { title: 'component test 1', link: '/test/test1'},
+        { title: 'express execSync test', link: '/test/exec'}
       ]
     }
   },

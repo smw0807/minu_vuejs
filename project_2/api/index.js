@@ -37,6 +37,7 @@
 
  //router
  app.use('/v1/threat', require('./router/threat/threat'));
+ app.use('/v1/express', require('./router/test/express'));
  
  module.exports = {
    path: '/api',
