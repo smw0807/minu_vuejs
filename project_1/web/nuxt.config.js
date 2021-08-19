@@ -53,6 +53,9 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
+    // '@/modules/example',
+    ['@/modules/example', {token: '123'}],
+    ['@/modules/example2', {token: '123'}],
   ],
 
   publicRuntimeConfig: {

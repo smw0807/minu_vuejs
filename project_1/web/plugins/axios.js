@@ -1,5 +1,6 @@
 // import VueCookies from 'vue-cookies';
 export default function ({$axios}) {
+  console.log('plugin!!!!!2');
   //request 요청 
   $axios.onRequest(config => {
     // console.log('request : ', config);
