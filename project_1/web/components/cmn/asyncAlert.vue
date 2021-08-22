@@ -4,15 +4,15 @@
     z-index="100005"
     >
     <v-alert 
-      :type="alert_data.type"
+      :type="type"
       colored-border
       border="right"
       >
       <v-row>
         <v-col cols="12">
-          {{ alert_data.title}}
+          {{ title}}
         </v-col>
-        <v-col cols="12" v-html="change(alert_data.text)">
+        <v-col cols="12" v-html="change(text)">
         </v-col>
       </v-row>
       <v-row>
@@ -32,21 +32,32 @@
 <script>
 export default {
   //type은 success, info, warning, error 이렇게 4가지를 쓸 수 있음
-  computed: {
-    is_show() {
-      return this.$store.getters['GET_ALERT'];
-    },
-    alert_data() {
-      return this.$store.getters['GET_ALERT_DATA'];
+  data() {
+    return {
+      is_show: false,
+      type : 'success',
+      title : '',
+      text: '',
+      result : undefined,
     }
   },
   methods: {
+    open(options) {
+      this.is_show = true;
+      this.type = options.type;
+      this.title = options.title;
+      this.text = options.text;
+      return new Promise( (resolve, reject) => {
+        this.result = resolve;
+      })
+    },
     change(v) {
       console.log('Button alert Click! - 2');
       return String(v).replace(/(?:\r\n|\r|\n)/g,"</br>");
     },
     close() {
-      this.$store.dispatch('updateAlert', {alert: false, type: 'error', text: ''});
+      this.is_show = false;
+      this.result(true);
     }
   }
 }
