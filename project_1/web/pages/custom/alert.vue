@@ -41,25 +41,23 @@ export default {
   },
   methods:{
     alert(){
-      console.log('Button alert Click! - 1');
       this.$store.dispatch('updateAlert', {
         alert: true, 
         title: 'Alert!!', 
         text:'aaaaaaaaa!!\nbbbbbbb!!',
         type: 'success'
       })
-      console.log('Button alert Click! - 3');
-      //1 3 2 순으로 찍힘
+      alert('test!');
+      //alert이 먼저 뜨고 확인 누르면 alert 컴포넌트가 출력됨. (순서 안맞음)
     },
     async open() {
-        console.log('Button alert Click! - 1');
         await this.$refs.alert.open({
           type: 'success',
           title: 'async Alert!!',
           text:'aaaaaaaaaa!!!\nbbbbbbbbbb!!'
         });
-        console.log('Button alert Click! - 3');
-        //닫기 눌러야 3 찍힘
+        alert('test!');
+        //alert 컴포넌트가 먼저 뜨고 확인 누르면 alert이 출력됨
     },
   }
 }

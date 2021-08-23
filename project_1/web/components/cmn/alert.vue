@@ -42,7 +42,6 @@ export default {
   },
   methods: {
     change(v) {
-      console.log('Button alert Click! - 2');
       return String(v).replace(/(?:\r\n|\r|\n)/g,"</br>");
     },
     close() {
