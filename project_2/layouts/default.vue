@@ -115,7 +115,8 @@ export default {
 
       test: [
         { title: 'component test 1', link: '/test/test1'},
-        { title: 'express execSync test', link: '/test/exec'}
+        { title: 'express execSync test', link: '/test/exec'},
+        { title: 'component object props test', link: '/test/obj-props'},
       ]
     }
   },
