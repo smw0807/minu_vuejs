@@ -10,11 +10,11 @@
           <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" v-on="on">
-                ag-grid
+                npm
               </v-btn>
             </template>
             <v-list dense dark>
-              <v-list-item v-for="(item, index) in threat" :key="index" router :to="item.link">
+              <v-list-item v-for="(item, index) in npm" :key="index" router :to="item.link">
                 <v-list-item-action>
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-action>
@@ -104,9 +104,10 @@ export default {
       ],
       mini: true,
 
-      threat: [
+      npm: [
         { title: "Infinite Scrolling", link: "/aggrid/grid1" },
         { title: 'ag-grid-vue', link: '/aggrid/grid2'},
+        { title: 'vue-modal-window', link: '/npm/modal'}
       ],
 
       vuetify: [

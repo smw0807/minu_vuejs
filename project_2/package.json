@@ -23,6 +23,7 @@
     "moment": "^2.29.1",
     "nuxt": "^2.15.3",
     "vue-class-component": "^7.2.6",
+    "vue-modal-window": "^1.0.3",
     "vue-navigation-bar": "^4.1.0",
     "vue-property-decorator": "^9.1.2",
     "vue-simple-drawer": "^1.0.6"
