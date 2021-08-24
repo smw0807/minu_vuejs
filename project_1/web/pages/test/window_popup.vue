@@ -51,12 +51,25 @@ export default {
       return 'popup'
     }
   },
+  data() {
+    return {
+      pop: null,
+    }
+  },
+  mounted() {
+    console.log('test : ', opener);
+  },
+  watch: {
+    pop(v) {
+      console.log('pop : ', v);
+    }
+  },
   methods: {
     open_component() { // 2번에 대한 방법.
-      window.open("/test/popup/popup", "open_component", "width=1024, height=768");
+      this.pop = window.open("/test/popup/popup", "open_component", "width=500, height=150");
     },
     open_page() { // 3번에 대한 방법.
-      window.open("/test/window_popup", "open_page", "width=1024, height=768");
+      this.pop = window.open("/test/window_popup", "open_page", "width=1024, height=768");
     },
   },
 }

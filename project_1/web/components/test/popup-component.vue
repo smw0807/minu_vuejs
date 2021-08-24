@@ -9,7 +9,14 @@
 
 <script>
 export default {
-
+  created() {
+    console.log('created : ' , opener);
+  },
+  beforeDestroy() {
+    alert("팝업에서 닫음!!");
+    if(opener) {
+    }
+  },
 }
 </script>
 
