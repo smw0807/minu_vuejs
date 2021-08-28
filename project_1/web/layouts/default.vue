@@ -2,7 +2,6 @@
   <v-app>
     <main-menu/>
     <alt/>
-    <confirm/>
       <transition name="component-fade" mode="out-in">
         <v-main>
           <menu-history class="mt-3 ml-4"/>
@@ -18,11 +17,11 @@ import mainMenu from '~/components/mainMenu'
 import bottomNav from '~/components/bottom'
 import alt from '~/components/cmn/alert'
 import menuHistory from '~/components/menuHistory'
-import confirm from '~/components/custom/confirm'
+import { alert_mixin } from '~/components/mixin/alert'
 export default {
-  
+  mixins: [alert_mixin],
   components:{
-   mainMenu, alt, bottomNav, menuHistory, confirm,
+   mainMenu, alt, bottomNav, menuHistory,
   },
   created() {
     //-------S
