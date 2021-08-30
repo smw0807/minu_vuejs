@@ -92,6 +92,7 @@ export default {
   methods: {
     open_component() { // 2번에 대한 방법.
       this.pop = window.open("/test/popup/popup", "open_component", "width=500, height=150");
+      this.$store.commit('SET_CONFIG', {aa:'aa', bb:123});
     },
     open_page() { // 3번에 대한 방법.
       this.pop = window.open("/test/window_popup", "open_page", "width=1024, height=768");

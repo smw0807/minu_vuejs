@@ -17,6 +17,10 @@ if (opener) {
 export default {
   created() {
     console.log('created : ' , opener);
+    const test = opener.$nuxt.$store.getters['GET_CONFIG']; //부모 객체의 store 접근 방법
+    console.log('check : ', test);
+    const test2 = this.$store.getters['GET_CONFIG']; //이건 팝업뜨면서 store가 분리되가지고 안들어있는듯 안나옴
+    console.log('chec2 : ', test2);
   },
   methods: {
     send() { //부모 객체에 있는 함수 실행하기
