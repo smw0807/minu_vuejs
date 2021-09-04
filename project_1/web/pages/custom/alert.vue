@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-layout column>
       <v-row>
-        <v-col cols="12">
+        <v-col cols="6">
           <v-card>
             <v-card-title>alert 컴포넌트 줄바꿈 테스트</v-card-title>
             <v-card-text>
@@ -11,16 +11,13 @@
             </v-card-text>
           </v-card>
         </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="12">
+        <v-col cols="6">
           <v-card>
             <v-card-title>alert 컴포넌트 promise처리</v-card-title>
             <v-card-text>
               <pre>
-원래 alert이 뜨면 버튼을 누르기 전까지 다음 코드 실행이 안되는데. 내가 만든건 그걸 고려하지 않고 만들어서
-alert 컴포넌트는 띄우고 바로 다음 코드로 진행되는 것 때문에 promise를 이용해서 새로 만들어봄.
+  원래 alert이 뜨면 버튼을 누르기 전까지 다음 코드 실행이 안되는데. 내가 만든건 그걸 고려하지 않고 만들어서
+  alert 컴포넌트는 띄우고 바로 다음 코드로 진행되는 것 때문에 promise를 이용해서 새로 만들어봄.
               </pre>
               <async-alert ref="alert"/>
               <v-btn @click="open">ALERT!</v-btn>
@@ -28,6 +25,7 @@ alert 컴포넌트는 띄우고 바로 다음 코드로 진행되는 것 때문�
           </v-card>
         </v-col>
       </v-row>
+
       <v-row>
         <v-col cols="12">
           <v-card>
@@ -46,6 +44,20 @@ alert 컴포넌트는 띄우고 바로 다음 코드로 진행되는 것 때문�
           </v-card>
         </v-col>
       </v-row>
+      <v-row>
+        <v-col cols="12">
+          <v-card>
+            <v-card-title>mixin 테스트</v-card-title>
+            <v-card-text>
+              위 방식은 alert 컴포넌트에 대해 store 요청 처리를 믹스인으로 만든거였는데, 
+              alert 컴포넌트 소스 자체를 믹스인으로 만들어서 사용해보고 싶어서 해봄
+            </v-card-text>
+            <v-card-text>
+              <mixinAlert2/>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-layout>
 
   </v-container>
@@ -54,10 +66,12 @@ alert 컴포넌트는 띄우고 바로 다음 코드로 진행되는 것 때문�
 <script>
 import asyncAlert from '~/components/cmn/asyncAlert'
 import mixinAlert from '~/components/custom/mixinAlert'
+import mixinAlert2 from '@/components/custom/mixinAlert2'
 export default {
   components: {
     asyncAlert,
-    mixinAlert
+    mixinAlert,
+    mixinAlert2,
   },
   methods:{
     alert(){
