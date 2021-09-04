@@ -17,7 +17,7 @@
  * import하고 쓰는게 더 귀찮은듯.
  * 전역 mixin으로 사용하는게 더 나을까?
  */
-import {alert_mixin} from '~/components/mixin/alert'
+import {alert_mixin} from '~/components/mixin/alert_store'
 export default {
   mixins: [alert_mixin],
   data() {

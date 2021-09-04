@@ -17,7 +17,7 @@ import mainMenu from '~/components/mainMenu'
 import bottomNav from '~/components/bottom'
 import alt from '~/components/cmn/alert'
 import menuHistory from '~/components/menuHistory'
-import { alert_mixin } from '~/components/mixin/alert'
+import { alert_mixin } from '~/components/mixin/alert_store'
 export default {
   mixins: [alert_mixin],
   components:{
