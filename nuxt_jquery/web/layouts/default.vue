@@ -105,6 +105,11 @@ export default {
           icon: 'mdi-test-tube',
           title: '자식 함수 실행',
           to: '/test1'
+        },
+        {
+          icon: 'mdi-test-tube',
+          title: 'vue-context-menu Test',
+          to: '/vue-context'
         }
       ],
       miniVariant: false,
