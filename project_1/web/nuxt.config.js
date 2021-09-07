@@ -66,14 +66,15 @@ export default {
   // },
   
   axios: {
-    proxy: false,
-    // baseURL: 'https://192.168.3.21:8200'
+    proxy: process.env.proxy === 'Y' ? true : false || false,
+    // proxy: false,
+    // baseURL: process.env.proxyHost
   },
-  // proxy: {
-  //   '/api/v1': {
-  //     target: es.proxyHost
-  //   },
-  // },
+  proxy: {
+    '/api/v1/': {
+      target: process.env.proxyHost
+    },
+  },
 
   serverMiddleware: [
     '@/api/index.js'

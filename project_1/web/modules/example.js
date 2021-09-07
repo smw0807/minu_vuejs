@@ -1,6 +1,7 @@
 export default function ExampleModule(moduleOptions) {
   console.log(moduleOptions.name); //! 실행 순서 : 1
-  // console.log(this.options); //nuxt.config.js 에 있는 옵션 및 process.env 정보 등등 다 들어있는 것 같음
+  console.log(this.options.axios); //nuxt.config.js 에 있는 옵션 및 process.env 정보 등등 다 들어있는 것 같음
+  console.log(this.options.proxy); //nuxt.config.js 에 있는 옵션 및 process.env 정보 등등 다 들어있는 것 같음
   // this.option에 찍히는 정보에 대한건 같은 디렉터리의 this.options 파일에 넣어둠 (2021-08-19)
 
   //Nuxt 작동 준비 완료시 실행
