@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import { server } from './serverMiddleware'
 /**
  * 링크
  * Vuetify : https://v2.vuetifyjs.com/ko/getting-started/quick-start/
@@ -64,38 +65,31 @@ export default {
   //   pr_mode: process.env.mode,
   //   pr_es: process.env.ES_HOST,
   // },
-  
+
+  /**
+   * serverMiddleware 값이 null이 아니면 
+   * axios옵션이 잇건 말건 내부 API url을 우선으로 찾음 (내 소스상에서 내부에 /api/와 외부에 /api/를 두고 테스트 해봤음)
+   * 없으면 외부로 요청 나감 (내 소스상에서 /express는 외부에만 만들었음)
+   * null이면 내부에 api를 만들어도 어차피 안타고 외부로 요청이 나감 (내 소스상에서 /api/, /express/ 둘다)
+   * 사실상 axios 옵션은 적용이 안되는 듯...? 값을 바꿔서 해보고 다 주석처리 해봐도 위 내용 그대로 진행이댔음.
+   */
   axios: {
     proxy: process.env.proxy === 'Y' ? true : false || false,
-    // proxy: false,
     // baseURL: process.env.proxyHost
   },
   proxy: {
-    '/api/v1/': {
-      target: process.env.proxyHost
-    },
+    '/api/': process.env.proxyHost,
+    '/express/': process.env.proxyHost
   },
 
-  serverMiddleware: [
-    '@/api/index.js'
-  ],
+  /**
+   * proxy가 있어도 serverMiddleware: [ '@/api/index.js' ] 이런식으로 있으면 
+   * proxy 값을 무시하고 저 파일을 우선시 읽는 것 같음..
+   * null로 주면 proxy값으로 감
+   */
+  serverMiddleware: server(),
   
-  // router: {
-  //   middleware: [
-  //     'readConfig',
-  //   ] 
-  // },
-
   loading: '~/components/loading.vue',
-
-  // todo 잘 안됨. 좀더 제대로 알아봐야할 것 같음
-  // pageTransition: {
-  //   name: 'page',
-  //   mode: 'slide-right',
-  //   beforeEnter (el) {
-  //     console.log('Before enter...');
-  //   }
-  // },
 
   // cli 속성? https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-cli
   cli: {

@@ -16,6 +16,14 @@
             >
             다시!
           </v-btn>
+          <v-btn
+            raised
+            color="primary"
+            @click="retry2"
+            :disabled="test"
+            >
+            다시2!
+          </v-btn>
         </v-col>
         
       </v-row>
@@ -85,6 +93,14 @@ export default {
         this.test = false;
         this.$nuxt.$loading.finish();
       }, 1000);
+    },
+    async retry2() {
+      try {
+        const rs = await this.$axios.post('/express/test');
+        console.log('result : ', rs);
+      } catch (err) {
+        console.error(err);
+      }
     },
     async es_test() {
       try {
