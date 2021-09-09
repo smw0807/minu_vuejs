@@ -25,6 +25,7 @@ export default {
       items: [
         { title: 'Test', to: '/test/props_test', use: ['test'] },
         { title: 'window popup', to: '/test/window_popup' },
+        { title: 'resize mixin', to: '/test/resize' },
         // { title: 'sub3', to: '/menu2/menu2_3', use: ['test'] },
         // { title: 'sub4', to: '/menu2/menu2_4' },
         // { title: 'sub5', to: '/menu2/menu2_5' }
