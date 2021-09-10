@@ -10,12 +10,11 @@ Vue.use(VueRouter);
 //라우터 정보 입력
 const routes = [
   {
-    path: '/test',
+    path: '/main',
     name: 'main',
     component: main
   }
 ]
-console.log('111');
 const router = new VueRouter({
   mode: 'history',
   routes

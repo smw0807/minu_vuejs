@@ -9,11 +9,12 @@
 </template>
 
 <script>
+/**
+ * Do not use built-in or reserved HTML elements as component id: main
+ * 이 에러 뜨는 원인 찾기
+ */
 export default {
-  name : 'main',
-  created() {
-    console.log('???');
-  }
+  name : 'main'
 }
 </script>
 
