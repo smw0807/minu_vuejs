@@ -38,6 +38,7 @@ export default {
   plugins: [
     '@/plugins/axios.js',
     '@/plugins/filters.js',
+    '@/plugins/directive.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
