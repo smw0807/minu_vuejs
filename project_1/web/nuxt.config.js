@@ -90,6 +90,14 @@ export default {
    */
   serverMiddleware: server(),
   
+  /**
+   * 라우터 미들웨어
+   * 라우터 이동시마다 저장된 파일이 실행됨
+   */
+  router: {
+    middleware: ['router']
+  },
+
   loading: '~/components/loading.vue',
 
   // cli 속성? https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-cli
