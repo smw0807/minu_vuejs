@@ -36,13 +36,34 @@ export default {
       bind(el, binding) {
         console.log('text-highlight : ', binding);
         if (!binding.arg) {
-          console.log('하이라이트 1번 2번 여기탐', binding.modifiers);
-
+          const lng = Object.keys(binding.modifiers).length; 
+          if (lng === 0) { //하이라이트 1번 방식
+            el.style.backgroundColor = '#0054FF';
+          } else { //하이라이트 2번 방식 (수식어 객체 방식)
+            const s = Object.keys(binding.modifiers); 
+            console.log(s);
+            let color = '';
+            switch(s[0]) {
+              case 'red': 
+                color = '#FF0000';
+                break;
+              case 'blue':
+                color = '#0054FF';
+                break;
+              case 'yellow':
+                color = '#FAED7D';
+                break;
+              default:
+                color = 'none';
+                break;
+            }
+            el.style.backgroundColor = color;
+          }
         }
-        if (binding.arg && binding.arg === 'color') { //하이라이트 3번 방식
+        if (binding.arg && binding.arg === 'color') { //하이라이트 3번 방식 (전달인자 방식)
           el.style.backgroundColor = binding.value;
         }
-        if (binding.arg && binding.arg !== 'color') { //하이라이트 4번 방식
+        if (binding.arg && binding.arg !== 'color') { //하이라이트 4번 방식 (전달인자 방식)
           let color = 'none';
           switch(binding.arg) {
             case 'red': 
