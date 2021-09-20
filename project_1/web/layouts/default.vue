@@ -23,6 +23,12 @@ export default {
   components:{
    mainMenu, alt, bottomNav, menuHistory,
   },
+  data() {
+    return {
+      aaa: 'aaa',
+      bbb: 'bbb',
+    }
+  },
   created() {
     //-------S
     // console.log('layout/default env : ', process.env.mode);
