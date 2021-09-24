@@ -108,6 +108,7 @@ export default {
   cretaed() {
   },
   mounted() {
+    console.log('env test : ', process.env);
   },
 
 };
