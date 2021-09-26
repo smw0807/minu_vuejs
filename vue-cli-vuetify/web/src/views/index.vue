@@ -2,7 +2,7 @@
   <v-layout column>
     <v-row>
       <v-col>
-        test
+        <hello/>
       </v-col>
     </v-row>
   </v-layout>
@@ -13,8 +13,11 @@
  * Do not use built-in or reserved HTML elements as component id: main
  * 이 에러 뜨는 원인 찾기
  */
+import hello from '@/components/HelloWorld'
 export default {
-  name : 'main'
+  components: {
+    hello
+  }
 }
 </script>
 

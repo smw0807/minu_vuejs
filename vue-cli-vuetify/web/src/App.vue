@@ -1,11 +1,5 @@
 <template>
   <v-app>
-    <!-- <v-app-bar app >
-      <div class="d-flex align-center">
-        JWT Login
-      </div>
-      <v-spacer></v-spacer>
-    </v-app-bar> -->
     <v-app-bar
       app
       flat
@@ -16,20 +10,20 @@
       ></v-avatar>
 
       <v-tabs
+        v-model="tab"
         centered
         class="ml-n9"
         color="grey darken-1"
       >
         <v-tab
-          v-for="link in links"
-          :key="link"
+          v-for="tab in tabs"
+          :key="tab"
         >
-          {{ link }}
+          {{ tab }}
         </v-tab>
       </v-tabs>
 
       <v-avatar
-        class="hidden-sm-and-down"
         color="grey darken-1 shrink"
         size="32"
       ></v-avatar>
@@ -38,40 +32,45 @@
     <v-main >
       <v-container>
         <v-row>
-          <v-col
-            cols="12"
-            sm="2"
-          >
+          <v-col cols="12" sm="2">
             <v-sheet
               rounded="lg"
               min-height="268"
-            >
+              >
               <!-- 왼쪽 -->
-            test
+            <leftMenu/>
             </v-sheet>
           </v-col>
 
-          <v-col
-            cols="12"
-            sm="8"
-          >
+          <v-col cols="12" sm="8">
             <v-sheet
               min-height="70vh"
               rounded="lg"
-            >
+              >
               <!-- 센터  -->
-              <router-view/>
+              <v-tabs-items v-model="tab">
+                <v-tab-item>
+                  <router-view/>
+                </v-tab-item>
+                <v-tab-item>
+                  1
+                </v-tab-item>
+                <v-tab-item>
+                  2
+                </v-tab-item>
+                <v-tab-item>
+                  3
+                </v-tab-item>
+
+              </v-tabs-items>
             </v-sheet>
           </v-col>
 
-          <v-col
-            cols="12"
-            sm="2"
-          >
+          <v-col cols="12" sm="2">
             <v-sheet
               rounded="lg"
               min-height="268"
-            >
+              >
               <!-- 오른쪽 -->
               ㅋㅋ
             </v-sheet>
@@ -80,22 +79,18 @@
       </v-container>
     </v-main>
 
-    <!-- <v-main>
-      <v-container>
-        <router-view/>
-      </v-container>
-    </v-main> -->
   </v-app>
 </template>
 
 <script>
-
+import leftMenu from '@/components/leftMenu'
 export default {
   name: 'App',
   data() {
     return {
-      links: [
-        'Dashboard',
+      tab: null,
+      tabs: [
+        'SHOW',
         'Messages',
         'Profile',
         'Updates',
@@ -103,12 +98,12 @@ export default {
     }
   },
   components: {
+    leftMenu
   },
 
   cretaed() {
   },
   mounted() {
-    console.log('env test : ', process.env);
   },
 
 };

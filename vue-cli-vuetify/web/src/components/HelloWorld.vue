@@ -2,9 +2,6 @@
   <v-container>
     <v-row class="text-center">
       <v-col cols="12">
-        <v-checkbox v-on:click.capture='ask($event)' :label="`Checaaakbox 1: ${checkbox1.toString()}`" v-model="checkbox1"></v-checkbox>
-      </v-col>
-      <v-col cols="12">
         <v-img
           :src="require('../assets/logo.svg')"
           class="my-3"
