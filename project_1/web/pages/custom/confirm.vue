@@ -5,7 +5,7 @@
       <v-row>
         <v-col cols="12">
           <v-card>
-            <v-card-title>공용 confirm 컴포넌트 만들어보기</v-card-title>
+            <v-card-title>confirm 컴포넌트 만들어보기</v-card-title>
             <v-card-text>
               <v-btn @click="go">confirm go!</v-btn>
             </v-card-text>
@@ -27,7 +27,10 @@ export default {
     async go() {
       console.log('go!');
       const rs = await this.$refs.cf.open({
-        type:'success',
+        // type:'success',
+        // type:'info',
+        // type:'warning',
+        type:'error',
         title: 'Confirm!!',
         text: 'Ok??\nChoice Button!'
       });
