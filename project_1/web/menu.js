@@ -29,6 +29,7 @@ export default {
         { title: 'v-if & v-show', icon: 'mdi-eye', to: '/vue/ifshow', use: ['vuetify']},
         { title: 'directive', to: '/vue/vue1', use: ['vue']},
         { title: '엘리먼트 & 컴포넌트 접근', to: '/vue/vue2', use: ['vue']},
+        { title: 'Event Bus', to: '/vue/eventBus', use: ['vue']},
       ],
       use: ['vue']
     },
