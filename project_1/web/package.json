@@ -18,6 +18,7 @@
     "elasticsearch": "^16.7.2",
     "express": "^4.17.1",
     "nuxt": "^2.15.3",
+    "vue-ctk-date-time-picker": "^2.5.0",
     "vue-ip-input": "^2.0.2"
   },
   "devDependencies": {

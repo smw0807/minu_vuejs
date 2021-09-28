@@ -6,6 +6,12 @@
         <v-col cols="12">
           <date-picker/>
         </v-col>
+        <v-col cols="12">
+          <date-time/>
+        </v-col>
+        <v-col cols="12">
+          <picker/>
+        </v-col>
       </v-row>
     </v-flex>
     
@@ -14,9 +20,13 @@
 
 <script>
 import datePicker from '~/components/vpicker/datepicker'
+import dateTime from '~/components/vpicker/datetime'
+import picker from '~/components/vpicker/picker'
 export default {
   components: {
-    datePicker
+    datePicker,
+    dateTime,
+    picker,
   }
 }
 </script>

@@ -39,6 +39,7 @@ export default {
     '@/plugins/axios.js',
     '@/plugins/filters.js',
     '@/plugins/directive.js',
+    '@/plugins/VueCtkDateTimePicker.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
