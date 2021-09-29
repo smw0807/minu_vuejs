@@ -3,8 +3,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router'
 
-import main from '@/views/index'
-import test1 from '@/views/test/test1'
+import main from '@/views/index' //메인
+import test1 from '@/views/test/test1' //라우트 테스트
+import test2 from '@/views/test/test2' //데이터 송수신
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/test1',
     name: 'test1',
     component: test1
+  },
+  {
+    path: '/test2',
+    name: 'test2',
+    component: test2
   }
 ]
 const router = new VueRouter({

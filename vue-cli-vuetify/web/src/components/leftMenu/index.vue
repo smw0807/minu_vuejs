@@ -1,6 +1,6 @@
 <template>
   <v-list dense>
-    <v-subheader>LEFT</v-subheader>
+    <v-subheader>Left Menu</v-subheader>
     <v-list-item-group
       v-model="selectedItem"
       color="primary"
@@ -8,10 +8,11 @@
       <v-list-item
         v-for="(item, i) in items"
         :key="i"
+        :to="{path: item.to}"
       >
         <v-list-item-content>
           <v-list-item-title>
-            <router-link :to="{path: item.to}">{{item.text}}</router-link>
+            {{item.text}}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -25,8 +26,9 @@ export default {
     return {
       selectedItem: 1,
       items: [
-        { text: 'Home', icon: 'mdi-clock', to: '/' },
-        { text: 'test1', icon: 'mdi-clock', to: 'test1' },
+        { text: 'Home', to: '/' },
+        { text: 'test1', to: 'test1' },
+        { text: '데이터 송수신', to: 'test2' },
       ],
     }
   }
