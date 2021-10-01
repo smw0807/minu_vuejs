@@ -29,6 +29,7 @@ export default {
         { text: 'Home', to: '/' },
         { text: 'test1', to: 'test1' },
         { text: '데이터 송수신', to: 'test2' },
+        { text: 'axios & proxy 테스트', to: 'test3' },
       ],
     }
   }

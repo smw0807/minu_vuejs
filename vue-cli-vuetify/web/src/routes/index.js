@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import main from '@/views/index' //메인
 import test1 from '@/views/test/test1' //라우트 테스트
 import test2 from '@/views/test/test2' //데이터 송수신
+import test3 from '@/views/test/test3' //axios proxy 테스트
 
 Vue.use(VueRouter);
 
@@ -25,6 +26,11 @@ const routes = [
     path: '/test2',
     name: 'test2',
     component: test2
+  },
+  {
+    path: '/test3',
+    name: 'test3',
+    component: test3
   }
 ]
 const router = new VueRouter({
