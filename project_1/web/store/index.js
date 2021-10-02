@@ -111,4 +111,13 @@ export const actions = {
   updateAlert({commit}, params) {
     commit('SET_ALERT', params);
   },
+  csvDownload() {
+    return new Promise( async (resolve, reject) => {
+      try {
+        
+      } catch (err) {
+        console.error('csvDownload err : ', err);
+      }
+    })
+  }
 }

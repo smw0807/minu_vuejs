@@ -2,6 +2,7 @@ export default {
   items: [
     { title: 'index', icon: 'mdi-view-dashboard', to: '/' },
     { title: 'test', icon: 'mdi-api', to: '/apis/apiTest' },
+    { title: 'Elastic CSV Download', icon: 'mdi-tray-arrow-down', to: '/csv/csv' },
     { divider: true },
     {
       title: 'DataTables',
