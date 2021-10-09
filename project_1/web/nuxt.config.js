@@ -40,6 +40,7 @@ export default {
     '@/plugins/filters.js',
     '@/plugins/directive.js',
     '@/plugins/VueCtkDateTimePicker.js',
+    '@/plugins/vue-json-csv.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
