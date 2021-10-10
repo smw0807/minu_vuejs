@@ -8,5 +8,5 @@
  * 보통은 토큰 유효성 체크로 사용하긴 했음
  */
 export default function ({store, route}) {
-  console.log('middleware/router.js', store, route);
+  // console.log('middleware/router.js', store, route);
 }
