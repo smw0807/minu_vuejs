@@ -33,7 +33,8 @@ export const actions = {
     return new Promise(async (resolve, reject) => {
       try {
         console.log(params);
-        const rs = await this.$axios.post('/api/v1/csv/download', params);
+        const rs = await this.$axios.get('/api/v1/csv/download?q=' + JSON.stringify(params));
+        // const rs = await this.$axios.post('/api/v1/csv/download', params);
         console.log(rs);
         resolve(rs);
       } catch (err) {
