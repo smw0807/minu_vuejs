@@ -7,6 +7,8 @@ const { singleFlatMap } = require(aRoot + '/utils/elastic').default;
 const json2csv = require('json2csv').parse;
 const fs = require('fs');
 
+const { Parser } = require('json2csv');
+
 router.post('/list', async (req, res) => {
   console.log('/api/v1/csv/list');
   let rt = {};
@@ -34,9 +36,7 @@ router.post('/list', async (req, res) => {
 // router.post('/download', async (req, res) => {
 router.get('/download', async (req, res) => {
   console.log('/api/v1/csv/download');
-  console.log(req.query);
   const params = JSON.parse(req.query.q);
-  console.table(params);
   let rt = {};
   try {
     let q = {
@@ -47,7 +47,33 @@ router.get('/download', async (req, res) => {
       body: q
     })
     const data = singleFlatMap(search);
+    const csvFileName = 'csv_download.csv';
     const path = aRoot + '/csv_tmp/csv_download.csv';
+    //========================================================== Test1 S
+    const fields = params.field;
+    const opts = { fields };
+    const parser = new Parser(opts);
+    const csv = parser.parse(data);
+    
+    res.setHeader('Content-disposition', 'attachment; filename=testing.csv');
+    res.set('Content-Type', 'text/csv');
+    res.status(200).send(csv);
+    // res.status(200).send(csv);
+    // fs.writeFile(path, csv, function (err, data) {
+    //   if (err) {
+    //     console.error(err);
+    //     res.send(err);
+    //   } else {
+    //     console.log('write!');
+    //     console.log(path);
+    //     console.log(data);
+        // res.setHeader("Content-Type", "text/csv");
+        // res.setHeader("Content-Disposition", "attachment; filename=csv_download.csv");
+    //     res.attachment('csv_download.csv');
+    //     res.status(200).end(csv);
+    //   }
+    // });
+    //========================================================== Test1 E
     //========================================================== Test1 S
     // const csv =  json2csv(data, params.field); //field적용 안되는거 원인 파악 필요
     // fs.writeFile(path, csv, function (err, data) {
