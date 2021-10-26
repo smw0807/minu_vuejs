@@ -19,6 +19,8 @@
     "express": "^4.17.1",
     "json2csv": "^5.0.6",
     "nuxt": "^2.15.3",
+    "tiptap": "^1.32.2",
+    "tiptap-extensions": "^1.35.2",
     "vue-ctk-date-time-picker": "^2.5.0",
     "vue-ip-input": "^2.0.2",
     "vue-json-csv": "^1.2.12"

@@ -22,6 +22,16 @@ export default {
     { title: 'custom confirm', icon: 'mdi-comment-question-outline', to: '/custom/confirm', use: ['vuetify', 'custom']},
     { title: 'custom alert', icon: 'mdi-alert', to: '/custom/alert', use: ['vuetify', 'custom']},
     { divider: true },
+    { 
+      title: 'NPM Test', 
+      icon: 'mdi-npm', 
+      items: [
+        { title: 'vue-ip-input',to: '/npm/vue-ip-input'},
+        { title: 'tiptap',to: '/npm/tiptap'},
+      ],
+      use: ['vue']
+    },
+    { divider: true },
     { title: 'NuxtJS', icon: 'mdi-nuxt', to: '/nuxt/nuxt1', use: ['test']},
     { 
       title: 'VueJS', 
