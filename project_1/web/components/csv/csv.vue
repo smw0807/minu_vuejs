@@ -14,6 +14,9 @@
       <v-btn @click="download">node에서 csv 파일 생성</v-btn>
     </v-card-text>
     <v-card-text>
+      <v-btn href="/file/test" download>프로젝트 내부 파일 다운로드</v-btn>
+    </v-card-text>
+    <v-card-text>
       <v-data-table
         :headers="headers"
         :items="list"
@@ -84,7 +87,10 @@ export default {
         mapping: this.csvHeaders
       }
       const rs = await this.$store.dispatch('csv/csvDownload', params);
-      // window.open(rs);
+      // const blob = new Blob([rs.data], {type: 'text/csv'});
+      // const link = document.createElement('a');
+      // link.href = window.URL.createObjectURL(blob);
+      // link.click();
     },
   }
 }

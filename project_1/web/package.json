@@ -18,6 +18,7 @@
     "elasticsearch": "^16.7.2",
     "express": "^4.17.1",
     "json2csv": "^5.0.6",
+    "moment": "^2.29.1",
     "nuxt": "^2.15.3",
     "tiptap": "^1.32.2",
     "tiptap-extensions": "^1.35.2",

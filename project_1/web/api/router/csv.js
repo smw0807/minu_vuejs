@@ -6,7 +6,7 @@ const es_client = require(aRoot + '/api/elastic');
 const { singleFlatMap } = require(aRoot + '/utils/elastic').default;
 const json2csv = require('json2csv').parse;
 const fs = require('fs');
-
+const moment = require('moment')
 const { Parser } = require('json2csv');
 
 router.post('/list', async (req, res) => {
@@ -46,18 +46,33 @@ router.get('/download', async (req, res) => {
       index: 'idx_test1',
       body: q
     })
+    const date = moment();
+
     const data = singleFlatMap(search);
-    const csvFileName = 'csv_download.csv';
-    const path = aRoot + '/csv_tmp/csv_download.csv';
+    const csvFileName = 'csv_download_' + date.format('YYYYMMDDHHmmss') + '.csv';
+    const path = aRoot + '/csv_tmp/' + csvFileName;
     //========================================================== Test1 S
     const fields = params.field;
     const opts = { fields };
     const parser = new Parser(opts);
     const csv = parser.parse(data);
+
     
-    res.setHeader('Content-disposition', 'attachment; filename=testing.csv');
-    res.set('Content-Type', 'text/csv');
-    res.status(200).send(csv);
+    fs.writeFile(path, csv, function (err) {
+      if (err) {
+        console.error(err);
+      } else {
+        res.setHeader("Content-disposition", "attachment : filename=" + csvFileName);
+        res.set("Content-Type", "text/csv");
+        fs.createReadStream(path).pipe(res).on('finish', () => {
+          console.log('download success?');
+          fs.unlinkSync(path);
+        })
+      }
+    })
+    // res.setHeader('Content-disposition', 'attachment; filename=testing.csv');
+    // res.set('Content-Type', 'text/csv');
+    // res.status(200).send(csv);
     // res.status(200).send(csv);
     // fs.writeFile(path, csv, function (err, data) {
     //   if (err) {
