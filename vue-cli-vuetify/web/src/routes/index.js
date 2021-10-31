@@ -7,6 +7,7 @@ import main from '@/views/index' //메인
 import test1 from '@/views/test/test1' //라우트 테스트
 import test2 from '@/views/test/test2' //데이터 송수신
 import test3 from '@/views/test/test3' //axios proxy 테스트
+import test4 from '@/views/test/test4' //download 속성 테스트 (nuxt처럼 사용법 똑같은지 확인)
 
 Vue.use(VueRouter);
 
@@ -31,6 +32,11 @@ const routes = [
     path: '/test3',
     name: 'test3',
     component: test3
+  },
+  {
+    path: '/test4',
+    name: 'test4',
+    component: test4
   }
 ]
 const router = new VueRouter({
