@@ -57,19 +57,22 @@ router.get('/download', async (req, res) => {
     const parser = new Parser(opts);
     const csv = parser.parse(data);
 
+    rt.result = csv;
+    rt.fileName = csvFileName;
+    res.send(rt);
     
-    fs.writeFile(path, csv, function (err) {
-      if (err) {
-        console.error(err);
-      } else {
-        res.setHeader("Content-disposition", "attachment : filename=" + csvFileName);
-        res.set("Content-Type", "text/csv");
-        fs.createReadStream(path).pipe(res).on('finish', () => {
-          console.log('download success?');
-          fs.unlinkSync(path);
-        })
-      }
-    })
+    // fs.writeFile(path, csv, function (err) {
+    //   if (err) {
+    //     console.error(err);
+    //   } else {
+    //     res.setHeader("Content-disposition", "attachment : filename=" + csvFileName);
+    //     res.set("Content-Type", "text/csv");
+    //     fs.createReadStream(path).pipe(res).on('finish', () => {
+    //       console.log('download success?');
+    //       fs.unlinkSync(path);
+    //     })
+    //   }
+    // })
     // res.setHeader('Content-disposition', 'attachment; filename=testing.csv');
     // res.set('Content-Type', 'text/csv');
     // res.status(200).send(csv);

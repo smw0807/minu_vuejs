@@ -1,3 +1,4 @@
+const fileDownload = require('js-file-download');
 export const state = () => {
   return {
     list: [],
@@ -34,11 +35,11 @@ export const actions = {
       try {
         console.log(params);
         const rs = await this.$axios.get('/api/v1/csv/download?q=' + JSON.stringify(params));
-        const blob = new Blob([rs.data], {type: 'text/csv'});
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.click();
-        // const rs = await this.$axios.post('/api/v1/csv/download', params);
+        fileDownload(rs.data.result, rs.data.fileName);
+        // const blob = new Blob([rs.data], {type: 'text/csv'});
+        // const link = document.createElement('a');
+        // link.href = window.URL.createObjectURL(blob);
+        // link.click();
         console.log(rs);
         resolve(rs);
       } catch (err) {
