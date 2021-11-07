@@ -28,6 +28,7 @@ export default {
       items: [
         { title: 'vue-ip-input',to: '/npm/vue-ip-input'},
         { title: 'tiptap',to: '/npm/tiptap'},
+        { title: 'vue-number-animation',to: '/npm/vue-number-animation'},
       ],
       use: ['vue']
     },

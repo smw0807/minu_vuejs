@@ -25,7 +25,8 @@
     "tiptap-extensions": "^1.35.2",
     "vue-ctk-date-time-picker": "^2.5.0",
     "vue-ip-input": "^2.0.2",
-    "vue-json-csv": "^1.2.12"
+    "vue-json-csv": "^1.2.12",
+    "vue-number-animation": "^1.1.1"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3",
