@@ -3,6 +3,7 @@ export default {
     { title: 'index', icon: 'mdi-view-dashboard', to: '/' },
     { title: 'test', icon: 'mdi-api', to: '/apis/apiTest' },
     { title: 'Elastic CSV Download', icon: 'mdi-tray-arrow-down', to: '/csv/csv' },
+    { title: 'Insert File in ElasticSearch', icon: 'mdi-file-upload-outline', to: '/file/file' },
     { divider: true },
     {
       title: 'DataTables',
