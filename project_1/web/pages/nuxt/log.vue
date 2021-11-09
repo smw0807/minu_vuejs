@@ -17,7 +17,6 @@ export default {
     comp
   },
   created() {
-    console.log(this.$Log);
     // console.log(this.$nuxt);
     // this.$Log.info('page test');
   }
