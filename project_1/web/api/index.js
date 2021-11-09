@@ -8,6 +8,11 @@ import express from 'express'
 import bodyParser from 'body-parser'
 const app = express();
 
+const aRoot = require('app-root-path');
+const Logd = require(aRoot + '/log');
+const log = new Logd('express');
+global.Log = log;
+
 // //nuxt.config.js 파일 읽는 법??
 // const { Nuxt, Builder } = require('nuxt');
 // const config = require(aRoot + '/nuxt.config.js'); 
@@ -18,6 +23,7 @@ app.use(bodyParser.json());
 
 app.post('/test', (req, res) => {
   console.log('/api/test');
+  Log.info('/api/test');
   // console.log('dotenv test : ', process.env);
   res.send('API Success!!');
 })

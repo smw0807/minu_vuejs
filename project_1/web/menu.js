@@ -30,11 +30,19 @@ export default {
         { title: 'vue-ip-input',to: '/npm/vue-ip-input'},
         { title: 'tiptap',to: '/npm/tiptap'},
         { title: 'vue-number-animation',to: '/npm/vue-number-animation'},
+        
       ],
       use: ['vue']
     },
     { divider: true },
-    { title: 'NuxtJS', icon: 'mdi-nuxt', to: '/nuxt/nuxt1', use: ['test']},
+    { 
+      title: 'NuxtJS', 
+      icon: 'mdi-nuxt', to: '/nuxt/nuxt1', 
+      items: [
+        { title: 'Nuxt 속성 테스트', to: '/nuxt/nuxt1'},
+        { title: 'nuxt log',to: '/nuxt/log'},
+      ],
+    },
     { 
       title: 'VueJS', 
       icon: 'mdi-vuejs', 

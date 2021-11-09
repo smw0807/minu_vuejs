@@ -1,0 +1,11 @@
+2021-11-09 14:08:52 [INFO] [api\index.js:15] test!!
+2021-11-09 14:20:36 [INFO] [api\index.js:15] test!!
+2021-11-09 14:24:05 [INFO] [api\index.js:15] test!!
+2021-11-09 14:49:39 [INFO] [api\index.js:15] test!!
+2021-11-09 14:52:02 [INFO] [api\index.js:15] test!!
+2021-11-09 14:52:58 [INFO] [api\index.js:15] test!!
+2021-11-09 15:23:07 [INFO] [api\index.js:15] test!!
+2021-11-09 15:24:16 [INFO] [api\index.js:15] test!!
+2021-11-09 15:33:06 [INFO] [api\router\test.js:9] /ElasticSearch Connection Check!
+2021-11-09 15:33:06 [INFO] [api\router\test.js:13] true
+2021-11-09 15:34:38 [INFO] [api\index.js:26] /api/test
