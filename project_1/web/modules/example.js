@@ -1,10 +1,3 @@
-const aRoot = require('app-root-path');
-const Logd = require(aRoot + '/log');
-const log = new Logd('nuxt');
-
-import Vue from 'vue';
-Vue.prototype.$Log = log;
-
 export default function ExampleModule(moduleOptions) {
   console.log(moduleOptions.name); //! 실행 순서 : 1
   console.log(this.options.axios); //nuxt.config.js 에 있는 옵션 및 process.env 정보 등등 다 들어있는 것 같음
