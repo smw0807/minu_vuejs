@@ -35,13 +35,13 @@ export default {
       console.log('upload!');
       console.log(this.file);
       let formData = new FormData();
+      formData.append('fileName', this.file.name);
       formData.append('file', this.file);
       console.log(formData);
       try {
-        const rs = await this.$axios.post('/api/v1/file/file_upload', formData, {type : 'file'});
+        // const rs = await this.$axios.post('/api/v1/file/file_upload', formData, {type : 'file'});
         // const rs = await this.$axios.post('/api/v1/file/file_upload', formData, {headers: {'Content-Type': 'multipart/form-data'}});
-        console.log(rs);
-        // const rs = await this.$store.dispatch('file/uploadFile', {file: this.file});
+        const rs = await this.$store.dispatch('file/uploadFile', formData);
       } catch (err) {
         console.error(err);
       }

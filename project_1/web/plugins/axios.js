@@ -3,11 +3,7 @@ export default function ({$axios}) {
   //request 요청 
   $axios.onRequest(config => {
     config.timeout = 10000;
-    if (config.type && config.type === 'file') {
-      config.headers['Content-Type'] = 'multipart/form-data'
-      console.log(config.headers);
-    }
-    console.log('request : ', config);
+    // console.log('request : ', config);
     return config;
   });
 

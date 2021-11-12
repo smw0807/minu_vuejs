@@ -25,14 +25,7 @@ export const actions = {
     return new Promise(async (resolve, reject) => {
       try {
         console.log('store/uploadFile', params);
-        let formData = new FormData();
-        formData.append('file', params.file);
-        console.log(formData);
-        const rs = await this.$axios.post('/api/v1/file/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        });
+        const rs = await this.$axios.post('/api/v1/file/file_upload', params);
         console.log('store/uploadFile : ', rs);
         resolve(false);
       } catch (err) {
