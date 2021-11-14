@@ -39,7 +39,6 @@ router.post('/list', async (req, res) => {
       type: '_doc',
       body: q,
     })
-    console.log(rs);
     rt.error = false;
     rt.result = singleFlatMap(rs);
   } catch (err) {
@@ -72,8 +71,8 @@ router.post('/file_upload', upload.single('file'), async (req, res) => {
     const fileSize = file_info.size;
     const file_mk_dt = moment().format('YYYY-MM-DD HH:mm:ss');
     const fileContent = file_info.buffer.toString('base64');
-    console.log(fileContent);
-    console.log('----------');
+    // console.log(fileContent);
+    // console.log('----------');
     // console.log(new Buffer.from(fileContent, 'base64'.toString('utf-8')));  
     const data = {
       file_name : fileName,
@@ -87,6 +86,8 @@ router.post('/file_upload', upload.single('file'), async (req, res) => {
       body: data
     });
     console.log(rs);
+    rt.error = false;
+    rt.result = rs;
   } catch (err) {
     console.error(err);
     rt.error = true;
@@ -105,6 +106,26 @@ router.post('/file_multi_upload', upload.array(), async (req, res) => {
 
   } catch (err) {
 
+  }
+  res.send(rt);
+})
+
+//파일 삭제
+router.post('/del_file', async (req, res) => {
+  console.log('api/v1/file/del_file');
+  let rt = {};
+  try {
+    const params = req.body;
+    const rs = await es_client.delete({
+      index: params._index,
+      type: '_doc',
+      id: params._id
+    })
+    rt.error = false;
+    rt.result = rs;
+  } catch (err) {
+    rt.error = true;
+    rt.result = err;
   }
   res.send(rt);
 })

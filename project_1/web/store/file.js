@@ -20,31 +20,52 @@ export const actions = {
   initList({commit, dispatch}, params) {
     return new Promise( async (resolve, reject) => {
       try {
+        dispatch('updateLoading', {loading_1: true}, {root: true});
         const rs = await this.$axios.post('/api/v1/file/list', params);
-        console.log(rs);
         commit('SET_LIST', rs.data.result);
+        dispatch('updateLoading', {loading_1: false}, {root: true}); 
       } catch (err) {
         console.error(err);
+        dispatch('updateLoading', {loading_1: false}, {root: true});
         reject(false);
       }
     });
   },
-  uploadFile({commit}, params) {
+  uploadFile({commit, dispatch}, params) {
     return new Promise(async (resolve, reject) => {
       try {
+        // dispatch('updateLoading', {loading_1: true}, {root: true});
         console.log('store/uploadFile', params);
         const rs = await this.$axios.post('/api/v1/file/file_upload', params);
         console.log('store/uploadFile : ', rs);
-        resolve(false);
+        // dispatch('updateLoading', {loading_1: false}, {root: true}); 
+        resolve(true);
       } catch (err) {
         console.error(err);
+        // dispatch('updateLoading', {loading_1: false}, {root: true}); 
         reject(false);
       }
     })
   },
-  uploadMultiFile({commt}, params) {
+  uploadMultiFile({commit}, params) {
     return new Promise( async (resolve, reject) => {
 
+    })
+  },
+  deleteFIle({commit, dispatch}, params) {
+    return new Promise( async (resolve, reject) => {
+      try {
+        const p = {
+          _index: params._index,
+          _id: params._id
+        }
+        const rs = await this.$axios.post('/api/v1/file/del_file', p);
+        console.log(rs);
+        resolve(true);
+      } catch (err) {
+        console.log(err);
+        reject(false);
+      }
     })
   }
 }

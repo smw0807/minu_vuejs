@@ -1,7 +1,7 @@
 <template>
   <v-layout column>
+    <alert ref="alertCom"/>
     <v-row>
-      <v-col cols="12">파일 리스트</v-col>
       <v-col cols="12">
         <v-card>
           <v-card-title>
@@ -28,7 +28,21 @@
               :loading="loading"
               loading-text="데이터를 불러오는 중입니다."
               no-data-text="데이터가 없습니다."
-            ></v-data-table>
+              >
+              <template v-slot:[`item.file_size`]="{item}">
+                {{item.file_size | fileSize }}
+              </template>
+              <template v-slot:[`item.actions`]="{item}">
+                <v-btn color="primary" @click="download(item)">
+                  <v-icon>mdi-tray-arrow-down</v-icon>
+                   다운로드
+                </v-btn>
+                <v-btn color="error" @click="del(item)">
+                  <v-icon>mdi-file-cancel-outline</v-icon>
+                   삭제
+                </v-btn>
+              </template>
+            </v-data-table>
             <div class="text-center">
               <v-pagination v-model="page" :length="pageCount"></v-pagination>
             </div>
@@ -40,7 +54,11 @@
 </template>
 
 <script>
+import alert from '@/components/custom/confirm'
 export default {
+  components: {
+    alert
+  },
   data() {
     return {
       search :'',
@@ -48,15 +66,39 @@ export default {
       pageCount: 0,
       itemsPerPage: 10,
       headers: [
-        { text : '파일명', value : 'file_name' },
-        { text : '파일크기', value : 'file_size' },
-        { text : '등록일', value : 'file_mk_dt' },
-        { text : '-', value : 'actions' }
+        { text : '파일명', value : 'file_name', align: 'center' },
+        { text : '파일크기', value : 'file_size', align: 'center'  },
+        { text : '등록일', value : 'file_mk_dt', align: 'center'  },
+        { text : '-', value : 'actions', align: 'center'  }
       ]
     }
   },
   async created() {
     await this.$store.dispatch('file/initList', {});
+  },
+  filters: {
+    fileSize(fileSize) {
+      const fixed = 2;
+      var str
+      //MB 단위 이상일때 MB 단위로 환산
+      if (fileSize >= 1024 * 1024) {
+          fileSize = fileSize / (1024 * 1024);
+          fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
+          str = fileSize + ' MB';
+      }
+      //KB 단위 이상일때 KB 단위로 환산
+      else if (fileSize >= 1024) {
+          fileSize = fileSize / 1024;
+          fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
+          str = fileSize + ' KB';
+      }
+      //KB 단위보다 작을때 byte 단위로 환산
+      else {
+          fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
+          str = fileSize + ' byte';
+      }
+      return str;
+    }
   },
   computed: {
     loading() {
@@ -64,6 +106,32 @@ export default {
     },
     list() {
       return this.$store.getters['file/GET_LIST'];
+    }
+  },
+  methods: {
+    async download(v) {
+      console.log('download : ', v);
+       const cf = await this.$refs.alertCom.open({
+        type: 'info',
+        title: '파일 다운로드',
+        text: `[${v.file_name}] 파일을 다운받으시겠습니까?`
+      });
+      if (cf) {
+        
+      }
+    },
+    async del(v) {
+      const cf = await this.$refs.alertCom.open({
+        type: 'info',
+        title: '파일 삭제',
+        text: `[${v.file_name}] 파일을 삭제하시겠습니까?`
+      });
+      if (cf) {
+        const rs = await this.$store.dispatch('file/deleteFIle', v);
+        if (rs) {
+          await this.$store.dispatch('file/initList', {});
+        }
+      }
     }
   }
 }
