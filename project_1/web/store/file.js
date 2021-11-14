@@ -1,5 +1,6 @@
 export const state = () => {
   return {
+    list: [],
   }
 }
 
@@ -18,7 +19,14 @@ export const getters = {
 export const actions = {
   initList({commit, dispatch}, params) {
     return new Promise( async (resolve, reject) => {
-      
+      try {
+        const rs = await this.$axios.post('/api/v1/file/list', params);
+        console.log(rs);
+        commit('SET_LIST', rs.data.result);
+      } catch (err) {
+        console.error(err);
+        reject(false);
+      }
     });
   },
   uploadFile({commit}, params) {
@@ -32,6 +40,11 @@ export const actions = {
         console.error(err);
         reject(false);
       }
+    })
+  },
+  uploadMultiFile({commt}, params) {
+    return new Promise( async (resolve, reject) => {
+
     })
   }
 }

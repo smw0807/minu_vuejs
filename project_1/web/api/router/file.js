@@ -5,17 +5,49 @@ const router = express.Router();
 const es_client = require(aRoot + '/api/elastic');
 const moment = require('moment');
 
+const { singleFlatMap } = require(aRoot + '/utils/elastic').default;
+
 //https://github.com/expressjs/multer/blob/master/doc/README-ko.md
 const multer =require('multer');
-// const storage = multer.memoryStorage(); //파일을 메모리에 Buffer 객체로 저장함
-// const upload = multer({ storage: storage}); //파일을 메모리에 Buffer 객체로 저장함
-const upload = multer({dest: aRoot + '/api/files/'}); //파일을 저장할 폴더
+const storage = multer.memoryStorage(); //파일을 메모리에 Buffer 객체로 저장함
+const upload = multer({ storage: storage}); //파일을 메모리에 Buffer 객체로 저장함
+// const upload = multer({dest: aRoot + '/api/files/'}); //파일을 저장할 폴더
 
 const index_name = 'idx_file';
 
 //엘라스틱서치에 등록된 파일 리스트 불러오기
 router.post('/list', async (req, res) => {
-
+  let rt = {};
+  try {
+    const fields = [
+      'file_name',
+      'file_size',
+      'file_mk_dt'
+    ]
+    const q = {
+      _source: fields,
+      query : {
+        bool:{
+          must:[
+            
+          ]
+        }
+      }
+    }
+    let rs = await es_client.search({
+      index: index_name,
+      type: '_doc',
+      body: q,
+    })
+    console.log(rs);
+    rt.error = false;
+    rt.result = singleFlatMap(rs);
+  } catch (err) {
+    console.lof(err);
+    rt.error = true;
+    rt.result = err;
+  }
+  res.send(rt);
 });
 
 //엘라스틱서치에 파일 등록하기
@@ -24,13 +56,37 @@ router.post('/file_upload', upload.single('file'), async (req, res) => {
   console.log('/api/v1/file/file_upload');
   let rt = {};
   try {
-    const params = req.file;
-    console.log(params);
+    const file_info = req.file;
+    console.log(file_info);
     /** 내부 저장 방식일 경우
      * 1. 변환된 filename을 변수에 저장.
      * 2. 엘라스틱서치에 등록
      * 3. 1번의 값으로 파일 삭제
      */
+
+    /**
+     * 메모리 저장 방식일 경우
+     * 1. buffer 값을 binary로 변환?
+     */
+    const fileName = file_info.originalname;
+    const fileSize = file_info.size;
+    const file_mk_dt = moment().format('YYYY-MM-DD HH:mm:ss');
+    const fileContent = file_info.buffer.toString('base64');
+    console.log(fileContent);
+    console.log('----------');
+    // console.log(new Buffer.from(fileContent, 'base64'.toString('utf-8')));  
+    const data = {
+      file_name : fileName,
+      file_size : fileSize,
+      file_content : fileContent,
+      file_mk_dt : file_mk_dt
+    }
+    const rs = await es_client.index({
+      index: index_name,
+      type : '_doc',
+      body: data
+    });
+    console.log(rs);
   } catch (err) {
     console.error(err);
     rt.error = true;

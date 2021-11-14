@@ -8,6 +8,11 @@
       </v-row>
       <v-row>
         <v-col cols="12">
+          
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
           <list/>
         </v-col>
       </v-row>
