@@ -5,15 +5,17 @@
       <v-col cols="12">
         <v-card>
           <v-card-title>
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
               label="Search"
               single-line
             ></v-text-field>
+            <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
+            <v-btn icon small outlined @click="refresh">
+              <v-icon>mdi-refresh</v-icon>
+            </v-btn>
           </v-card-title>
           <v-card-text>
             <v-data-table
@@ -117,7 +119,8 @@ export default {
         text: `[${v.file_name}] 파일을 다운받으시겠습니까?`
       });
       if (cf) {
-        
+        const rs = await this.$store.dispatch('file/downloadFile', v);
+        console.log(rs);
       }
     },
     async del(v) {
@@ -127,11 +130,14 @@ export default {
         text: `[${v.file_name}] 파일을 삭제하시겠습니까?`
       });
       if (cf) {
-        const rs = await this.$store.dispatch('file/deleteFIle', v);
+        const rs = await this.$store.dispatch('file/deleteFile', v);
         if (rs) {
           await this.$store.dispatch('file/initList', {});
         }
       }
+    },
+    refresh() {
+      this.$store.dispatch('file/initList', {});
     }
   }
 }

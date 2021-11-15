@@ -27,7 +27,7 @@ export const actions = {
       } catch (err) {
         console.error(err);
         dispatch('updateLoading', {loading_1: false}, {root: true});
-        reject(false);
+        reject(err);
       }
     });
   },
@@ -43,7 +43,7 @@ export const actions = {
       } catch (err) {
         console.error(err);
         // dispatch('updateLoading', {loading_1: false}, {root: true}); 
-        reject(false);
+        reject(err);
       }
     })
   },
@@ -52,7 +52,23 @@ export const actions = {
 
     })
   },
-  deleteFIle({commit, dispatch}, params) {
+  downloadFile({commit, dispatch}, params) {
+    return new Promise( async (resolve, reject) => {
+      try {
+        const p = {
+          _index: params._index,
+          _id: params._id
+        };
+        const rs = await this.$axios.post('/api/v1/file/download_file', p);
+        console.log(rs);
+        resolve(true);
+      } catch (err) {
+        console.error(err);
+        reject(err);
+      }
+    })
+  },
+  deleteFile({commit, dispatch}, params) {
     return new Promise( async (resolve, reject) => {
       try {
         const p = {
@@ -64,7 +80,7 @@ export const actions = {
         resolve(true);
       } catch (err) {
         console.log(err);
-        reject(false);
+        reject(err);
       }
     })
   }

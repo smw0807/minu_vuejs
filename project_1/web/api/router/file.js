@@ -4,6 +4,7 @@ import aRoot from 'app-root-path'
 const router = express.Router();
 const es_client = require(aRoot + '/api/elastic');
 const moment = require('moment');
+const fs = require('fs');
 
 const { singleFlatMap } = require(aRoot + '/utils/elastic').default;
 
@@ -17,6 +18,7 @@ const index_name = 'idx_file';
 
 //엘라스틱서치에 등록된 파일 리스트 불러오기
 router.post('/list', async (req, res) => {
+  Log.info('file_list');
   let rt = {};
   try {
     const fields = [
@@ -42,7 +44,8 @@ router.post('/list', async (req, res) => {
     rt.error = false;
     rt.result = singleFlatMap(rs);
   } catch (err) {
-    console.lof(err);
+    console.log(err);
+    Log.error(err);
     rt.error = true;
     rt.result = err;
   }
@@ -73,7 +76,7 @@ router.post('/file_upload', upload.single('file'), async (req, res) => {
     const fileContent = file_info.buffer.toString('base64');
     // console.log(fileContent);
     // console.log('----------');
-    // console.log(new Buffer.from(fileContent, 'base64'.toString('utf-8')));  
+    
     const data = {
       file_name : fileName,
       file_size : fileSize,
@@ -85,11 +88,12 @@ router.post('/file_upload', upload.single('file'), async (req, res) => {
       type : '_doc',
       body: data
     });
-    console.log(rs);
+    Log.info(rs);
     rt.error = false;
     rt.result = rs;
   } catch (err) {
-    console.error(err);
+    Log.error(err);
+    // console.error(err);
     rt.error = true;
     rt.msg = 'err';
     rt.result = err.message;
@@ -106,6 +110,46 @@ router.post('/file_multi_upload', upload.array(), async (req, res) => {
 
   } catch (err) {
 
+  }
+  res.send(rt);
+})
+
+//파일 다운로드
+router.post('/download_file', async (req, res) => {
+  Log.info('api/v1/file/download_file');
+  let rt = {};
+  try {
+    const params = req.body;
+    console.log(params);
+    const _index = params._index;
+    const _id = params._id;
+    // const q = {
+
+    // }
+    const rs = await es_client.get({
+      index: _index,
+      type: '_doc',
+      id: _id,
+      _source: ['file_name', 'file_size'],
+      stored_fields: 'file_content'
+    })
+    // Log.info(rs);
+    const file_name = rs._source.file_name;
+    const file_size = rs._source.file_size;
+    const file_content = rs.fields.file_content[0];
+    const buffer = Buffer.from(file_content, 'base64'.toString('utf-8'));
+    // console.log(new Buffer.from(file_content, 'base64'.toString('utf-8')));
+    // const writeStream = fs.createWriteStream(aRoot + '/api/files/' + file_name);
+    // console.log(Buffer.from())
+    const filePath = aRoot + '/api/files/'
+    const make = fs.writeFileSync(filePath + file_name, buffer.toString());
+    res.download(filePath + file_name);
+    fs.unlinkSync(filePath + file_name);
+    console.log(make);
+  } catch (err) {
+    Log.error(err);
+    rt.error = true;
+    rt.result = err;
   }
   res.send(rt);
 })
