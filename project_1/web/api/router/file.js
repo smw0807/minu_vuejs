@@ -5,6 +5,9 @@ const router = express.Router();
 const es_client = require(aRoot + '/api/elastic');
 const moment = require('moment');
 const fs = require('fs');
+const mime = require('mime');
+const path = require('path');
+const iconv = require('iconv-lite');
 
 const { singleFlatMap } = require(aRoot + '/utils/elastic').default;
 
@@ -74,8 +77,6 @@ router.post('/file_upload', upload.single('file'), async (req, res) => {
     const fileSize = file_info.size;
     const file_mk_dt = moment().format('YYYY-MM-DD HH:mm:ss');
     const fileContent = file_info.buffer.toString('base64');
-    // console.log(fileContent);
-    // console.log('----------');
     
     const data = {
       file_name : fileName,
@@ -93,7 +94,6 @@ router.post('/file_upload', upload.single('file'), async (req, res) => {
     rt.result = rs;
   } catch (err) {
     Log.error(err);
-    // console.error(err);
     rt.error = true;
     rt.msg = 'err';
     rt.result = err.message;
@@ -115,11 +115,13 @@ router.post('/file_multi_upload', upload.array(), async (req, res) => {
 })
 
 //파일 다운로드
-router.post('/download_file', async (req, res) => {
+// router.post('/download_file', async (req, res) => {
+router.get('/download_file', async (req, res) => {
   Log.info('api/v1/file/download_file');
   let rt = {};
   try {
-    const params = req.body;
+    // const params = req.body;
+    const params = JSON.parse(req.query.q);
     console.log(params);
     const _index = params._index;
     const _id = params._id;
@@ -134,24 +136,46 @@ router.post('/download_file', async (req, res) => {
       stored_fields: 'file_content'
     })
     // Log.info(rs);
+    const filePath = aRoot + '/api/files/'
     const file_name = rs._source.file_name;
-    const file_size = rs._source.file_size;
+    const file = filePath + file_name;
+    // const file_size = rs._source.file_size; //필요없는듯...
     const file_content = rs.fields.file_content[0];
     const buffer = Buffer.from(file_content, 'base64'.toString('utf-8'));
-    // console.log(new Buffer.from(file_content, 'base64'.toString('utf-8')));
-    // const writeStream = fs.createWriteStream(aRoot + '/api/files/' + file_name);
-    // console.log(Buffer.from())
-    const filePath = aRoot + '/api/files/'
-    const make = fs.writeFileSync(filePath + file_name, buffer.toString());
-    res.download(filePath + file_name);
-    fs.unlinkSync(filePath + file_name);
+    const make = fs.writeFileSync(file, buffer.toString());
     console.log(make);
+    res.download(filePath, file_name);
+    
+    // const file = filePath + file_name;
+    // console.log('1',file);
+    // const name = path.basename(file);
+    // console.log('2',name);
+    // const mimetype = mime.getType(file);
+    // console.log('3',mimetype);
+    
+    // res.setHeader('Content-disposition', 'attachment; filename=' + iconv.decode(iconv.encode(name, 'utf-8'), 'ISO-8859-1')); // 다운받아질 파일명 설정
+    // res.setHeader('Content-type', mimetype); // 파일 형식 지정
+    // const str = fs.createReadStream(file);
+    // str.pipe(res);
+
+    // console.log(filePath);
+    // console.log(file_name);
+    // console.log(path.join(__dirname + '/../files/'));
+    // res.download(path.join(__dirname + '/../files/'), name, (err) => {
+    //   if (err) {
+    //     // Log.error(err);
+    //     console.error(err);
+    //   }
+    // });
+
+    // fs.unlinkSync(filePath + file_name);
+    // console.log(make);
   } catch (err) {
     Log.error(err);
     rt.error = true;
     rt.result = err;
+    res.send(rt);
   }
-  res.send(rt);
 })
 
 //파일 삭제

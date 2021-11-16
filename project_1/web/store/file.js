@@ -55,13 +55,15 @@ export const actions = {
   downloadFile({commit, dispatch}, params) {
     return new Promise( async (resolve, reject) => {
       try {
+        console.log(params);
         const p = {
           _index: params._index,
           _id: params._id
         };
-        const rs = await this.$axios.post('/api/v1/file/download_file', p);
+        const rs = await this.$axios.get('/api/v1/file/download_file?q=' + JSON.stringify(p));
+        // const rs = await this.$axios.post('/api/v1/file/download_file', p);
         console.log(rs);
-        resolve(true);
+        resolve(rs);
       } catch (err) {
         console.error(err);
         reject(err);
