@@ -14,7 +14,10 @@ const { singleFlatMap } = require(aRoot + '/utils/elastic').default;
 //https://github.com/expressjs/multer/blob/master/doc/README-ko.md
 const multer =require('multer');
 const storage = multer.memoryStorage(); //파일을 메모리에 Buffer 객체로 저장함
-const upload = multer({ storage: storage}); //파일을 메모리에 Buffer 객체로 저장함
+const upload = multer({ 
+  storage: storage, //파일을 메모리에 Buffer 객체로 저장함
+  fileSize : 5000000 //안먹히네?
+}); 
 // const upload = multer({dest: aRoot + '/api/files/'}); //파일을 저장할 폴더
 
 const index_name = 'idx_file';
@@ -37,6 +40,9 @@ router.post('/list', async (req, res) => {
             
           ]
         }
+      },
+      sort: {
+        file_mk_dt : 'desc'
       }
     }
     let rs = await es_client.search({
