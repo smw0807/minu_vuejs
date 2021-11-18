@@ -120,21 +120,14 @@ export default {
       });
       if (cf) {
         const rs = await this.$store.dispatch('file/downloadFile', v);
-        console.log(rs);
-        // const url = window.URL.createObjectURL(new Blob([rs.data]));
-        // const link = document.createElement('a');
-        // link.href = url;
-        // link.setAttribute('download', v.file_name);
-        // document.body.appendChild(link);
-        // link.click();
 
-        // var buffer = Buffer.from(binary_data, 'base64');
-        // var blob = new Blob([buffer], {type: 'application/vnd.tcpdump.pcap;'});
-        // var url = URL.createObjectURL(blob);
-        // var pom = document.createElement('a');
-        // pom.href = url;
-        // pom.setAttribute('download', `${item.file_name}.pkt`);
-        // pom.click();
+        const buffer = Buffer.from(rs.data.result, 'base64'.toString('utf-8'));
+        const blob = new Blob([buffer], {type: rs.data.type});
+        const url = URL.createObjectURL(blob);
+        const pom = document.createElement('a');
+        pom.href = url;
+        pom.setAttribute('download', v.file_name);
+        pom.click();
       }
     },
     async del(v) {

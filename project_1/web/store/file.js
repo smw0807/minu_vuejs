@@ -60,9 +60,8 @@ export const actions = {
           _index: params._index,
           _id: params._id
         };
-        const rs = await this.$axios.get('/api/v1/file/download_file?q=' + JSON.stringify(p));
-        // const rs = await this.$axios.post('/api/v1/file/download_file', p);
-        console.log(rs);
+        // const rs = await this.$axios.get('/api/v1/file/download_file?q=' + JSON.stringify(p));
+        const rs = await this.$axios.post('/api/v1/file/download_file', p);
         resolve(rs);
       } catch (err) {
         console.error(err);

@@ -115,13 +115,13 @@ router.post('/file_multi_upload', upload.array(), async (req, res) => {
 })
 
 //파일 다운로드
-// router.post('/download_file', async (req, res) => {
-router.get('/download_file', async (req, res) => {
+router.post('/download_file', async (req, res) => {
+// router.get('/download_file', async (req, res) => {
   Log.info('api/v1/file/download_file');
   let rt = {};
   try {
-    // const params = req.body;
-    const params = JSON.parse(req.query.q);
+    const params = req.body;
+    // const params = JSON.parse(req.query.q);
     console.log(params);
     const _index = params._index;
     const _id = params._id;
@@ -135,47 +135,22 @@ router.get('/download_file', async (req, res) => {
       _source: ['file_name', 'file_size'],
       stored_fields: 'file_content'
     })
-    // Log.info(rs);
-    const filePath = aRoot + '/api/files/'
+    // const filePath = aRoot + '/api/files/'
     const file_name = rs._source.file_name;
-    const file = filePath + file_name;
+    // const file = filePath + file_name;
     // const file_size = rs._source.file_size; //필요없는듯...
     const file_content = rs.fields.file_content[0];
-    const buffer = Buffer.from(file_content, 'base64'.toString('utf-8'));
-    const make = fs.writeFileSync(file, buffer.toString());
-    console.log(make);
-    res.download(filePath, file_name);
-    
-    // const file = filePath + file_name;
-    // console.log('1',file);
-    // const name = path.basename(file);
-    // console.log('2',name);
-    // const mimetype = mime.getType(file);
-    // console.log('3',mimetype);
-    
-    // res.setHeader('Content-disposition', 'attachment; filename=' + iconv.decode(iconv.encode(name, 'utf-8'), 'ISO-8859-1')); // 다운받아질 파일명 설정
-    // res.setHeader('Content-type', mimetype); // 파일 형식 지정
-    // const str = fs.createReadStream(file);
-    // str.pipe(res);
+    rt.error = false;
+    rt.result = file_content;
+    const mimetype = mime.getType(file_name); //파일 생성을 안했는데 어떻게 이게 되지???????
+    rt.type = mimetype;
 
-    // console.log(filePath);
-    // console.log(file_name);
-    // console.log(path.join(__dirname + '/../files/'));
-    // res.download(path.join(__dirname + '/../files/'), name, (err) => {
-    //   if (err) {
-    //     // Log.error(err);
-    //     console.error(err);
-    //   }
-    // });
-
-    // fs.unlinkSync(filePath + file_name);
-    // console.log(make);
   } catch (err) {
     Log.error(err);
     rt.error = true;
     rt.result = err;
-    res.send(rt);
   }
+  res.send(rt);
 })
 
 //파일 삭제
