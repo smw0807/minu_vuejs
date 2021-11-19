@@ -34,6 +34,7 @@ router.post('/list', async (req, res) => {
     ]
     const q = {
       _source: fields,
+      size: 100,
       query : {
         bool:{
           must:[
@@ -109,13 +110,41 @@ router.post('/file_upload', upload.single('file'), async (req, res) => {
 
 
 //엘라스틱서치에 파일 여러개 등록하기
-router.post('/file_multi_upload', upload.array(), async (req, res) => {
+router.post('/file_multi_upload', upload.array('files'), async (req, res) => {
   console.log('api/v1/file/file_multi_upload');
   let rt = {};
+  const files_info = req.files;
   try {
-
+    let bulk = [];
+    for(let item of files_info) {
+      const fileName = item.originalname;
+      const fileSize = item.size;
+      const file_mk_dt = moment().format('YYYY-MM-DD HH:mm:ss');
+      const fileContent = item.buffer.toString('base64');
+      const data = {
+        file_name : fileName,
+        file_size : fileSize,
+        file_content : fileContent,
+        file_mk_dt : file_mk_dt
+      }
+      bulk.push({"index": {"_index": index_name, "_type": "_doc"}});
+      bulk.push({"doc": data});
+    }
+    let rs;
+    if (bulk.length > 0) {
+      rs = await es_client.bulk({
+        body: bulk,
+        refresh: 'wait_for'
+      })
+      Log.info(rs);
+    }
+    rt.error = false;
+    rt.result = rs;
   } catch (err) {
-
+    Log.error(err);
+    rt.error = true;
+    rt.msg = 'err';
+    rt.result = err.message;
   }
   res.send(rt);
 })

@@ -34,22 +34,23 @@ export const actions = {
   uploadFile({commit, dispatch}, params) {
     return new Promise(async (resolve, reject) => {
       try {
-        // dispatch('updateLoading', {loading_1: true}, {root: true});
-        console.log('store/uploadFile', params);
         const rs = await this.$axios.post('/api/v1/file/file_upload', params);
-        console.log('store/uploadFile : ', rs);
-        // dispatch('updateLoading', {loading_1: false}, {root: true}); 
         resolve(true);
       } catch (err) {
         console.error(err);
-        // dispatch('updateLoading', {loading_1: false}, {root: true}); 
         reject(err);
       }
     })
   },
   uploadMultiFile({commit}, params) {
     return new Promise( async (resolve, reject) => {
-
+      try {
+        const rs = await this.$axios.post('/api/v1/file/file_multi_upload', params);
+        resolve(true);
+      } catch (err) {
+        console.error(err);
+        reject(err);
+      }
     })
   },
   downloadFile({commit, dispatch}, params) {

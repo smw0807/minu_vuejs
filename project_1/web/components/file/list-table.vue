@@ -32,7 +32,8 @@
               no-data-text="데이터가 없습니다."
               >
               <template v-slot:[`item.file_size`]="{item}">
-                {{item.file_size | fileSize }}
+                {{item.file_size}}
+                <!-- {{item.file_size | fileSize }} -->
               </template>
               <template v-slot:[`item.actions`]="{item}">
                 <v-btn color="primary" @click="download(item)">
@@ -96,6 +97,7 @@ export default {
       }
       //KB 단위보다 작을때 byte 단위로 환산
       else {
+        console.log("///", fileSize);
           fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
           str = fileSize + ' byte';
       }
