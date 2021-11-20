@@ -64,7 +64,7 @@ export default {
     }
   },
   methods: {
-    async upload() {
+    async upload() { //단일 파일 업로드
       if (this.file === null) {
         this.$store.dispatch('updateAlert', {
           alert:true,
@@ -96,7 +96,7 @@ export default {
         }
       }
     },
-    async multi_upload() {
+    async multi_upload() { //다중 파일 업로드
       if (this.files === null) {
         this.$store.dispatch('updateAlert', {
           alert:true,
