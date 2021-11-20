@@ -97,8 +97,6 @@ export default {
       }
     },
     async multi_upload() {
-      console.log('multi_upload');
-      console.log(this.files);
       if (this.files === null) {
         this.$store.dispatch('updateAlert', {
           alert:true,
@@ -123,7 +121,7 @@ export default {
             try {
               const rs = await this.$store.dispatch('file/uploadMultiFile', formData);
               if (rs) {
-                this.file = null;
+                this.files = null;
                 await this.$store.dispatch('file/initList', {});
               }
             } catch (err) {

@@ -128,7 +128,7 @@ router.post('/file_multi_upload', upload.array('files'), async (req, res) => {
         file_mk_dt : file_mk_dt
       }
       bulk.push({"index": {"_index": index_name, "_type": "_doc"}});
-      bulk.push({"doc": data});
+      bulk.push(data);
     }
     let rs;
     if (bulk.length > 0) {

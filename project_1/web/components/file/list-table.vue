@@ -32,8 +32,7 @@
               no-data-text="데이터가 없습니다."
               >
               <template v-slot:[`item.file_size`]="{item}">
-                {{item.file_size}}
-                <!-- {{item.file_size | fileSize }} -->
+                {{item.file_size | fileSize }}
               </template>
               <template v-slot:[`item.actions`]="{item}">
                 <v-btn color="primary" @click="download(item)">
@@ -85,21 +84,20 @@ export default {
       var str
       //MB 단위 이상일때 MB 단위로 환산
       if (fileSize >= 1024 * 1024) {
-          fileSize = fileSize / (1024 * 1024);
-          fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
-          str = fileSize + ' MB';
+        fileSize = fileSize / (1024 * 1024);
+        fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
+        str = fileSize + ' MB';
       }
       //KB 단위 이상일때 KB 단위로 환산
       else if (fileSize >= 1024) {
-          fileSize = fileSize / 1024;
-          fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
-          str = fileSize + ' KB';
+        fileSize = fileSize / 1024;
+        fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
+        str = fileSize + ' KB';
       }
       //KB 단위보다 작을때 byte 단위로 환산
       else {
-        console.log("///", fileSize);
-          fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
-          str = fileSize + ' byte';
+        fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
+        str = fileSize + ' byte';
       }
       return str;
     }
@@ -114,7 +112,6 @@ export default {
   },
   methods: {
     async download(v) {
-      console.log('download : ', v);
        const cf = await this.$refs.alertCom.open({
         type: 'info',
         title: '파일 다운로드',
