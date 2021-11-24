@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import fileDownload from 'js-file-download';
 import alert from '@/components/custom/confirm'
 export default {
   components: {
@@ -119,14 +120,9 @@ export default {
       });
       if (cf) {
         const rs = await this.$store.dispatch('file/downloadFile', v);
-
+        //base64 값 변환
         const buffer = Buffer.from(rs.data.result, 'base64'.toString('utf-8'));
-        const blob = new Blob([buffer], {type: rs.data.type});
-        const url = URL.createObjectURL(blob);
-        const pom = document.createElement('a');
-        pom.href = url;
-        pom.setAttribute('download', v.file_name);
-        pom.click();
+        fileDownload(buffer, rs.data.file_name, rs.data.type);
       }
     },
     async del(v) {

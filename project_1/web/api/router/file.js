@@ -177,6 +177,7 @@ router.post('/download_file', async (req, res) => {
     const file_content = rs.fields.file_content[0];
     rt.error = false;
     rt.result = file_content;
+    rt.file_name = file_name;
     const mimetype = mime.getType(file_name); //파일 생성을 안했는데 어떻게 이게 되지???????
     rt.type = mimetype;
 
