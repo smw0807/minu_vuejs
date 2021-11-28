@@ -63,28 +63,9 @@ export default {
         { title: 'Test', to: '/test/props_test', use: ['test'] },
         { title: 'window popup', to: '/test/window_popup' },
         { title: 'resize mixin', to: '/test/resize' },
-        // { title: 'sub3', to: '/menu2/menu2_3', use: ['test'] },
-        // { title: 'sub4', to: '/menu2/menu2_4' },
-        // { title: 'sub5', to: '/menu2/menu2_5' }
+        { title: 'elastic info', to: '/test/els_info' },
       ],
       use: ['test'] ,
-    },
-    // {
-    //   title: 'menu1',
-    //   icon: 'mdi-view-dashboard',
-    //   to:'/dashboard'
-    // },
-    
-    // {
-    //   title: 'menu3',
-    //   icon: 'mdi-traffic-light',
-    //   items: [
-    //     { title: 'sub1', to: '/traffic/allTraffic', icon: 'mdi-traffic-light' },
-    //     { title: 'sub2', to: '/traffic/all', icon: 'mdi-account-multiple' },
-    //     { title: 'sub3', to: '/traffic/all', icon:'mdi-magnify' },
-    //     { title: 'sub4', to: '/traffic/serverPkt', icon:'mdi-text-box-search', use: ['test'] }
-    //   ],
-    //   use: ['test'] ,
-    // },
+    }
   ]
 }
