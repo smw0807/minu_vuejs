@@ -64,6 +64,7 @@ export default {
         { title: 'window popup', to: '/test/window_popup' },
         { title: 'resize mixin', to: '/test/resize' },
         { title: 'elastic info', to: '/test/els_info' },
+        { title: 'Download using worker', to: '/test/worker_test' },
       ],
       use: ['test'] ,
     }
