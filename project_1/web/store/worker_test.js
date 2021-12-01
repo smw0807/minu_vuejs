@@ -1,19 +1,25 @@
 import fileDownload from 'js-file-download';
 export const state = () => {
   return {
-    list: []
+    list: [],
   }
 }
 
 export const mutations = {
   SET_LIST(state, payload) {
     state.list = payload;
+  },
+  SET_FILE_PATH(state, payload) {
+    state.filePath = payload;
   }
 }
 
 export const getters = {
   GET_LIST(state) {
     return state.list;
+  },
+  GET_FILE_PATH(state) {
+    return state.filePath;
   }
 }
 
@@ -23,12 +29,18 @@ export const actions = {
       try {
         dispatch('updateLoading', {loading_1: true}, {root: true}); //로딩 시작
         const rs = await this.$axios.post('/api/v1/test/worker_test', params);
-        // console.log('test!!! ', rs);
+        console.log('test!!! ', rs);
         if (rs && rs.data.error === false) {
           if (rs.data.msg === 'already') {
             dispatch('updateAlert', {alert: true, type: 'warning', title: 'csv 다운로드', text: '아직 다운로드 중인 파일이 있습니다.'}, {root: true});  
+            resolve(false);
           } else {
-            fileDownload(new Buffer(rs.data.info.content.data), rs.data.info.fileName, rs.data.info.type);
+            // console.log(rs.data.info.fileName);
+            // commit('SET_FILE_PATH', rs.data.info.fileName);
+            // const readStream = fs.createReadStream(rs.data.path);
+            // console.log(readStream);
+            // const buffer = Buffer.from(rs.data.info.content, 'base64'.toString('utf-8'));
+            // fileDownload(buffer, rs.data.info.fileName, rs.data.info.type);
             resolve(true);
           }
         } else {

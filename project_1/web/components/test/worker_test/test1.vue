@@ -9,11 +9,22 @@
     <v-card-text>
       <v-btn @click="download">다운로드</v-btn>
     </v-card-text>
+    <v-card-text>
+      <!-- <v-btn href="/file/위협검색.csv" :download="test()">파일 다운로드</v-btn> -->
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+
+    }
+  },
+  computed: {
+
+  },
   methods: {
     async download() {
       try {
@@ -22,6 +33,9 @@ export default {
       } catch (err) {
         console.error(err);
       }
+    },
+    test() {
+      console.log("??");
     }
   }
 }
