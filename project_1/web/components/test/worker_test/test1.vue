@@ -2,9 +2,7 @@
   <v-card>
     <v-card-title>worker thread test</v-card-title>
     <v-card-text>
-      express api 요청을 보내서 워커 실행 후 워커가 끝나면 req.send 해보기...<br>
-      그동안 웹을 정상적으로 이용 가능한지...<br>
-      가능하긴 하네...
+      워커로 csv 파일 생성 시키기....
     </v-card-text>
     <v-card-text>
       <v-btn @click="download">다운로드</v-btn>
