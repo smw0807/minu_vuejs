@@ -8,9 +8,9 @@
 export default {
   props: ['ping'],
   async mounted() {
-    if (this.ping) {
+    // if (this.ping) {
       await this.$store.dispatch('els_info/getNodeInfos');
-    }
+    // }
   },
   computed: {
     node_infos() {

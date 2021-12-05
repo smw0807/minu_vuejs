@@ -33,6 +33,7 @@ app.use('/v1/vtable', require('./router/table'));
 app.use('/v1/code', require('./router/code'));
 app.use('/v1/csv', require('./router/csv'));
 app.use('/v1/file', require('./router/file'));
+app.use('/v1/els', require('./router/els_info'));
 
 module.exports = {
   path: '/api',
