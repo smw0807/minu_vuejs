@@ -3,7 +3,12 @@
     <v-layout column>
       <v-row>
         <v-col cols="12">
-          <test/>
+          <test1/>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          <test2/>
         </v-col>
       </v-row>
     </v-layout>
@@ -11,10 +16,11 @@
 </template>
 
 <script>
-import test from '@/components/test/worker_test/test1'
+import test1 from '@/components/test/worker_test/test1'
+import test2 from '@/components/test/worker_test/test2'
 export default {
   components: {
-    test
+    test1, test2
   }
 }
 </script>

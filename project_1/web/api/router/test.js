@@ -27,8 +27,33 @@ router.post('/es_test', async (req, res) => {
   res.send(rt);
 })
 
-router.post('/worker_test', async (req, res) => {
-  console.log('api/worker_test');
+let threads = new Set();
+let woerkerNumber = 0;
+router.post('/test_worker', async (req, res) => {
+  console.log('api/test_worker');
+  let rt = {};
+  try {
+    woerkerNumber++;
+    let wk = new Worker(aRoot + '/api/worker/test.js', {workerData: {number : woerkerNumber}});
+    threads.add(wk);
+    wk.on('message', (msg) => {
+      console.log('message : ', msg);
+    });
+    wk.on('exit', (n) => {
+      // threads.delete(worker);
+      // if (threads.size === 0) {
+        console.log('스레드 종료', n);
+      // }
+    })
+
+  } catch (err) {
+    console.error(err);
+  }
+  res.send(rt);
+})
+
+router.post('/run_worker', async (req, res) => {
+  console.log('api/run_worker');
   const params = req.body;
   let rt = {};
   try {

@@ -28,7 +28,7 @@ export const actions = {
     return new Promise ( async (resolve, reject) => {
       try {
         dispatch('updateLoading', {loading_1: true}, {root: true}); //로딩 시작
-        const rs = await this.$axios.post('/api/v1/test/worker_test', params);
+        const rs = await this.$axios.post('/api/v1/test/run_worker', params);
         console.log('test!!! ', rs);
         if (rs && rs.data.error === false) {
           if (rs.data.msg === 'already') {
@@ -48,6 +48,17 @@ export const actions = {
           resolve(false);
         }
         dispatch('updateLoading', {loading_1: false}, {root: true}); //로딩 끝
+      } catch (err) {
+        console.error(err);
+        reject(err);
+      }
+    })
+  },
+  testWorker() {
+    return new Promise( async (resolve, reject) => {
+      try {
+        const rs = await this.$axios.post('/api/v1/test/test_worker');
+        resolve(rs);
       } catch (err) {
         console.error(err);
         reject(err);
