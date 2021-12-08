@@ -5,6 +5,7 @@
  */
 // process.env.DEBUG = 'nuxt:*';
 import express from 'express'
+import queue from 'express-queue'
 import bodyParser from 'body-parser'
 const app = express();
 
@@ -28,7 +29,7 @@ app.post('/test', (req, res) => {
   res.send('API Success!!');
 })
 
-app.use('/v1/test', require('./router/test'));
+app.use('/v1/test', require('./router/test'), queue({ activeLimit: 3, queuedLimit: 1}));
 app.use('/v1/vtable', require('./router/table'));
 app.use('/v1/code', require('./router/code'));
 app.use('/v1/csv', require('./router/csv'));

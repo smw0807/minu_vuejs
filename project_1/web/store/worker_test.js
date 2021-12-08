@@ -54,10 +54,15 @@ export const actions = {
       }
     })
   },
-  testWorker() {
+  testWorker({dispatch}) {
     return new Promise( async (resolve, reject) => {
       try {
         const rs = await this.$axios.post('/api/v1/test/test_worker');
+        if (rs && rs.data.result) {
+
+        } else {
+          dispatch('updateAlert', {alert: true, type: 'warning', title: '대용량 CSV 생성 대기', text: '현재 요청이 너무 많습니다. 잠시만 후 다시 시도해주세요.'}, {root: true});
+        }
         resolve(rs);
       } catch (err) {
         console.error(err);

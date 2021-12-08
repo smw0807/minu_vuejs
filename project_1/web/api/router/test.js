@@ -33,20 +33,27 @@ router.post('/test_worker', async (req, res) => {
   console.log('api/test_worker');
   let rt = {};
   try {
-    woerkerNumber++;
     console.log('woerkerNumber : ', woerkerNumber);
-    console.log('q : ', q);
-    let wk = new Worker(aRoot + '/api/worker/test.js', {workerData: {number : woerkerNumber}});
-    wk.on('message', (msg) => {
-      console.log('message : ', msg);
-    });
-    wk.on('exit', (n) => {
-      woerkerNumber--;
-      // threads.delete(worker);
-      // if (threads.size === 0) {
+    if (woerkerNumber < 5) {
+      woerkerNumber++;
+      console.info('11111');
+      let wk = new Worker(aRoot + '/api/worker/test.js', {workerData: {number : woerkerNumber}});
+      wk.on('message', (msg) => {
+        console.log('message : ', msg);
+      });
+      wk.on('exit', (n) => {
+        woerkerNumber--;
         console.log('스레드 종료', n);
-      // }
-    })
+      })
+      rt.error = false;
+      rt.msg = 'ok';
+      rt.result = true;
+    } else {
+      console.info('2222');
+      rt.error = false;
+      rt.msg = 'over';
+      rt.result = false;
+    }
 
   } catch (err) {
     console.error(err);
