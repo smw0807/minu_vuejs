@@ -52,6 +52,7 @@ export default {
         { title: '엘리먼트 & 컴포넌트 접근', to: '/vue/vue2', use: ['vue']},
         { title: 'Event Bus', to: '/vue/eventBus', use: ['vue']},
         { title: 'props function test', to: '/vue/props', use: ['vue']},
+        { title: '$data & $options', to: '/vue/data_options', use: ['vue']},
       ],
       use: ['vue']
     },
