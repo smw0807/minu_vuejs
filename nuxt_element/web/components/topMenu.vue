@@ -21,7 +21,7 @@
       </el-submenu>
     </el-submenu>
     <el-menu-item index="3" disabled>Info</el-menu-item>
-    <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">Orders</a></el-menu-item>
+    <el-menu-item index="4"><a href="https://element.eleme.io/#/en-US" target="_blank">Element UI</a></el-menu-item>
   </el-menu>
 </template>
 
