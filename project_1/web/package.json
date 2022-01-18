@@ -28,6 +28,7 @@
     "vue-ctk-date-time-picker": "^2.5.0",
     "vue-ip-input": "^2.0.2",
     "vue-json-csv": "^1.2.12",
+    "vue-modal-window": "^1.0.3",
     "vue-number-animation": "^1.1.1",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.5"
