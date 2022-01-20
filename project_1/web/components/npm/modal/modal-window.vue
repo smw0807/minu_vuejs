@@ -3,7 +3,18 @@ https://github.com/moritanian/vue-modal-window
  */
 <template>
   <div>
-    <vue-modal-window :title="md_title" :draggable="true" :resizable="true" :visible.sync="open1"></vue-modal-window>
+    <vue-modal-window 
+      title="" 
+      :draggable="true" 
+      :resizable="true" 
+      :visible.sync="open1">
+      <v-card>
+        <v-card-title>ssss</v-card-title>
+        <v-card-text>
+          sdfsdfsdf
+        </v-card-text>
+      </v-card>
+      </vue-modal-window>
     <v-card>
       <v-card-title>vue-modal-window</v-card-title>
       <v-card-text>
