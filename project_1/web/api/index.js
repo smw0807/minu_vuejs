@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 app.post('/test', (req, res) => {
   console.log('/api/test');
   Log.info('/api/test');
+  log.info('/api/test');
   // console.log('dotenv test : ', process.env);
   res.send('API Success!!');
 })

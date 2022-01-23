@@ -9,4 +9,11 @@
  */
 export default function ({store, route}) {
   // console.log('middleware/router.js', store, route);
+  // console.log('middleware/router.js : ', route);
+  // console.log(route.query);
+  // console.log(Object.keys(route.query).length === 0);
+  // console.log(route.query.constructor === Object);
+  // if (Object.keys(route.query).length !== 0 && route.query.constructor === Object) {
+  //   //url에 query가 있을 경우.... 회사에서 권한 관련해서 필요해서 가능한지 테스트해본건데 가능한듯함.
+  // }
 }
