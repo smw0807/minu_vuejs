@@ -1,13 +1,14 @@
 export default {
   items: [
-    { title: 'index', icon: 'mdi-view-dashboard', to: '/' },
-    { title: 'test', icon: 'mdi-api', to: '/apis/apiTest' },
-    { title: 'Elastic CSV Download', icon: 'mdi-tray-arrow-down', to: '/csv/csv' },
-    { title: 'Insert File in ElasticSearch', icon: 'mdi-file-upload-outline', to: '/file/file' },
+    { title: 'index', icon: 'mdi-view-dashboard', to: '/', use: ['vue', 'test'] },
+    { title: 'test', icon: 'mdi-api', to: '/apis/apiTest', use: ['vue', 'test'] },
+    { title: 'Elastic CSV Download', icon: 'mdi-tray-arrow-down', to: '/csv/csv' , use: ['vue', 'test']},
+    { title: 'Insert File in ElasticSearch', icon: 'mdi-file-upload-outline', to: '/file/file', use: ['vue', 'test'] },
     { divider: true },
     {
       title: 'DataTables',
       icon: 'mdi-table-multiple',
+      use: ['vuetify'],
       items: [
         { title: 'DataTables', icon: 'mdi-table-multiple', to: '/vtable/datatables', use: ['vuetify']},
         { title: 'DT checkbox', icon: 'mdi-check-bold', to: '/vtable/datatable2', use: ['vuetify']},
@@ -26,49 +27,57 @@ export default {
     { 
       title: 'NPM Test', 
       icon: 'mdi-npm', 
+      use: ['vue'],
       items: [
-        { title: 'vue-ip-input',to: '/npm/vue-ip-input'},
-        { title: 'tiptap',to: '/npm/tiptap'},
-        { title: 'vue-number-animation',to: '/npm/vue-number-animation'},
-        { title: 'vue-modal-windoe',to: '/npm/modal-window'},
-        
+        { title: 'vue-ip-input',to: '/npm/vue-ip-input', use: ['vue', 'test']},
+        { title: 'tiptap',to: '/npm/tiptap', use: ['vue', 'test']},
+        { title: 'vue-number-animation',to: '/npm/vue-number-animation', use: ['vue', 'test']},
+        { title: 'vue-modal-windoe',to: '/npm/modal-window', use: ['vue', 'test']},
       ],
-      use: ['vue']
     },
     { divider: true },
     { 
       title: 'NuxtJS', 
       icon: 'mdi-nuxt', to: '/nuxt/nuxt1', 
+      use: ['vue', 'test'],
       items: [
-        { title: 'Nuxt 속성 테스트', to: '/nuxt/nuxt1'},
-        { title: 'nuxt log',to: '/nuxt/log'},
+        { title: 'Nuxt 속성 테스트', to: '/nuxt/nuxt1', use: ['vue', 'test']},
+        { title: 'nuxt log',to: '/nuxt/log', use: ['vue', 'test']},
       ],
     },
     { 
       title: 'VueJS', 
       icon: 'mdi-vuejs', 
+      use: ['vue'],
       items: [
-        { title: 'v-if & v-show', icon: 'mdi-eye', to: '/vue/ifshow', use: ['vuetify']},
+        { title: 'v-if & v-show', icon: 'mdi-eye', to: '/vue/ifshow', use: ['vue']},
         { title: 'directive', to: '/vue/vue1', use: ['vue']},
         { title: '엘리먼트 & 컴포넌트 접근', to: '/vue/vue2', use: ['vue']},
         { title: 'Event Bus', to: '/vue/eventBus', use: ['vue']},
         { title: 'props function test', to: '/vue/props', use: ['vue']},
         { title: '$data & $options', to: '/vue/data_options', use: ['vue']},
       ],
-      use: ['vue']
     },
     { divider: true },
     {
       title: 'Test',
       icon: 'mdi-test-tube',
+      use: ['test'],
       items: [
         { title: 'Test', to: '/test/props_test', use: ['test'] },
-        { title: 'window popup', to: '/test/window_popup' },
-        { title: 'resize mixin', to: '/test/resize' },
-        { title: 'elastic info', to: '/test/els_info' },
-        { title: 'Download using worker', to: '/test/worker_test' },
+        { title: 'window popup', to: '/test/window_popup', use: ['test'] },
+        { title: 'resize mixin', to: '/test/resize', use: ['test'] },
+        { title: 'elastic info', to: '/test/els_info', use: ['test'] },
+        { title: 'Download using worker', to: '/test/worker_test', use: ['test'] },
+        { title: 'Auth Test', to: '/vue/authtest', is_secret: true, use: ['test'] },
       ],
-      use: ['test'] ,
+    },
+    {
+      title: 'secret menu',
+      icon: 'mdi-test-tube',
+      to: '/vue/authtest',
+      use: ['test'],
+      is_secret: true
     }
   ]
 }

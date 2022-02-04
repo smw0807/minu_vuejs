@@ -169,21 +169,23 @@ export default {
         if (menus.use !== undefined) { //use 값이 있을 경우에만
           const chk = menus.use.includes(mode); //use값 안에 mode값과 일치하는 값이 있으면 true
           if (chk) {
-            if (menus.items === undefined) { //하위 메뉴가 없을 경우
+            if (menus.items === undefined && menus.is_secret === undefined) { //하위 메뉴가 없을 경우
               tmp.push(menus);
             } else { //하위 메뉴가 있을 경우
               let sub_tmp = [];
               for (let j in menus.items) {
                 const menus2 = menus.items[j];
-                if (menus2.use !== undefined) { //하위 메뉴에 use가 있을 경우
+                if (menus2.use !== undefined && menus2.is_secret === undefined) { //하위 메뉴에 use가 있을 경우
                   const chk2 = menus2.use.includes(mode); //use값 안에 mode값과 일치하는 값이 있으면 true
                   if (chk2) {
                     sub_tmp.push(menus2); //하위 메뉴를 임시 배열에 담음
                   }
                 }
               }
-              menus.items = sub_tmp; //상위 메뉴 items에 하위 메뉴가 담긴 배열로 값을 지정
-              tmp.push(menus);
+              if (menus.is_secret === undefined) {
+                menus.items = sub_tmp; //상위 메뉴 items에 하위 메뉴가 담긴 배열로 값을 지정
+                tmp.push(menus);
+              }
             }
           }
         }
