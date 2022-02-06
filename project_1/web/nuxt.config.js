@@ -11,7 +11,7 @@ export default {
   // dev: 'production', 
   server: {
   //     // host: '0.0.0.0',
-      port: '5000',
+      port: '3000',
     },
   ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -82,7 +82,7 @@ export default {
   },
   proxy: {
     '/api/': process.env.proxyHost,
-    '/express/': process.env.proxyHost
+    // '/express/': process.env.proxyHost
   },
 
   /**
