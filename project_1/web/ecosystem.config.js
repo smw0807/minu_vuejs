@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'AF_Manage',
+      name: 'song_project_1',
       // package.json에 정의된 npm run start를 실행하게 해서 PM2로 관리하게 한다.
       port: 3000,
       exec_mode: 'cluster',
@@ -10,7 +10,7 @@ module.exports = {
       // script: 'npm',
       // cwd: '/root/af_mng/',
       // args: 'dev',
-      args: 'start',
+      args: 'dev',
       instances: 1,
       // autorestart: true,
       // watch: false,
