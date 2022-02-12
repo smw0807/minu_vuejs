@@ -1,7 +1,12 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
-//일렉트론 리로드
+//일렉트론이 백엔드 역할을 한다.
+
+/**
+ * 일렉트론 리로드
+ * electron-reload 라이브러리가 electron이 자리 잡고 있는 저 경로를 바라보고 변경이 일어날 때마다 앱을 껐다가 다시 켜준다.
+ */
 require('electron-reload')(__dirname, {
   electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
 })

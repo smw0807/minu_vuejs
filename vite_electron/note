@@ -4,4 +4,3 @@ wait-on : port가 열릴 때까지 기다리게 해줌
 concurrently : 동시에 실행될 수 있게 해줌? (위 2개를 동시에 실행 시키기위해 추가함)
 "concurrently -k \"cross-env NODE_ENV=development && vite\" \"wait-on tcp:3000 && electron .\""
 package.json script에 사용함
-
