@@ -4,6 +4,6 @@ const path = require('path');
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: path.resolve(__dirname, 'dist'),
+  base: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'dist') : "",
   plugins: [vue()]
 })

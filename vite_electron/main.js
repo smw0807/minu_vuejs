@@ -1,6 +1,11 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
+//일렉트론 리로드
+require('electron-reload')(__dirname, {
+  electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+})
+
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1200,
@@ -10,7 +15,16 @@ function createWindow() {
     }
   })
 
-  mainWindow.loadFile('./dist/index.html');
+  //프론트 핫 리로드
+  if (process.env.NODE_ENV === 'production') {
+    mainWindow.loadFile('./dist/index.html');
+  } else {
+    /**
+     * 개발환경에서는 Electron이 빌드되어 있는 파일을 바라보는게 아니라
+     * vite가 실행되고 있는 URL을 바라보게 해서 수정될 때 적용되게 만든다.
+     */
+    mainWindow.loadURL('http://localhost:3000');
+  }
 }
 
 app.whenReady().then(() => {
