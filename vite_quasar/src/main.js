@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import dotenv from 'dotenv'
+
 //퀘이사 추가
 import { Quasar } from 'quasar'
 import '@quasar/extras/material-icons/material-icons.css'
