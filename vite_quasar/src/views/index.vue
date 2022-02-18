@@ -7,6 +7,7 @@ export default {
   created() {
     console.log('old : ', this.$store.getters['rootState']);
     console.log('old : ', this.$store.getters['tmp/framework']);
+    console.log('old : ', import.meta.env);
  }
 }
 </script>
@@ -18,7 +19,7 @@ export default {
   console.log('setup : ', rootTest);
   const framework = store.getters['tmp/framework'];
   console.log('setup : ', framework);
-  // console.log('setup : ', process.env.VITE_TEST_KEY);
+  console.log('setup : ', import.meta.env);
 </script>
 
 <style>
