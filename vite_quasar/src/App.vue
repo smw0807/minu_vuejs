@@ -22,7 +22,8 @@
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" behavior="desktop" bordered>
       <!-- drawer content -->
-      test
+      <q-btn to="/" class="full-width" label="index"/>
+      <q-btn to="/composition" class="full-width" label="composition API"/>
     </q-drawer>
 
     <q-page-container>

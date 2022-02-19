@@ -4,6 +4,11 @@ const routes = [
     path: '/',
     name: 'root',
     component: () => import('./views/index.vue')
+  },
+  {
+    path: '/composition',
+    name: 'composition',
+    component: () => import('./views/composition.vue')
   }
 ]
 
