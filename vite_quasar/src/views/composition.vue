@@ -1,14 +1,14 @@
 <script>
-import composition from '../components/composition/index.vue'
+import ApiSetup from '../components/composition/api-setup.vue'
 export default {
   components: {
-    composition
+    ApiSetup
   }
 }
 </script>
 
 <template>
-  <composition/>
+  <ApiSetup/>
 </template>
 
 <style scoped>
