@@ -34,6 +34,7 @@
 
 <script>
 import { ref } from 'vue'
+// import hello from './components/HelloWorld.vue'
 
 export default {
   setup () {
@@ -45,6 +46,9 @@ export default {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
     }
+  },
+  components: {
+    // hello
   }
 }
 </script>
