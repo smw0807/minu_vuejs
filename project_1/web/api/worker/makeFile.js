@@ -6,10 +6,11 @@ const log = new Logd('express');
 const { workerData, parentPort } = require('worker_threads');
 const elasticsearch = require('elasticsearch');
 const es_client = new elasticsearch.Client({
-  hosts: String(process.env.es_hosts).split(',')
+  hosts: process.env.ES_HOST,
+  ssl:{ rejectUnauthorized: false, pfx: [] } //node 버전 16 이상은 이거 안하니깐 엘라스틱서치 서버가 https일 때 에러뜸
 })
 const index_name = 'ni_file_manage';
-const filePath = aRoot + process.env.csv_dir | '/static/csv/';
+const filePath = aRoot + '/static/csv/';
 
 let app = new Map();
 let appgroup = new Map();
@@ -43,6 +44,7 @@ let proto = new Map();
     const fields = workerData.fields; //array, 데이터 중에 csv에 표기할 필드 ex) ['ip', 'name']
     query._source = fields;
     let csv_header = '';
+    await runMappingData(idx_name);
     //컬럼 셋팅
     fields.forEach((doc, index) => {
       csv_header += (index != fields.length - 1 ? (headers[doc] + ',') : (headers[doc] + '\r\n'));
@@ -93,15 +95,16 @@ let proto = new Map();
           result.push(noTypeData(rs));
         }
         //변환된 데이터를 csv 형식 string으로 변환 작업
-        result.flat().forEach((doc) => {
+        result.flat().forEach( (doc) => {
           let csv_string = '';
           for (let field of fields) {
-            csv_string += doc[field] === undefined ? '' : data(doc[field], field);
+            const test = data(doc[field], field);
+            csv_string += doc[field] === undefined ? '' : test;
             csv_string += ',';
           }
           csv_string += '\r\n';
+          // console.log(csv_string);
           writeStream.write('\uFEFF' + csv_string); //1개 row 마다 생성된 파일에 쓰기
-  
         })
         //중간 업데이트
         let fileStat1 = fs.statSync(file);
@@ -254,28 +257,23 @@ function noTypeData (data) {
   return rt;
 }
 
-//옥시 데이터 포맷이 필요할 경우를 대비해서 만듬
-async function data(data, field) {
-  let rt = '';
+//혹시 데이터 포맷이 필요할 경우를 대비해서 만듬
+function data(data, field) {
   if (typeof data == 'object') {
     return '\"' +  JSON.stringify(data).replace(/"/g, '') + '\"';
-  } else if (field === 'app') {
-    if (app.size === 0) await makeApp();
-    rt = app.get(data);
+  }
+  else if (field === 'app') {
+    return app.get(parseInt(data));
   } else if (field === 'app_grp') {
-    if (appgroup.size === 0) await makeAppgroup();
-    rt = appgroup.get(data);
+    return appgroup.get(parseInt(data));
   } else if (field === 'proto') {
-    if (proto.size === 0) await makeProto();
-    rt = proto.get(data);
+    return proto.get(String(data));
   } else if (field === 'sensor_id') {
-    if (sensor.size === 0) await makeSensor();
-    rt = sensor.get(data);
+    return sensor.get(parseInt(data));
   }
   else {
-    rt = data;
+    return '\"' + data + '\"';
   }
-  return '\"' + rt + '\"';
 }
 
 //==============================================================================================
@@ -289,7 +287,6 @@ async function runMappingData(idx) {
 }
 //응용 데이터 생성
 async function makeApp() {
-  console.log('app');
   try {
     let query = {
       "size": 2000,
@@ -323,7 +320,6 @@ async function makeApp() {
 
 //응용그룹 데이터 생성
 async function makeAppgroup() {
-  console.log('appgroup');
   try {
     let query = {
       "size": 2000,
@@ -349,7 +345,6 @@ async function makeAppgroup() {
     for (let item of rs.flat()) {
       appgroup.set(item.appgroup_code, item.appgroup_nm);
     }
-    return true;
   } catch (err) {
     log.error(err);
     console.error(err);
@@ -358,7 +353,6 @@ async function makeAppgroup() {
 
 //프로토콜 데이터 생성
 async function makeProto() {
-  console.log('proto');
   try {
     let query = {
       "size": 2000,
@@ -385,11 +379,10 @@ async function makeProto() {
         }
       }
     }
-    const rs = await searchScroll('ni_setting', query, true);
+    const rs = await searchScroll('ni_manage', query, true);
     for (let item of rs.flat()) {
       proto.set(item.code, item.name);
     }
-    return true;
   } catch (err) {
     log.error(err);
     console.error(err);
@@ -398,7 +391,6 @@ async function makeProto() {
 
 //수집장비 데이터 생성
 async function makeSensor() {
-  console.log('sensor');
   try {
     let query = {
       "size": 2000,
@@ -421,12 +413,9 @@ async function makeSensor() {
       }
     }
     const rs = await searchScroll('ni_manage', query, true);
-    console.log('?? ', rs);
     for (let item of rs.flat()) {
       sensor.set(item.equip_id, item.equip_alias);
     }
-    console.log('sensor..... ', sensor);
-    return true;
   } catch (err) {
     log.error(err);
     console.error(err);
