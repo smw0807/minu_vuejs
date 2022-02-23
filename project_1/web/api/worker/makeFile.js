@@ -16,6 +16,9 @@ let app = new Map();
 let appgroup = new Map();
 let sensor = new Map();
 let proto = new Map();
+let org = new Map();
+
+let now_sensor_id = null; //데이터 1개, 필드 1개씩 처리하는 로직이 있는데 센서아이디에 따라 값이 다를 수도 있어서 그걸 위한 변수
 
 /**
  * file_name : 파일명
@@ -64,7 +67,7 @@ let proto = new Map();
     const insert_es = await insertInfo(file_name, user_id, user_nm);
     //등록 여부 확인
     const check_file = await checkFile(file_name, '0');
-    if (insert_es && check_file) {
+    if (insert_es) {
       //검색
       let rs = await es_client.search({
         index: idx_name,
@@ -98,12 +101,13 @@ let proto = new Map();
         result.flat().forEach( (doc) => {
           let csv_string = '';
           for (let field of fields) {
-            const test = data(doc[field], field);
-            csv_string += doc[field] === undefined ? '' : test;
+            if (field === 'sensor_id') {
+              now_sensor_id = doc[field];
+            }
+            csv_string += doc[field] === undefined ? '' : data(doc[field], field, now_sensor_id);
             csv_string += ',';
           }
           csv_string += '\r\n';
-          // console.log(csv_string);
           writeStream.write('\uFEFF' + csv_string); //1개 row 마다 생성된 파일에 쓰기
         })
         //중간 업데이트
@@ -233,6 +237,9 @@ function TypeData (data) {
   let rt = data.hits.hits.flatMap( (doc) => {
     let d = {};
     d.type = doc._source.type;
+    if (doc._source.sensor_id) {
+      d.sensor_id = doc._source.sensor_id;
+    }
     let key = Object.keys(doc._source.type);
     let val = doc._source[doc._source.type];
     for (key in val) {
@@ -247,6 +254,9 @@ function TypeData (data) {
 function noTypeData (data) {
   let rt = data.hits.hits.flatMap( (doc) => {
     let d= {};
+    if (doc._source.sensor_id) {
+      d.sensor_id = doc._source.sensor_id;
+    }
     let key = Object.keys(doc._source);
     let val = doc._source;
     for (key in val) {
@@ -258,7 +268,7 @@ function noTypeData (data) {
 }
 
 //혹시 데이터 포맷이 필요할 경우를 대비해서 만듬
-function data(data, field) {
+function data(data, field, id) {
   if (typeof data == 'object') {
     return '\"' +  JSON.stringify(data).replace(/"/g, '') + '\"';
   }
@@ -270,6 +280,12 @@ function data(data, field) {
     return proto.get(String(data));
   } else if (field === 'sensor_id') {
     return sensor.get(parseInt(data));
+  } else if (field === 'n_org') {
+    if (now_sensor_id === null) {
+      return '';
+    } else {
+      return org.get(now_sensor_id + '_' + data);
+    }
   }
   else {
     return '\"' + data + '\"';
@@ -283,6 +299,7 @@ async function runMappingData(idx) {
     if (appgroup.size === 0) await makeAppgroup()
     if (proto.size === 0) await makeProto()
     if (sensor.size === 0) await makeSensor()
+    if (org.size === 0) await makeOrg()
   }
 }
 //응용 데이터 생성
@@ -415,6 +432,42 @@ async function makeSensor() {
     const rs = await searchScroll('ni_manage', query, true);
     for (let item of rs.flat()) {
       sensor.set(item.equip_id, item.equip_alias);
+    }
+  } catch (err) {
+    log.error(err);
+    console.error(err);
+  }
+}
+
+//그룹 데이터 생성
+async function makeOrg() {
+  try {
+    let query = {
+      "size": 5000,
+      "_source": ["type", "sensor_id", "org.org_code", "org.org_nm"],
+      "query":{
+        "bool":{
+          "filter":[
+            {
+              "term":{
+                "type": "org"
+              }
+            },
+            {
+              "term":{
+                "org.is_use": true
+              }
+            }
+          ]
+        }
+      },
+      "sort":{
+        "org.org_code":"asc"
+      }
+    }
+    const rs = await searchScroll('ni_setting', query, true);
+    for (let item of rs.flat()) {
+      org.set(item.sensor_id + '_' + item.org_code, item.org_nm);
     }
   } catch (err) {
     log.error(err);
