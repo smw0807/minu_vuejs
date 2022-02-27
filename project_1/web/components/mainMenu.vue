@@ -134,8 +134,7 @@ export default {
     return {
       title: '', //상단 app-bar 이름
       default_title: 'NuxtJS',
-      org: false, 
-      drawer: true,
+      drawer: false,
       clipped: true,
       miniVariant: true,
       searchSelect: null,
@@ -156,10 +155,7 @@ export default {
     }
   },
   created() {
-    // const config = this.$store.getters['GET_CONFIG'];
-    // const mode = config.mode;
     const mode = this.$config.mode;
-    
     if (mode === 'dev') {
       this.items = menu.items;
     } else {

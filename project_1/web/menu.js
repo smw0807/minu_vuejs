@@ -3,7 +3,7 @@ export default {
     { title: 'index', icon: 'mdi-view-dashboard', to: '/', use: ['vue', 'test'] },
     { title: 'test', icon: 'mdi-api', to: '/apis/apiTest', use: ['vue', 'test'] },
     { title: 'Elastic CSV Download', icon: 'mdi-tray-arrow-down', to: '/csv/csv' , use: ['vue', 'test']},
-    { title: 'Make CSV Using worker', to: '/csv/csv_worker', use: ['test'] },
+    { title: 'Make CSV Using worker', icon: 'mdi-file-delimited', to: '/csv/csv_worker', use: ['test'] },
     { title: 'Insert File in ElasticSearch', icon: 'mdi-file-upload-outline', to: '/file/file', use: ['vue', 'test'] },
     { divider: true },
     {
