@@ -12,6 +12,7 @@ export default {
   },
   mounted() {
     console.log(this.count);
+    // console.log('store : ', this.$store.getters['rootState']);
   },
   components: {
     p1

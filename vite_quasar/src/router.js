@@ -1,3 +1,4 @@
+import { nextTick } from 'vue'
 import { createWebHistory, createRouter } from 'vue-router'
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+router.beforeEach(async (to, from, next) => {
+  // console.log(to, from);
+  return next();
 })
 
 export default router;
