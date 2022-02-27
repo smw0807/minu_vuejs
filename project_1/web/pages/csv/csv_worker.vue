@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import test1 from '@/components/test/worker_test/test1'
-import test2 from '@/components/test/worker_test/test2'
+import test1 from '@/components/csv/csv_worker/test1'
+import test2 from '@/components/csv/csv_worker/test2'
 export default {
   components: {
     test1, test2
