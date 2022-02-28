@@ -8,6 +8,10 @@ import 'quasar/src/css/index.sass'
 import router from './router';
 import store from './store'
 
+import axios from './plugins/axios'
+// axios(store);
+console.log('main.js : ', axios(store));
+
 // console.log('main.js : ', import.meta.env.VITE_TEST_KEY);
 
 import App from './App.vue'
@@ -17,4 +21,5 @@ myApp.use(Quasar, {
 })
 myApp.use(router);
 myApp.use(store);
+myApp.config.globalProperties.axios = axios(store);
 myApp.mount('#app');

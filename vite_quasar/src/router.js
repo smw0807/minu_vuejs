@@ -10,6 +10,11 @@ const routes = [
     path: '/composition',
     name: 'composition',
     component: () => import('./views/composition.vue')
+  },
+  {
+    path: '/api-test',
+    name: 'api-test',
+    component: () => import('./views/api.vue')
   }
 ]
 
