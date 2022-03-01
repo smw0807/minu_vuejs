@@ -13,7 +13,13 @@ export default {
   methods: {
     async sendAPI() {
       console.log('sendAPI,...');
-      console.log(this.axios);
+      // console.log(this.axios);
+      try {
+        const rs = await this.axios.post('/api/test');
+        console.log(rs);
+      } catch (err) {
+        console.error(err);
+      }
     }
   }
 }

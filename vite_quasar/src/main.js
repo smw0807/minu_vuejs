@@ -10,7 +10,7 @@ import store from './store'
 
 import axios from './plugins/axios'
 // axios(store);
-console.log('main.js : ', axios(store));
+console.log('main.js : ', axios);
 
 // console.log('main.js : ', import.meta.env.VITE_TEST_KEY);
 
@@ -21,5 +21,5 @@ myApp.use(Quasar, {
 })
 myApp.use(router);
 myApp.use(store);
-myApp.config.globalProperties.axios = axios(store);
+myApp.config.globalProperties.axios = axios;
 myApp.mount('#app');
