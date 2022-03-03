@@ -24,7 +24,7 @@
       <!-- drawer content -->
       <q-btn to="/" class="full-width" label="index"/>
       <q-btn to="/composition" class="full-width" label="composition API"/>
-      <q-btn to="/api-test" class="full-width" label="BackEnd API Test"/>
+      <q-btn to="/test-api" class="full-width" label="BackEnd API Test"/>
     </q-drawer>
 
     <q-page-container>

@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
-  // headers: {
-    // "Content-Type":"application/json",
+  headers: {
+    "Content-Type":"application/json",
     // "Access-Control-Allow-Origin": import.meta.env.VITE_BASE_URL
-  // }
+  }
 })
 
 instance.interceptors.request.use(

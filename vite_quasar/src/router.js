@@ -1,4 +1,3 @@
-import { nextTick } from 'vue'
 import { createWebHistory, createRouter } from 'vue-router'
 const routes = [
   {
@@ -12,8 +11,8 @@ const routes = [
     component: () => import('./views/composition.vue')
   },
   {
-    path: '/api-test',
-    name: 'api-test',
+    path: '/test-api',
+    name: 'test-api',
     component: () => import('./views/api.vue')
   }
 ]
