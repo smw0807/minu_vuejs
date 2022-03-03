@@ -9,12 +9,9 @@ import router from './router';
 import store from './store'
 
 import axios from './plugins/axios'
-// axios(store);
-console.log('main.js : ', axios);
-
-// console.log('main.js : ', import.meta.env.VITE_TEST_KEY);
 
 import App from './App.vue'
+
 const myApp = createApp(App);
 myApp.use(Quasar, {
   plugins: {}
