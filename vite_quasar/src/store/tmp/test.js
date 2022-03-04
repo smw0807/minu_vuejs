@@ -5,7 +5,7 @@ export default {
     webpack: 'Vite2',
     design: 'quasar'
   },
-  commet: {
+  mutations: {
     framework(state, data) {
       state.framework = data;
     }

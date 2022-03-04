@@ -3,6 +3,7 @@
     <q-btn to="/" class="full-width" label="index"/>
     <q-btn to="/composition" class="full-width" label="composition API"/>
     <q-btn to="/test-api" class="full-width" label="BackEnd API Test"/>
+    <q-btn to="/use-store" class="full-width" label="compositionAPI Store"/>
   </q-drawer>
 </template>
 

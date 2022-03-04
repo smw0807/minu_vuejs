@@ -20,4 +20,5 @@ myApp.use(router);
 myApp.use(store);
 myApp.config.globalProperties.axios = axios;
 myApp.provide('$axios', axios);
+myApp.provide('$store', store);
 myApp.mount('#app');
