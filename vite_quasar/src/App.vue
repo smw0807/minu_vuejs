@@ -20,12 +20,12 @@
       </q-tabs> -->
     </q-header>
 
-    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" behavior="desktop" bordered>
-      <!-- drawer content -->
+    <side-menu :leftDrawerOpen="leftDrawerOpen"/>
+    <!-- <q-drawer show-if-above v-model="leftDrawerOpen" side="left" behavior="desktop" bordered>
       <q-btn to="/" class="full-width" label="index"/>
       <q-btn to="/composition" class="full-width" label="composition API"/>
       <q-btn to="/test-api" class="full-width" label="BackEnd API Test"/>
-    </q-drawer>
+    </q-drawer> -->
 
     <q-page-container>
       <div class="q-pa-md">
@@ -37,7 +37,8 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import sideMenu from './components/menu.vue'
 // import hello from './components/HelloWorld.vue'
 
 export default {
@@ -53,6 +54,7 @@ export default {
   },
   components: {
     // hello
+    sideMenu
   }
 }
 </script>
