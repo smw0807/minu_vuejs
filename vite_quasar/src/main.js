@@ -19,4 +19,5 @@ myApp.use(Quasar, {
 myApp.use(router);
 myApp.use(store);
 myApp.config.globalProperties.axios = axios;
+myApp.provide('$axios', axios);
 myApp.mount('#app');
