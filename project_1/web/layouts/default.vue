@@ -1,14 +1,14 @@
 <template>
-  <v-app>
+  <v-app app>
     <main-menu/>
     <alt/>
-      <transition name="component-fade" mode="out-in">
-        <v-main>
-          <menu-history class="mt-3 ml-4"/>
-          <nuxt/>
-        </v-main>
-      </transition>
-      <bottom-nav/>
+    <!-- <transition name="component-fade" mode="out-in"> -->
+    <v-main>
+      <menu-history class="mt-3 ml-4"/>
+      <nuxt/>
+    </v-main>
+    <!-- </transition> -->
+    <bottom-nav/>
   </v-app>
 </template>
 

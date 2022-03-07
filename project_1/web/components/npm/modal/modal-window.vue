@@ -1,27 +1,34 @@
-/**
-https://github.com/moritanian/vue-modal-window
- */
 <template>
   <div>
-    <vue-modal-window 
-      title="" 
-      :draggable="true" 
-      :resizable="true" 
-      :visible.sync="open1">
-      <v-card>
-        <v-card-title>ssss</v-card-title>
-        <v-card-text>
-          sdfsdfsdf
-        </v-card-text>
-      </v-card>
-      </vue-modal-window>
     <v-card>
       <v-card-title>vue-modal-window</v-card-title>
       <v-card-text>
+        <window-modal  :active="is_modal_1"  title="Modal 1"  v-on:clickClose="modal_1(false)">
+          <v-card>
+            <v-card-title>zzzz</v-card-title>
+            <v-card-text>
+              sdfsdfsdf
+            </v-card-text>
+          </v-card>
+        </window-modal>
+        <window-modal  :active="is_modal_2"  title="Modal 2"  v-on:clickClose="modal_2(false)">
+          <v-card>
+            <v-card-title>zzz</v-card-title>
+            <v-card-text>
+              sdfsdfsdf
+            </v-card-text>
+            <v-card-actions>
+              <v-btn @click="alert">Alert!</v-btn>
+            </v-card-actions>
+          </v-card>
+        </window-modal>
         <v-layout column>
           <v-row>
             <v-col cols="2">
-              <v-btn @click="open">modal open</v-btn>
+              <v-btn @click="modal_1(true)">modal 1 open</v-btn>
+            </v-col>
+            <v-col cols="2">
+              <v-btn @click="modal_2(true)">modal 2 open</v-btn>
             </v-col>
           </v-row>
         </v-layout>
@@ -31,21 +38,32 @@ https://github.com/moritanian/vue-modal-window
 </template>
 
 <script>
-import VueModalWindow from 'vue-modal-window';
+import windowModal from '@/components/cmn/window-modal'
 export default {
   components: {
-    VueModalWindow
+    windowModal
   },
   data() {
     return {
-      open1: false,
-      md_title: 'modal title?'
+      md_title: 'modal title?',
+      is_modal_1: false,
+      is_modal_2: false
     }
   },
   methods:{
-    open() {
-      console.log('open');
-      this.open1 = true;
+    modal_1(v){
+      this.is_modal_1 = v;
+    },
+    modal_2(v) {
+      this.is_modal_2 = v;
+    },
+    alert() {
+      this.$store.dispatch('updateAlert', {
+        alert: true,
+        type:'success',
+        title: 'test!!',
+        text: 'test.....'
+      })
     }
   }
 }

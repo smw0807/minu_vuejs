@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app dark >
+    <v-app-bar dark app >
       <v-app-bar-nav-icon @click.stop="drawer =!drawer"></v-app-bar-nav-icon>
       <v-divider vertical class="ml-1"></v-divider>
 
@@ -262,8 +262,8 @@ export default {
 
 <style>
 #main_nav {
-  top: 0 !important;
-  max-height:100% !important;
+  /* top: 0 !important; */
+  /* max-height:100% !important; */
   z-index: 10000 !important;
 }
 </style>
