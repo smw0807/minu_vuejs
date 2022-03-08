@@ -22,6 +22,9 @@
             </v-card-actions>
           </v-card>
         </window-modal>
+        <vuetify-window-modal :active="is_modal_3" title="Vuetify Modal 1" width="300px" height="500px" @clickClose="modal_3(false)">
+          ㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇ
+        </vuetify-window-modal>
         <v-layout column>
           <v-row>
             <v-col cols="2">
@@ -29,6 +32,9 @@
             </v-col>
             <v-col cols="2">
               <v-btn @click="modal_2(true)">modal 2 open</v-btn>
+            </v-col>
+            <v-col cols="2">
+              <v-btn @click="modal_3(true)">vueitfy modal open</v-btn>
             </v-col>
           </v-row>
         </v-layout>
@@ -39,15 +45,18 @@
 
 <script>
 import windowModal from '@/components/cmn/window-modal'
+import vuetifyWindowModal from '@/components/cmn/vuetify-window-modal'
 export default {
   components: {
-    windowModal
+    windowModal,
+    vuetifyWindowModal
   },
   data() {
     return {
       md_title: 'modal title?',
       is_modal_1: false,
-      is_modal_2: false
+      is_modal_2: false,
+      is_modal_3: false,
     }
   },
   methods:{
@@ -56,6 +65,9 @@ export default {
     },
     modal_2(v) {
       this.is_modal_2 = v;
+    },
+    modal_3(v) {
+      this.is_modal_3 = v;
     },
     alert() {
       this.$store.dispatch('updateAlert', {
