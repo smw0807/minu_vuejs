@@ -9,21 +9,18 @@
       <v-card-title 
         :id="windowId + '-' + 'header'"
         >
-        <!-- class="vue-window-modal-header" -->
-        <h2>{{title}}</h2>
+        <h3>{{title}}</h3>
         <v-spacer/>
-        <img src="/close.png" @click="$emit('clickClose')">    
+        <v-icon @click="$emit('clickClose')">mdi-close</v-icon>
+        <!-- <v-icon @click="$emit('clickClose')">mdi-close-box-outline</v-icon> -->
+        <!-- <v-icon @click="$emit('clickClose')">mdi-close-thick</v-icon> -->
+        <!-- <img src="/close.png" @click="$emit('clickClose')">     -->
       </v-card-title>
       <v-divider></v-divider>
       <v-card-text>
         <slot name="default"></slot>    
       </v-card-text>
     </v-card>
-    <!-- <div :id="windowId + '-' + 'header'" class="vue-window-modal-header">
-      <h2>{{title}}</h2>
-      <img src="/close.png" @click="$emit('clickClose')"> -->
-    <!-- </div> -->
-    <!-- <slot name="default"></slot> -->
   </div>
 </template>
 
@@ -183,7 +180,7 @@ export default {
   position: fixed;
   background-color: #f7f7f7;
   /* box-shadow: 7px 7px 50px 5px rgba(0,0,0,0.13); */
-  border: 1px solid #0000002b;
+  border: 1px solid #00000099;
   /* border: 1px solid #8080802b; */
   border-radius: 3px;
   display: none;

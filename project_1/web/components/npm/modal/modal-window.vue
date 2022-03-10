@@ -23,7 +23,19 @@
           </v-card>
         </window-modal>
         <vuetify-window-modal :active="is_modal_3" title="Vuetify Modal 1" width="300px" height="500px" @clickClose="modal_3(false)">
-          ㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇ
+          <v-card
+            outlined>
+            <v-card-text>
+              <v-row>
+                <v-col cols="12">ddddd</v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="6">
+                  <v-btn>버튼이요</v-btn>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
         </vuetify-window-modal>
         <v-layout column>
           <v-row>
