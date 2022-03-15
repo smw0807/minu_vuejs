@@ -1,8 +1,8 @@
 <script>
-import ApiSetup from '../components/composition/api-setup.vue'
+import setup from '../components/composition/setup.vue'
 export default {
   components: {
-    ApiSetup
+    setup
   }
 }
 </script>
@@ -13,14 +13,21 @@ export default {
       <q-card-section>
         <div class="text-h5">setup()</div>
         <q-separator inset class="q-my-md" />
-        <ApiSetup/>
+        <setup/>
       </q-card-section>
     </q-card>
     <q-card class="my-card q-mt-sm" flat bordered>
       <q-card-section>
-        <div class="text-h5">setup()</div>
+        <div class="text-h5">reactivity: Core</div>
         <q-separator inset class="q-my-md" />
-        <ApiSetup/>
+        <!-- <ApiSetup/> -->
+      </q-card-section>
+    </q-card>
+    <q-card class="my-card q-mt-sm" flat bordered>
+      <q-card-section>
+        <div class="text-h5">reactivity: Utilities</div>
+        <q-separator inset class="q-my-md" />
+        <!-- <ApiSetup/> -->
       </q-card-section>
     </q-card>
   </div>
