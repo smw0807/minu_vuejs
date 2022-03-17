@@ -1,9 +1,9 @@
 <template>
   <q-layout view="hHh lpR lFf">
 
-    <q-header bordered class="bg-primary text-white" height-hint="98">
+    <q-header bordered class="bg-dark text-white" height-hint="98">
       <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+        <q-btn dense flat round icon="menu" @click="drawer = !drawer" />
 
         <q-toolbar-title>
           <q-avatar>
@@ -20,12 +20,7 @@
       </q-tabs> -->
     </q-header>
 
-    <side-menu :leftDrawerOpen="leftDrawerOpen"/>
-    <!-- <q-drawer show-if-above v-model="leftDrawerOpen" side="left" behavior="desktop" bordered>
-      <q-btn to="/" class="full-width" label="index"/>
-      <q-btn to="/composition" class="full-width" label="composition API"/>
-      <q-btn to="/test-api" class="full-width" label="BackEnd API Test"/>
-    </q-drawer> -->
+    <side-menu :drawer="drawer"/>
 
     <q-page-container>
       <div class="q-pa-md">
@@ -37,19 +32,15 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import sideMenu from './components/menu.vue'
 // import hello from './components/HelloWorld.vue'
 
 export default {
   setup () {
-    const leftDrawerOpen = ref(false)
 
     return {
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      drawer: ref(false),
     }
   },
   components: {

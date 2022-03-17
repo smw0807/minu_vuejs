@@ -1,17 +1,17 @@
 <template>
-  <!-- <q-drawer
+  <q-drawer
     v-model="drawer"
     show-if-above
-    :width="200"
+    :width="250"
     :breakpoint="500"
     bordered
-    class="bg-grey-3"
+    class="bg-grey-12"
     >
     <q-scroll-area class="fit">
       <q-list>
 
         <template v-for="(menuItem, index) in menuList" :key="index">
-          <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
+          <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple :to="menuItem.to">
             <q-item-section avatar>
               <q-icon :name="menuItem.icon" />
             </q-item-section>
@@ -24,33 +24,27 @@
 
       </q-list>
     </q-scroll-area>
-  </q-drawer> -->
-  <q-drawer show-if-above v-model="leftDrawerOpen" side="left" behavior="desktop" bordered>
-    <q-btn to="/" class="full-width" label="index"/>
-    <q-btn to="/composition" class="full-width" label="composition API"/>
-    <q-btn to="/use-store" class="full-width" label="compositionAPI Store"/>
-    <q-btn to="/test-api" class="full-width" label="BackEnd API Test"/>
   </q-drawer>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
-const menusList = [
+import { ref, toRefs, onMounted } from 'vue';
+const menuList = [
   { label : 'index', to: '/', separator: true},
   { label : 'composition API', to: '/composition', separator: false},
-  { label : 'composition Store', to: '/use-store', separator: false},
+  { label : 'composition Store', to: '/use-store', separator: true},
   { label : 'BackEnd API Test', to: '/test-api', separator: true},
 ]
 export default {
   props:{
-    leftDrawerOpen: Boolean
+    drawer: Boolean
   },
   setup(props) {
-    
+    const { drawer } = toRefs(props)
 
     return {
-      drawer: props.leftDrawerOpen,
-      menusList
+      drawer,
+      menuList
     }
   }
 }
