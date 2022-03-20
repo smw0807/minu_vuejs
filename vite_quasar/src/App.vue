@@ -34,7 +34,6 @@
 <script>
 import { ref } from 'vue'
 import sideMenu from './components/menu.vue'
-// import hello from './components/HelloWorld.vue'
 
 export default {
   setup () {
@@ -44,7 +43,6 @@ export default {
     }
   },
   components: {
-    // hello
     sideMenu
   }
 }
