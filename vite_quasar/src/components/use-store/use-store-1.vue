@@ -1,23 +1,29 @@
 <script>
 import { inject, reactive, computed, onMounted } from 'vue'
-// import { useStore } from 'vuex'
+import { useStore } from 'vuex'
 export default {
   setup(props, context) {
     console.log('context : ', context);
-    // const store = useStore();
-    // console.log('store : ', store);
-    // console.log('store : ', store.getters['rootState']);
-    // console.log('store : ', store.getters['tmp/framework']);
-    const store = inject('$store');
+    const store = useStore();
     console.log('store : ', store);
     console.log('store : ', store.getters['rootState']);
     console.log('store : ', store.getters['tmp/framework']);
+    // const store = inject('$store');
+    // console.log('store : ', store);
+    // console.log('store : ', store.getters['rootState']);
+    // console.log('store : ', store.getters['tmp/framework']);
     const state = reactive({
       rootState: computed(() => store.getters['rootState'])
     })
 
-    const updState = () => {
+    const updState = async () => {
       store.commit('rootState', 'bbb');
+      try {
+        const rs = await store.dispatch('tmp/framework');
+        console.log('dispatch : ', rs);
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     onMounted(() => {

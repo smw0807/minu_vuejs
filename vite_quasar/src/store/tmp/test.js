@@ -16,6 +16,10 @@ export default {
     }
   },
   actions:{
-    // framework({ commit })
+    framework({ commit }) {
+      return new Promise((resolve, reject) => {
+        resolve(true);
+      })
+    }
   }
 }
