@@ -14,6 +14,7 @@ git checkout -b main
 git add -A
 git commit -m 'deploy'
 
+#배포
 git push -f git@github.com:smw0807/vite_vue3.github.io.git main
 
 cd -
