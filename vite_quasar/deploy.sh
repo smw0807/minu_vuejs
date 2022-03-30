@@ -10,12 +10,15 @@ npm run build
 cd dist
 
 git init
-git checkout -b main
+# git checkout -b main
+# git branch -M main
 git add -A
 git commit -m 'deploy'
 
 #배포
+#git push -f git@github.com:smw0807/smw0807.github.io.git main
 git push -f git@github.com:smw0807/vite_vue3.github.io.git main
+# git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git main
 
 cd -
 
