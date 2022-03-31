@@ -1,9 +1,11 @@
 <script>
 import { ref } from 'vue';
 import childCom from './props-test1/props1.vue';
+import provideInject from './provide-inject/MyMap.vue';
 export default {
   components: {
-    childCom
+    childCom,
+    provideInject,
   },
   setup(props, context) {
     const count = ref(0);
@@ -39,6 +41,7 @@ export default {
     </div>
 
   </div>
+
   <q-separator inset class="q-my-md" />
 
   <div class="row">
@@ -47,6 +50,17 @@ export default {
     </div>
     <div class="col">
       {{context}}
+    </div>
+  </div>
+
+  <q-separator inset class="q-my-md" />
+
+  <div class="row">
+    <div class="col-2">
+      Provide/Inject
+    </div>
+    <div class="col">
+      <provide-inject/>
     </div>
   </div>
 
