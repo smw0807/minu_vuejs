@@ -1,5 +1,5 @@
 <template>
-  <div>root views test</div>
+  <div>root views test......</div>
 </template>
 
 <script>
