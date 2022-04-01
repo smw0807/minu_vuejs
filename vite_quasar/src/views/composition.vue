@@ -16,20 +16,22 @@ export default {
         <setup/>
       </q-card-section>
     </q-card>
-    <q-card class="my-card q-mt-sm" flat bordered>
+
+    <!-- <q-card class="my-card q-mt-sm" flat bordered>
       <q-card-section>
         <div class="text-h5">reactivity: Core</div>
         <q-separator inset class="q-my-md" />
-        <!-- <ApiSetup/> -->
+
       </q-card-section>
-    </q-card>
-    <q-card class="my-card q-mt-sm" flat bordered>
+    </q-card> -->
+
+    <!-- <q-card class="my-card q-mt-sm" flat bordered>
       <q-card-section>
         <div class="text-h5">reactivity: Utilities</div>
         <q-separator inset class="q-my-md" />
-        <!-- <ApiSetup/> -->
+
       </q-card-section>
-    </q-card>
+    </q-card> -->
   </div>
 </template>
 
