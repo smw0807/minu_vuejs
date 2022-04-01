@@ -2,10 +2,13 @@
 import { ref } from 'vue';
 import childCom from './props-test1/props1.vue';
 import provideInject from './provide-inject/MyMap.vue';
+import tplRefs from './template-refs/tpl-refs.vue';
+
 export default {
   components: {
     childCom,
     provideInject,
+    tplRefs,
   },
   setup(props, context) {
     const count = ref(0);
@@ -61,6 +64,17 @@ export default {
     </div>
     <div class="col">
       <provide-inject/>
+    </div>
+  </div>
+
+  <q-separator inset class="q-my-md" />
+
+  <div class="row">
+    <div class="col-2">
+      템플릿 Refs
+    </div>
+    <div class="col">
+      <tplRefs/>
     </div>
   </div>
 
