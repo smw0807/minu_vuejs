@@ -37,9 +37,10 @@ import sideMenu from './components/menu.vue'
 
 export default {
   setup () {
+    let drawer = ref(false);
 
     return {
-      drawer: ref(false),
+      drawer,
     }
   },
   components: {

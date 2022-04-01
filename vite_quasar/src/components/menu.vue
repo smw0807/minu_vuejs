@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import { ref, toRefs, onMounted } from 'vue';
 const menuList = [
   { label : 'index', to: '/', separator: true},
   { label : 'composition API', to: '/composition', separator: false},
@@ -37,13 +36,10 @@ const menuList = [
 ]
 export default {
   props:{
-    drawer: Boolean
+    drawer: Boolean,
   },
   setup(props) {
-    const { drawer } = toRefs(props)
-
     return {
-      drawer,
       menuList
     }
   }
