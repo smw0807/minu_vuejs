@@ -17,7 +17,7 @@ export default {
 
     // const title = toRefs(props, 'title'); //object key : value 다 찍힘
 
-    console.log(title);
+    // console.log(title);
     title = 'This is ' + props.title;
     return {
       title

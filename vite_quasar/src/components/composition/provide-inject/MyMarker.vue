@@ -15,9 +15,9 @@ export default {
      * 2. 기본값 (선택사항)
      */
     const userLocation = inject('location', 'The Universe');
-    console.log('userLocation : ', userLocation);
+    // console.log('userLocation : ', userLocation);
     const userGeolocation = inject('geolocation');
-    console.log('userGeolocation : ', userGeolocation);
+    // console.log('userGeolocation : ', userGeolocation);
     const updateLocation = inject('updateLocation');
     
     return { 
