@@ -2,7 +2,8 @@
   <div>
     <div ref="root">This is a root element</div>
     <br>
-    <refsTest ref="test1"/>
+    <refsTest ref="childComponent"/>
+    <q-btn label="자식 컴포넌트 함수 실행하기" @click="runChildFunction()"/>
   </div>
 </template>
 
@@ -12,17 +13,27 @@ import { ref, onMounted } from 'vue';
 export default {
   setup() {
     const root = ref(null);
-    console.log(root);
+    // console.log(root);
     
-    const test1 = ref(null);
+    //DOM 요소는 초기 렌더링 후에 ref에 할당한다.
+    const childComponent = ref(null);
     onMounted(() => {
-      //DOM 요소는 초기 렌더링 후에 ref에 할당한다.
-      console.log(root.value);
-      console.log(test1); //vue2 처럼 ref를 이용해 해당 컴포넌트 안에 있는 함수 실행 가능한지 테스트해보기...
+      console.log(childComponent);
+      
+      console.log('자식컴포넌트 데이터 가져오기 a : ', childComponent.value.a);
+      console.log('자식컴포넌트 데이터 가져오기 b : ', childComponent.value.b);
+      console.log('자식컴포넌트 데이터 가져오기 c : ', childComponent.value.c);
+
     })
+    const runChildFunction = () => {
+      console.log('runChildFunction');
+      childComponent.value.isRun({sendValue: 'sendValue!!'});
+    }
     
     return { 
-      root
+      root,
+      childComponent,
+      runChildFunction
     }
   },
   components: {
