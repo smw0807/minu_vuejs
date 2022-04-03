@@ -16,7 +16,7 @@ export default {
       console.log('부모 컴포넌트에게 받은 값: ', v);
       run = ref(true);
     }
-    console.log('run : ' , run);
+    // console.log('run : ' , run);
     return {
       run, 
       a,

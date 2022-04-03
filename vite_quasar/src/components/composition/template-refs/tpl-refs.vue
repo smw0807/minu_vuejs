@@ -18,15 +18,15 @@ export default {
     //DOM 요소는 초기 렌더링 후에 ref에 할당한다.
     const childComponent = ref(null);
     onMounted(() => {
-      console.log(childComponent);
+      // console.log(childComponent);
       
-      console.log('자식컴포넌트 데이터 가져오기 a : ', childComponent.value.a);
-      console.log('자식컴포넌트 데이터 가져오기 b : ', childComponent.value.b);
-      console.log('자식컴포넌트 데이터 가져오기 c : ', childComponent.value.c);
+      // console.log('자식컴포넌트 데이터 가져오기 a : ', childComponent.value.a);
+      // console.log('자식컴포넌트 데이터 가져오기 b : ', childComponent.value.b);
+      // console.log('자식컴포넌트 데이터 가져오기 c : ', childComponent.value.c);
 
     })
     const runChildFunction = () => {
-      console.log('runChildFunction');
+      // console.log('runChildFunction');
       childComponent.value.isRun({sendValue: 'sendValue!!'});
     }
     
