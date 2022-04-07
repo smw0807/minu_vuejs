@@ -4,8 +4,8 @@ const instance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
   headers: {
     "Content-Type":"application/json",
-    // "Access-Control-Allow-Origin": import.meta.env.VITE_BASE_URL
-  }
+  },
+  timeout: 3000
 })
 
 instance.interceptors.request.use(
@@ -15,6 +15,7 @@ instance.interceptors.request.use(
     return config
   }, 
   (error) => {
+    console.error('axios.js request error : ', error);
     return Promise.reject(error);
   }
 );
@@ -24,6 +25,7 @@ instance.interceptors.response.use(
     return res
   },
   (error) => {
+    console.error('axios.js reqponse error : ', error);
     return Promise.reject(error);
   }
 )

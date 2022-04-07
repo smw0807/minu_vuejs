@@ -9,7 +9,11 @@ export default {
     })
     const sendAPI = async () => {
       try {
-        const rs = await axios.post('/api/test');
+        const params = {
+          dataA: 'aaa'
+        }
+        const rs = await axios.post('/api/test', params);
+        console.log(rs);
         state.content = rs.data.msg;
       } catch (err) {
         console.error(err);
