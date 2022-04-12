@@ -1,4 +1,8 @@
 import { createWebHistory, createRouter } from 'vue-router'
+import { useCookies } from 'vue3-cookies'
+const { cookies } = useCookies();
+// import { useStore } from 'vuex';
+// const store = useStore();
 const routes = [
   {
     path: '/',
@@ -32,6 +36,8 @@ const router = createRouter({
   routes
 })
 router.beforeEach(async (to, from, next) => {
+  console.log('router.js cookies : ', cookies.get("accessToken"));
+  // console.log(store);
   // console.log(to, from);
   return next();
 })

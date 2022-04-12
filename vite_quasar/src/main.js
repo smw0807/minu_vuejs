@@ -10,15 +10,16 @@ import store from './store'
 
 import axios from './plugins/axios'
 
-import App from './App.vue'
+// import VueCookies from 'vue3-cookies'
 
-const myApp = createApp(App);
-myApp.use(Quasar, {
+import App from './App.vue'
+const app = createApp(App);
+app.use(Quasar, {
   plugins: {}
 })
-myApp.use(router);
-myApp.use(store);
-myApp.config.globalProperties.axios = axios;
-myApp.provide('$axios', axios);
-myApp.provide('$store', store);
-myApp.mount('#app');
+app.use(router);
+app.use(store);
+// app.use(VueCookies);
+app.provide('$axios', axios);
+// app.provide('$store', store);
+app.mount('#app');

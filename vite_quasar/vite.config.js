@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
-
+// import auth from './src/plugins/auth'
 export default ({mode}) => {
   /**
    * loadEnv(mode: string, envDir: string, prefixes?: string | string[])
@@ -22,7 +22,8 @@ export default ({mode}) => {
       }),
       quasar({
         sassVariables: 'src/assets/quasar/quasar-variables.sass'
-      })
+      }),
+      // auth() //실행시 최초 1회 실행...
     ],
   })
 }
