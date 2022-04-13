@@ -1,13 +1,13 @@
 export default {
   namespaced: true,
   state: {
-    isLogin: false,
+    needLogin: false,
     accessToken: null,
     refreshToken: null,
   },
   mutations: {
-    isLogin(state, data) {
-      state.isLogin = data;
+    needLogin(state, data) {
+      state.needLogin = data;
     },
     accessToken(state, data) {
       state.accessToken = data;
@@ -17,8 +17,8 @@ export default {
     }
   },
   getters: {
-    isLogin(state) {
-      return state.isLogin;
+    needLogin(state) {
+      return state.needLogin;
     },
     accessToken(state) {
       return state.accessToken;

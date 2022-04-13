@@ -20,6 +20,8 @@
       </q-tabs> -->
     </q-header>
 
+    <login/>
+
     <side-menu :drawer="drawer"/>
 
     <q-page-container>
@@ -34,6 +36,7 @@
 <script>
 import { ref } from 'vue'
 import sideMenu from './components/menu.vue'
+import login from './components/login/login.vue'
 
 export default {
   setup () {
@@ -44,7 +47,8 @@ export default {
     }
   },
   components: {
-    sideMenu
+    sideMenu,
+    login
   }
 }
 </script>
