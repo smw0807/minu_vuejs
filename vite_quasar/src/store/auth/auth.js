@@ -1,3 +1,8 @@
+import { useCookies } from 'vue3-cookies'
+const { cookies } = useCookies();
+
+import axios from '../../plugins/axios';
+
 export default {
   namespaced: true,
   state: {
@@ -29,10 +34,20 @@ export default {
   },
   actions: {
     login({commit}, params) {
-      console.log('store/auth/auth.js : ', params);
       return new Promise( async(resolve, reject) => {
-        resolve(true);
         //로그인 후 토큰 처리
+        try {
+          const rs = await axios.post('/api/auth/login', params);
+          if (rs.data.ok) {
+            commit('needLogin', false);
+            cookies.set('accessToken', rs.data.result.accessToken);
+            cookies.set('refreshToken', rs.data.result.refreshToken);
+          }
+          resolve(rs.data.msg);
+        } catch (err) {
+          console.error(err);
+          reject(err);
+        }
       })
     },
     refreshToken() {

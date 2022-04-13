@@ -39,11 +39,14 @@ export default function(store) {
     if (import.meta.env.VITE_IS_LOGIN === 'Y') {
       const access = cookies.get('accessToken');
       const refresh = cookies.get('refreshToken');
+      // @@ 토큰 변조를 할 수 있으니 토큰이 있을 경우 검증은 어떤 경우에??
+
+      //@@ accessToken 만 있을 경우 재발급 받기
       if (access === null && refresh !== null) {
-        //accessToken 재발급 받기
       }
-      if (access === null && refresh === null) {
-        //로그인 하기
+
+      //@@ refreshToken이 없을 경우 로그인 창 띄우기
+      if (refresh === null) {
         console.warn('need login...');
         store.commit('auth/needLogin', true);
       }

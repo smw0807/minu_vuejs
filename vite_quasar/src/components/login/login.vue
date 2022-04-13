@@ -40,18 +40,22 @@ export default {
     const user_pw = ref('aaaa');
     const store = useStore();
 
-    //@@ 로그인 필요 여부?
+    //@@ 로그인 필요 여부
     const needLogin = computed(() => {
       return store.getters['auth/needLogin'];
     })
 
     //@@ 로그인 처리
     const login = async () => {
-      const rs = await store.dispatch('auth/login', {
-        user_id: user_id.value,
-        user_pw: user_pw.value
-      })
-      store.commit('auth/needLogin', false);
+      try {
+        const rs = await store.dispatch('auth/login', {
+          user_id: user_id.value,
+          user_pw: user_pw.value
+        })
+        alert(rs);
+      } catch (err) {
+        alert(err);
+      }
     }
 
     return {
