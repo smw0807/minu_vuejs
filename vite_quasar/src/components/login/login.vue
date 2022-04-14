@@ -36,7 +36,7 @@ import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 export default {
   setup() {
-    const user_id = ref('admin');
+    const user_id = ref('test');
     const user_pw = ref('aaaa');
     const store = useStore();
 

@@ -8,6 +8,8 @@ import 'quasar/src/css/index.sass'
 import router from './router';
 import store from './store'
 import axios from './plugins/axios'
+import axiosInterceptor from './plugins/interceptor'
+axiosInterceptor(store);
 
 import App from './App.vue'
 const app = createApp(App);

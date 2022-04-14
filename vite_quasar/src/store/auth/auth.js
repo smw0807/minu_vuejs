@@ -33,15 +33,18 @@ export default {
     }
   },
   actions: {
-    login({commit}, params) {
+    login({commit}, params) { //로그인 및 토큰 처리
       return new Promise( async(resolve, reject) => {
-        //로그인 후 토큰 처리
         try {
           const rs = await axios.post('/api/auth/login', params);
           if (rs.data.ok) {
+            const access = rs.data.result.accessToken;
+            const refresh = rs.data.result.refreshToken;
+            cookies.set('accessToken', access, import.meta.env.VITE_ACCESS_TIME);
+            cookies.set('refreshToken', rs.data.result.refreshToken, import.meta.env.VITE_REFRESH_TIME);
+            commit('accessToken', access);
+            commit('refreshToken', refresh);
             commit('needLogin', false);
-            cookies.set('accessToken', rs.data.result.accessToken);
-            cookies.set('refreshToken', rs.data.result.refreshToken);
           }
           resolve(rs.data.msg);
         } catch (err) {
@@ -50,14 +53,47 @@ export default {
         }
       })
     },
-    refreshToken() {
+    verifyToken({commit}) { //토큰 검증
       return new Promise( async(resolve, reject) => {
-        //토큰 재발급
+        try {
+          const rs = await axios.post('/api/auth/accessTokenCheck');
+          if(rs.data.ok) {
+            resolve(true);
+          } else {
+            console.error(rs.data.msg);
+            alert(rs.data.result);
+            commit('needLogin', true);
+            resolve(false);
+          }
+        } catch (err) {
+          console.error(err);
+          reject(err);
+        }
       })
     },
-    checkToken() {
+    refreshToken({commit}) { //토큰 재발급
       return new Promise( async(resolve, reject) => {
-        //토큰 체크?
+        try {
+          const rs = await axios.post('/api/auth/refreshToken');
+          if(rs.data.ok) {
+            const access = rs.data.result.accessToken;
+            const refresh = rs.data.result.refreshToken;
+            cookies.set('accessToken', access, import.meta.env.VITE_ACCESS_TIME);
+            cookies.set('refreshToken', rs.data.result.refreshToken, import.meta.env.VITE_REFRESH_TIME);
+            commit('accessToken', access);
+            commit('refreshToken', refresh);
+            commit('needLogin', false);
+            resolve(true);
+          } else {
+            console.error(rs.data.msg);
+            alert(rs.data.result);
+            commit('needLogin', true);
+            resolve(false);
+          }
+        } catch (err) {
+          console.error(err);
+          reject(err);
+        }
       })
     },
   }
