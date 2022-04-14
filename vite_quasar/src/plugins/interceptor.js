@@ -6,7 +6,6 @@ const setup = (store) => {
   instance.interceptors.request.use(
     (config) => {
       console.log('axios.js request : ' , config);
-      console.log(store);
       //token 체크 로직?
       if(import.meta.env.VITE_IS_LOGIN === 'Y') {
         config.headers['x-access-token'] = cookies.get('accessToken');
