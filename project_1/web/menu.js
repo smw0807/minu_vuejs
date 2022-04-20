@@ -69,6 +69,7 @@ export default {
         { title: 'window popup', to: '/test/window_popup', use: ['test'] },
         { title: 'resize mixin', to: '/test/resize', use: ['test'] },
         { title: 'elastic info', to: '/test/els_info', use: ['test'] },
+        { title: 'WebSocekt', to: '/test/ws', use: ['test'] },
         { title: 'Auth Test', to: '/vue/authtest', is_secret: true, use: ['test'] },
       ],
     },
