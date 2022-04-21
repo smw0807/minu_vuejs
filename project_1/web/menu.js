@@ -70,6 +70,7 @@ export default {
         { title: 'resize mixin', to: '/test/resize', use: ['test'] },
         { title: 'elastic info', to: '/test/els_info', use: ['test'] },
         { title: 'WebSocekt', to: '/test/ws', use: ['test'] },
+        { title: 'Socket.IO', to: '/test/io', use: ['test'] },
         { title: 'Auth Test', to: '/vue/authtest', is_secret: true, use: ['test'] },
       ],
     },

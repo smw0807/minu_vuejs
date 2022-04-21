@@ -27,6 +27,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: '/socket.io/socket.io.js' }
     ]
   },
 
@@ -59,7 +62,19 @@ export default {
     '@nuxtjs/dotenv',
     // '@/modules/example',
     ['@/modules/example', {name: process.env.name || 'song'}],
+    'nuxt-socket-io',
   ],
+  io: {
+    server: {
+      cors: {
+        origin: 'http://localhost:8005'
+      }
+    },
+    sockets:[{
+      name:'io',
+      url: 'http://localhost:8005'
+    }]
+  },
 
   publicRuntimeConfig: {
     mode: process.env.mode,
