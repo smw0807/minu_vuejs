@@ -29,23 +29,17 @@ export default {
   methods: {
     makeIO() {
       this.socket = this.$nuxtSocket({
-        channel: '/socket.io',
+        name: 'main',
+        channel: '/run1', //웹소켓 서버에서 네임스페이스를 주지 않을 경우 그냥 / 만 넣으면됨
+        persist: true,
         emitTimeout: 1000
       })
-      console.log(this.socket);
-     
       this.socket.on('news', (msg, cb) => {
         console.log('socket.io로부터 받은 메시지 : ', msg);
-        console.log('cb?? ', cb);
+        this.socket.emit('nuxt', 'nuxt에서 보냄...')
       })
-        // this.socket.emit('reply', {
-        //   reply: 'This is Nuxt message'
-        // }, (resp) => {
-        //   console.log('resp : ', resp);
-        // })
-
-      }
     }
+  }
 }
 </script>
 <style lang="">

@@ -29,7 +29,6 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src: '/socket.io/socket.io.js' }
     ]
   },
 
@@ -65,15 +64,13 @@ export default {
     'nuxt-socket-io',
   ],
   io: {
-    server: {
-      cors: {
-        origin: 'http://localhost:8005'
+    sockets:[
+      {
+        name:'main',
+        url: 'http://localhost:8005',
+        default: true
       }
-    },
-    sockets:[{
-      name:'io',
-      url: 'http://localhost:8005'
-    }]
+    ]
   },
 
   publicRuntimeConfig: {
