@@ -5,12 +5,8 @@ const { cookies } = useCookies();
 const setup = (store) => {
   instance.interceptors.request.use(
     async (config) => {
-      console.log('axios.js request : ' , config);
-      //token 체크 로직?
+      // console.log('axios.js request : ' , config);
       if(import.meta.env.VITE_IS_LOGIN === 'Y') {
-        // if (cookies.get('accessToken') === null) {
-        //   await store.dispatch('auth/refresh')
-        // }
         config.headers['x-access-token'] = cookies.get('accessToken');
         config.headers['x-refresh-token'] = cookies.get('refreshToken');
         return config;
@@ -25,24 +21,34 @@ const setup = (store) => {
   );
   instance.interceptors.response.use(
     (res) => {
-      console.log('axios.js response : ' , res);
+      // console.log('axios.js response : ' , res);
       return res
     },
-    (error) => {
+    async (error) => {
       console.error('axios.js reqponse error : ', error);
       if(import.meta.env.VITE_IS_LOGIN === 'Y') {
+        const errorRes = error.response;
         const errorAPI = error.response.config;
-        console.log('errorAPI : ', errorAPI);
-        // if (cookies.get('refreshToken') === null) {
-        //   console.error('요청 중 refreshToken 토큰 없음');
-        //   store.commit('auth/needLogin', true);
-        //   return false;
-        // }
-        // if (cookies.get('accessToken') === null) {
-        //   console.log('요청 중 accessToken 없음');
-        //   await store.dispatch('auth/refreshToken');
-        //   return config
-        // }
+        if (cookies.get('refreshToken') === null) {
+          store.commit('auth/needLogin', true);
+          return Promise.reject(error);
+        } else {
+          if (errorRes.status === 419) { // accessToken이 null일 경우 419코드를 받고 토큰 재생성 요청
+            try {
+              await store.dispatch('auth/refreshToken');
+              return instance(errorAPI);
+            } catch (err) {
+              // console.error('err);
+              return Promise.reject(err);
+            }
+          }
+          if (errorRes.status === 401) { //accessToken이 변조 등 유효하지 않은 토큰일 경우
+            console.warn('유효하지   않은 토큰', error);
+            store.commit('auth/needLogin', true);
+            alert('다시 로그인해주시기 바랍니다.');
+            return Promise.reject(error);
+          }
+        }
       }
       return Promise.reject(error);
     }

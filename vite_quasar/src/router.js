@@ -39,9 +39,11 @@ export default function(store) {
       if (refresh === null) {
         console.warn('need login...');
         store.commit('auth/needLogin', true);
-      } else if (access === null && refresh !== null) { //refreshToken은 있고 accessToken만 있을 경우 재발급요청
+      } else if (access === null && refresh !== null) { 
+        //refreshToken은 있고 accessToken만 있을 경우 재발급요청
         await store.dispatch('auth/refreshToken');
       }else {
+        //토큰이 다 있다면 페이지 이동 전 토큰 검증
         await store.dispatch('auth/verifyToken');
       }
       return next();

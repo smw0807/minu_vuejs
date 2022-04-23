@@ -1,5 +1,5 @@
 <script>
-import { inject, reactive,  } from 'vue'
+import { inject, reactive, onMounted  } from 'vue'
 export default {
   setup() {
     const axios = inject('$axios');
@@ -19,6 +19,9 @@ export default {
         console.error(err);
       }
     }
+    onMounted(() => {
+      sendAPI();
+    })
     return {
       state, sendAPI
     }
