@@ -33,6 +33,8 @@ const menuList = [
   { label : 'composition API', to: '/composition', separator: false},
   { label : 'composition Store', to: '/use-store', separator: true},
   { label : 'BackEnd API Test', to: '/test-api', separator: true},
+  { label : 'quasar ajax bar', to: '/quasar/ajax-bar', separator: false },
+  { label : 'quasar abbbb', to: '/quasar/abbbb', separator: false },
 ]
 export default {
   props:{

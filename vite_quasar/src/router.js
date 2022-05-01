@@ -23,6 +23,16 @@ const routes = [
     name: 'useStore',
     component: () => import('./views/use-store.vue')
   },
+  {
+    path: '/quasar/ajax-bar',
+    name: 'ajax_bar',
+    component: () => import('./views/quasar/ajax-bar.vue')
+  },
+  {
+    path: '/quasar/abbbb',
+    name: 'abbbb',
+    component: () => import('./views/quasar/abbbb.vue')
+  },
 ]
 
 export default function(store) {
