@@ -33,12 +33,15 @@
   ]
 export default {
   created() {
-    this.$store.dispatch('board/board/initBoardList'); //저장소 board안에 있는 actions을 트리거
+    // this.$store.dispatch('board/board/initBoardList'); //저장소 board안에 있는 actions을 트리거
   },
   computed: {
     list() {
-      return this.$store.getters['board/board/boardList']; //board 저장소에 있는 state가 변하면 실행되고 그 변한 값을 가져옴
+      return test;
     }
+    // list() {
+    //   return this.$store.getters['board/board/boardList']; //board 저장소에 있는 state가 변하면 실행되고 그 변한 값을 가져옴
+    // }
   },
   methods: {
     test() { //테스트 버튼 클릭 이벤트

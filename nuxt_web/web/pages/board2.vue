@@ -23,12 +23,15 @@ export default {
       'table-com': table1
     },
     created() {
-      this.$store.dispatch('board/board/initBoardList');
+      // this.$store.dispatch('board/board/initBoardList');
     },
     computed: {
       list() {
-        return this.$store.getters['board/board/boardList'];
+        return test;
       }
+      // list() {
+      //   return this.$store.getters['board/board/boardList'];
+      // }
     },
     methods: {
       test() {

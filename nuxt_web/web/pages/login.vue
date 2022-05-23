@@ -47,8 +47,8 @@
           return;
         }
         let params = {
-          uid: user_id,
-          pass: user_pw
+          user_id: user_id,
+          user_pw: user_pw
         };
         /**
          * Vuex.Stroe 사용 (중간 저장소)

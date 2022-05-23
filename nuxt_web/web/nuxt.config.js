@@ -32,17 +32,17 @@ module.exports = {
     ['cookie-universal-nuxt', {alias: 'cookiz'} ]
   ],
   axios: {
-    proxy: false, // true면 proxy 사용해서 해당되는 요청은 target url을 사용함
-    baseURL: 'http://localhost:3000'
+    proxy: true, // true면 proxy 사용해서 해당되는 요청은 target url을 사용함
+    baseURL: 'http://localhost:8080'
   },
   proxy: {
-    // '/v1/': { //axios 요청에 /v1/이 url을 설정
-    //   target: 'http://192.168.1.29:3000'
-    // }
+    '/api/': { // axios 요청 url에 api가 들어있으면 target url로 요청
+      target: 'http://localhost:8080'
+    }
   },
   serverMiddleware: [
     // <project root>/api/index.js 모듈을 미들웨어로 추가
-    '~/api/index.js',
+    // '~/api/index.js',
   ],
   /*
   ** Customize the progress bar color
