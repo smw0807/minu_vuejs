@@ -1,7 +1,8 @@
 <template>
-  <v-layout column>
+  <v-container fluid>
+    <v-layout column>
 
-    <v-flex class="ma-4">
+    <!-- <v-flex class="ma-4"> -->
       <v-row>
         <v-col cols="12">
           <!-- <datatables :list="list"/> -->
@@ -9,9 +10,10 @@
           <!-- <datatables3/> -->
         </v-col>
       </v-row>
-    </v-flex>
+    <!-- </v-flex> -->
 
   </v-layout>
+  </v-container>
 </template>
 
 <script>

@@ -52,7 +52,7 @@
             <img src="/v.png"  style="width: 30px; height: 30px; margin: 0;">
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title >AF Manager</v-list-item-title>
+            <v-list-item-title >연습용 Nuxt</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
