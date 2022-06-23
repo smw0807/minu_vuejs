@@ -25,7 +25,7 @@
     "vue-class-component": "^7.2.6",
     "vue-modal-window": "^1.0.3",
     "vue-navigation-bar": "^4.1.0",
-    "vue-property-decorator": "^9.1.2",
+    "vue-property-decorator": "^7.2.0",
     "vue-simple-drawer": "^1.0.6"
   },
   "devDependencies": {

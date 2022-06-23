@@ -25,6 +25,21 @@
           <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" v-on="on">
+                Vue
+              </v-btn>
+            </template>
+            <v-list dense dark>
+              <v-list-item v-for="(item, index) in vue" :key="index" router :to="item.link">
+                <v-list-item-action>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+
+          <v-menu open-on-hover offset-y transition="slide-x-transition" bottom right>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn v-bind="attrs" v-on="on">
                 Vuetify
               </v-btn>
             </template>
@@ -108,6 +123,10 @@ export default {
         { title: "Infinite Scrolling", link: "/aggrid/grid1" },
         { title: 'ag-grid-vue', link: '/aggrid/grid2'},
         { title: 'vue-modal-window', link: '/npm/modal'}
+      ],
+
+      vue: [
+        { title: "ref 테스트!!", link: "/vue/ref-test" },
       ],
 
       vuetify: [
