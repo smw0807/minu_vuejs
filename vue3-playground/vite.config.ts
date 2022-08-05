@@ -8,5 +8,12 @@ export default defineConfig({
     port: 8080,
     strictPort: true, //true로 하면 설정 포트가 이미 다른 곳에서 사용중일 때 다음 포트로 시도하지 않음
   },
-  plugins: [vue()]
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.esm-bundler.js',
+      'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.esm.js',
+      'balm-ui-css': 'balm-ui/dist/balm-ui.css'
+    }
+  }
 })

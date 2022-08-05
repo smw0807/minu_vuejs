@@ -6,7 +6,11 @@ const msg = ref('안녕???');
 
 <template>
   <div>
-    {{msg}}
+    <ui-grid class="demo-grid">
+      <ui-grid-cell class="demo-cell">4</ui-grid-cell>
+      <ui-grid-cell class="demo-cell">4</ui-grid-cell>
+      <ui-grid-cell class="demo-cell">4</ui-grid-cell>
+    </ui-grid>
   </div>
 </template>
 
