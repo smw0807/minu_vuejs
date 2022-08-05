@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "balm-ui": "^10.10.0",
     "vue": "^3.2.37",
     "vue-router": "^4.1.3"
   },
