@@ -1,6 +1,9 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import menusArr from './routes/routes.config';
+const menus : Array<Object> = menusArr.filter(()=> true);
+
 </script>
 
 <template>
@@ -11,8 +14,9 @@
       content-selector=".demo-content"
       :nav-icon="false"
     >
-      Title
+      Vite/Vue3/BalmUI/TypeScript
     </ui-top-app-bar>
+
     <!-- Content -->
     <div class="demo-content">
       <!-- Drawer -->
@@ -23,23 +27,31 @@
         </ui-drawer-header>
         <ui-drawer-content>
           <ui-nav>
-            <ui-nav-item href="javascript:void(0)" active>
-              Item {{ 0 }}
-            </ui-nav-item>
-            <ui-nav-item v-for="i in 12" :key="i" href="javascript:void(0)">
-              Item {{ i }}
-            </ui-nav-item>
+            <div v-for="menu in menus" :key="menu.path">
+              <router-link class="view main-content" v-slot="{isActive}" :to="menu.path" tag="button">
+                <ui-nav-item 
+                  :active="isActive"
+                  href="javascript:void(0)"
+                >
+                  {{menu.name}}
+                </ui-nav-item>
+              </router-link>
+            </div>
           </ui-nav>
         </ui-drawer-content>
       </ui-drawer>
+
       <!-- App content -->
       <div class="demo-app-content">
-        <router-view/>
+        <!-- <router-view/> -->
+        <router-view v-slot="{ Component, route }">
+          <transition :name="route.meta.transition || 'fade'">
+            <component :is="Component"/>
+          </transition>
+        </router-view>
       </div>
     </div>
   </div>
-
-  
 </template>
 
 <style>
