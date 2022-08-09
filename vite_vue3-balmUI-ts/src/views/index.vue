@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
-const msg = ref('안녕???');
+import mainSearch from '../components/mainSerch/index.vue';
 </script>
 
 <template>
   <div>
-    <ui-grid class="demo-grid">
-      <ui-grid-cell class="demo-cell">4</ui-grid-cell>
-      <ui-grid-cell class="demo-cell">4</ui-grid-cell>
-      <ui-grid-cell class="demo-cell">4</ui-grid-cell>
+    <ui-grid class="demo-grid max-width" position="center">
+      <ui-grid-cell class="demo-cell" columns="12">
+        <mainSearch/>
+      </ui-grid-cell>
     </ui-grid>
   </div>
 </template>
 
-<style>
-
+<style scoped>
+.demo-grid.max-width {
+  max-width: 900px;
+}
 </style>

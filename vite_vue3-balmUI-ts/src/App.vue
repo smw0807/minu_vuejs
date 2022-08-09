@@ -28,7 +28,7 @@ const menus : Array<Object> = menusArr.filter(()=> true);
         <ui-drawer-content>
           <ui-nav>
             <div v-for="menu in menus" :key="menu.path">
-              <router-link class="view main-content" v-slot="{isActive}" :to="menu.path" tag="button">
+              <router-link class="view main-content" v-slot="{isActive}" :to="menu.path">
                 <ui-nav-item 
                   :active="isActive"
                   href="javascript:void(0)"
@@ -62,5 +62,8 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
+}
+a {
+  text-decoration: none;
 }
 </style>
