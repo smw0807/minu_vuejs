@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*":["srt/*"],
+      "@/*":["./src/*"],
       "balm-ui-plus": ["node_modules/balm-ui/dist/balm-ui-plus.d.ts"],
       "balm-ui-next": ["node_modules/balm-ui/dist/balm-ui-next.d.ts"]
     }
