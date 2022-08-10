@@ -47,8 +47,11 @@ onMounted(() => {
       outlined
       with-trailing-icon
     >Your NickName</ui-textfield>
+
+    <ui-button outlined icon="search">
+      검색</ui-button>
   </div>
-  
+
 </template>
 
 <style scoped>
