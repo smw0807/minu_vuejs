@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-app-bar dark app >
-      <!-- <v-app-bar-nav-icon @click.stop="drawer =!drawer"></v-app-bar-nav-icon>
-      <v-divider vertical class="ml-1"></v-divider> -->
+      <v-app-bar-nav-icon @click.stop="drawer =!drawer"></v-app-bar-nav-icon>
+      <v-divider vertical class="ml-1"></v-divider>
 
       <v-breadcrumbs
         :items="breadcrumbs"
@@ -41,6 +41,8 @@
       app
       v-model="drawer"
       :clipped="clipped"
+      :mini-variant="drawer"
+      :expand-on-hover="drawer"
       permanent
       dark
       >
@@ -133,7 +135,7 @@ export default {
     return {
       title: '', //상단 app-bar 이름
       default_title: 'NuxtJS',
-      drawer: true,
+      drawer: false,
       clipped: true,
       miniVariant: true,
       searchSelect: null,
