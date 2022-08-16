@@ -1,12 +1,19 @@
 <script setup lang="ts">
+import mainSearch from '../components/mainSearch/index.vue';
 </script>
 
 <template>
-  <div>
-    ㅎㅇㅎㅇ
+  <div class="main">
+    <el-row align="middle" justify="center">
+      <el-col>
+        <mainSearch/>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <style scoped>
+.main {
 
+}
 </style>
