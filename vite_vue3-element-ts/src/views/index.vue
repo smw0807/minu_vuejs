@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import mainSearch from '../components/mainSearch/index.vue';
+import mainSearch from '../components/mainSearch/search.vue';
 </script>
 
 <template>

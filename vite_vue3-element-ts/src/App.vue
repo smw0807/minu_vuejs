@@ -4,8 +4,8 @@
 import { ref, computed } from 'vue';
 import type { Ref } from 'vue';
 
-import HeaderMenu from './components/header/menu.vue';
-import SideMenu from './components/side/menu.vue';
+import HeaderMenu from '@/components/header/HeaderMenu.vue';
+import SideMenu from '@/components/side/SideMenu.vue';
 
 // const wHeight: Ref<number> = ref(window.innerHeight);
 // console.log(wHeight);
@@ -15,11 +15,11 @@ import SideMenu from './components/side/menu.vue';
   <div class="common-layout">
     <el-container>
       <el-header>
-        <header-menu/>
+        <HeaderMenu/>
       </el-header>
       <el-container>
         <el-aside width="200px">
-          <side-menu/>
+          <SideMenu/>
         </el-aside>
         <el-main>
           <router-view/>

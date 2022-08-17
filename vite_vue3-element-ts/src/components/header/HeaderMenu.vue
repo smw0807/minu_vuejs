@@ -3,9 +3,9 @@ import { ref } from 'vue'
 import type { Ref } from 'vue';
 
 // const activeIndex: Ref<string> = ref('1')
-const handleSelect = (key: string, keyPath: string[]): void => {
-  console.log(key, keyPath)
-}
+// const handleSelect = (key: string, keyPath: string[]): void => {
+//   console.log(key, keyPath)
+// }
 </script>
 <template>
   <div>

@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,5 +9,15 @@ export default defineConfig({
     port: 8080,
     strictPort: true, //true로 하면 설정 포트가 이미 다른 곳에서 사용중일 때 다음 포트로 시도하지 않음
   },
-  plugins: [vue()]
+  plugins: [
+    vue(),
+  ],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src")
+    }
+    // alias: [
+    //   { find: '@', replacement: resolve(__dirname, 'src')},
+    // ],
+  },
 })
