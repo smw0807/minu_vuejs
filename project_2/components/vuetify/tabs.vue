@@ -30,6 +30,17 @@
           flat
         >
           <v-card-text>{{ text }}</v-card-text>
+          <v-card-text>
+            <v-text-field
+              v-model="firstname"
+              :rules="nameRules"
+              :counter="10"
+              ref="name"
+              label="First name"
+              required
+            ></v-text-field>
+            <v-btn @click="check()">check</v-btn>
+          </v-card-text>
         </v-card>
       </v-tab-item>
     </v-tabs-items>
@@ -45,6 +56,13 @@ export default {
         'Appetizers', 'Entrees', 'Deserts', 'Cocktails',
       ],
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      valid: false,
+      firstname: '',
+      lastname: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => v.length <= 10 || 'Name must be less than 10 characters',
+      ],
     }
   },
   mounted() {
@@ -58,6 +76,11 @@ export default {
       console.log('tab : ', v); 
     }
   },
+  methods: {
+    check() {
+      console.log(this.$refs.name[0].valid);
+    }
+  }
 }
 </script>
 
