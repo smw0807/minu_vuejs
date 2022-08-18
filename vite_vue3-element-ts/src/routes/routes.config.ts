@@ -8,7 +8,15 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       transition: 'fade',
     },
-  }
+  },
+  {
+    path:'/test',
+    name: 'Test',
+    component: () => import('../views/test/test.vue'),
+    meta: {
+      transition: 'fade',
+    },
+  },
 ];
 
 export default routes;
