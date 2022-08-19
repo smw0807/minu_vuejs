@@ -11,14 +11,27 @@ const menus: Array<object> = menusArr.filter(() => true);
   <el-row>
     <el-col>
       <el-menu
-          :default-active="path"
-          class="el-menu-vertical-demo"
-          :router="true"
-          >
-          <el-menu-item v-for="(menu, idx) in menus" :index="menu.path" :key="idx">
+        :default-active="path"
+        class="el-menu-vertical-demo"
+        :router="true"
+        >
+        <template v-for="(menu, idx) in menus" :index="menu.path">
+          <el-menu-item v-if="!menu.children" :index="menu.path" :key="idx">
             <span>{{menu.name}}</span>
           </el-menu-item>
-        </el-menu>
+          <el-sub-menu v-else :index="menu.path">
+            <template #title>
+              <span>{{menu.name}}</span>
+            </template>
+            <el-menu-item-group v-for="(subMenu, sIdx) in menu.children" :key="sIdx">
+              <el-menu-item :index="subMenu.path">{{subMenu.name}}</el-menu-item>
+            </el-menu-item-group>
+          </el-sub-menu>
+        </template>
+        <!-- <el-menu-item v-for="(menu, idx) in menus" :index="menu.path" :key="idx">
+          <span>{{menu.name}}</span>
+        </el-menu-item> -->
+      </el-menu>
     </el-col>
   </el-row>
 </template>

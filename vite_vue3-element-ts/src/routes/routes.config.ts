@@ -17,6 +17,24 @@ const routes: Array<RouteRecordRaw> = [
       transition: 'fade',
     },
   },
+  {
+    path: '/basic',
+    name: 'Basic',
+    component: () => import('../views/basic/ep-button.vue'),
+    meta: {
+      transition: 'fade'
+    },
+    children: [
+      {
+        path: '/basic/button',
+        name: 'button',
+        component: () => import('../views/basic/ep-button.vue'),
+        meta: {
+          transition: 'fade'
+        },
+      },
+    ]
+  }
 ];
 
 export default routes;
