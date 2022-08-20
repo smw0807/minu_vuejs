@@ -57,6 +57,7 @@ export default {
         { title: 'Event Bus', to: '/vue/eventBus', use: ['vue']},
         { title: 'props function test', to: '/vue/props', use: ['vue']},
         { title: '$data & $options', to: '/vue/data_options', use: ['vue']},
+        { title: 'URL Params test', to: '/vue/url-params', use: ['vue']},
       ],
     },
     { divider: true },
