@@ -20,15 +20,23 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/basic',
     name: 'Basic',
-    component: () => import('../views/basic/ep-button.vue'),
+    // component: () => import('../views/basic/ep-button.vue'),
     meta: {
       transition: 'fade'
     },
     children: [
       {
         path: '/basic/button',
-        name: 'button',
+        name: 'Button',
         component: () => import('../views/basic/ep-button.vue'),
+        meta: {
+          transition: 'fade'
+        },
+      },
+      {
+        path: '/basic/border',
+        name: 'Border',
+        component: () => import('../views/basic/ep-border.vue'),
         meta: {
           transition: 'fade'
         },
