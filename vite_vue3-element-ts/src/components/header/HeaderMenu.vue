@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 import type { Ref } from 'vue';
 
 // const activeIndex: Ref<string> = ref('1')
@@ -9,14 +9,9 @@ import type { Ref } from 'vue';
 </script>
 <template>
   <div>
-    <el-menu
-      class="el-menu-demo"
-      mode="horizontal"
-    >
+    <el-menu class="el-menu-demo" mode="horizontal">
       <!-- @select="handleSelect" -->
-      <div class="logo">
-        Element+
-      </div>
+      <div class="logo">Element+</div>
       <!-- <el-menu-item index="1">Processing Center</el-menu-item> -->
       <div class="flex-grow" />
       <el-sub-menu index="2">
@@ -34,7 +29,6 @@ import type { Ref } from 'vue';
       <el-menu-item index="3" disabled>Info</el-menu-item>
       <el-menu-item index="4">Orders</el-menu-item>
     </el-menu>
-
   </div>
 </template>
 <style scoped>

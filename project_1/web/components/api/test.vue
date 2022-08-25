@@ -4,57 +4,33 @@
     <v-card-text>
       <v-row>
         <v-col cols="12">
-          {{result}}
+          {{ result }}
         </v-col>
         <v-col cols="12" align="end">
           <v-spacer></v-spacer>
-          <v-btn
-            raised
-            color="primary"
-            @click="retry"
-            :disabled="test"
-            >
+          <v-btn raised color="primary" @click="retry" :disabled="test">
             다시!
           </v-btn>
-          <v-btn
-            raised
-            color="primary"
-            @click="retry2"
-            :disabled="test"
-            >
+          <v-btn raised color="primary" @click="retry2" :disabled="test">
             다시2!
           </v-btn>
         </v-col>
-        
       </v-row>
       <v-row>
-        <v-col cols="12" v-if="es_state===true">
-          <v-alert
-            dense
-            text
-            type="success"
-          >
+        <v-col cols="12" v-if="es_state === true">
+          <v-alert dense text type="success">
             ElasticSearch Connected Success!
           </v-alert>
         </v-col>
-        <v-col cols="12" v-else-if="es_state===false">
-          <v-alert
-            dense
-            text
-            type="error"
-          >
+        <v-col cols="12" v-else-if="es_state === false">
+          <v-alert dense text type="error">
             <h3>ElasticSearch Connected Fail!</h3>
-            <p>{{es_err_msg}}</p>
+            <p>{{ es_err_msg }}</p>
           </v-alert>
         </v-col>
         <v-col cols="12" align="end">
           <v-spacer></v-spacer>
-          <v-btn
-            raised
-            color="primary"
-            @click="es_test"
-            :disabled="test"
-            >
+          <v-btn raised color="primary" @click="es_test" :disabled="test">
             ES Check!
           </v-btn>
         </v-col>
@@ -71,7 +47,7 @@ export default {
       test: false,
       es_state: null,
       es_err_msg: '',
-    }
+    };
   },
   created() {
     this.$store.dispatch('apitest');
@@ -81,7 +57,7 @@ export default {
   computed: {
     result() {
       return this.$store.getters['GET_API_TEST'];
-    }
+    },
   },
   methods: {
     retry() {
@@ -116,11 +92,10 @@ export default {
       } catch (err) {
         console.error('es_test err : ', err);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>
