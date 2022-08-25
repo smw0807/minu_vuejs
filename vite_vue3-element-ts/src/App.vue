@@ -15,14 +15,14 @@ import SideMenu from '@/components/side/SideMenu.vue';
   <div class="common-layout">
     <el-container>
       <el-header>
-        <HeaderMenu/>
+        <HeaderMenu />
       </el-header>
       <el-container>
         <el-aside width="200px">
-          <SideMenu/>
+          <SideMenu />
         </el-aside>
         <el-main>
-          <router-view/>
+          <router-view />
         </el-main>
       </el-container>
     </el-container>
