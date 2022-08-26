@@ -49,6 +49,14 @@ const routes: Array<RouteRecordRaw> = [
           transition: 'fade'
         },
       },
+      {
+        path: '/basic/layout',
+        name: 'Layout',
+        component: () => import('../views/basic/ep-layout.vue'),
+        meta: {
+          transition: 'fade'
+        },
+      },
     ]
   }
 ];
