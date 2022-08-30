@@ -39,7 +39,6 @@ export default {
     '@/plugins/directive.js',
     '@/plugins/VueCtkDateTimePicker.js',
     '@/plugins/vue-json-csv.js',
-    '@/plugins/log.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -59,7 +58,6 @@ export default {
     // '@/modules/example',
     ['@/modules/example', { name: process.env.name || 'song' }],
     'nuxt-socket-io',
-    '@/modules/storeList',
   ],
   io: {
     sockets: [
@@ -145,5 +143,6 @@ export default {
     babel: {
       plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]],
     },
+    transpile: ['storeCheck'],
   },
 };
