@@ -4,4 +4,4 @@ export const server = () => {
   } else {
     return ['@/api/index.js'];
   }
-}
+};

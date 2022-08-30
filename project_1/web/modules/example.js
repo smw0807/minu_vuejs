@@ -6,14 +6,13 @@ export default function ExampleModule(moduleOptions) {
 
   //Nuxt 작동 준비 완료시 실행
   this.nuxt.hook('ready', async nuxt => {
-    console.log('Nuxt is ready'); //! 실행 순서 : 4
-
+    console.log('Nuxt is ready'); //! 실행 순서 :
   });
 
   //후크 호출할 떄 처리되지 않은 오류
   this.nuxt.hook('error', async error => {
     // Your custom code here
-    console.log('Nuxt is error', err);
+    console.log('Nuxt is error', error);
   });
 
   //Nuxt 인스턴스가 정상적으로 종료
@@ -26,33 +25,33 @@ export default function ExampleModule(moduleOptions) {
   this.nuxt.hook('listen', async (server, { host, port }) => {
     // Your custom code here
     console.log('Nuxt is listen'); //! 실행 순서 : 5
-  })
+  });
   this.nuxt.hook('modules:done', moduleContainer => {
     // This will be called when all modules finished loading
     console.log('modules:done'); //! 실행 순서 : 2
-  })
+  });
 
   this.nuxt.hook('render:before', renderer => {
     // Called after the renderer was created
     console.log('render:before'); //! 실행 순서 : 3
-  })
+  });
 
   this.nuxt.hook('build:compile', async ({ name, compiler }) => {
     // Called before the compiler (default: webpack) starts
     console.log('build:compile'); //! 실행 순서 : 6 (빌드 완료시? 찍히는 것 같음)
-  })
+  });
 
   this.nuxt.hook('generate:before', async generator => {
     // This will be called before Nuxt generates your pages
-    console.log('generate:before')
-  })
+    console.log('generate:before');
+  });
 }
 
 // // REQUIRED if publishing the module as npm package
 // module.exports.meta = require('./package.json')
 
 /**
- * 공식 문서를 읽어 봤지만 
+ * 공식 문서를 읽어 봤지만
  * 아직 내 기준에선 무엇에 써야할 지 감이 잡히는게 없음.
  * 제공 되는 기능도 많은 것 같고, 할 수 있는 것도 많은 것 같은데.
  * 잘 모르겠다.
