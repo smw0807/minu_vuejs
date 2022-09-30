@@ -1,9 +1,10 @@
 <template>
   <div>
     root views test......
-    <router-link :to="{ name: 'composition', params: { name: 'dog', age: 4 } }">
+    <router-link to="/composition?name=dog"> query 방식 </router-link>
+    <!-- <router-link :to="{ name: 'composition', params: { name: 'dog', age: 4 } }">
       params 선언적 방식
-    </router-link>
+    </router-link> -->
   </div>
 </template>
 

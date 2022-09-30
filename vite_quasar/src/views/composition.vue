@@ -16,10 +16,17 @@ export default {
         <setup />
       </q-card-section>
     </q-card>
-    <q-card class="my-card" flat bordered>
+    <!-- <q-card class="my-card" flat bordered>
       <q-card-section>
         <div class="text-h5">received params?</div>
         {{ $route.params.name }}
+      </q-card-section>
+    </q-card> -->
+    <q-card class="my-card" flat bordered>
+      <q-card-section>
+        <div class="text-h5">query</div>
+        {{ $route.query }}
+        {{ $route.query.name }}
       </q-card-section>
     </q-card>
 
