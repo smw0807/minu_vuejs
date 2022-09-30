@@ -1,10 +1,10 @@
 <script>
-import setup from '../components/composition/setup.vue'
+import setup from '../components/composition/setup.vue';
 export default {
   components: {
-    setup
-  }
-}
+    setup,
+  },
+};
 </script>
 
 <template>
@@ -13,7 +13,13 @@ export default {
       <q-card-section>
         <div class="text-h5">setup()</div>
         <q-separator inset class="q-my-md" />
-        <setup/>
+        <setup />
+      </q-card-section>
+    </q-card>
+    <q-card class="my-card" flat bordered>
+      <q-card-section>
+        <div class="text-h5">received params?</div>
+        {{ $route.params.name }}
       </q-card-section>
     </q-card>
 
