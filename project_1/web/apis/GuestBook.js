@@ -1,3 +1,9 @@
+/**
+ * 고민
+ * axios 요청만 딱 하고 결과를 통으로 반환하는게 좋을까?
+ * promise화 시켜서 요청 및 결과를 가공해서 resolve나 reject로 반환 시키는게 좋을까?
+ * 우선은 후자로 작성함
+ */
 const defURL = '/api/mongo/user';
 const url = {
   list: defURL,
