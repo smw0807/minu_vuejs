@@ -8,12 +8,18 @@ export const state = () => {
 };
 
 export const mutations = {
+  list(state, payload) {
+    state.list = payload;
+  },
   SET_LIST(state, payload) {
     state.list = payload;
   },
 };
 
 export const getters = {
+  list(state) {
+    return state.list;
+  },
   GET_LIST(state) {
     return state.list;
   },
@@ -53,7 +59,21 @@ export const actions = {
       try {
         const api = new GuestBookAPI(this.$axios);
         const list = await api.list();
-        resolve(list);
+        commit('list', list);
+        resolve(true);
+      } catch (err) {
+        console.error(err);
+        commit('list', []);
+        reject(err.message);
+      }
+    });
+  },
+  GuestBookInsert({ commit }, params) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const api = new GuestBookAPI(this.$axios);
+        const insert = await api.insert(params);
+        resolve(true);
       } catch (err) {
         console.error(err);
         reject(err.message);
