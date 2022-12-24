@@ -10,9 +10,11 @@
   "dependencies": {
     "@quasar/extras": "^1.12.5",
     "axios": "^0.26.0",
+    "date-fns": "^2.29.3",
     "quasar": "^2.5.5",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12",
+    "vue-timeago3": "^2.3.0",
     "vue3-cookies": "^1.0.6",
     "vuex": "^4.0.2"
   },

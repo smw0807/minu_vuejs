@@ -33,6 +33,11 @@ const routes = [
     name: 'abbbb',
     component: () => import('./views/quasar/abbbb.vue'),
   },
+  {
+    path: '/vue-timeago',
+    name: 'vue-timeago3',
+    component: () => import('./views/vue-timeago.vue'),
+  },
 ];
 
 export default function (store) {
