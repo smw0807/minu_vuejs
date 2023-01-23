@@ -1,5 +1,17 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue';
+import { User } from 'firebase/auth';
+import { GoogleAuthAPI } from '@/apis'
+const googleAuth = new GoogleAuthAPI();
+
+const signIn = async (): Promise<void> => {
+ try {
+  const user: User = await googleAuth.signIn();
+  console.log(user);
+ } catch (err) {
+  console.error(err);
+ }
+}
 </script>
 
 <template>
@@ -11,6 +23,7 @@ import HelloWorld from './components/HelloWorld.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
+  <button @click="signIn">로그인</button>
   <HelloWorld msg="Vite + Vue" />
 </template>
 

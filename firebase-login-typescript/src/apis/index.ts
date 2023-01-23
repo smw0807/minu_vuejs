@@ -1,0 +1,1 @@
+export { GoogleAuthAPI } from './firebase';

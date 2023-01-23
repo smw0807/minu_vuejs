@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^9.16.0",
     "vue": "^3.2.45"
   },
   "devDependencies": {
