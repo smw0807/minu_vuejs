@@ -4,13 +4,14 @@ import { User } from 'firebase/auth';
 import { GoogleAuthAPI } from '@/apis'
 const googleAuth = new GoogleAuthAPI();
 
+//로그인
 const signIn = async (): Promise<void> => {
  try {
-  const user: User = await googleAuth.signIn();
-  console.log(user);
- } catch (err) {
-  console.error(err);
- }
+    const user: User = await googleAuth.signIn();
+    console.log(user);
+  } catch (err) {
+    console.error(err);
+  }
 }
 </script>
 
