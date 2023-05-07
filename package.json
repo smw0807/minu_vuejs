@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "@vue/server-renderer": "^3.2.47"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-  }
-}
