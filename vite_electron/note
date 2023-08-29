@@ -1,6 +1,0 @@
-# 알아둬야 할 npm
-cross-env : 윈도우, 맥, 리눅스 환경에 구애받지 않고 환경변수를 설정할 수 있게 해줌
-wait-on : port가 열릴 때까지 기다리게 해줌
-concurrently : 동시에 실행될 수 있게 해줌? (위 2개를 동시에 실행 시키기위해 추가함)
-"concurrently -k \"cross-env NODE_ENV=development && vite\" \"wait-on tcp:3000 && electron .\""
-package.json script에 사용함
